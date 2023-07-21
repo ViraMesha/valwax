@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
-import Instagram from './components/instagram/instagram'
-import Navigation from './components/navigation/navigation'
+import Instagram from '../components/instagram/instagram'
+import Navigation from '../components/navigation/navigation'
 
 export default function Home() {
   return (
