@@ -1,21 +1,26 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import Link from 'next/link'
-import Instagram from '../components/instagram/instagram'
-import Navigation from '../components/navigation/navigation'
+import Image from "next/image";
+import styles from "./page.module.css";
+import Link from "next/link";
+import Instagram from "../components/instagram/instagram";
+import Navigation from "../components/navigation/navigation";
+import Button from "@components/components/Button/Button";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-
       <h1>Home page</h1>
 
+      <Button variant="primary">Переглянути Каталог</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="tertiary" hasIcon>
+        Button Text
+      </Button>
       <nav>
-        <Link href='/candle'>Candle page</Link>
+        <Link href="/candle">Candle page</Link>
       </nav>
 
-      <Instagram/>
-      <Navigation/>
+      <Instagram />
+      <Navigation />
 
       {/* <div className={styles.description}>
         <p>
@@ -103,7 +108,6 @@ export default function Home() {
           </p>
         </a>
       </div> */}
-
     </main>
-  )
+  );
 }
