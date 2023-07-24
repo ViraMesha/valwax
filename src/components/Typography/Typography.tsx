@@ -1,4 +1,4 @@
-import styles from "./Typoghraphy.module.css";
+import styles from "./Typography.module.css";
 
 // Defining the HTML tag that the component will support
 const variantsMapping = {
@@ -14,11 +14,9 @@ const variantsMapping = {
   bodyS2: "p",
 } as const;
 
-type textColor = "black" | "white";
-
 interface Props {
   variant?: keyof typeof variantsMapping;
-  color?: textColor;
+  color?: string;
   className?: string;
   children?: React.ReactNode;
 }
@@ -31,7 +29,7 @@ interface Props {
 // ...props: the default attribute of the Component
 const Typography: React.FC<Props> = ({
   variant,
-  color = "black",
+  color = "var(--cl-primary-900)",
   children,
   className,
   ...props
@@ -42,10 +40,10 @@ const Typography: React.FC<Props> = ({
 
   const textClassName = `${
     variant ? styles[`typography--variant-${variant}`] : ""
-  } ${color ? styles[`typography--color-${color}`] : ""} ${className || ""}`;
+  } ${className || ""}`;
 
   return (
-    <Component className={textClassName} {...props}>
+    <Component className={textClassName} {...props} style={{ color: color }}>
       {children}
     </Component>
   );
