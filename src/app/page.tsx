@@ -1,13 +1,14 @@
 import Image from "next/image";
-import styles from "./page.module.css";
 import Link from "next/link";
-import Instagram from "../components/instagram/instagram";
-import Navigation from "../components/navigation/navigation";
-
 // приклад використання типографії і другого фонту
 // import Typography from "@components/components/Typography/Typography";
 // import { avenir } from "./fonts";
 import Button from "@components/components/Button/Button";
+
+import Instagram from "../components/instagram/instagram";
+import Navigation from "../components/navigation/navigation";
+
+import styles from "./page.module.css";
 
 export default function Home() {
   return (

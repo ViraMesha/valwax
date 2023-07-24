@@ -1,5 +1,6 @@
-import styles from "./Button.module.css";
 import { TbArrowRight } from "react-icons/tb";
+
+import styles from "./Button.module.css";
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
