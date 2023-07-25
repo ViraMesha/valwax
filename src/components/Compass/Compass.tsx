@@ -4,7 +4,7 @@ import Container from '../Container/Container'
 import styles from './Compass.module.css'
 import Typography from '../Typography/Typography'
 
-const Navigation = () => {
+const Compass = () => {
   return (
     <Container>
       {/* <h2>Navigation section</h2> */}
@@ -62,4 +62,4 @@ const Navigation = () => {
   )
 }
 
-export default Navigation
+export default Compass
