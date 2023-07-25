@@ -8,6 +8,7 @@ const variantsMapping = {
   subheading3: "h4",
   button: "span",
   bodyXL: "p",
+  bodyXLHeavy: "p",
   bodyL: "p",
   bodyRegular: "p",
   bodyS: "p",
