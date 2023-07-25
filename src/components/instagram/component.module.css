@@ -1,0 +1,5 @@
+.txt {
+  font-family: var(--font-test);
+  font-weight: 350;
+  text-transform: uppercase;
+}

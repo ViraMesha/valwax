@@ -1,5 +1,5 @@
 
-export default function Candle() {
+const Candle = () => {
   return (
     <main >
 
@@ -8,3 +8,5 @@ export default function Candle() {
     </main>
   )
 }
+
+export default Candle
