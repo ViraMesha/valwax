@@ -25,7 +25,7 @@ const Quote = () => {
       <div className={styles.imageContainer}>
         <Image
           src={image}
-          alt="a large beautiful candle surrounded by eucalyptus twigs"
+          alt="A large beautiful candle surrounded by eucalyptus twigs"
         />
       </div>
     </section>
