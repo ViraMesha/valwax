@@ -7,7 +7,7 @@ import Button from "@components/components/Button/Button";
 import Quote from "@components/components/Quote/Quote";
 
 import Instagram from "../components/Instagram/Instagram";
-import Navigation from "../components/Compass/Compass";
+import Compass from "../components/Compass/Compass";
 
 import styles from "./page.module.css";
 
@@ -34,7 +34,7 @@ export default function Home() {
       </nav>
 
       <Instagram />
-      <Navigation />
+      <Compass />
 
       {/* <div className={styles.description}>
         <p>
