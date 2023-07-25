@@ -1,0 +1,16 @@
+.sectionWrapper {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.textContainer {
+  max-width: 943px;
+  margin-bottom: 40px;
+}
+
+.imageContainer {
+  max-width: 1600px;
+  min-width: 1440px;
+  margin-right: auto;
+  margin-left: auto;
+}

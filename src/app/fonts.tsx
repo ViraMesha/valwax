@@ -9,7 +9,7 @@ export const avenir = localFont({
     },
     {
       path: "../../public/fonts/avenir-lt-std-55-roman.woff2",
-      weight: "400",
+      weight: "350",
       style: "normal",
     },
   ],
