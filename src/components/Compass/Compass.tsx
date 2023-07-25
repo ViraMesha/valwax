@@ -1,10 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
-
+import Image from "next/image";
 import Container from "../Container/Container";
+import styles from "./Compass.module.css";
 import Typography from "../Typography/Typography";
-
-import styles from "./component.module.css";
 
 const Navigation = () => {
   return (

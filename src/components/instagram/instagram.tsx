@@ -1,6 +1,5 @@
 import Typography from "../Typography/Typography";
-
-import styles from "./component.module.css";
+import styles from "./Instagram.module.css";
 
 const Instagram = () => {
   return (
@@ -13,5 +12,3 @@ const Instagram = () => {
     </>
   );
 };
-
-export default Instagram;
