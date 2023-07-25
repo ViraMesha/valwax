@@ -83,3 +83,7 @@ a {
   text-decoration: none;
   color: currentColor;
 }
+
+button {
+  font-family: inherit;
+}

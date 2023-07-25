@@ -1,0 +1,8 @@
+.navigationList {
+  display: flex;
+  gap: 24px;
+}
+
+.activeLink {
+  border-bottom: 1px solid var(--cl-primary-500);
+}

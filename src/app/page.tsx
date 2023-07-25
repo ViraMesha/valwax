@@ -1,17 +1,31 @@
 import Image from "next/image";
-import styles from "./page.module.css";
 import Link from "next/link";
-import Instagram from "../components/instagram/instagram";
-import Subscription from "../components/Subscription/Subscription";
+// приклад використання типографії і другого фонту
+// import Typography from "@components/components/Typography/Typography";
+// import { avenir } from "./fonts";
 import Button from "@components/components/Button/Button";
-import Container from "@components/components/Container/Container";
+
+import Instagram from "../components/instagram/instagram";
+
+
+import styles from "./page.module.css";
 import Navigation from "@components/components/Navigation/navigation";
+import Subscription from "@components/components/Subscription/Subscription";
+import Container from "@components/components/Container/Container";
+
 
 export default function Home() {
   return (
     <Container>
-      <main className={styles.main}>
-        <h1>Home page</h1>
+    <main className={styles.main}>
+      <h1>Home page</h1>
+      {/* <Typography
+        variant="heading1"
+        className={avenir.className}
+        color="var(--cl-secondary-900)"
+      >
+        Запалюйте світло
+      </Typography> */}
 
         <Button variant="primary">Переглянути Каталог</Button>
         <Button variant="secondary">Secondary</Button>
