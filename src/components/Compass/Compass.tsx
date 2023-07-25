@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from "next/image";
 import Container from '../Container/Container'
-import styles from './component.module.css'
+import styles from './Compass.module.css'
 import Typography from '../Typography/Typography'
 
 const Navigation = () => {

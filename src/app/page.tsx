@@ -5,8 +5,8 @@ import Link from "next/link";
 // import { avenir } from "./fonts";
 import Button from "@components/components/Button/Button";
 
-import Instagram from "../components/instagram/instagram";
-import Navigation from "../components/navigation/navigation";
+import Instagram from "../components/Instagram/Instagram";
+import Navigation from "../components/Compass/Compass";
 
 import styles from "./page.module.css";
 
