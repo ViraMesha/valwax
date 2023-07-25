@@ -42,6 +42,13 @@
   font-weight: 400;
   line-height: 1.44;
 }
+
+.typography--variant-bodyXLHeavy {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.44;
+}
+
 .typography--variant-bodyL {
   font-size: 20px;
   font-weight: 400;

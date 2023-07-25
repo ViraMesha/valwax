@@ -9,6 +9,7 @@ const variantsMapping = {
   subheding4: "p",
   button: "span",
   bodyXL: "p",
+  bodyXLHeavy: "p",
   bodyL: "p",
   bodyRegular: "p",
   bodyS: "p",
