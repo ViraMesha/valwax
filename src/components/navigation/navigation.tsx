@@ -1,10 +1,9 @@
-
-export default function Navigation() {
+const Navigation = () => {
   return (
-    <main >
-
-      <h2>Navigation section</h2>
-
+    <main>
+      <h2>Subscription section</h2>
     </main>
-  )
-}
+  );
+};
+
+export default Navigation;

@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Instagram from "../components/instagram/instagram";
-import Navigation from "../components/navigation/navigation";
+import Subscription from "../components/Subscription/Subscription";
 import Button from "@components/components/Button/Button";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
       </nav>
 
       <Instagram />
-      <Navigation />
+      <Subscription />
 
       {/* <div className={styles.description}>
         <p>
