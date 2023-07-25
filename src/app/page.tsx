@@ -4,6 +4,7 @@ import Link from "next/link";
 // import Typography from "@components/components/Typography/Typography";
 // import { avenir } from "./fonts";
 import Button from "@components/components/Button/Button";
+import Quote from "@components/components/Quote/Quote";
 
 import Instagram from "../components/instagram/instagram";
 import Navigation from "../components/navigation/navigation";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <h1>Home page</h1>
+      <Quote />
       {/* <Typography
         variant="heading1"
         className={avenir.className}
