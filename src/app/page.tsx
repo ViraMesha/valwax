@@ -4,25 +4,29 @@ import Link from "next/link";
 import Instagram from "../components/instagram/instagram";
 import Subscription from "../components/Subscription/Subscription";
 import Button from "@components/components/Button/Button";
+import Container from "@components/components/Container/Container";
+import Navigation from "@components/components/Navigation/navigation";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <h1>Home page</h1>
+    <Container>
+      <main className={styles.main}>
+        <h1>Home page</h1>
 
-      <Button variant="primary">Переглянути Каталог</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="tertiary" hasIcon>
-        Button Text
-      </Button>
-      <nav>
-        <Link href="/candle">Candle page</Link>
-      </nav>
+        <Button variant="primary">Переглянути Каталог</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="tertiary" hasIcon>
+          Button Text
+        </Button>
+        <nav>
+          <Link href="/candle">Candle page</Link>
+        </nav>
 
-      <Instagram />
-      <Subscription />
+        <Instagram />
+        <Subscription />
+        <Navigation/>
 
-      {/* <div className={styles.description}>
+        {/* <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
@@ -108,6 +112,7 @@ export default function Home() {
           </p>
         </a>
       </div> */}
-    </main>
+      </main>
+    </Container>
   );
 }

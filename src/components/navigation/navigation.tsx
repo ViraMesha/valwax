@@ -1,8 +1,24 @@
+import Link from "next/link";
+
 const Navigation = () => {
   return (
-    <main>
-      <h2>Subscription section</h2>
-    </main>
+    <>
+      <Link href="/">
+        <a>Головна</a>
+      </Link>
+      <Link href="#">
+        <a>Свічки</a>
+      </Link>
+      <Link href="#">
+        <a>Створи Сам</a>
+      </Link>
+      <Link href="#">
+        <a>Бокси</a>
+      </Link>
+      <Link href="#">
+        <a>Оплата та Доставка</a>
+      </Link>
+    </>
   );
 };
 
