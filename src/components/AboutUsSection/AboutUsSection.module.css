@@ -1,0 +1,8 @@
+.title {
+  color: var(--primary-800, #3b021a);
+  font-family: Proxima Nova;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+}

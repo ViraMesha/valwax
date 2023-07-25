@@ -4,10 +4,11 @@ import Link from "next/link";
 import Instagram from "../components/instagram/instagram";
 import Navigation from "../components/navigation/navigation";
 import Button from "@components/components/Button/Button";
+import AboutUsSection from "@components/components/AboutUsSection/AboutUsSection";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main className="styles.main">
       <h1>Home page</h1>
 
       <Button variant="primary">Переглянути Каталог</Button>
@@ -18,7 +19,7 @@ export default function Home() {
       <nav>
         <Link href="/candle">Candle page</Link>
       </nav>
-
+      <AboutUsSection />
       <Instagram />
       <Navigation />
 
