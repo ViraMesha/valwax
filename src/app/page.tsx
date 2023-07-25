@@ -6,7 +6,7 @@ import Link from "next/link";
 import Button from "@components/components/Button/Button";
 
 import Instagram from "../components/instagram/instagram";
-import Navigation from "../components/navigation/navigation";
+import Navigation from "@components/components/Navigation/navigation";
 import Container from "@components/components/Container/Container";
 
 import AboutUsSection from "@components/components/AboutUsSection/AboutUsSection";
