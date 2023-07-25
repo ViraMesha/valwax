@@ -10,7 +10,7 @@ import styles from "./Quote.module.css";
 
 const Quote = () => {
   return (
-    <div className={styles.sectionWrapper}>
+    <section className={styles.sectionWrapper}>
       <Container>
         <div className={styles.textContainer}>
           <Typography
@@ -28,7 +28,7 @@ const Quote = () => {
           alt="a large beautiful candle surrounded by eucalyptus twigs"
         />
       </div>
-    </div>
+    </section>
   );
 };
 
