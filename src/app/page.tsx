@@ -1,29 +1,42 @@
 import Image from "next/image";
-import styles from "./page.module.css";
 import Link from "next/link";
+// приклад використання типографії і другого фонту
+// import Typography from "@components/components/Typography/Typography";
+// import { avenir } from "./fonts";
+import Button from "@components/components/Button/Button";
+
 import Instagram from "../components/instagram/instagram";
 import Navigation from "../components/navigation/navigation";
-import Button from "@components/components/Button/Button";
+import Container from "@components/components/Container/Container";
+
 import AboutUsSection from "@components/components/AboutUsSection/AboutUsSection";
 
 export default function Home() {
   return (
-    <main className="styles.main">
-      <h1>Home page</h1>
+    <Container>
+      <main className="styles.main">
+        <h1>Home page</h1>
+        {/* <Typography
+        variant="heading1"
+        className={avenir.className}
+        color="var(--cl-secondary-900)"
+      >
+        Запалюйте світло
+      </Typography> */}
 
-      <Button variant="primary">Переглянути Каталог</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="tertiary" hasIcon>
-        Button Text
-      </Button>
-      <nav>
-        <Link href="/candle">Candle page</Link>
-      </nav>
-      <AboutUsSection />
-      <Instagram />
-      <Navigation />
+        <Button variant="primary">Переглянути Каталог</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="tertiary" hasIcon>
+          Button Text
+        </Button>
+        <nav>
+          <Link href="/candle">Candle page</Link>
+        </nav>
+        <AboutUsSection />
+        <Instagram />
+        <Navigation />
 
-      {/* <div className={styles.description}>
+        {/* <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
@@ -109,6 +122,7 @@ export default function Home() {
           </p>
         </a>
       </div> */}
-    </main>
+      </main>
+    </Container>
   );
 }
