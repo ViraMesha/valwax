@@ -8,6 +8,7 @@ import Quote from "@components/components/Quote/Quote";
 
 import Instagram from "../components/Instagram/Instagram";
 import Compass from "../components/Compass/Compass";
+import Navigation from "@components/components/Navigation/Navigation";
 
 import styles from "./page.module.css";
 
@@ -36,6 +37,7 @@ export default function Home() {
       <Instagram />
       <Compass />
 
+      <Navigation/>
       {/* <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
