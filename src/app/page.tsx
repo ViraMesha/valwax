@@ -5,6 +5,7 @@ import AboutUsSection from "@components/components/AboutUsSection/AboutUsSection
 // import Typography from "@components/components/Typography/Typography";
 // import { avenir } from "./fonts";
 import Button from "@components/components/Button/Button";
+import Navigation from "@components/components/Navigation/Navigation";
 import Quote from "@components/components/Quote/Quote";
 
 import Compass from "../components/Compass/Compass";
@@ -38,6 +39,7 @@ export default function Home() {
       <Instagram />
       <Compass />
 
+      <Navigation/>
       {/* <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
