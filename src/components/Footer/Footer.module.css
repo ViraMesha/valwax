@@ -1,0 +1,28 @@
+footer {
+    padding-top: 40px;
+}
+
+.footerWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addressList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contactUsText {
+  margin-bottom: 24px;
+}
+
+.addressLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.addressTypography {
+  font-style: normal;
+}
