@@ -3,8 +3,10 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
-import styles from './navigation.module.css';
+
 import { navItems, navLinks } from './navData';
+
+import styles from './navigation.module.css';
 
 
 const Navigation = () => {
