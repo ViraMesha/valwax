@@ -10,7 +10,7 @@ import styles from './AboutUsSection.module.css';
 
 const AboutUsSection = () => {
   return (
-    <section className={styles.sectionWrapper}>
+    <section>
       <Container>
         <Typography
           variant="subheading1"
