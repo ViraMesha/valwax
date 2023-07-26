@@ -3,6 +3,9 @@ import Image from "next/image";
 import Container from '../Container/Container'
 import styles from './Compass.module.css'
 import Typography from '../Typography/Typography'
+import candleImg from '../../../public/images/Compass/candle-card.jpg'
+import boxImg from '../../../public/images/Compass/box-card.png'
+import createImg from '../../../public/images/Compass/create-card.png'
 
 const Compass = () => {
   return (
@@ -11,7 +14,7 @@ const Compass = () => {
       <div className={styles.wrapper}>
         <Link href="/candle" className={`${styles.candle} ${styles.card}`}>
           <Image
-            src='/navigation-card/candle-card.jpg'
+            src={candleImg}
             alt='candle'
             className={styles.image}
             width={588}
@@ -27,7 +30,7 @@ const Compass = () => {
         </Link>
         <Link href="/candle" className={`${styles.box} ${styles.card}`}>
           <Image
-            src='/navigation-card/candle-card.jpg'
+            src={boxImg}
             alt='box'
             className={styles.image}
             width={588}
@@ -43,7 +46,7 @@ const Compass = () => {
         </Link>
         <Link href="/candle" className={`${styles.create} ${styles.card}`}>
           <Image
-            src='/navigation-card/candle-card.jpg'
+            src={createImg}
             alt='create'
             className={styles.image}
             width={588}

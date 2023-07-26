@@ -15,20 +15,25 @@
 .candle {
   grid-area: 1 / 1 / 3 / 2;
   background-color: aquamarine;
+  height: 798px;
 }
 
 .box {
   grid-area: 1 / 2 / 2 / 3;
   background-color: blue;
+  height: 387px;
 }
 
 .create {
   grid-area: 2 / 2 / 3 / 3;
   background-color: blueviolet;
+  height: 387px;
 }
 
 .image {
-  width: 100%;
+  border-radius: 20px;
+  height: 100%;
+  /* object-fit: cover; */
 }
 
 .text {
