@@ -1,0 +1,36 @@
+.sectionWrapper {
+  padding-bottom: 120px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.aboutUsContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 126px;
+}
+
+.aboutUsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.aboutUsTextWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 588px;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.aboutUsImagesWrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.aboutUsImage {
+  border-radius: 20px;
+ 
+}
