@@ -1,22 +1,23 @@
-import Image from "next/image";
-import Link from "next/link";
-import AboutUsSection from "@components/components/AboutUsSection/AboutUsSection";
+import Image from 'next/image';
+import Link from 'next/link';
+import AboutUsSection from '@components/components/AboutUsSection/AboutUsSection';
 // приклад використання типографії і другого фонту
 // import Typography from "@components/components/Typography/Typography";
 // import { avenir } from "./fonts";
-import Button from "@components/components/Button/Button";
-import Navigation from "@components/components/Navigation/Navigation";
-import Quote from "@components/components/Quote/Quote";
+import Button from '@components/components/Button/Button';
+import Hero from '@components/components/Hero/Hero';
+import Instagram from '@components/components/instagram/Instagram';
+import Navigation from '@components/components/Navigation/Navigation';
+import Quote from '@components/components/Quote/Quote';
 
-import Compass from "../components/Compass/Compass";
-import Instagram from "../components/Instagram/Instagram";
+import Compass from '../components/Compass/Compass';
 
-import styles from "./page.module.css";
+import styles from './page.module.css';
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h1>Home page</h1>
+      <Hero />
       <AboutUsSection />
       <Quote />
       {/* <Typography
@@ -39,8 +40,7 @@ export default function Home() {
       <Instagram />
       <Compass />
 
-      <Navigation/>
-      
+      <Navigation />
     </main>
   );
 }

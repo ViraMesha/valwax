@@ -1,0 +1,12 @@
+.sectionWrapper {
+  padding-bottom: 120px;
+  min-width: 1440px;
+  max-width: 1600px;
+  position: relative;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
