@@ -27,6 +27,8 @@ const Quote = () => {
         <Image
           src={image}
           alt="A large beautiful candle surrounded by eucalyptus twigs"
+          fill
+          quality={100}
         />
       </div>
     </Section>
