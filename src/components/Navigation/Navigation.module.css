@@ -4,5 +4,5 @@
 }
 
 .activeLink {
-  border-bottom: 2px solid var(--cl-primary-500);
+  border-bottom: 1px solid var(--cl-primary-500);
 }
