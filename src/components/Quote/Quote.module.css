@@ -4,8 +4,7 @@
 }
 
 .imageContainer {
-  max-width: 1600px;
-  min-width: 1440px;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
