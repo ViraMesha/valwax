@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Header from '@components/components/Header/Header';
 
 import { proxima_nova } from './fonts';
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={proxima_nova.className}>
       <body>
+        <Header />
         <main className={styles.main}>{children}</main>
       </body>
     </html>
