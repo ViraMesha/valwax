@@ -1,46 +1,24 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import AboutUsSection from '@components/components/AboutUsSection/AboutUsSection';
-// приклад використання типографії і другого фонту
-// import Typography from "@components/components/Typography/Typography";
-// import { avenir } from "./fonts";
-import Button from '@components/components/Button/Button';
-import Hero from '@components/components/Hero/Hero';
 import Instagram from '@components/components/instagram/Instagram';
 import Navigation from '@components/components/Navigation/Navigation';
 import Quote from '@components/components/Quote/Quote';
 
 import Compass from '../components/Compass/Compass';
 
-import styles from './page.module.css';
-
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <Hero />
+    <>
       <AboutUsSection />
       <Quote />
-      {/* <Typography
-        variant="heading1"
-        className={avenir.className}
-        color="var(--cl-secondary-900)"
-      >
-        Запалюйте світло
-      </Typography> */}
-
-      <Button variant="primary">Переглянути Каталог</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="tertiary" hasIcon>
-        Button Text
-      </Button>
-      <nav>
+      {/* <nav>
         <Link href="/candle">Candle page</Link>
       </nav>
 
-      <Instagram />
+      <Instagram /> */}
       <Compass />
 
       <Navigation />
-    </main>
+    </>
   );
 }

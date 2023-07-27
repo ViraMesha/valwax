@@ -5,12 +5,13 @@ import Image2 from 'public/images/aboutUs/Image2.jpg';
 import Image3 from 'public/images/aboutUs/Image3.jpg';
 
 import Container from '../Container/Container';
+import Section from '../Section/Section';
 
 import styles from './AboutUsSection.module.css';
 
 const AboutUsSection = () => {
   return (
-    <section>
+    <Section>
       <Container>
         <Typography
           variant="subheading1"
@@ -70,7 +71,7 @@ const AboutUsSection = () => {
           />
         </div>
       </Container>
-    </section>
+    </Section>
   );
 };
 
