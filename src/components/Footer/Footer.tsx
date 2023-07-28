@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { AiOutlineCopyrightCircle } from 'react-icons/ai';
 import { CiMail } from 'react-icons/ci';
 import { PiPhoneThin } from 'react-icons/pi';
 import Logo from 'public/images/logo/Logo.svg';
@@ -11,7 +12,7 @@ import styles from './Footer.module.css';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className={styles.footer}>
       <Container>
         <div className={styles.footerWrapper}>
           <Image src={Logo} alt="Logo" width={140} height={114} />
@@ -57,7 +58,20 @@ const Footer = () => {
             </address>
           </div>
         </div>
-       
+        <div className={styles.copyright}>
+          <Typography
+            variant="bodyRegular"
+            color="var(--cl-gray-400)"
+          >
+            Політика конфіденційності. Усі права захищенні.
+          </Typography>
+          <AiOutlineCopyrightCircle
+            style={{ width: 16, height: 16, color: 'var(--cl-gray-400)' }}
+          ></AiOutlineCopyrightCircle>
+          <Typography variant="bodyRegular" color="var(--cl-gray-400)">
+            2023 Valwax
+          </Typography>
+        </div>
       </Container>
     </footer>
   );

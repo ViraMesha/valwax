@@ -1,16 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
-import Image from "next/image";
-import { avenir } from "@components/app/fonts";
+import Image from 'next/image';
+import { avenir } from '@components/app/fonts';
 
-import image from "../../../public/images/quote/image.jpg";
-import Container from "../Container/Container";
-import Typography from "../Typography/Typography";
+import image from '../../../public/images/quote/image.jpg';
+import Container from '../Container/Container';
+import Section from '../Section/Section';
+import Typography from '../Typography/Typography';
 
-import styles from "./Quote.module.css";
+import styles from './Quote.module.css';
 
 const Quote = () => {
   return (
-    <section className={styles.sectionWrapper}>
+    <Section>
       <Container>
         <div className={styles.textContainer}>
           <Typography
@@ -26,9 +27,11 @@ const Quote = () => {
         <Image
           src={image}
           alt="A large beautiful candle surrounded by eucalyptus twigs"
+          fill
+          quality={100}
         />
       </div>
-    </section>
+    </Section>
   );
 };
 
