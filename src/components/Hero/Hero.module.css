@@ -1,5 +1,8 @@
 .sectionWrapper {
   padding-bottom: 120px;
+}
+
+.body {
   position: relative;
 }
 
@@ -9,7 +12,7 @@
 
 .content {
   position: absolute;
-  left: 200px;
+  left: 80px;
   top: 80px;
 }
 
