@@ -29,6 +29,18 @@
 
   border-radius: 6px;
   background-color: var(--cl-secondary-50);
+
+  cursor: pointer;
+}
+
+.prevButton.disabled,
+.nextButton.disabled {
+  background-color: var(--cl-gray-50);
+}
+
+.prevButton.disabled .arrowIcon,
+.nextButton.disabled .arrowIcon {
+  fill: var(--cl-gray-100);
 }
 
 .arrowIcon {

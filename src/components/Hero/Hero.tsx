@@ -26,10 +26,34 @@ const sliderSettings = {
 
 const Hero = () => {
   const [sliderRef, setSliderRef] = useState<Slider | null>(null);
+
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+
+  const disablePrevButton = currentSlide === 0;
+  const disableNextButton = currentSlide === heroCards.length - 1;
+
+  const handlePrevClick = () => {
+    if (!disablePrevButton && sliderRef) {
+      sliderRef.slickPrev();
+      setCurrentSlide(prev => prev - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (!disableNextButton && sliderRef) {
+      sliderRef.slickNext();
+      setCurrentSlide(prev => prev + 1);
+    }
+  };
+
   return (
     <Section className={styles.sectionWrapper}>
       <Container>
-        <Slider ref={setSliderRef} {...sliderSettings}>
+        <Slider
+          ref={setSliderRef}
+          {...sliderSettings}
+          beforeChange={(prev, next) => setCurrentSlide(next)}
+        >
           {heroCards.map(
             ({
               id,
@@ -42,14 +66,20 @@ const Hero = () => {
               <div key={id} className={styles.body}>
                 <div className={styles.controls}>
                   <button
-                    onClick={sliderRef?.slickPrev}
-                    className={styles.prevButton}
+                    onClick={handlePrevClick}
+                    className={`${styles.prevButton} ${
+                      disablePrevButton ? styles.disabled : ''
+                    }`}
+                    disabled={disablePrevButton}
                   >
                     <FaChevronLeft className={styles.arrowIcon} />
                   </button>
                   <button
-                    onClick={sliderRef?.slickNext}
-                    className={styles.nextButton}
+                    onClick={handleNextClick}
+                    className={`${styles.nextButton} ${
+                      disableNextButton ? styles.disabled : ''
+                    }`}
+                    disabled={disableNextButton}
                   >
                     <FaChevronRight className={styles.arrowIcon} />
                   </button>
