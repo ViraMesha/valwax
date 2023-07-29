@@ -22,6 +22,9 @@ const sliderSettings = {
   infinite: false,
   dots: true,
   arrows: false,
+  draggable: true,
+  fade: true,
+  swipe: true,
 };
 
 const Hero = () => {
