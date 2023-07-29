@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import Slider from 'react-slick';
+import Slider, { Settings } from 'react-slick';
 import { avenir } from '@components/app/fonts';
 
 import Button from '../Button/Button';
@@ -16,7 +16,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './Hero.module.css';
 
-const sliderSettings = {
+const sliderSettings: Settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   infinite: false,
@@ -30,7 +30,7 @@ const sliderSettings = {
 };
 
 const Hero = () => {
-  const [sliderRef, setSliderRef] = useState<Slider | null>(null);
+  const sliderRef = useRef<Slider | null>(null);
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
@@ -38,15 +38,15 @@ const Hero = () => {
   const disableNextButton = currentSlide === heroCards.length - 1;
 
   const handlePrevClick = () => {
-    if (!disablePrevButton && sliderRef) {
-      sliderRef.slickPrev();
+    if (!disablePrevButton && sliderRef.current) {
+      sliderRef.current.slickPrev();
       setCurrentSlide(prev => prev - 1);
     }
   };
 
   const handleNextClick = () => {
-    if (!disableNextButton && sliderRef) {
-      sliderRef.slickNext();
+    if (!disableNextButton && sliderRef.current) {
+      sliderRef.current.slickNext();
       setCurrentSlide(prev => prev + 1);
     }
   };
@@ -55,7 +55,7 @@ const Hero = () => {
     <Section className={styles.sectionWrapper}>
       <Container>
         <Slider
-          ref={setSliderRef}
+          ref={sliderRef}
           {...sliderSettings}
           beforeChange={(prev, next) => setCurrentSlide(next)}
         >
