@@ -6,6 +6,37 @@
   position: relative;
 }
 
+.controls {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.prevButton,
+.nextButton {
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 6px;
+  background-color: var(--cl-secondary-50);
+}
+
+.arrowIcon {
+  fill: var(--cl-primary-500);
+  width: 20px;
+  height: 20px;
+}
+
 .bgImage {
   border-radius: 20px;
 }

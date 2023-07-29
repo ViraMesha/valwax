@@ -1,5 +1,7 @@
 'use client';
 import Image from 'next/image';
+import { useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import { avenir } from '@components/app/fonts';
 
@@ -19,13 +21,15 @@ const sliderSettings = {
   slidesToScroll: 1,
   infinite: false,
   dots: true,
+  arrows: false,
 };
 
 const Hero = () => {
+  const [sliderRef, setSliderRef] = useState<Slider | null>(null);
   return (
     <Section className={styles.sectionWrapper}>
       <Container>
-        <Slider {...sliderSettings}>
+        <Slider ref={setSliderRef} {...sliderSettings}>
           {heroCards.map(
             ({
               id,
@@ -36,6 +40,20 @@ const Hero = () => {
               heading3,
             }) => (
               <div key={id} className={styles.body}>
+                <div className={styles.controls}>
+                  <button
+                    onClick={sliderRef?.slickPrev}
+                    className={styles.prevButton}
+                  >
+                    <FaChevronLeft className={styles.arrowIcon} />
+                  </button>
+                  <button
+                    onClick={sliderRef?.slickNext}
+                    className={styles.nextButton}
+                  >
+                    <FaChevronRight className={styles.arrowIcon} />
+                  </button>
+                </div>
                 <Image
                   src={backgroundImage}
                   alt="Background Image"
