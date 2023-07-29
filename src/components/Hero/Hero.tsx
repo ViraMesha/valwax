@@ -23,8 +23,10 @@ const sliderSettings = {
   dots: true,
   arrows: false,
   draggable: true,
-  fade: true,
   swipe: true,
+  appendDots: (dots: React.ReactNode) => <ul>{dots}</ul>,
+  dotsClass: styles['dots'],
+  customPaging: () => <button></button>,
 };
 
 const Hero = () => {
