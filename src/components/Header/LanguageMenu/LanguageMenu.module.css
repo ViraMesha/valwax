@@ -1,0 +1,44 @@
+.languageMenu {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.languageContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+
+.languageTitle {
+  color: var(--cl-gray-800);
+  line-height: 1.5;
+}
+
+.arrowIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.languageList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--cl-white);
+  width: 100%;
+  z-index: 1;
+}
+
+.languageItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--cl-secondary-100);
+}
+
+.languageItem:hover {
+  background-color: var(--cl-secondary-50);
+}
