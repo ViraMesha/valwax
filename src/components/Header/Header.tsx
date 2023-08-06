@@ -29,16 +29,6 @@ const Header = () => {
             </li>
           </ul>
           <LanguageMenu />
-          {/* <ul>
-            <li className={styles.language_menu}>
-              <Image src={flagUA} alt="Ukrainian flag" />
-              <TbCurrencyHryvnia style={{ width: '24px', height: '24px' }} />
-              <MdKeyboardArrowDown
-                className={styles.arrowDown}
-                style={{ width: '24px', height: '24px' }}
-              />
-            </li>
-          </ul> */}
         </div>
       </Container>
     </header>
