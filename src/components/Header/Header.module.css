@@ -34,13 +34,3 @@
 .shoppingIcons__item:focus {
   transform: scale(1.1);
 }
-
-.language_menu {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.arrowDown {
-  cursor: pointer;
-}
