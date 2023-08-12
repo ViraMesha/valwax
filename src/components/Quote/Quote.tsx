@@ -22,15 +22,19 @@ const Quote = () => {
             "Свічка, запалена з любові, може висвітлити темні куточки"
           </Typography>
         </div>
+        <div className={styles.imageContainer}>
+          <Image
+            src={image}
+            alt="A large beautiful candle surrounded by eucalyptus twigs"
+            fill
+            quality={100}
+            sizes="(min-width: 1230) 1200px,
+                    (min-width: 1024) 976px,
+                    (min-width: 667px) 619px,
+                    327px"
+          />
+        </div>
       </Container>
-      <div className={styles.imageContainer}>
-        <Image
-          src={image}
-          alt="A large beautiful candle surrounded by eucalyptus twigs"
-          fill
-          quality={100}
-        />
-      </div>
     </Section>
   );
 };
