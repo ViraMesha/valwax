@@ -1,12 +1,27 @@
 .textContainer {
-  max-width: 943px;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
+
+  @media (min-width: 1230px) {
+    max-width: 943px;
+    margin-bottom: 56px;
+  }
 }
 
 .imageContainer {
-  width: 100vw;
-  height: 450px;
+  height: 120px;
   margin-right: auto;
   margin-left: auto;
   position: relative;
+
+  @media (min-width: 667px) {
+    height: 220px;
+  }
+
+  @media (min-width: 1230px) {
+    height: 450px;
+  }
+}
+
+.imageContainer img {
+  border-radius: 20px;
 }
