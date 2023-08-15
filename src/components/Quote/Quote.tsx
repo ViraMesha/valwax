@@ -30,6 +30,7 @@ const Quote = () => {
             quality={100}
             sizes="(min-width: 1230) 1200px,
                     (min-width: 1024) 976px,
+                    (min-width: 768px) 720px,
                     (min-width: 667px) 619px,
                     327px"
           />
