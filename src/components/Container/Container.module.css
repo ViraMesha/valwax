@@ -1,37 +1,55 @@
 .container {
   width: 100%;
   margin: 0 auto;
+}
 
-  @media (min-width: 320px) {
+/*Mobile styles (from 320px to 375px)*/
+@media (min-width: 320px) {
+  .container {
     padding-left: 10px;
     padding-right: 10px;
   }
+}
 
-  @media (min-width: 375px) and (max-width: 666.99px) {
+/*Mobile styles (from 320px to 666.98px)*/
+@media (min-width: 375px) and (max-width: 666.98px) {
+  .container {
     max-width: 375px;
     padding-left: 24px;
     padding-right: 24px;
   }
+}
 
-  @media (min-width: 667px) {
+/*Mobile styles (from 667px to 768px)*/
+@media (min-width: 667px) {
+  .container {
     max-width: 667px;
     padding-left: 24px;
     padding-right: 24px;
   }
+}
 
-  @media (min-width: 768px) and (max-width: 1023.99px) {
+/*Tablet styles (from 768px to 1023.98px)*/
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .container {
     max-width: 768px;
     padding-left: 24px;
     padding-right: 24px;
   }
+}
 
-  @media (min-width: 1024px) {
+/*Tablet styles (from 1024px to 1230px)*/
+@media (min-width: 1024px) {
+  .container {
     max-width: 1024px;
     padding-left: 24px;
     padding-right: 24px;
   }
+}
 
-  @media (min-width: 1230px) {
+/*Desktop styles (from 1230px and above)*/
+@media (min-width: 1230px) {
+  .container {
     max-width: 1230px;
     padding-left: 15px;
     padding-right: 15px;
