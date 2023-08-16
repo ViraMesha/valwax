@@ -3,7 +3,7 @@
   margin: 0 auto;
 }
 
-/*Mobile styles (from 320px to 375px)*/
+/*Mobile styles (from 320px and above)*/
 @media (min-width: 320px) {
   .container {
     padding-left: 10px;
@@ -11,7 +11,7 @@
   }
 }
 
-/*Mobile styles (from 320px to 666.98px)*/
+/*Mobile styles (from 375x to 666.98px)*/
 @media (min-width: 375px) and (max-width: 666.98px) {
   .container {
     max-width: 375px;
@@ -20,7 +20,7 @@
   }
 }
 
-/*Mobile styles (from 667px to 768px)*/
+/*Mobile landscape styles (from 667px and above)*/
 @media (min-width: 667px) {
   .container {
     max-width: 667px;
@@ -38,7 +38,7 @@
   }
 }
 
-/*Tablet styles (from 1024px to 1230px)*/
+/*Laptop styles (from 1024px to 1230px)*/
 @media (min-width: 1024px) {
   .container {
     max-width: 1024px;

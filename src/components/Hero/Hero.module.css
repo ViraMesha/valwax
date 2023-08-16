@@ -131,7 +131,7 @@
   }
 }
 
-/* Large tablet styles */
+/* Laptop styles */
 @media (min-width: 1024px) {
   .imageContainer {
     height: 600px;
