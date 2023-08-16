@@ -73,18 +73,6 @@
 
 /*
   |==============================
-  | Mobile landscape styles 
-  |==============================
-*/
-
-@media (min-width: 667px) {
-  .typography--variant-heading1 {
-    font-size: 32px;
-  }
-}
-
-/*
-  |==============================
   | Tablet styles 
   |==============================
 */
