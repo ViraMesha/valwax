@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import { useWindowSize } from 'usehooks-ts';
 
 import languageData, { ILanguage } from './languageData';
 
@@ -16,6 +17,8 @@ const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<ILanguage>(
     languageData[0]
   );
+  const { width } = useWindowSize();
+  const isDesktop = width >= 1230;
 
   const toggleMenu = () => {
     setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen);
@@ -26,11 +29,19 @@ const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
     setIsMenuOpen(false);
   };
 
+  const handleMouseEnter = () => {
+    isDesktop && setIsMenuOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    isDesktop && setIsMenuOpen(false);
+  };
+
   return (
     <div
       className={`${styles.languageMenu} ${className || ''}`}
-      onMouseEnter={() => setIsMenuOpen(true)}
-      onMouseLeave={() => setIsMenuOpen(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className={styles.languageContainer} onClick={toggleMenu}>
         <Image
