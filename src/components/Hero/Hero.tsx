@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 import Slider, { Settings } from 'react-slick';
 import { avenir } from '@components/app/fonts';
 
@@ -56,6 +56,7 @@ const Hero = () => {
       <Container>
         <Slider
           ref={sliderRef}
+          speed={700}
           {...sliderSettings}
           beforeChange={(prev, next) => setCurrentSlide(next)}
         >
@@ -77,7 +78,7 @@ const Hero = () => {
                     }`}
                     disabled={disablePrevButton}
                   >
-                    <FaChevronLeft className={styles.arrowIcon} />
+                    <HiOutlineChevronLeft className={styles.arrowIcon} />
                   </button>
                   <button
                     onClick={handleNextClick}
@@ -86,27 +87,45 @@ const Hero = () => {
                     }`}
                     disabled={disableNextButton}
                   >
-                    <FaChevronRight className={styles.arrowIcon} />
+                    <HiOutlineChevronRight className={styles.arrowIcon} />
                   </button>
                 </div>
-                <Image
-                  src={backgroundImage}
-                  alt="Background Image"
-                  width={1200}
-                  height={650}
-                  quality={100}
-                  priority
-                  className={styles.bgImage}
-                />
+                <div className={styles.imageContainer}>
+                  <Image
+                    src={backgroundImage}
+                    alt="Background Image"
+                    quality={100}
+                    priority
+                    fill
+                    sizes="(min-width: 1230) 1200px,
+                    (min-width: 1024) 976px,
+                    (min-width: 768px) 720px,
+                    (min-width: 667px) 619px,
+                    327px"
+                    className={styles.bgImage}
+                  />
+                </div>
                 <div className={styles.content}>
                   <div className={styles.heading}>
-                    <Typography variant="heading1" className={avenir.className}>
+                    <Typography
+                      variant="heading1"
+                      className={avenir.className}
+                      color="var(--cl-secondary-50)"
+                    >
                       {heading1}
                     </Typography>
-                    <Typography variant="heading1" className={avenir.className}>
+                    <Typography
+                      variant="heading1"
+                      className={avenir.className}
+                      color="var(--cl-secondary-50)"
+                    >
                       {heading2}
                     </Typography>
-                    <Typography variant="heading1" className={avenir.className}>
+                    <Typography
+                      variant="heading1"
+                      className={avenir.className}
+                      color="var(--cl-secondary-50)"
+                    >
                       {heading3}
                     </Typography>
                   </div>

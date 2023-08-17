@@ -1,3 +1,14 @@
 .sectionContainer {
-  padding-bottom: 120px;
+  padding-bottom: 56px;
+}
+
+/*
+  |==============================
+  | Desktop styles (from 1230px and above)
+  |==============================
+*/
+@media (min-width: 1230px) {
+  .sectionContainer {
+    padding-bottom: 104px;
+  }
 }
