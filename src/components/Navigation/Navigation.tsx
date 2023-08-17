@@ -2,30 +2,33 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Typography from '@components/components/Typography/Typography';
 
 import { navItems, navLinks } from './navData';
 
 import styles from './navigation.module.css';
 
+interface NavigationPropsI {
+  className?: string;
+  onClick?: () => void;
+}
 
-const Navigation = () => {
+const Navigation: React.FC<NavigationPropsI> = ({ className, onClick }) => {
   const pathname = usePathname();
 
   const isActive = (link: string) => pathname === link;
 
   return (
     <nav>
-      <ul className={styles.navigationList}>
+      <ul className={`${styles.navigationList}  ${className || ''}`}>
         {navItems.map((item, index) => (
-          <li
-            key={index}
-            className={isActive(navLinks[item] ?? '') ? styles.activeLink : ''}
-          >
-            <Link href={navLinks[item] ?? ''}>
-              <Typography variant="bodyL" color="var(--cl---gray-700)">
-                {item}
-              </Typography>
+          <li key={index} onClick={onClick}>
+            <Link
+              href={navLinks[item] ?? ''}
+              className={
+                isActive(navLinks[item] ?? '') ? styles.activeLink : ''
+              }
+            >
+              {item}
             </Link>
           </li>
         ))}
@@ -35,6 +38,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-
- 

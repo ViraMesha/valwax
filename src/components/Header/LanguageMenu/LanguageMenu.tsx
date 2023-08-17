@@ -7,7 +7,11 @@ import languageData, { ILanguage } from './languageData';
 
 import styles from './LanguageMenu.module.css';
 
-const LanguageMenu = () => {
+interface LanguageMenuPropsI {
+  className?: string;
+}
+
+const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<ILanguage>(
     languageData[0]
@@ -24,7 +28,7 @@ const LanguageMenu = () => {
 
   return (
     <div
-      className={styles.languageMenu}
+      className={`${styles.languageMenu} ${className || ''}`}
       onMouseEnter={() => setIsMenuOpen(true)}
       onMouseLeave={() => setIsMenuOpen(false)}
     >
@@ -45,15 +49,22 @@ const LanguageMenu = () => {
       </div>
       {isMenuOpen && (
         <ul className={styles.languageList}>
-          {languageData.map((language) => (
+          {languageData.map(language => (
             <li
               key={language.id}
               className={`${styles.languageItem} ${
-                language.id === selectedLanguage.id ? styles.selectedLanguage : ''
+                language.id === selectedLanguage.id
+                  ? styles.selectedLanguage
+                  : ''
               }`}
               onClick={() => handleLanguageSelect(language)}
             >
-              <Image src={language.icon} alt={language.lang} width={24} height={24} />
+              <Image
+                src={language.icon}
+                alt={language.lang}
+                width={24}
+                height={24}
+              />
               <span>{language.lang}</span>
             </li>
           ))}

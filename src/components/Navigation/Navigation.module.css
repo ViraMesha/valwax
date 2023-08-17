@@ -1,8 +1,22 @@
 .navigationList {
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  gap: 16px;
+
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cl-gray-700);
 }
 
 .activeLink {
   border-bottom: 1px solid var(--cl-primary-500);
+}
+
+@media (min-width: 1230px) {
+  .navigationList {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+  }
 }
