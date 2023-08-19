@@ -13,4 +13,6 @@ const Section: React.FC<SectionProps> = ({ children, className }) => {
   );
 };
 
+Section.displayName = "Section";
+
 export default Section;

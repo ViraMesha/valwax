@@ -1,4 +1,4 @@
-import styles from "./Container.module.css";
+import styles from './Container.module.css';
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -7,7 +7,10 @@ interface ContainerProps {
 
 const Container: React.FC<ContainerProps> = ({ children, className }) => {
   return (
-    <div className={`${styles.container} ${className || ''}`}>{children}</div>)
+    <div className={`${styles.container} ${className || ''}`}>{children}</div>
+  );
 };
+
+Container.displayName = 'Container';
 
 export default Container;

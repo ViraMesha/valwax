@@ -42,3 +42,13 @@
 .languageItem:hover {
   background-color: var(--cl-secondary-50);
 }
+
+@media (max-width: 1229.98px) {
+  .languageContainer {
+    border-bottom: 1px solid var(--cl-secondary-100);
+  }
+
+  .arrowIcon {
+    margin-left: auto;
+  }
+}

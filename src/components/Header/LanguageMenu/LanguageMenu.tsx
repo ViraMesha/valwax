@@ -2,16 +2,23 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import { useWindowSize } from 'usehooks-ts';
 
 import languageData, { ILanguage } from './languageData';
 
 import styles from './LanguageMenu.module.css';
 
-const LanguageMenu = () => {
+interface LanguageMenuPropsI {
+  className?: string;
+}
+
+const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<ILanguage>(
     languageData[0]
   );
+  const { width } = useWindowSize();
+  const isDesktop = width >= 1230;
 
   const toggleMenu = () => {
     setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen);
@@ -22,11 +29,19 @@ const LanguageMenu = () => {
     setIsMenuOpen(false);
   };
 
+  const handleMouseEnter = () => {
+    isDesktop && setIsMenuOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    isDesktop && setIsMenuOpen(false);
+  };
+
   return (
     <div
-      className={styles.languageMenu}
-      onMouseEnter={() => setIsMenuOpen(true)}
-      onMouseLeave={() => setIsMenuOpen(false)}
+      className={`${styles.languageMenu} ${className || ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className={styles.languageContainer} onClick={toggleMenu}>
         <Image
@@ -45,15 +60,22 @@ const LanguageMenu = () => {
       </div>
       {isMenuOpen && (
         <ul className={styles.languageList}>
-          {languageData.map((language) => (
+          {languageData.map(language => (
             <li
               key={language.id}
               className={`${styles.languageItem} ${
-                language.id === selectedLanguage.id ? styles.selectedLanguage : ''
+                language.id === selectedLanguage.id
+                  ? styles.selectedLanguage
+                  : ''
               }`}
               onClick={() => handleLanguageSelect(language)}
             >
-              <Image src={language.icon} alt={language.lang} width={24} height={24} />
+              <Image
+                src={language.icon}
+                alt={language.lang}
+                width={24}
+                height={24}
+              />
               <span>{language.lang}</span>
             </li>
           ))}

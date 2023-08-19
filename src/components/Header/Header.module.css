@@ -1,16 +1,37 @@
+/*
+  |==============================
+  | Header
+  |==============================
+*/
 .header {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  min-height: 60px;
 }
+
 .headerContainer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
+
+/*
+  |==============================
+  | Logo
+  |==============================
+*/
 
 .logo {
-  margin-right: 148px;
+  height: 21px;
+  width: 77px;
+  margin-right: auto;
 }
 
+/*
+  |==============================
+  | Icons 
+  |==============================
+*/
 .icons {
   display: flex;
   align-items: center;
@@ -19,18 +40,107 @@
   margin-left: auto;
 }
 
-.shoppingIcons {
+.iconsList {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
-.shoppingIcons__item {
+.iconsItem {
   cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconsItem svg {
+  width: 18px;
+  height: 18px;
+}
+
+/*
+  |==============================
+  | Burger menu 
+  |==============================
+*/
+
+.burgerMenu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cl-white);
+  width: 100vw;
+  height: 100vh;
+  padding: 80px 24px;
+  transform: translateX(100%);
   transition: transform var(--animat);
 }
 
-.shoppingIcons__item:hover,
-.shoppingIcons__item:focus {
-  transform: scale(1.1);
+.burgerMenu.isOpen {
+  transform: translateX(0);
+}
+
+.mobileLangMenu {
+  margin-top: 56px;
+  padding: 0;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}
+
+/*Mobile landscape and tablet styles*/
+@media (min-width: 667px) and (max-width: 1229.98px) {
+  .mobileLangMenu {
+    margin-top: 80px;
+  }
+}
+
+/*Mobile and tablet styles*/
+@media (max-width: 1229.98px) {
+  .navbar,
+  .langMenu {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: flex;
+    gap: 24px;
+  }
+
+  .mobileLangMenu {
+    display: inline-block;
+  }
+}
+
+/*Desktop styles*/
+@media (min-width: 1230px) {
+  .header {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    min-height: 100px;
+  }
+
+  .logo {
+    height: 40px;
+    width: 150px;
+  }
+
+  .iconsList {
+    gap: 24px;
+  }
+
+  .iconsItem {
+    width: 24px;
+    height: 24px;
+  }
+
+  .menuIcon {
+    display: none;
+  }
 }
