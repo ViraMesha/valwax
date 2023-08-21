@@ -67,7 +67,7 @@
 */
 
 .burgerMenu {
-  position: fixed;
+  position: absolute;
   top: 60px;
   left: 0;
   z-index: 10;
@@ -75,7 +75,7 @@
   flex-direction: column;
   background-color: var(--cl-white);
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   padding: 80px 24px;
   transform: translateX(100%);
   transition: transform var(--animat);

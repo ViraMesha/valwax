@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.link {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cl-primary-200);
+}
+
+.separator {
+  width: 16px;
+  height: 16px;
+  color: var(--cl-primary-200);
+}
