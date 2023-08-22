@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import { BiShoppingBag } from 'react-icons/bi';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
@@ -24,14 +24,6 @@ const Header = () => {
   const toggleMenuOpen = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
-  useEffect(() => {
-    const html = document.querySelector('html');
-
-    isMobileMenuOpen
-      ? html?.classList.add(styles.overflowHidden)
-      : html?.classList.remove(styles.overflowHidden);
-  }, [isMobileMenuOpen]);
 
   return (
     <header className={styles.header}>

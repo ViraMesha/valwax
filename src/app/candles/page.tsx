@@ -1,12 +1,18 @@
+import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 
 const Candle = () => {
   return (
-    <main >
+    <>
+      <Breadcrumbs
+        items={[
+          {
+            label: 'Ароматичні соєві свічки',
+            path: '/candles',
+          },
+        ]}
+      />
+    </>
+  );
+};
 
-      <h2>Candle page</h2>
-
-    </main>
-  )
-}
-
-export default Candle
+export default Candle;
