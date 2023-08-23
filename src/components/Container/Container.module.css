@@ -3,8 +3,8 @@
   margin: 0 auto;
 }
 
-/*Mobile styles (from 320px and above)*/
-@media (min-width: 320px) {
+/*Mobile styles (from 0 to 374.98px )*/
+@media (max-width: 374.98px) {
   .container {
     padding-left: 10px;
     padding-right: 10px;
@@ -21,7 +21,7 @@
 }
 
 /*Mobile landscape styles (from 667px and above)*/
-@media (min-width: 667px) {
+@media (min-width: 667px) and (max-width: 767.98px) {
   .container {
     max-width: 667px;
     padding-left: 24px;

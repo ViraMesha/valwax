@@ -1,0 +1,49 @@
+@import './valiables.scss';
+
+@mixin breakpoint($breakpoint) {
+  //від 0 до 375px
+  @if $breakpoint == 'mobile-small' {
+    @media (max-width: #{$mobile-small-breakpoint}) {
+      @content;
+    }
+    //від 376px до 667px
+  } @else if $breakpoint == 'mobile-large' {
+    @media (min-width: #{$mobile-small-breakpoint + 0.02}) and (max-width: #{$mobile-large-breakpoint}) {
+      @content;
+    }
+    // від 668px до 768px
+  } @else if $breakpoint == 'tablet-small' {
+    @media (min-width: #{$mobile-large-breakpoint + 0.02}) and (max-width: #{$tablet-small-breakpoint}) {
+      @content;
+    }
+     // від 669px до 1024px
+  } @else if $breakpoint == 'tablet-large' {
+    @media (min-width: #{$tablet-small-breakpoint + 0.02}) and (max-width: #{$tablet-large-breakpoint}) {
+      @content;
+    }
+    // від 1025px до 1230px
+  } @else if $breakpoint == 'desktop' {
+    @media (min-width: #{$tablet-large-breakpoint + 0.02}) and (max-width: #{$desktop-breakpoint}) {
+      @content;
+    }
+    // від 1230px і далі
+  } @else if $breakpoint == 'desktop-large' {
+    @media (min-width: #{$desktop-breakpoint + 0.02}) {
+      @content;
+    }
+
+
+    // від 768px і далі
+  } @else if $breakpoint == 'tablet-small-and-up' {
+    @media (min-width: #{$tablet-small-breakpoint + 0.02}) {
+      @content;
+    }
+    
+
+    // до 667px - тільки мобільні
+  } @else if $breakpoint == 'only-mobile' {
+    @media (max-width: #{$tablet-small-breakpoint}) {
+      @content;
+    }
+  }
+}
