@@ -116,9 +116,6 @@ const feed = [
   },
 ];
 
-const test =
-  'https://scontent-iev1-1.cdninstagram.com/v/t51.29350-15/365903200_285029757468782_6489799363882165201_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=7lM_v_vij4wAX-28JrS&_nc_ht=scontent-iev1-1.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfBukyQ9MlY1g1hmEfHfUZh7tFRGwUo-GOacOqySyelkrg&oe=64E2D887';
-
 const Instagram = async () => {
   // const feed = await getInstData();
   const posts = feed.slice(0, 4);

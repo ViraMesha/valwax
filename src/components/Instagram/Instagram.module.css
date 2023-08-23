@@ -13,9 +13,9 @@
   text-transform: uppercase;
 }
 
-.link {
+/* .link {
 
-}
+} */
 
 .link::after {
   /* position: absolute; */
@@ -33,9 +33,9 @@
   gap: 24px;
 }
 
-.box {
+/* .box {
   
-}
+} */
 
 .img {
   display: block;
