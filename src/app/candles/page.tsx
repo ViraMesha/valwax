@@ -1,4 +1,6 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
+import candleData from '@components/components/CandleList/candleData';
+import CandleList from '@components/components/CandleList/CandleList';
 
 const Candle = () => {
   return (
@@ -11,6 +13,7 @@ const Candle = () => {
           },
         ]}
       />
+      <CandleList items={candleData} />
     </>
   );
 };

@@ -1,0 +1,28 @@
+.img_container {
+  position: relative;
+  height: 183px;
+  margin-bottom: 12px;
+}
+
+.img_container img {
+  border-radius: 20px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.54;
+  text-transform: uppercase;
+}
+
+.price_container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (min-width: 768px) {
+  .img_container {
+    margin-bottom: 16px;
+  }
+}
