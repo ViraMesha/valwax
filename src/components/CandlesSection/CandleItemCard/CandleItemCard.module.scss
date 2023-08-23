@@ -1,0 +1,61 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
+.card {
+  flex-basis: 154px;
+
+  @include breakpoint('tablet-small') {
+    flex-basis: 300px;
+  }
+
+  @include breakpoint('tablet-large') {
+    flex-basis: 224px;
+  }
+
+  @include breakpoint('desktop') {
+    flex-basis: 312px;
+  }
+
+  @include breakpoint('desktop-large') {
+    flex-basis: 282px;
+  }
+}
+
+.img_container {
+  position: relative;
+  height: 183px;
+  margin-bottom: 12px;
+
+  @include breakpoint('tablet-small') {
+    height: 314px;
+  }
+
+  @include breakpoint('tablet-large') {
+    margin-bottom: 16px;
+    height: 248px;
+  }
+
+  @include breakpoint('desktop') {
+    height: 328px;
+  }
+
+  @include breakpoint('desktop-large') {
+    height: 314px;
+  }
+}
+
+.img_container img {
+  border-radius: 20px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.54;
+  text-transform: uppercase;
+}
+
+.price_container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

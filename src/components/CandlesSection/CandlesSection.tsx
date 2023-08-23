@@ -4,7 +4,7 @@ import Section from '../Section/Section';
 import CandleList from './CandleList/CandleList';
 import candleData from './candleData';
 
-import styles from './CandlesSection.module.css';
+import styles from './CandlesSection.module.scss';
 
 const CandlesSection = () => {
   return (

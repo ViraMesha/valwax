@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Typography from '../../Typography/Typography';
 import { CandleI } from '../candleData';
 
-import styles from './CandleItemCard.module.css';
+import styles from './CandleItemCard.module.scss';
 
 const CandleItemCard: React.FC<CandleI> = ({ img, title, price, link }) => {
   return (

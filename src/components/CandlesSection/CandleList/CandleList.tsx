@@ -1,7 +1,7 @@
 import { CandleI } from '../candleData';
 import CandleItemCard from '../CandleItemCard/CandleItemCard';
 
-import styles from './CandleList.module.css';
+import styles from './CandleList.module.scss';
 
 interface CandleListProps {
   items: CandleI[];
