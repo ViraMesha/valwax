@@ -6,12 +6,11 @@ import Typography from '../Typography/Typography';
 
 import styles from './Subscription.module.scss';
 const Subscription = () => {
-  
   return (
     <Section className={styles.subscription}>
       <Container>
         <Typography
-          variant="subheading1"
+          variant="subheading2"
           color="var(--cl-gray-700)"
           className={styles.subscriptionTitle}
         >
