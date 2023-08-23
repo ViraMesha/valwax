@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { CandleI } from '../CandleList/candleData';
+import Typography from '../../Typography/Typography';
+import { CandleI } from '../candleData';
 
-import styles from './CandleCard.module.css';
-import Typography from '../Typography/Typography';
+import styles from './CandleItemCard.module.css';
 
-const CandleCard: React.FC<CandleI> = ({ img, title, price, link }) => {
+const CandleItemCard: React.FC<CandleI> = ({ img, title, price, link }) => {
   return (
-    <li>
+    <li className={styles.card}>
       <Link href={link}>
         <div className={styles.img_container}>
           <Image
@@ -37,4 +37,4 @@ const CandleCard: React.FC<CandleI> = ({ img, title, price, link }) => {
   );
 };
 
-export default CandleCard;
+export default CandleItemCard;
