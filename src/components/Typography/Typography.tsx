@@ -1,4 +1,4 @@
-import styles from "./Typography.module.css";
+import styles from "./Typography.module.scss";
 
 // Defining the HTML tag that the component will support
 const variantsMapping = {

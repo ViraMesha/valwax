@@ -1,13 +1,13 @@
-import { TbArrowRight } from "react-icons/tb";
+import { TbArrowRight } from 'react-icons/tb';
 
-import styles from "./Button.module.css";
+import styles from './Button.module.scss';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   children?: React.ReactNode;
   width?: string;
   height?: string;
-  variant: "primary" | "secondary" | "tertiary";
+  variant: 'primary' | 'secondary' | 'tertiary';
   hasIcon?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -18,13 +18,14 @@ const Button: React.FC<Props> = ({
   onClick,
   width,
   height,
-  variant = "primary",
+  variant = 'primary',
   hasIcon,
+  className,
   ...rest
 }) => {
   const buttonClass = `${styles.button} ${styles[variant]} ${
-    hasIcon ? styles.container : ""
-  }`;
+    hasIcon ? styles.container : ''
+  } ${className || ''} `;
 
   return (
     <button
@@ -40,6 +41,6 @@ const Button: React.FC<Props> = ({
   );
 };
 
-Button.displayName = "Button";
+Button.displayName = 'Button';
 
 export default Button;
