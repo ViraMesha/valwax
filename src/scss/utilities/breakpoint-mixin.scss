@@ -40,7 +40,7 @@
 
     // до 667px - тільки мобільні
   } @else if $breakpoint == 'only-mobile' {
-    @media (max-width: #{$tablet-small-breakpoint}) {
+    @media (max-width: #{$mobile-large-breakpoint}) {
       @content;
     }
   }

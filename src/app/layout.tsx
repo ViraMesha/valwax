@@ -18,11 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={proxima_nova.className}>
+    <html lang="uk" className={proxima_nova.className}>
       <body>
         <Header />
         <main className={styles.main}>{children}</main>
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

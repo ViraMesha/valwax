@@ -42,12 +42,25 @@
 .typography--variant-bodyXL {
   font-size: 24px;
   font-weight: 400;
-  line-height: 1.44;
+  line-height: 1.4;
+
+  @include breakpoint('mobile-small') {
+    font-size: 18px;
+  }
+
+  @include breakpoint('only-mobile') {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  @include breakpoint('desktop-large') {
+    line-height: 1.5;
+  }
 }
 
 .typography--variant-bodyXLHeavy {
   font-size: 24px;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.44;
 }
 

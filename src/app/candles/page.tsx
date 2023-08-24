@@ -1,5 +1,7 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
+import CandlePage from '@components/components/CandlePage/CandlePage';
 import CandlesSection from '@components/components/CandlesSection/CandlesSection';
+import WaxDesc from '@components/components/WaxDesc/WaxDesc';
 
 const Candle = () => {
   return (
@@ -12,7 +14,7 @@ const Candle = () => {
           },
         ]}
       />
-      <CandlesSection />
+      <CandlePage />
     </>
   );
 };
