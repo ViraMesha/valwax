@@ -150,4 +150,8 @@
   .menuIcon {
     display: none;
   }
+
+  .burgerMenu {
+    display: none;
+  }
 }
