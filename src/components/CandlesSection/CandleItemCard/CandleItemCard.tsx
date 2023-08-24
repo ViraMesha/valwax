@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Typography from '../../Typography/Typography';
 import { CandleI } from '../candleData';
 
 import styles from './CandleItemCard.module.scss';
@@ -25,8 +24,8 @@ const CandleItemCard: React.FC<CandleI> = ({ img, title, price, link }) => {
         </div>
       </Link>
       <div>
-        <Link href={link}>
-          <Typography variant="bodyRegular">{title}</Typography>
+        <Link href={link} className={styles.title}>
+          {title}
         </Link>
         <div className={styles.price_container}>
           <p className={styles.price}>{price}</p>

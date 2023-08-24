@@ -16,12 +16,12 @@
     @media (min-width: #{$mobile-large-breakpoint + 0.02}) and (max-width: #{$tablet-small-breakpoint}) {
       @content;
     }
-     // від 768px до 1023.98px
+    // від 768px до 1023.98px
   } @else if $breakpoint == 'tablet-large' {
     @media (min-width: #{$tablet-small-breakpoint + 0.02}) and (max-width: #{$tablet-large-breakpoint}) {
       @content;
     }
-    // від 1024px до 1229px
+    // від 1024px до 1229.98px
   } @else if $breakpoint == 'desktop' {
     @media (min-width: #{$tablet-large-breakpoint + 0.02}) and (max-width: #{$desktop-breakpoint}) {
       @content;
@@ -32,13 +32,11 @@
       @content;
     }
 
-
     // від 768px і далі
   } @else if $breakpoint == 'tablet-small-and-up' {
     @media (min-width: #{$tablet-small-breakpoint + 0.02}) {
       @content;
     }
-    
 
     // до 667px - тільки мобільні
   } @else if $breakpoint == 'only-mobile' {
