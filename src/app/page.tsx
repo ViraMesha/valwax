@@ -13,8 +13,8 @@ export default function Home() {
       <Hero />
       <AboutUsSection />
       <Quote />
-      <Instagram />
       <Compass />
+      <Instagram />
       <Subscription />
     </>
   );
