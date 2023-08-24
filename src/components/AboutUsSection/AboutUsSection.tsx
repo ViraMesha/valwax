@@ -7,7 +7,7 @@ import Image3 from 'public/images/aboutUs/Image3.jpg';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 
-import styles from './AboutUsSection.module.css';
+import styles from './AboutUsSection.module.scss';
 
 const AboutUsSection = () => {
   return (
@@ -60,14 +60,20 @@ const AboutUsSection = () => {
               />
             </div>
           </div>
-          <Image
-            src={Image3}
-            alt="Candle"
-            width={486}
-            height={621}
-            className={styles.aboutUsImage}
-            priority
-          />
+          <div className={styles.aboutUsImageContainer}>
+            <Image
+              src={Image3}
+              alt="Candle"
+              fill
+              className={styles.aboutUsImage}
+              priority
+              sizes="(min-width: 1230) 486px,
+                    (min-width: 1024) 976px,
+                    (min-width: 768px) 720px,
+                    (min-width: 667px) 619px,
+                    100vw"
+            />
+          </div>
         </div>
       </Container>
     </Section>
