@@ -68,7 +68,7 @@
 
 .burgerMenu {
   position: absolute;
-  top: 60px;
+  top: 59px;
   left: 0;
   z-index: 10;
   display: flex;
@@ -77,12 +77,16 @@
   width: 100vw;
   height: fit-content;
   padding: 80px 24px;
-  transform: translateX(100%);
-  transition: transform var(--animat);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--animat), visibility var(--animat);
 }
 
 .burgerMenu.isOpen {
-  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 
 .mobileLangMenu {
@@ -90,8 +94,11 @@
   padding: 0;
 }
 
-.overflowHidden {
-  overflow: hidden;
+.menuIcon {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 /*Mobile landscape and tablet styles*/

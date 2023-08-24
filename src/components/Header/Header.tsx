@@ -45,11 +45,10 @@ const Header = () => {
             <li className={styles.iconsItem}>
               <AiOutlineSearch style={{ strokeWidth: '2px' }} />
             </li>
-            <li
-              className={`${styles.iconsItem} ${styles.menuIcon}`}
-              onClick={toggleMenuOpen}
-            >
-              {isMobileMenuOpen ? <AiOutlineClose /> : <HiOutlineMenuAlt1 />}
+            <li className={styles.iconsItem}>
+              <button className={styles.menuIcon} onClick={toggleMenuOpen}>
+                {isMobileMenuOpen ? <AiOutlineClose /> : <HiOutlineMenuAlt1 />}
+              </button>
             </li>
           </ul>
 
