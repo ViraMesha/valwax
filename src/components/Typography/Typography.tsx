@@ -1,19 +1,19 @@
-import styles from "./Typography.module.scss";
+import styles from './Typography.module.scss';
 
 // Defining the HTML tag that the component will support
 const variantsMapping = {
-  heading1: "h1",
-  subheading1: "h2",
-  subheading2: "h3",
-  subheading3: "h4",
-  subheding4: "p",
-  button: "span",
-  bodyXL: "p",
-  bodyXLHeavy: "p",
-  bodyL: "p",
-  bodyRegular: "p",
-  bodyS: "p",
-  bodyS2: "p",
+  heading1: 'h1',
+  subheading1: 'h2',
+  subheading2: 'h3',
+  subheading3: 'h4',
+  subheding4: 'p',
+  button: 'span',
+  bodyXL: 'p',
+  bodyXLHeavy: 'p',
+  bodyL: 'p',
+  bodyRegular: 'p',
+  bodyS: 'p',
+  bodyS2: 'p',
 } as const;
 
 interface Props {
@@ -31,18 +31,18 @@ interface Props {
 // ...props: the default attribute of the Component
 const Typography: React.FC<Props> = ({
   variant,
-  color = "var(--cl-primary-900)",
+  color,
   children,
   className,
   ...props
 }) => {
   // If the variant exists in variantsMapping, we use it.
   // Otherwise, use p tag instead.
-  const Component = variant ? variantsMapping[variant] : "p";
+  const Component = variant ? variantsMapping[variant] : 'p';
 
   const textClassName = `${
-    variant ? styles[`typography--variant-${variant}`] : ""
-  } ${className || ""}`;
+    variant ? styles[`typography--variant-${variant}`] : ''
+  } ${className || ''}`;
 
   return (
     <Component className={textClassName} {...props} style={{ color: color }}>
@@ -51,6 +51,6 @@ const Typography: React.FC<Props> = ({
   );
 };
 
-Typography.displayName = "Typography";
+Typography.displayName = 'Typography';
 
 export default Typography;

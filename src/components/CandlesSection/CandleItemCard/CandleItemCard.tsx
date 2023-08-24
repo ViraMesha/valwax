@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import Typography from '@components/components/Typography/Typography';
 
 import { CandleI } from '../candleData';
 
@@ -22,15 +23,13 @@ const CandleItemCard: React.FC<CandleI> = ({ img, title, price, link }) => {
                     154px"
           />
         </div>
-      </Link>
-      <div>
-        <Link href={link} className={styles.title}>
+        <Typography variant="bodyRegular" className={styles.title}>
           {title}
-        </Link>
-        <div className={styles.price_container}>
-          <p className={styles.price}>{price}</p>
-          <span>₴</span>
-        </div>
+        </Typography>
+      </Link>
+      <div className={styles.price_container}>
+        <p className={styles.price}>{price}</p>
+        <span>&#8372;</span>
       </div>
     </li>
   );
