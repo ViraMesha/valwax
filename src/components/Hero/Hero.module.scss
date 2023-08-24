@@ -2,9 +2,9 @@
   position: relative;
 }
 
-.imageContainer {
-  height: 360px;
+.slider_body {
   position: relative;
+  height: 360px;
 }
 
 .bgImage {
@@ -15,6 +15,7 @@
   position: absolute;
   left: 16px;
   top: 40px;
+  z-index: 1;
 }
 
 .heading {
@@ -28,7 +29,7 @@
 
 .controls {
   position: absolute;
-  bottom: 16px;
+  bottom: 44px;
   right: 16px;
 
   display: flex;
@@ -106,7 +107,7 @@
 
 /*Mobile landscape styles */
 @media (min-width: 667px) {
-  .imageContainer {
+  .slider_body {
     height: 400px;
   }
 }
@@ -121,19 +122,19 @@
 
 /*Tablet styles */
 @media (min-width: 768px) {
-  .imageContainer {
+  .slider_body {
     height: 500px;
   }
 
   .controls {
-    bottom: 24px;
+    bottom: 52px;
     right: 24px;
   }
 }
 
 /* Laptop styles */
 @media (min-width: 1024px) {
-  .imageContainer {
+  .slider_body {
     height: 600px;
   }
 
@@ -145,7 +146,7 @@
 
 /* Desktop styles */
 @media (min-width: 1230px) {
-  .imageContainer {
+  .slider_body {
     height: 650px;
   }
 
@@ -155,7 +156,7 @@
   }
 
   .controls {
-    bottom: 40px;
+    bottom: 76px;
     right: 40px;
   }
 

@@ -14,7 +14,7 @@ import heroCards from './heroCards';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import styles from './Hero.module.css';
+import styles from './Hero.module.scss';
 
 const sliderSettings: Settings = {
   slidesToShow: 1,
@@ -54,43 +54,43 @@ const Hero = () => {
   return (
     <Section className={styles.sectionWrapper}>
       <Container>
-        <Slider
-          ref={sliderRef}
-          speed={700}
-          {...sliderSettings}
-          beforeChange={(prev, next) => setCurrentSlide(next)}
-        >
-          {heroCards.map(
-            ({
-              id,
-              backgroundImage,
-              buttonText,
-              heading1,
-              heading2,
-              heading3,
-            }) => (
-              <div key={id} className={styles.body}>
-                <div className={styles.controls}>
-                  <button
-                    onClick={handlePrevClick}
-                    className={`${styles.prevButton} ${
-                      disablePrevButton ? styles.disabled : ''
-                    }`}
-                    disabled={disablePrevButton}
-                  >
-                    <HiOutlineChevronLeft className={styles.arrowIcon} />
-                  </button>
-                  <button
-                    onClick={handleNextClick}
-                    className={`${styles.nextButton} ${
-                      disableNextButton ? styles.disabled : ''
-                    }`}
-                    disabled={disableNextButton}
-                  >
-                    <HiOutlineChevronRight className={styles.arrowIcon} />
-                  </button>
-                </div>
-                <div className={styles.imageContainer}>
+        <div className={styles.body}>
+          <div className={styles.controls}>
+            <button
+              onClick={handlePrevClick}
+              className={`${styles.prevButton} ${
+                disablePrevButton ? styles.disabled : ''
+              }`}
+              disabled={disablePrevButton}
+            >
+              <HiOutlineChevronLeft className={styles.arrowIcon} />
+            </button>
+            <button
+              onClick={handleNextClick}
+              className={`${styles.nextButton} ${
+                disableNextButton ? styles.disabled : ''
+              }`}
+              disabled={disableNextButton}
+            >
+              <HiOutlineChevronRight className={styles.arrowIcon} />
+            </button>
+          </div>
+          <Slider
+            ref={sliderRef}
+            speed={700}
+            {...sliderSettings}
+            beforeChange={(prev, next) => setCurrentSlide(next)}
+          >
+            {heroCards.map(
+              ({
+                id,
+                backgroundImage,
+                buttonText,
+                heading1,
+                heading2,
+                heading3,
+              }) => (
+                <div key={id} className={styles.slider_body}>
                   <Image
                     src={backgroundImage}
                     alt="Background Image"
@@ -104,37 +104,37 @@ const Hero = () => {
                     327px"
                     className={styles.bgImage}
                   />
-                </div>
-                <div className={styles.content}>
-                  <div className={styles.heading}>
-                    <Typography
-                      variant="heading1"
-                      className={avenir.className}
-                      color="var(--cl-secondary-50)"
-                    >
-                      {heading1}
-                    </Typography>
-                    <Typography
-                      variant="heading1"
-                      className={avenir.className}
-                      color="var(--cl-secondary-50)"
-                    >
-                      {heading2}
-                    </Typography>
-                    <Typography
-                      variant="heading1"
-                      className={avenir.className}
-                      color="var(--cl-secondary-50)"
-                    >
-                      {heading3}
-                    </Typography>
+                  <div className={styles.content}>
+                    <div className={styles.heading}>
+                      <Typography
+                        variant="heading1"
+                        className={avenir.className}
+                        color="var(--cl-secondary-50)"
+                      >
+                        {heading1}
+                      </Typography>
+                      <Typography
+                        variant="heading1"
+                        className={avenir.className}
+                        color="var(--cl-secondary-50)"
+                      >
+                        {heading2}
+                      </Typography>
+                      <Typography
+                        variant="heading1"
+                        className={avenir.className}
+                        color="var(--cl-secondary-50)"
+                      >
+                        {heading3}
+                      </Typography>
+                    </div>
+                    <Button variant="primary">{buttonText}</Button>
                   </div>
-                  <Button variant="primary">{buttonText}</Button>
                 </div>
-              </div>
-            )
-          )}
-        </Slider>
+              )
+            )}
+          </Slider>
+        </div>
       </Container>
     </Section>
   );
