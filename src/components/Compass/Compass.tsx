@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import boxImg from '../../../public/images/Compass/box-card.png';
+import boxImg from '../../../public/images/Compass/box-card.jpg';
 import candleImg from '../../../public/images/Compass/candle-card.jpg';
-import createImg from '../../../public/images/Compass/create-card.png';
+import createImg from '../../../public/images/Compass/create-card.jpg';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
 
-import styles from './Compass.module.css';
+import styles from './Compass.module.scss';
 
 const Compass = () => {
   return (
@@ -21,39 +21,67 @@ const Compass = () => {
               src={candleImg}
               alt="candle"
               className={styles.image}
-              width={588}
-              height={798}
+              sizes="(min-width: 1230) 588px,
+              (min-width: 1024) 480px,
+              (min-width: 768px) 352px,
+              (min-width: 667px) 619px,
+              327px"
+              // fill
               priority
             />
-            <Typography variant="bodyXLHeavy" className={styles.text}>
-              Свічки
-            </Typography>
+            <div className={styles.gradient}>
+              <Typography
+                variant="bodyXLHeavy"
+                color="var(--cl-gray-50)"
+                className={styles.text}
+              >
+                Свічки
+              </Typography>
+            </div>
           </Link>
           <Link href="/candle" className={`${styles.box} ${styles.card}`}>
             <Image
               src={boxImg}
               alt="box"
               className={styles.image}
-              width={588}
-              height={387}
+              sizes="(min-width: 1230) 588px,
+                    (min-width: 1024) 480px,
+                    (min-width: 768px) 352px,
+                    (min-width: 667px) 619px,
+                    327px"
               priority
             />
-            <Typography variant="bodyXLHeavy" className={styles.text}>
-              Бокси
-            </Typography>
+            <div className={styles.gradient}>
+              <Typography
+                variant="bodyXLHeavy"
+                color="var(--cl-gray-50)"
+                className={styles.text}
+              >
+                Бокси
+              </Typography>
+            </div>
           </Link>
           <Link href="/candle" className={`${styles.create} ${styles.card}`}>
             <Image
               src={createImg}
               alt="create"
               className={styles.image}
-              width={588}
-              height={387}
+              sizes="(min-width: 1230) 588px,
+              (min-width: 1024) 480px,
+              (min-width: 768px) 352px,
+              (min-width: 667px) 619px,
+              327px"
               priority
             />
-            <Typography variant="bodyXLHeavy" className={styles.text}>
-              Створи свічку сам
-            </Typography>
+            <div className={styles.gradient}>
+              <Typography
+                variant="bodyXLHeavy"
+                color="var(--cl-gray-50)"
+                className={styles.text}
+              >
+                Створи свічку сам
+              </Typography>
+            </div>
           </Link>
         </div>
       </Container>
