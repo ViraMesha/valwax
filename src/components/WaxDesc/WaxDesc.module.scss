@@ -14,6 +14,11 @@
   height: 475px;
   border-radius: 20px;
   background-color: var(--cl-gray-900);
+  overflow: hidden;
+
+  @include breakpoint('mobile-small') {
+    height: 500px;
+  }
 
   @include breakpoint('tablet-small') {
     height: 382px;
