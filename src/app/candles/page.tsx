@@ -1,5 +1,5 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
-import CandlesSection from '@components/components/CandlesSection/CandlesSection';
+import CandlePage from '@components/components/CandlePage/CandlePage';
 
 const Candle = () => {
   return (
@@ -12,7 +12,7 @@ const Candle = () => {
           },
         ]}
       />
-      <CandlesSection />
+      <CandlePage />
     </>
   );
 };
