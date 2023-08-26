@@ -38,9 +38,16 @@
       @content;
     }
 
-    // до 667px - тільки мобільні
+    // до 768px - тільки мобільні
   } @else if $breakpoint == 'only-mobile' {
-    @media (max-width: #{$tablet-small-breakpoint}) {
+    @media (max-width: #{$tablet-small--breakpoint}) {
+      @content;
+    }
+  }
+
+  // до 667px - тільки мобільні
+  @else if $breakpoint == 'only-mobile-small' {
+    @media (max-width: #{$mobile-large-breakpoint}) {
       @content;
     }
   }
