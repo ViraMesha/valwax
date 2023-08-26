@@ -48,7 +48,7 @@
     font-size: 18px;
   }
 
-  @include breakpoint('only-mobile') {
+  @include breakpoint('only-mobile-small') {
     font-size: 20px;
     line-height: 1.5;
   }
