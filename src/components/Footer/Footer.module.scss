@@ -1,0 +1,67 @@
+@import '../../scss/utilities/breakpoint-mixin.scss';
+
+.footer {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  text-align: center;
+  border-top: 2px solid var(--secondary-200, #fee2e3);
+
+  @include breakpoint('desktop-large') {
+    padding-top: 40px;
+  }
+}
+
+.footerWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+
+  @include breakpoint('desktop-large') {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.addressList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contactUsText {
+  margin-bottom: 24px;
+}
+
+.addressLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.addressTypography {
+  font-style: normal;
+}
+
+.copyright {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  @include breakpoint('desktop-large') {
+    flex-direction: row;
+    gap: 8px;
+  }
+}
+
+.copyWrapper {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
