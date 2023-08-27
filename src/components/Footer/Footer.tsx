@@ -16,7 +16,7 @@ const Footer = () => {
       <Container>
         <div className={styles.footerWrapper}>
           <Image src={Logo} alt="Logo" width={140} height={114} />
-          <Navigation  />
+          <Navigation variant='footer'/>
           <div>
             <Typography
               variant="bodyL"

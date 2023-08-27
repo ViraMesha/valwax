@@ -15,13 +15,16 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
   gap: 24px;
   margin-bottom: 24px;
 
   @include breakpoint('desktop-large') {
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  @include breakpoint('all-devices-without-desktop') {
+    align-items: center;
   }
 }
 
@@ -59,9 +62,12 @@
 }
 
 .copyWrapper {
-  margin-top: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
+
+  @include breakpoint('all-devices-without-desktop') {
+    margin-top: 4px;
+  }
 }

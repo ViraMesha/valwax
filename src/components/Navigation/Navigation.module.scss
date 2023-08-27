@@ -48,6 +48,12 @@
 .centerContent {
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+.centerContentFooter {
+  display: flex;
+  align-items: center;
   justify-content: center;
   gap: 8px;
 }

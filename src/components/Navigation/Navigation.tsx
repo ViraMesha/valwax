@@ -12,9 +12,14 @@ import styles from './navigation.module.scss';
 interface NavigationPropsI {
   className?: string;
   onClick?: () => void;
+  variant?: string;
 }
 
-const Navigation: React.FC<NavigationPropsI> = ({ className, onClick }) => {
+const Navigation: React.FC<NavigationPropsI> = ({
+  className,
+  onClick,
+  variant,
+}) => {
   const pathname = usePathname();
   const [isCandlesMenuOpen, setIsCandlesMenuOpen] = useState(false);
   const isActive = (link: string) => pathname === link;
@@ -30,7 +35,11 @@ const Navigation: React.FC<NavigationPropsI> = ({ className, onClick }) => {
   const handleMouseLeave = () => {
     setIsCandlesMenuOpen(false);
   };
+ const centerContentClass =
+    variant === 'footer' ? styles.centerContentFooter : styles.centerContent;
 
+ 
+  
   return (
     <nav>
       <ul className={`${styles.navigationList} ${className || ''}`}>
@@ -41,9 +50,9 @@ const Navigation: React.FC<NavigationPropsI> = ({ className, onClick }) => {
                 className={styles.dropdown}
                 onClick={toggleDropdown}
                 onMouseEnter={handleMouseEnter}
-                // onMouseLeave={handleMouseLeave}
+                onMouseLeave={handleMouseLeave}
               >
-                <div className={styles.centerContent}>
+                <div className={centerContentClass}>
                   <span className={styles.linkText}>Свічки</span>
                   {isCandlesMenuOpen ? (
                     <MdKeyboardArrowUp
