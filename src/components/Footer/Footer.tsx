@@ -8,7 +8,7 @@ import Container from '../Container/Container';
 import Navigation from '../Navigation/Navigation';
 import Typography from '../Typography/Typography';
 
-import styles from './Footer.module.css';
+import styles from './Footer.module.scss';
 
 const Footer = () => {
   return (
@@ -16,7 +16,7 @@ const Footer = () => {
       <Container>
         <div className={styles.footerWrapper}>
           <Image src={Logo} alt="Logo" width={140} height={114} />
-          <Navigation />
+          <Navigation variant='footer'/>
           <div>
             <Typography
               variant="bodyL"
@@ -59,18 +59,20 @@ const Footer = () => {
           </div>
         </div>
         <div className={styles.copyright}>
-          <Typography
-            variant="bodyRegular"
-            color="var(--cl-gray-400)"
-          >
-            Політика конфіденційності. Усі права захищенні.
-          </Typography>
-          <AiOutlineCopyrightCircle
-            style={{ width: 16, height: 16, color: 'var(--cl-gray-400)' }}
-          ></AiOutlineCopyrightCircle>
           <Typography variant="bodyRegular" color="var(--cl-gray-400)">
-            2023 Valwax
+            Політика конфіденційності.
           </Typography>
+          <Typography variant="bodyRegular" color="var(--cl-gray-400)">
+            Усі права захищенні.
+          </Typography>
+          <div className={styles.copyWrapper}>
+            <AiOutlineCopyrightCircle
+              style={{ width: 16, height: 16, color: 'var(--cl-gray-400)' }}
+            ></AiOutlineCopyrightCircle>
+            <Typography variant="bodyRegular" color="var(--cl-gray-400)">
+              2023 Valwax
+            </Typography>
+          </div>
         </div>
       </Container>
     </footer>
