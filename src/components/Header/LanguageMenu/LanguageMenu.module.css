@@ -23,6 +23,7 @@
 
 .languageList {
   position: absolute;
+  border-radius: 8px;
   top: 100%;
   left: 0;
   background-color: var(--cl-white);
@@ -37,6 +38,10 @@
   padding: 8px;
   cursor: pointer;
   border-bottom: 1px solid var(--cl-secondary-100);
+}
+
+.languageItem:last-child {
+  border-radius: 8px;
 }
 
 .languageItem:hover {
