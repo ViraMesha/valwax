@@ -49,8 +49,11 @@
 
 .footerCandlesList {
   @include breakpoint('all-devices-without-desktop') {
-    padding: 0;
-    margin-top: 16px;
+    padding: 0 24px;
+    margin-top: 12px;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
   }
 }
 
