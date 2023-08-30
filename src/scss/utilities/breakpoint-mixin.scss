@@ -40,7 +40,7 @@
 
     // до 768px - тільки мобільні
   } @else if $breakpoint == 'only-mobile' {
-    @media (max-width: #{$tablet-small--breakpoint}) {
+    @media (max-width: #{$tablet-small-breakpoint}) {
       @content;
     }
   }
@@ -50,5 +50,13 @@
     @media (max-width: #{$mobile-large-breakpoint}) {
       @content;
     }
+
+    // до 1230px - мобільні та планшет
+  } @else if $breakpoint == 'mobile-and-tablet' {
+    @media (max-width: #{$desktop-breakpoint}) {
+      @content;
+    }
   }
 }
+
+

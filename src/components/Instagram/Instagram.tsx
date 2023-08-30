@@ -4,12 +4,11 @@ import imageInsta1 from '../../../public/images/insta/111.jpg';
 import imageInsta2 from '../../../public/images/insta/222.jpg';
 import imageInsta3 from '../../../public/images/insta/333.jpg';
 import imageInsta4 from '../../../public/images/insta/4444.jpg';
-
 import Container from '../Container/Container';
-import Typography from '../Typography/Typography';
 import Section from '../Section/Section';
+import Typography from '../Typography/Typography';
 
-import styles from './Instagram.module.css';
+import styles from './Instagram.module.scss';
 
 //  plug
 const feed = [
@@ -147,9 +146,15 @@ const Instagram = async () => {
                   src={post.media_url}
                   alt="candle"
                   className={styles.img}
-                  width={588}
-                  height={798}
-                  priority
+                  sizes="(min-width: 1230) 282px,
+                    (min-width: 1024) 232px,
+                    (min-width: 768px) 230px,
+                    (min-width: 667px) 238px,
+                    156px"
+                    fill
+                    // width={282}
+                    // height={282}
+                  // priority
                 />
               </li>
             ))}

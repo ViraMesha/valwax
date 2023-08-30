@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { navItems, navLinks } from './navData';
 
-import styles from './navigation.module.css';
+import styles from './Navigation.module.css';
 
 interface NavigationPropsI {
   className?: string;
