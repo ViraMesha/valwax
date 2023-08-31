@@ -45,7 +45,7 @@
 
 .create {
   height: 360px;
-  
+
   @include breakpoint('tablet-small-and-up') {
     grid-area: 2 / 2 / 3 / 3;
     background-color: blueviolet;
@@ -56,11 +56,9 @@
 .image {
   border-radius: 20px;
   height: 100%;
-  object-fit: cover;
 }
 
 .gradient {
-  content: '';
   position: absolute;
   bottom: 0;
   border-radius: 0px 0px 20px 20px;

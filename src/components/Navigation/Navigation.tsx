@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
 import { candlesMenuItems, navItems, navLinks } from './navData';
 
-import styles from './navigation.module.scss';
+import styles from './Navigation.module.scss';
 
 interface NavigationPropsI {
   className?: string;
