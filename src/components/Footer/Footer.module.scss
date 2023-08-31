@@ -89,20 +89,20 @@
 
 .copyrightIcon {
   color: var(--cl-gray-400);
-  transition: color var(--animat) ease-in-out;
+  transition: color var(--animat);
 
   &:hover {
-    color: var(--cl-hover-color);
+    color: var(--cl-blue-500);
   }
 }
 
 .hoverableText {
   color: var(--cl-gray-400);
-  transition: color var(--animat) ease-in-out;
+  transition: color var(--animat);
 }
 
 .hoverableText:hover {
-  color: var(--cl-hover-color);
+  color: var(--cl-blue-500);
 }
 
 .footerNavigation {
