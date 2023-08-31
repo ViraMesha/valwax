@@ -50,11 +50,13 @@
     @media (max-width: #{$mobile-large-breakpoint}) {
       @content;
     }
-  }
-// до 1229.98px - всі девайси, крім desktop
-  @else if $breakpoint == 'all-devices-without-desktop' {
+
+    // до 1230px - мобільні та планшет
+  } @else if $breakpoint == 'all-devices-without-desktop' {
     @media (max-width: #{$desktop-breakpoint}) {
       @content;
     }
   }
 }
+
+
