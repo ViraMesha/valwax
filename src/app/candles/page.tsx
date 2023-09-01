@@ -1,7 +1,7 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlePage from '@components/components/CandlePage/CandlePage';
 
-const Candle = () => {
+const Candles = () => {
   return (
     <>
       <Breadcrumbs
@@ -17,4 +17,4 @@ const Candle = () => {
   );
 };
 
-export default Candle;
+export default Candles;

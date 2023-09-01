@@ -16,7 +16,7 @@ const Compass = () => {
       <Container>
         {/* <h2>Navigation section</h2> */}
         <div className={styles.wrapper}>
-          <Link href="/candle" className={`${styles.candle} ${styles.card}`}>
+          <Link href="/candles" className={`${styles.candle} ${styles.card}`}>
             <Image
               src={candleImg}
               alt="candle"
@@ -39,7 +39,7 @@ const Compass = () => {
               </Typography>
             </div>
           </Link>
-          <Link href="/candle" className={`${styles.box} ${styles.card}`}>
+          <Link href="/boxes" className={`${styles.box} ${styles.card}`}>
             <Image
               src={boxImg}
               alt="box"

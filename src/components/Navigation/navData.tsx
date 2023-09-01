@@ -26,7 +26,8 @@ export const candlesMenuItems: CandlesMenuItem[] = [
 export const navLinks: NavLink = {
   Головна: '/',
   Свічки: '/candles',
-  'Соєві свічки': '/soy-candles',
+  'Соєві свічки': '/candles',
+  // 'Соєві свічки': '/soy-candles',
   'Кокосові свічки': '/coconut-candles',
   'Пальмові свічки': '/palm-candles',
   'Створи Сам': '/create-your-own',

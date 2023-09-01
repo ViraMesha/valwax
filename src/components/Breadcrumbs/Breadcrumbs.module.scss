@@ -1,3 +1,18 @@
+@import '../../scss/utilities/breakpoint-mixin.scss';
+
+.section {
+  padding-top: 24px;
+  padding-bottom: 30px;
+
+  @include breakpoint('desktop') {
+    padding-top: 20px;
+  }
+
+  @include breakpoint('desktop-large') {
+    padding-top: 50px;
+  }
+}
+
 .container {
   display: flex;
   gap: 12px;
