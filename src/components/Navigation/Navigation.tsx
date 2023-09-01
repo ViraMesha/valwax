@@ -35,10 +35,10 @@ const Navigation: React.FC<NavigationPropsI> = ({
   const handleMouseLeave = () => {
     setIsCandlesMenuOpen(false);
   };
- const centerContentClass =
+  const centerContentClass =
     variant === 'footer' ? styles.centerContentFooter : styles.centerContent;
 
- 
+  const candlesListClass = variant === 'footer' ? `${styles.candlesList} ${styles.footerCandlesList}` : styles.candlesList;
   
   return (
     <nav>
@@ -67,7 +67,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                   )}
                 </div>
                 {isCandlesMenuOpen && (
-                  <ul className={styles.candlesList}>
+                  <ul className={candlesListClass}>
                     {candlesMenuItems.map((candlesItem, index) => (
                       <li key={index} className={styles.candlesItem}>
                         <Link

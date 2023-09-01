@@ -16,7 +16,7 @@ const Footer = () => {
       <Container>
         <div className={styles.footerWrapper}>
           <Image src={Logo} alt="Logo" width={140} height={114} />
-          <Navigation variant='footer'/>
+          <Navigation variant="footer" className={styles.footerNavigation} />
           <div>
             <Typography
               variant="bodyL"
@@ -59,19 +59,25 @@ const Footer = () => {
           </div>
         </div>
         <div className={styles.copyright}>
-          <Typography variant="bodyRegular" color="var(--cl-gray-400)">
+          <Typography variant="bodyRegular" className={styles.hoverableText}>
             Політика конфіденційності.
           </Typography>
-          <Typography variant="bodyRegular" color="var(--cl-gray-400)">
-            Усі права захищенні.
-          </Typography>
           <div className={styles.copyWrapper}>
-            <AiOutlineCopyrightCircle
-              style={{ width: 16, height: 16, color: 'var(--cl-gray-400)' }}
-            ></AiOutlineCopyrightCircle>
-            <Typography variant="bodyRegular" color="var(--cl-gray-400)">
-              2023 Valwax
+            <Typography variant="bodyRegular" className={styles.hoverableText}>
+              Усі права захищенні.
             </Typography>
+            <div className={styles.copyrightValwax}>
+              <AiOutlineCopyrightCircle
+                className={styles.copyrightIcon}
+                style={{ width: 16, height: 16 }}
+              ></AiOutlineCopyrightCircle>
+              <Typography
+                variant="bodyRegular"
+                className={styles.hoverableText}
+              >
+                2023 Valwax
+              </Typography>
+            </div>
           </div>
         </div>
       </Container>
