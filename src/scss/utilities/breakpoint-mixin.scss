@@ -50,13 +50,19 @@
     @media (max-width: #{$mobile-large-breakpoint}) {
       @content;
     }
+  }
 
-    // до 1230px - мобільні та планшет
-  } @else if $breakpoint == 'all-devices-without-desktop' {
+  // до 1230px - мобільні та планшет
+  @else if $breakpoint == 'all-devices-without-desktop' {
     @media (max-width: #{$desktop-breakpoint}) {
       @content;
     }
   }
+
+  // від 667 і далі
+  @else if $breakpoint == 'mobile-large-and-up' {
+    @media (min-width: #{$mobile-large-breakpoint + 0.02}) {
+      @content;
+    }
+  }
 }
-
-

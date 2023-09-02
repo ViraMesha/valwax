@@ -3,7 +3,7 @@ import styles from './Typography.module.scss';
 // Defining the HTML tag that the component will support
 const variantsMapping = {
   heading1: 'h1',
-subheadingLight: 'h1',
+  subheadingLight: 'h1',
   subheading1: 'h2',
   subheading2: 'h3',
   subheading3: 'h4',
@@ -12,6 +12,8 @@ subheadingLight: 'h1',
   bodyXL: 'p',
   bodyXLHeavy: 'p',
   bodyL: 'p',
+  bodyL24: 'p',
+  bodyLBold: 'h2',
   bodyRegular: 'p',
   bodyS: 'p',
   bodyS2: 'p',
