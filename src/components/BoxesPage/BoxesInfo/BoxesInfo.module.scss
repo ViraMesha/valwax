@@ -13,6 +13,10 @@
   background-color: var(--cl-gray-900);
   overflow: hidden;
 
+  @include breakpoint('mobile-small') {
+    height: 570px;
+  }
+
   @include breakpoint('tablet-small') {
     height: 450px;
   }
@@ -45,6 +49,10 @@
   color: var(--cl-gray-50);
   padding: 18px 16px 42px 11px;
 
+  @include breakpoint('mobile-small') {
+    padding: 11px;
+  }
+
   @include breakpoint('tablet-small') {
     padding: 25px 29px 57px 23px;
   }
@@ -64,6 +72,10 @@
 
 .title {
   margin-bottom: 10px;
+
+  @include breakpoint('mobile-small') {
+    text-align: center;
+  }
 }
 
 .text {
