@@ -2,10 +2,6 @@
 
 .section {
   padding-bottom: 0;
-
-  @include breakpoint('desktop-large') {
-    padding-top: 53px;
-  }
 }
 
 /*Додала чорний фон для підстраховки, якщо фото не загрузиться*/
