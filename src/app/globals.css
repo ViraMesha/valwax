@@ -2,6 +2,7 @@
   /* colors */
 
   --cl-white: #ffffff;
+  --cl-black: #000;
 
   --cl-gray-900: #060606;
   --cl-gray-800: #0f0f0f;
@@ -35,8 +36,8 @@
   --cl-secondary-200: #fee2e3;
   --cl-secondary-100: #fff1f1;
   --cl-secondary-50: #fff8f9;
-  
-  --cl-blue-500: #0150e8; 
+
+  --cl-blue-500: #0150e8;
   /* size */
 
   /* animat */
