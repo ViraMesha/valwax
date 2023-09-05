@@ -13,6 +13,8 @@ const variantsMapping = {
   bodyXL: 'p',
   bodyXLHeavy: 'p',
   bodyL: 'p',
+  bodyL24: 'p',
+  bodyLBold: 'h2',
   bodyRegular: 'p',
   bodyS: 'p',
   bodyS2: 'p',
