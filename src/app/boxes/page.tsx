@@ -1,5 +1,6 @@
 import BoxesInfo from '@components/components/BoxesPage/BoxesInfo/BoxesInfo';
 import BoxesPageHeader from '@components/components/BoxesPage/BoxesPageHeader/BoxesPageHeader';
+import BoxesSection from '@components/components/BoxesPage/BoxesSection/BoxesSection';
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 
 const Boxes = () => {
@@ -14,6 +15,7 @@ const Boxes = () => {
         ]}
       />
       <BoxesPageHeader />
+      <BoxesSection />
       <BoxesInfo />
     </>
   );

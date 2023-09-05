@@ -5,8 +5,6 @@ import styles from './Button.module.scss';
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   children?: React.ReactNode;
-  width?: string;
-  height?: string;
   variant: 'primary' | 'secondary' | 'tertiary';
   hasIcon?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -16,8 +14,6 @@ const Button: React.FC<Props> = ({
   disabled,
   children,
   onClick,
-  width,
-  height,
   variant = 'primary',
   hasIcon,
   className,
@@ -31,7 +27,6 @@ const Button: React.FC<Props> = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      style={{ width: width, height: height }}
       {...rest}
       className={buttonClass}
     >

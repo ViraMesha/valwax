@@ -12,8 +12,6 @@ import Typography from '../Typography/Typography';
 
 import heroCards from './heroCards';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import styles from './Hero.module.scss';
 
 const sliderSettings: Settings = {

@@ -4,6 +4,8 @@ import Header from '@components/components/Header/Header';
 
 import { proxima_nova } from './fonts';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './globals.css';
 import styles from './page.module.css';
 
