@@ -33,8 +33,8 @@ const BoxesCard: React.FC<BoxI> = ({ img, title, price, link, text }) => {
               key={index}
               src={imageSrc}
               priority
-              width={480}
-              height={480}
+              width={515}
+              height={515}
               quality={100}
               alt={title}
               sizes="(min-width: 1230) 515px,
