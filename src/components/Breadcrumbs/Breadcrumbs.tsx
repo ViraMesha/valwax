@@ -4,7 +4,6 @@ import { BiSolidChevronRight } from 'react-icons/bi';
 
 import home from '../../../public/images/icons/home-breadcrumbs-heart.svg';
 import Container from '../Container/Container';
-import Section from '../Section/Section';
 
 import { BreadcrumbsProps } from './data';
 
@@ -12,7 +11,7 @@ import styles from './Breadcrumbs.module.scss';
 
 const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
   return (
-    <Section className={styles.section}>
+    <section className={styles.section}>
       <Container>
         <nav aria-label="breadcrumbs">
           <ol className={styles.container}>
@@ -35,7 +34,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
           </ol>
         </nav>
       </Container>
-    </Section>
+    </section>
   );
 };
 
