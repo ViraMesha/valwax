@@ -68,8 +68,8 @@
     }
   }
 
-  // від 1024px - тільки десктоп
-  @else if $breakpoint == 'only-desktop' {
+  // від 1024px і далі - тільки десктоп
+  @else if $breakpoint == 'tablet-large-and-up' {
     @media (min-width: #{$tablet-large-breakpoint + 0.02}) {
       @content;
     }
