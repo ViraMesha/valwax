@@ -1,5 +1,7 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import Slider, { Settings } from 'react-slick';
 import Button from '@components/components/Button/Button';
 import Typography from '@components/components/Typography/Typography';
 
@@ -7,24 +9,41 @@ import { BoxI } from '../boxesData';
 
 import styles from './BoxesCard.module.scss';
 
+const sliderSettings: Settings = {
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  infinite: false,
+  dots: true,
+  arrows: false,
+  draggable: true,
+  swipe: true,
+  appendDots: (dots: React.ReactNode) => <ul>{dots}</ul>,
+  dotsClass: styles['dots'],
+  customPaging: () => <button></button>,
+};
+
 const BoxesCard: React.FC<BoxI> = ({ img, title, price, link, text }) => {
   return (
     <li className={styles.card}>
-      <Link href={link}>
-        <div className={styles.img_container}>
-          <Image
-            className={styles.image}
-            src={img[0]}
-            priority
-            fill
-            quality={100}
-            alt={title}
-            sizes="(min-width: 1230) 515px,
+      <div className={styles.img_container}>
+        <Slider {...sliderSettings}>
+          {img.map((imageSrc, index) => (
+            <Image
+              className={styles.image}
+              key={index}
+              src={imageSrc}
+              priority
+              width={480}
+              height={480}
+              quality={100}
+              alt={title}
+              sizes="(min-width: 1230) 515px,
                     (min-width: 1024) 480px,
                     100%"
-          />
-        </div>
-      </Link>
+            />
+          ))}
+        </Slider>
+      </div>
       <div className={styles.card_body}>
         <div className={styles.content}>
           <Link href={link}>

@@ -43,6 +43,24 @@
 
 .image {
   border-radius: 20px;
+  height: 185px;
+
+  @include breakpoint('tablet-small') {
+    height: 308px;
+  }
+
+  @include breakpoint('tablet-large') {
+    height: 354px;
+  }
+
+  @include breakpoint('desktop') {
+    width: 480px;
+    height: 480px;
+  }
+  @include breakpoint('desktop-large') {
+    width: 515px;
+    height: 515px;
+  }
 }
 
 .content {
@@ -114,7 +132,12 @@
   transition: background-color var(--animat);
 
   @include breakpoint('mobile-small') {
-    padding: 10.5px 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  @include breakpoint('tablet-small-and-up') {
+    padding: 16px 32px;
   }
 }
 
@@ -124,4 +147,42 @@
 
 .button_container a:focus {
   background-color: var(--cl-gray-200);
+}
+
+/* Styles for dots*/
+
+.dots {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.dots > li {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background-color: var(--cl-gray-100);
+  position: relative;
+}
+
+.dots > li:global(.slick-active) {
+  background-color: var(--cl-primary-500);
+}
+
+.dots button {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background-color: var(--cl-gray-100);
+  cursor: pointer;
+}
+
+.dots > li:global(.slick-active) button {
+  background-color: var(--cl-primary-500);
 }
