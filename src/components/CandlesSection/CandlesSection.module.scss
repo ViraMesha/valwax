@@ -1,10 +1,10 @@
 @import '../../scss/utilities/breakpoint-mixin.scss';
 
 .section {
-  padding-top: 40px;
+  // padding-top: 40px;
 
   @include breakpoint('tablet-small') {
-    padding-top: 50px;
+    // padding-top: 50px;
   }
 
   @include breakpoint('desktop-large') {

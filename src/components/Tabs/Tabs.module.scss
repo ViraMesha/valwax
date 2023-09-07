@@ -1,0 +1,58 @@
+@import '../../scss/utilities/breakpoint-mixin.scss';
+
+.section {
+
+
+  padding-bottom: 30px;
+
+  @include breakpoint('mobile-large-and-up') {
+    padding-bottom: 50px;
+  }
+  
+  @include breakpoint('desktop-large') {
+    padding-bottom: 56px;
+  }
+}
+
+.list {
+  text-transform: uppercase;
+  display: flex;
+}
+
+.item {
+
+  border: 1px solid var(--cl-primary-100);
+  border-radius: 20px;
+  text-align: center;
+  height: 40px;
+
+  @include breakpoint('tablet-small') {
+    width: 150px;
+  }
+
+  @include breakpoint('tablet-large') {
+    width: 186px;
+  }
+
+  @include breakpoint('desktop') {
+    width: 240px;
+  }
+
+  @include breakpoint('desktop-large') {
+    width: 400px;
+    height: 50px;
+  }
+}
+
+.link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current {
+  background-color: var(--cl-primary-50);
+  border: none;
+}
