@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
+import useModal from '@components/hooks/useModal';
 
-import useModal from '../../hooks/useModal';
 import Input from '../Input/Input';
 import Modal from '../Modal/Modal';
+
+import styles from './Search.module.scss';
 
 interface SearchResult {
   id: number;
   name: string;
 }
 
-interface SearchComponentProps {
-  onClose: () => void;
-}
+interface SearchProps {}
 
-const SearchComponent: React.FC<SearchComponentProps> = () => {
+const Search: React.FC<SearchProps> = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-    const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-     const { isModal, toggleModal, onBackdropClick } = useModal();
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
-  
+  const { isModal, onBackdropClick } = useModal();
+  console.log('search isModal', isModal);
 
   return (
-    <div className="search-component" onClick={() => toggleModal()}>
+    <div>
       {isModal ? (
         <Modal onBackdropClick={onBackdropClick}>
           <div className="search-input">
@@ -33,9 +33,7 @@ const SearchComponent: React.FC<SearchComponentProps> = () => {
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
             />
-            {searchQuery && (
-              <FaTimes className="clear-icon"  />
-            )}
+            {searchQuery && <FaTimes className="clear-icon" />}
           </div>
         </Modal>
       ) : null}
@@ -43,4 +41,4 @@ const SearchComponent: React.FC<SearchComponentProps> = () => {
   );
 };
 
-export default SearchComponent;
+export default Search;

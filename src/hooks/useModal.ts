@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 interface ModalHook {
   isModal: boolean;
-  toggleModal: (name?: string) => void;
+  handleOpenModal: () => void;
   onBackdropClick: (id: string) => void;
   activeChildren: string | null;
 }
@@ -22,11 +22,10 @@ const useModal = (): ModalHook => {
     }
   };
 
-  const toggleModal = (name?: string): void => {
-    if (name) {
-      setActiveChildren(name);
-    }
-    setIsModal(prev => !prev);
+  const handleOpenModal = () => {
+      setIsModal(true);
+      console.log('handleOpenModal', isModal);
+      
   };
 
   useEffect(() => {
@@ -50,7 +49,7 @@ const useModal = (): ModalHook => {
 
   return {
     isModal,
-    toggleModal,
+    handleOpenModal,
     onBackdropClick,
     activeChildren,
   };

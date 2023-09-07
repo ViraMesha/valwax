@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC} from 'react';
+import { createPortal } from 'react-dom';
 
-import styles from './Modal.module.scss'; 
+import styles from './Modal.module.scss';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -8,16 +9,18 @@ interface ModalProps {
 }
 
 const Modal: FC<ModalProps> = ({ children, onBackdropClick }) => {
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onBackdropClick('backdrop');
-    }
-  };
-
-  return (
-    <div className={styles.backdrop} onClick={handleBackdropClick}>
+ 
+  return createPortal(
+    <div
+      className={styles.backdrop}
+      id="backdrop"
+      onClick={e => {
+        onBackdropClick(e.currentTarget.id);
+      }}
+    >
       <div className={styles.modalBox}>{children}</div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
