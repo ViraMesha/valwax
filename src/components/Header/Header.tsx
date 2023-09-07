@@ -11,6 +11,7 @@ import { useWindowSize } from 'usehooks-ts';
 import logo from '../../../public/images/icons/header-logo.svg';
 import sm_logo from '../../../public/images/icons/sm-logo.svg';
 import Container from '../Container/Container';
+import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
 import Search from '../Search/Search';
 
@@ -20,8 +21,7 @@ import styles from './Header.module.css';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isModal, handleOpenModal } = useModal();
-  console.log('Header _isModal', isModal);
+  const { isModal, toggleModal, onBackdropClick } = useModal();
 
   const { width } = useWindowSize();
   const isSmallScreen = width < 1230;
@@ -31,7 +31,6 @@ const Header = () => {
   };
 
   return (
-    
     <header className={styles.header}>
       <Container className={styles.headerContainer}>
         <Link href="/" className={styles.logo}>
@@ -48,11 +47,9 @@ const Header = () => {
             <li className={styles.iconsItem}>
               <BiShoppingBag />
             </li>
-            <li className={styles.iconsItem} onClick={handleOpenModal}>
+            <li className={styles.iconsItem} onClick={toggleModal}>
               <AiOutlineSearch style={{ strokeWidth: '2px' }} />
             </li>
-           { isModal && <Search /> }
-
             <li className={styles.iconsItem}>
               <button className={styles.menuIcon} onClick={toggleMenuOpen}>
                 {isMobileMenuOpen ? <AiOutlineClose /> : <HiOutlineMenuAlt1 />}
@@ -71,6 +68,11 @@ const Header = () => {
           <Navigation className={styles.mobileMenu} onClick={toggleMenuOpen} />
           <LanguageMenu className={styles.mobileLangMenu} />
         </div>
+        {isModal && (
+          <Modal onBackdropClick={onBackdropClick}>
+            <Search onClose={toggleModal} />
+          </Modal>
+        )}
       </Container>
     </header>
   );

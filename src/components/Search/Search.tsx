@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { FaSearch, FaTimes } from 'react-icons/fa';
-import useModal from '@components/hooks/useModal';
+import React, { useState } from 'react';
+import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 
 import Input from '../Input/Input';
-import Modal from '../Modal/Modal';
 
 import styles from './Search.module.scss';
 
@@ -12,31 +10,46 @@ interface SearchResult {
   name: string;
 }
 
-interface SearchProps {}
+interface SearchProps {
+  onClose: () => void;
+}
 
-const Search: React.FC<SearchProps> = () => {
+const Search: React.FC<SearchProps> = ({ onClose }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
-  const { isModal, onBackdropClick } = useModal();
-  console.log('search isModal', isModal);
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    console.log(e.target);
+
+    if (!target.matches('input')) {
+      onClose();
+    }
+  };
+
 
   return (
-    <div>
-      {isModal ? (
-        <Modal onBackdropClick={onBackdropClick}>
-          <div className="search-input">
-            <FaSearch className="search-icon" />
-            <Input
-              type="text"
-              placeholder="Пошук"
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-            />
-            {searchQuery && <FaTimes className="clear-icon" />}
-          </div>
-        </Modal>
-      ) : null}
+    <div className={styles.searchWrapper}>
+      <AiOutlineSearch
+        style={{ strokeWidth: '2px' }}
+        className={styles.searchIcon}
+        color="var(--cl-gray-700)"
+      />
+
+      <Input
+        type="text"
+        placeholder="Пошук"
+        value={searchQuery}
+        onChange={e => setSearchQuery(e.target.value)}
+        className={styles.searchInput}
+      
+      />
+      <AiOutlineClose
+        style={{ strokeWidth: '4px' }}
+        className={styles.closeIcon}
+        color="var(--cl-gray-700)"
+        onClick={onClose}
+      />
     </div>
   );
 };

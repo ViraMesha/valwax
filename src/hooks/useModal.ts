@@ -2,18 +2,20 @@ import { useEffect, useState } from 'react';
 
 interface ModalHook {
   isModal: boolean;
-  handleOpenModal: () => void;
-  onBackdropClick: (id: string) => void;
-  activeChildren: string | null;
+  toggleModal: () => void;
+  onBackdropClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const useModal = (): ModalHook => {
   const [isModal, setIsModal] = useState<boolean>(false);
-  const [activeChildren, setActiveChildren] = useState<string | null>(null);
   const [originalOverflow, setOriginalOverflow] = useState<string>('');
 
-  const onBackdropClick = (id: string): void => {
-    if (id === 'backdrop') setIsModal(false);
+  const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    
+    if (!target.matches('input')) {
+      setIsModal(false);
+    }
   };
 
   const onEscKeydown = (e: KeyboardEvent): void => {
@@ -22,10 +24,8 @@ const useModal = (): ModalHook => {
     }
   };
 
-  const handleOpenModal = () => {
-      setIsModal(true);
-      console.log('handleOpenModal', isModal);
-      
+  const toggleModal = () => {
+    setIsModal(true);
   };
 
   useEffect(() => {
@@ -33,8 +33,10 @@ const useModal = (): ModalHook => {
       if (isModal) {
         setOriginalOverflow(document.body.style.overflow);
         document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
       } else {
         document.body.style.overflow = originalOverflow;
+        document.body.classList.remove('modal-open');
       }
     };
 
@@ -49,9 +51,8 @@ const useModal = (): ModalHook => {
 
   return {
     isModal,
-    handleOpenModal,
+    toggleModal,
     onBackdropClick,
-    activeChildren,
   };
 };
 

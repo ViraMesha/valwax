@@ -5,7 +5,7 @@ import styles from './Modal.module.scss';
 
 interface ModalProps {
   children: React.ReactNode;
-  onBackdropClick: (id: string) => void;
+  onBackdropClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const Modal: FC<ModalProps> = ({ children, onBackdropClick }) => {
@@ -13,9 +13,8 @@ const Modal: FC<ModalProps> = ({ children, onBackdropClick }) => {
   return createPortal(
     <div
       className={styles.backdrop}
-      id="backdrop"
       onClick={e => {
-        onBackdropClick(e.currentTarget.id);
+        onBackdropClick(e);
       }}
     >
       <div className={styles.modalBox}>{children}</div>

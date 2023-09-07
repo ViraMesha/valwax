@@ -24,7 +24,7 @@ const Subscription = () => {
           Отримуй ексклюзивні пропозиції та будь у курсі всіх наших новинок
         </Typography>
         <div className={styles.subscriptionWrapper}>
-          <Input placeholder="Email" />
+          <Input placeholder="Email" className={styles.subscriptionInput} />
           <Button variant="primary" className={styles.subscriptionButton}>
             Підписатися
           </Button>
