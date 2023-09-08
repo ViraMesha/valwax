@@ -18,16 +18,6 @@ const Search: React.FC<SearchProps> = ({ onClose }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-    console.log(e.target);
-
-    if (!target.matches('input')) {
-      onClose();
-    }
-  };
-
-
   return (
     <div className={styles.searchWrapper}>
       <AiOutlineSearch

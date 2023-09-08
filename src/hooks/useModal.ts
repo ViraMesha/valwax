@@ -33,10 +33,8 @@ const useModal = (): ModalHook => {
       if (isModal) {
         setOriginalOverflow(document.body.style.overflow);
         document.body.style.overflow = 'hidden';
-        document.body.classList.add('modal-open');
       } else {
         document.body.style.overflow = originalOverflow;
-        document.body.classList.remove('modal-open');
       }
     };
 
@@ -46,6 +44,7 @@ const useModal = (): ModalHook => {
     return () => {
       window.removeEventListener('keydown', onEscKeydown);
       document.body.style.overflow = originalOverflow;
+       document.body.classList.remove('modal-open');
     };
   }, [isModal, originalOverflow]);
 
