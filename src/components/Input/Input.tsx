@@ -5,11 +5,12 @@ import styles from './Input.module.scss';
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   height?: string;
+  className?: string;
 }
 
-const Input: React.FC<InputProps> = ({ width, height, ...rest }) => {
-  const inputClass = `${styles.input}`;
-
+const Input: React.FC<InputProps> = ({ width, height, className, ...rest }) => {
+  const inputClass = `${className || ''} ${styles.input}`;
+ 
   return (
     <input
       style={{ width: width, height: height }}

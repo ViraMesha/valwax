@@ -38,8 +38,11 @@ const Navigation: React.FC<NavigationPropsI> = ({
   const centerContentClass =
     variant === 'footer' ? styles.centerContentFooter : styles.centerContent;
 
-  const candlesListClass = variant === 'footer' ? `${styles.candlesList} ${styles.footerCandlesList}` : styles.candlesList;
-  
+  const candlesListClass =
+    variant === 'footer'
+      ? `${styles.candlesList} ${styles.footerCandlesList}`
+      : styles.candlesList;
+
   return (
     <nav>
       <ul className={`${styles.navigationList} ${className || ''}`}>
