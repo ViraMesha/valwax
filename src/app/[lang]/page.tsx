@@ -18,7 +18,7 @@ export default async function Home({
   return (
     <>
       <Hero dict={page.home.hero} />
-      <AboutUsSection />
+      <AboutUsSection dict={page.home.about} />
       <Quote />
       <Compass />
       <Instagram />

@@ -9,7 +9,16 @@ import Section from '../Section/Section';
 
 import styles from './AboutUsSection.module.scss';
 
-const AboutUsSection = () => {
+interface HeroI {
+  dict: {
+    title: string;
+    text1: string;
+    text2: string;
+    text3: string;
+  };
+}
+
+const AboutUsSection: React.FC<HeroI> = ({ dict }) => {
   return (
     <Section>
       <Container>
@@ -18,29 +27,19 @@ const AboutUsSection = () => {
           className={styles.title}
           color="var(--cl-primary-800)"
         >
-          Про нас
+          {dict.title}
         </Typography>
         <div className={styles.aboutUsContent}>
           <div className={styles.aboutUsWrapper}>
             <div className={styles.aboutUsTextWrapper}>
               <Typography variant="bodyRegular" color="var(--cl-gray-600)">
-                Ми віримо, що кожна свічка має свою історію, і ми раді
-                поділитися цією магією з вами. Наші свічки - це більше, ніж
-                просто предмети. Вони створені з любов&apos;ю та ретельною
-                увагою до деталей, щоб запалювати ваші серця та дарувати затишок
-                вашим особливим моментам.
+                {dict.text1}
               </Typography>
               <Typography variant="bodyRegular" color="var(--cl-gray-600)">
-                VALWAX - це твоє, особливе. Ласкаво запрошуємо до нашого світу
-                магічного горіння. Відчуйте дотик мистецтві і неповторну ауру
-                наших свічок.
+                {dict.text2}
               </Typography>
               <Typography variant="bodyRegular" color="var(--cl-gray-600)">
-                Дозвольте нам створити для вас запальну атмосферу, де кожна мить
-                стає особливою та винятковою. Доторкніться чарівності світла з
-                нашими унікальними свічками. Випустіть свою внутрішню творчість
-                та створіть свій особливий світ, де кожна свічка - це маленьке
-                диво.
+                {dict.text3}
               </Typography>
             </div>
             <div className={styles.aboutUsImagesWrapper}>
