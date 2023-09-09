@@ -1,5 +1,5 @@
 
-type tabsI = {
+export type tabsI = {
   fullTitle: string;
   abbreviatedTitle : string;
   link: string;
@@ -7,19 +7,19 @@ type tabsI = {
 
 export const tabsData: tabsI[] = [
   {
-    fullTitle: 'Соєві',
-    abbreviatedTitle : 'Соєві свічки',
+    fullTitle: 'Соєві свічки',
+    abbreviatedTitle: 'Соєві',
     // link: '/soy-candles',
     link: '/candles',
   },
   {
-    fullTitle: 'Кокосові',
-    abbreviatedTitle : 'Кокосові свічки',
+    fullTitle: 'Кокосові свічки',
+    abbreviatedTitle: 'Кокосові',
     link: '/coconut-candles',
   },
   {
-    fullTitle: 'Пальмові',
-    abbreviatedTitle : 'Пальмові свічки',
+    fullTitle: 'Пальмові свічки',
+    abbreviatedTitle: 'Пальмові',
     link: '/palm-candles',
   },
 ];

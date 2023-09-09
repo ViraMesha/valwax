@@ -17,6 +17,15 @@
 .list {
   text-transform: uppercase;
   display: flex;
+
+
+  @include breakpoint('only-mobile-small') {
+    width: 156px;
+    flex-direction: column;
+    border: 1px solid var(--cl-primary-100);
+    border-radius: 20px;
+  }
+
 }
 
 .item {
@@ -25,6 +34,11 @@
   border-radius: 20px;
   text-align: center;
   height: 40px;
+
+  @include breakpoint('only-mobile-small') {
+    flex-direction: column;
+    border: none
+  }
 
   @include breakpoint('tablet-small') {
     width: 150px;
@@ -50,9 +64,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .current {
-  background-color: var(--cl-primary-50);
-  border: none;
+
+  p {
+    color: aqua;
+  }
+
+  @include breakpoint('mobile-large-and-up') {
+    background-color: var(--cl-primary-50);
+    border: none;
+  }
 }
