@@ -48,6 +48,12 @@
   background-color: var(--cl-secondary-50);
 }
 
+.languageLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 @media (max-width: 1229.98px) {
   .languageContainer {
     border-bottom: 1px solid var(--cl-secondary-100);

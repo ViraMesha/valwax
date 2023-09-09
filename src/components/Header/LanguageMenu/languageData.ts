@@ -12,7 +12,7 @@ const languageData: ILanguage[] = [
   {
     id: '1',
     lang: 'UA',
-    value: 'ua',
+    value: 'uk',
     icon: flagUA.src,
   },
   {

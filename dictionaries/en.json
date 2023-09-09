@@ -1,0 +1,31 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About"
+  },
+  "page": {
+    "home": {
+      "hero": {
+        "heading": [[
+          "Turn on the light,",
+          "awaken emotions,",
+          "create inspiration!"
+        ], [
+          "Turn on the light,",
+          "awaken emotions,",
+          "create inspiration!"
+        ], [
+          "Turn on the light,",
+          "awaken emotions,",
+          "create inspiration!"
+        ]],
+        "buttonText": "View the Catalog"
+      },
+      "description": "Internationalization in NextJs 13 App router"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "This is the about page"
+    }
+  }
+}

@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
+import { Locale } from '../../../i18n-config';
+
 import { candlesMenuItems, navItems, navLinks } from './navData';
 
 import styles from './Navigation.module.scss';
@@ -13,12 +15,14 @@ interface NavigationPropsI {
   className?: string;
   onClick?: () => void;
   variant?: string;
+  lang?: Locale;
 }
 
 const Navigation: React.FC<NavigationPropsI> = ({
   className,
   onClick,
   variant,
+  lang,
 }) => {
   const pathname = usePathname();
   const [isCandlesMenuOpen, setIsCandlesMenuOpen] = useState(false);
@@ -38,8 +42,11 @@ const Navigation: React.FC<NavigationPropsI> = ({
   const centerContentClass =
     variant === 'footer' ? styles.centerContentFooter : styles.centerContent;
 
-  const candlesListClass = variant === 'footer' ? `${styles.candlesList} ${styles.footerCandlesList}` : styles.candlesList;
-  
+  const candlesListClass =
+    variant === 'footer'
+      ? `${styles.candlesList} ${styles.footerCandlesList}`
+      : styles.candlesList;
+
   return (
     <nav>
       <ul className={`${styles.navigationList} ${className || ''}`}>
@@ -71,7 +78,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                     {candlesMenuItems.map((candlesItem, index) => (
                       <li key={index} className={styles.candlesItem}>
                         <Link
-                          href={navLinks[candlesItem] ?? ''}
+                          href={`/${lang}${navLinks[candlesItem]}` ?? ''}
                           className={`candlesLink${
                             isActive(navLinks[candlesItem] ?? '')
                               ? ` ${styles.activeLink}`
@@ -87,7 +94,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
               </div>
             ) : (
               <Link
-                href={navLinks[item] ?? ''}
+                href={`/${lang}${navLinks[item]}` ?? ''}
                 className={
                   isActive(navLinks[item] ?? '') ? styles.activeLink : ''
                 }

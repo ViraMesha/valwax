@@ -4,19 +4,24 @@ import { CiMail } from 'react-icons/ci';
 import { PiPhoneThin } from 'react-icons/pi';
 import Logo from 'public/images/logo/Logo.svg';
 
+import { Locale } from '../../../i18n-config';
 import Container from '../Container/Container';
 import Navigation from '../Navigation/Navigation';
 import Typography from '../Typography/Typography';
 
 import styles from './Footer.module.scss';
 
-const Footer = () => {
+const Footer = ({ lang }: { lang: Locale }) => {
   return (
     <footer className={styles.footer}>
       <Container>
         <div className={styles.footerWrapper}>
           <Image src={Logo} alt="Logo" width={140} height={114} />
-          <Navigation variant="footer" className={styles.footerNavigation} />
+          <Navigation
+            variant="footer"
+            className={styles.footerNavigation}
+            lang={lang}
+          />
           <div>
             <Typography
               variant="bodyL"

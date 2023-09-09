@@ -1,5 +1,7 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 import { useWindowSize } from 'usehooks-ts';
@@ -19,6 +21,8 @@ const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
   );
   const { width } = useWindowSize();
   const isDesktop = width >= 1230;
+  const pathName = usePathname();
+  const lang = pathName.split('/')[1];
 
   const toggleMenu = () => {
     setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen);
@@ -37,6 +41,13 @@ const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
     isDesktop && setIsMenuOpen(false);
   };
 
+  const redirectedPathName = (locale: string) => {
+    if (!pathName) return '/';
+    const segments = pathName.split('/');
+    segments[1] = locale;
+    return segments.join('/');
+  };
+
   return (
     <div
       className={`${styles.languageMenu} ${className || ''}`}
@@ -45,13 +56,25 @@ const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
     >
       <div className={styles.languageContainer} onClick={toggleMenu}>
         <Image
-          src={selectedLanguage.icon}
-          alt={selectedLanguage.lang}
+          src={
+            selectedLanguage.value === lang
+              ? selectedLanguage.icon
+              : languageData[1].icon
+          }
+          alt={
+            selectedLanguage.value === lang
+              ? selectedLanguage.lang
+              : languageData[1].lang
+          }
           width={24}
           height={24}
           className={styles.languageIcon}
         />
-        <span className={styles.languageTitle}>{selectedLanguage.lang}</span>
+        <span className={styles.languageTitle}>
+          {selectedLanguage.value === lang
+            ? selectedLanguage.lang
+            : languageData[1].lang}
+        </span>
         {isMenuOpen ? (
           <MdKeyboardArrowUp className={styles.arrowIcon} />
         ) : (
@@ -68,15 +91,20 @@ const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
                   ? styles.selectedLanguage
                   : ''
               }`}
-              onClick={() => handleLanguageSelect(language)}
             >
-              <Image
-                src={language.icon}
-                alt={language.lang}
-                width={24}
-                height={24}
-              />
-              <span>{language.lang}</span>
+              <Link
+                href={redirectedPathName(language.value)}
+                onClick={() => handleLanguageSelect(language)}
+                className={styles.languageLink}
+              >
+                <Image
+                  src={language.icon}
+                  alt={language.lang}
+                  width={24}
+                  height={24}
+                />
+                <span>{language.lang}</span>
+              </Link>
             </li>
           ))}
         </ul>
