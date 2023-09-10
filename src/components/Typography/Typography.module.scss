@@ -142,9 +142,13 @@
 }
 
 .typography--variant-bodyMedium  {
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
+  
+  @include breakpoint('desktop-large') {
+    font-size: 22px;
+  }
 }
 
 

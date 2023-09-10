@@ -28,7 +28,7 @@ const Tabs = () => {
 
   return (
     <Section className={styles.section}>
-      <Container>
+      <Container className={styles.container}>
         <ul className={styles.list}>
           {isMobScreen
             ? tabsData.reduce((acc: any, item: tabsI) => {
