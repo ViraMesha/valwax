@@ -4,7 +4,10 @@
   padding-top: 24px;
   padding-bottom: 24px;
   text-align: center;
-  border-top: 2px solid var(--secondary-200, #fee2e3);
+  border-top: 2px solid var(--cl-secondary-200);
+  position: relative;
+  z-index: 1000;
+  background-color: var(--cl-white);
 
   @include breakpoint('desktop-large') {
     padding-top: 40px;

@@ -33,7 +33,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
           {dict.text}
         </Typography>
         <div className={styles.subscriptionWrapper}>
-          <Input placeholder="Email" />
+          <Input placeholder="Email" className={styles.subscriptionInput} />
           <Button variant="primary" className={styles.subscriptionButton}>
             {dict.buttonText}
           </Button>
