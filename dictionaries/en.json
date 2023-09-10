@@ -1,8 +1,4 @@
 {
-  "navigation": {
-    "home": "Home",
-    "about": "About"
-  },
   "page": {
     "home": {
       "hero": {
@@ -31,16 +27,16 @@
         "title": "Subscribe to our newsletter",
         "text": "Get exclusive offers and keep up to date with all our new products",
         "buttonText": "Subscribe"
-      },
-      "footer": {
-        "contact": "Contact us",
-        "privacyPolicy": "Privacy policy",
-        "copyright": "All rights reserved."
       }
     },
     "about": {
       "title": "About Us",
       "description": "This is the about page"
     }
+  },
+  "footer": {
+    "contact": "Contact us",
+    "privacyPolicy": "Privacy policy",
+    "copyright": "All rights reserved."
   }
 }

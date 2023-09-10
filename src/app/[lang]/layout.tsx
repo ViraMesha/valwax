@@ -27,13 +27,13 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  const { page } = await getDictionary(params.lang);
+  const { footer } = await getDictionary(params.lang);
   return (
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
         <Header lang={params.lang} />
         <main className={styles.main}>{children}</main>
-        <Footer lang={params.lang} dict={page.home.footer} />
+        <Footer lang={params.lang} dict={footer} />
       </body>
     </html>
   );

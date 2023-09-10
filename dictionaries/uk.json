@@ -1,8 +1,4 @@
 {
-  "navigation": {
-    "home": "Home",
-    "about": "About"
-  },
   "page": {
     "home": {
       "hero": {
@@ -31,16 +27,16 @@
         "title": "Підпишись на нашу розсилку",
         "text": "Отримуй ексклюзивні пропозиції та будь у курсі всіх наших новинок",
         "buttonText": "Підписатися"
-      },
-      "footer": {
-        "contact": "Зв'язатись з нами",
-        "privacyPolicy": "Політика конфіденційності",
-        "copyright": "Усі права захищенні."
       }
     },
     "about": {
       "title": "About Us",
       "description": "This is the about page"
     }
+  },
+  "footer": {
+    "contact": "Зв'язатись з нами",
+    "privacyPolicy": "Політика конфіденційності",
+    "copyright": "Усі права захищенні."
   }
 }

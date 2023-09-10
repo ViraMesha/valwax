@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
 import { Locale } from '../../../i18n-config';
 
-import { candlesMenuItems, navItems, navLinks } from './navData';
+import { candlesMenuItems, navigationTranslations,navItems, navLinks } from './navData';
 
 import styles from './Navigation.module.scss';
 
@@ -22,7 +22,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
   className,
   onClick,
   variant,
-  lang,
+  lang = 'uk',
 }) => {
   const pathname = usePathname();
   const [isCandlesMenuOpen, setIsCandlesMenuOpen] = useState(false);
@@ -60,7 +60,9 @@ const Navigation: React.FC<NavigationPropsI> = ({
                 onMouseLeave={handleMouseLeave}
               >
                 <div className={centerContentClass}>
-                  <span className={styles.linkText}>Свічки</span>
+                  <span className={styles.linkText}>
+                    {navigationTranslations[lang]['Свічки']}
+                  </span>
                   {isCandlesMenuOpen ? (
                     <MdKeyboardArrowUp
                       className={styles.arrowIcon}
@@ -85,7 +87,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                               : ''
                           }`}
                         >
-                          {candlesItem}
+                          {navigationTranslations[lang][candlesItem]}
                         </Link>
                       </li>
                     ))}
@@ -99,7 +101,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                   isActive(navLinks[item] ?? '') ? styles.activeLink : ''
                 }
               >
-                {item}
+                {navigationTranslations[lang][item]}
               </Link>
             )}
           </li>
