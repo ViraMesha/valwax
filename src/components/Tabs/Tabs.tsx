@@ -18,7 +18,7 @@ const Tabs = () => {
   const [isTabsMenuOpen, setIsTabsMenuOpen] = useState(false);
   const pathname = usePathname();
   const { width } = useWindowSize();
-  const isCurrent = (link: string) => link === pathname;
+  const isCurrent = (link: string) => link === `/${pathname.split('/')[2]}`;
   const isSmallScreen = width < 1230;
   const isMobScreen = width < 667;
 
