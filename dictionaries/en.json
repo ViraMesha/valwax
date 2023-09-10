@@ -38,5 +38,9 @@
     "contact": "Contact us",
     "privacyPolicy": "Privacy policy",
     "copyright": "All rights reserved."
+  },
+  "breadcrumbs": {
+    "soyCandles": "Scented soy candles",
+    "boxes": "Gift boxes"
   }
 }
