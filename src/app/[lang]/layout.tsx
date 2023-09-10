@@ -3,6 +3,7 @@ import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 
 import { i18n, Locale } from '../../../i18n-config';
+import { getDictionary } from '../../../lib/dictionary';
 import { proxima_nova } from '../fonts';
 
 import 'slick-carousel/slick/slick.css';
@@ -19,19 +20,20 @@ export async function generateStaticParams() {
   return i18n.locales.map(locale => ({ lang: locale }));
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
+  const { page } = await getDictionary(params.lang);
   return (
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
         <Header lang={params.lang} />
         <main className={styles.main}>{children}</main>
-        <Footer lang={params.lang} />
+        <Footer lang={params.lang} dict={page.home.footer} />
       </body>
     </html>
   );

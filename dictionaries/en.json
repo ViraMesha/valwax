@@ -21,6 +21,21 @@
       },
       "quote": {
         "text": "A candle lit with love can illuminate dark corners"
+      },
+      "compass": {
+        "candles": "Candles",
+        "boxes": "Boxes",
+        "createYouOwn": "Create your candle"
+      },
+      "subscription": {
+        "title": "Subscribe to our newsletter",
+        "text": "Get exclusive offers and keep up to date with all our new products",
+        "buttonText": "Subscribe"
+      },
+      "footer": {
+        "contact": "Contact us",
+        "privacyPolicy": "Privacy policy",
+        "copyright": "All rights reserved."
       }
     },
     "about": {

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import AboutUsSection from '@components/components/AboutUsSection/AboutUsSection';
 import Hero from '@components/components/Hero/Hero';
 import Instagram from '@components/components/instagram/Instagram';
@@ -20,9 +19,9 @@ export default async function Home({
       <Hero dict={page.home.hero} />
       <AboutUsSection dict={page.home.about} />
       <Quote dict={page.home.quote} />
-      <Compass />
+      <Compass dict={page.home.compass} lang={lang} />
       <Instagram />
-      <Subscription />
+      <Subscription dict={page.home.subscription} />
     </>
   );
 }

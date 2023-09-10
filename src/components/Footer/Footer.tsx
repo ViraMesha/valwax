@@ -11,7 +11,16 @@ import Typography from '../Typography/Typography';
 
 import styles from './Footer.module.scss';
 
-const Footer = ({ lang }: { lang: Locale }) => {
+interface FooterI {
+  lang: Locale;
+  dict: {
+    contact: string;
+    privacyPolicy: string;
+    copyright: string;
+  };
+}
+
+const Footer: React.FC<FooterI> = ({ lang, dict }) => {
   return (
     <footer className={styles.footer}>
       <Container>
@@ -28,7 +37,7 @@ const Footer = ({ lang }: { lang: Locale }) => {
               color="var(--cl-gray-700)"
               className={styles.contactUsText}
             >
-              Зв&apos;язатись з нами
+              {dict.contact}
             </Typography>
             <address>
               <ul className={styles.addressList}>
@@ -65,11 +74,11 @@ const Footer = ({ lang }: { lang: Locale }) => {
         </div>
         <div className={styles.copyright}>
           <Typography variant="bodyRegular" className={styles.hoverableText}>
-            Політика конфіденційності.
+            {dict.privacyPolicy}
           </Typography>
           <div className={styles.copyWrapper}>
             <Typography variant="bodyRegular" className={styles.hoverableText}>
-              Усі права захищенні.
+              {dict.copyright}
             </Typography>
             <div className={styles.copyrightValwax}>
               <AiOutlineCopyrightCircle
