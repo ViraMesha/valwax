@@ -16,7 +16,6 @@ const variantsMapping = {
   bodyL24: 'p',
   bodyLBold: 'h2',
   bodyRegular: 'p',
-  bodyMedium: 'p',
   bodyS: 'p',
   bodyS2: 'p',
 } as const;

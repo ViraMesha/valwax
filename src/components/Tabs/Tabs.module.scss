@@ -85,12 +85,15 @@
 
 .current {
 
-  p {
-    color: aqua;
-  }
-
   @include breakpoint('mobile-large-and-up') {
     background-color: var(--cl-primary-50);
     border: none;
+  }
+}
+
+.title {
+
+  @include breakpoint('desktop-large') {
+    font-size: 22px;
   }
 }

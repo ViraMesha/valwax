@@ -46,7 +46,7 @@ const Tabs = () => {
                         onClick={toggleTabsMenu}
                       >
                         <Typography
-                          variant="bodyMedium"
+                          variant="bodyRegular"
                           color={
                             isCurrent(item.link)
                               ? 'var(--cl-gray-900)'
@@ -77,7 +77,7 @@ const Tabs = () => {
                         onClick={toggleTabsMenu}
                       >
                         <Typography
-                          variant="bodyMedium"
+                          variant="bodyRegular"
                           color={
                             isCurrent(item.link)
                               ? 'var(--cl-gray-900)'
@@ -101,7 +101,8 @@ const Tabs = () => {
                 >
                   <Link href={item.link} className={styles.link}>
                     <Typography
-                      variant="bodyMedium"
+                      variant="bodyRegular"
+                      className={styles.title}
                       color={
                         isCurrent(item.link)
                           ? 'var(--cl-gray-900)'
