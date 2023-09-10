@@ -8,6 +8,7 @@ import { getDictionary } from '../../../../lib/dictionary';
 
 const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
   const { breadcrumbs } = await getDictionary(lang);
+  const { page } = await getDictionary(lang);
   return (
     <>
       <Breadcrumbs
@@ -19,9 +20,9 @@ const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
         ]}
         lang={lang}
       />
-      <BoxesPageHeader />
+      <BoxesPageHeader dict={page.boxes.header} />
       <BoxesSection />
-      <BoxesInfo />
+      <BoxesInfo dict={page.boxes.info} />
     </>
   );
 };
