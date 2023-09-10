@@ -1,6 +1,6 @@
 import AboutUsSection from '@components/components/AboutUsSection/AboutUsSection';
 import Hero from '@components/components/Hero/Hero';
-import Instagram from '@components/components/instagram/Instagram';
+import Instagram from '@components/components/Instagram/Instagram';
 import Quote from '@components/components/Quote/Quote';
 import Subscription from '@components/components/Subscription/Subscription';
 
