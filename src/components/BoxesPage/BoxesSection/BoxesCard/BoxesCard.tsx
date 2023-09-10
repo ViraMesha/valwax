@@ -28,19 +28,18 @@ const BoxesCard: React.FC<BoxI> = ({ img, title, price, link, text }) => {
       <div className={styles.img_container}>
         <Slider {...sliderSettings}>
           {img.map((imageSrc, index) => (
-            <Image
-              className={styles.image}
-              key={index}
-              src={imageSrc}
-              priority
-              width={515}
-              height={515}
-              quality={100}
-              alt={title}
-              sizes="(min-width: 1230) 515px,
+            <div key={index} className={styles.img_inner_container}>
+              <Image
+                className={styles.image}
+                src={imageSrc}
+                priority
+                fill
+                alt={title}
+                sizes="(min-width: 1230) 515px,
                     (min-width: 1024) 480px,
                     100%"
-            />
+              />
+            </div>
           ))}
         </Slider>
       </div>
