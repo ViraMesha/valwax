@@ -53,7 +53,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
       : styles.candlesList;
 
   return (
-    <nav onClick={onClick}>
+    <nav>
       <ul className={`${styles.navigationList} ${className || ''}`}>
         {navItems.map((item, index) => (
           <li key={index} className={styles.navigationItem}>
@@ -91,6 +91,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                               ? ` ${styles.activeLink}`
                               : ''
                           }`}
+                          onClick={onClick}
                         >
                           {navigationTranslations[lang][candlesItem]}
                         </Link>
@@ -105,6 +106,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                 className={
                   isActive(navLinks[item] ?? '') ? styles.activeLink : ''
                 }
+                onClick={onClick}
               >
                 {navigationTranslations[lang][item]}
               </Link>
