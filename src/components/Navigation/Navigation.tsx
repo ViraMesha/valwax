@@ -7,7 +7,12 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
 import { Locale } from '../../../i18n-config';
 
-import { candlesMenuItems, navigationTranslations,navItems, navLinks } from './navData';
+import {
+  candlesMenuItems,
+  navigationTranslations,
+  navItems,
+  navLinks,
+} from './navData';
 
 import styles from './Navigation.module.scss';
 
@@ -48,7 +53,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
       : styles.candlesList;
 
   return (
-    <nav>
+    <nav onClick={onClick}>
       <ul className={`${styles.navigationList} ${className || ''}`}>
         {navItems.map((item, index) => (
           <li key={index} className={styles.navigationItem}>
