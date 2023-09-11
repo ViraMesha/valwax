@@ -7,7 +7,13 @@ import bg from '../../../../public/images/boxes/boxes_header/bg.jpg';
 
 import styles from './BoxesPageHeader.module.scss';
 
-const BoxesPageHeader = () => {
+interface BoxesPageHeaderI {
+  dict: {
+    title: string;
+  };
+}
+
+const BoxesPageHeader: React.FC<BoxesPageHeaderI> = ({ dict }) => {
   return (
     <Section className={styles.section}>
       <Container>
@@ -21,7 +27,7 @@ const BoxesPageHeader = () => {
           />
           <div className={styles.content}>
             <Typography variant="subheadingLight" className={styles.title}>
-              Бокси для твоєї творчості
+              {dict.title}
             </Typography>
           </div>
         </div>

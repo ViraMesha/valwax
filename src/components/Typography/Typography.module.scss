@@ -141,17 +141,6 @@
   line-height: 1.5;
 }
 
-.typography--variant-bodyMedium  {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-  
-  @include breakpoint('desktop-large') {
-    font-size: 22px;
-  }
-}
-
-
 .typography--variant-bodyS {
   font-size: 14px;
   font-weight: 400;

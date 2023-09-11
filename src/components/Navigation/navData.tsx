@@ -34,3 +34,26 @@ export const navLinks: NavLink = {
   Бокси: '/boxes',
   'Оплата та Доставка': '/payment-and-delivery',
 };
+
+export const navigationTranslations: Record<string, Record<string, string>> = {
+  uk: {
+    Головна: 'Головна',
+    Свічки: 'Свічки',
+    'Створи Сам': 'Створи Сам',
+    Бокси: 'Бокси',
+    'Оплата та Доставка': 'Оплата та Доставка',
+    'Соєві свічки': 'Соєві свічки',
+    'Кокосові свічки': 'Кокосові свічки',
+    'Пальмові свічки': 'Пальмові свічки',
+  },
+  en: {
+    Головна: 'Home',
+    Свічки: 'Candles',
+    'Створи Сам': 'Create Yourself',
+    Бокси: 'Boxes',
+    'Оплата та Доставка': 'Payment and delivery',
+    'Соєві свічки': 'Soy candles',
+    'Кокосові свічки': 'Coconut candles',
+    'Пальмові свічки': 'Palm candles',
+  },
+};

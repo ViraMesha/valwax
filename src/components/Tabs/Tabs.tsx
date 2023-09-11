@@ -18,7 +18,7 @@ const Tabs = () => {
   const [isTabsMenuOpen, setIsTabsMenuOpen] = useState(false);
   const pathname = usePathname();
   const { width } = useWindowSize();
-  const isCurrent = (link: string) => link === pathname;
+  const isCurrent = (link: string) => link === `/${pathname.split('/')[2]}`;
   const isSmallScreen = width < 1230;
   const isMobScreen = width < 667;
 
@@ -46,7 +46,7 @@ const Tabs = () => {
                         onClick={toggleTabsMenu}
                       >
                         <Typography
-                          variant="bodyMedium"
+                          variant="bodyRegular"
                           color={
                             isCurrent(item.link)
                               ? 'var(--cl-gray-900)'
@@ -77,7 +77,7 @@ const Tabs = () => {
                         onClick={toggleTabsMenu}
                       >
                         <Typography
-                          variant="bodyMedium"
+                          variant="bodyRegular"
                           color={
                             isCurrent(item.link)
                               ? 'var(--cl-gray-900)'
@@ -101,7 +101,8 @@ const Tabs = () => {
                 >
                   <Link href={item.link} className={styles.link}>
                     <Typography
-                      variant="bodyMedium"
+                      variant="bodyRegular"
+                      className={styles.title}
                       color={
                         isCurrent(item.link)
                           ? 'var(--cl-gray-900)'

@@ -7,7 +7,14 @@ import Typography from '../Typography/Typography';
 
 import styles from './WaxDesc.module.scss';
 
-const WaxDesc = () => {
+interface WaxDescI {
+  dict: {
+    title: string;
+    text: string;
+  };
+}
+
+const WaxDesc: React.FC<WaxDescI> = ({ dict }) => {
   return (
     <Section className={styles.section}>
       <Container>
@@ -21,15 +28,10 @@ const WaxDesc = () => {
           />
           <div className={styles.content}>
             <Typography variant="bodyXLHeavy" className={styles.title}>
-              Чому соєвий ?
+              {dict.title}
             </Typography>
             <Typography variant="bodyXL" className={styles.text}>
-              Соєвий віск – є безпечним. Не токсичний і не випаровує шкідливі
-              речовини. Низька температура плавлення дозволяє використовувати
-              свічки максимально довго. Це рослинний віск, який виробляється із
-              соєвих бобів – природного й відновлювального продукту. Соєвий віск
-              має гарну віддачу в твердому й розплавленому стані як ефірних
-              олій, так і спеціально розроблених штучних олій.
+              {dict.text}
             </Typography>
           </div>
         </div>

@@ -5,7 +5,9 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
-import { candlesMenuItems, navItems, navLinks } from './navData';
+import { Locale } from '../../../i18n-config';
+
+import { candlesMenuItems, navigationTranslations,navItems, navLinks } from './navData';
 
 import styles from './Navigation.module.scss';
 
@@ -13,12 +15,14 @@ interface NavigationPropsI {
   className?: string;
   onClick?: () => void;
   variant?: string;
+  lang?: Locale;
 }
 
 const Navigation: React.FC<NavigationPropsI> = ({
   className,
   onClick,
   variant,
+  lang = 'uk',
 }) => {
   const pathname = usePathname();
   const [isCandlesMenuOpen, setIsCandlesMenuOpen] = useState(false);
@@ -56,7 +60,9 @@ const Navigation: React.FC<NavigationPropsI> = ({
                 onMouseLeave={handleMouseLeave}
               >
                 <div className={centerContentClass}>
-                  <span className={styles.linkText}>Свічки</span>
+                  <span className={styles.linkText}>
+                    {navigationTranslations[lang]['Свічки']}
+                  </span>
                   {isCandlesMenuOpen ? (
                     <MdKeyboardArrowUp
                       className={styles.arrowIcon}
@@ -74,14 +80,14 @@ const Navigation: React.FC<NavigationPropsI> = ({
                     {candlesMenuItems.map((candlesItem, index) => (
                       <li key={index} className={styles.candlesItem}>
                         <Link
-                          href={navLinks[candlesItem] ?? ''}
+                          href={`/${lang}${navLinks[candlesItem]}` ?? ''}
                           className={`candlesLink${
                             isActive(navLinks[candlesItem] ?? '')
                               ? ` ${styles.activeLink}`
                               : ''
                           }`}
                         >
-                          {candlesItem}
+                          {navigationTranslations[lang][candlesItem]}
                         </Link>
                       </li>
                     ))}
@@ -90,12 +96,12 @@ const Navigation: React.FC<NavigationPropsI> = ({
               </div>
             ) : (
               <Link
-                href={navLinks[item] ?? ''}
+                href={`/${lang}${navLinks[item]}` ?? ''}
                 className={
                   isActive(navLinks[item] ?? '') ? styles.activeLink : ''
                 }
               >
-                {item}
+                {navigationTranslations[lang][item]}
               </Link>
             )}
           </li>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { Locale } from '../../../i18n-config';
 import boxImg from '../../../public/images/Compass/box-card.jpg';
 import candleImg from '../../../public/images/Compass/candle-card.jpg';
 import createImg from '../../../public/images/Compass/create-card.jpg';
@@ -10,13 +11,25 @@ import Typography from '../Typography/Typography';
 
 import styles from './Compass.module.scss';
 
-const Compass = () => {
+interface CompassI {
+  dict: {
+    candles: string;
+    boxes: string;
+    createYouOwn: string;
+  };
+  lang: Locale;
+}
+
+const Compass: React.FC<CompassI> = ({ dict, lang }) => {
   return (
     <Section>
       <Container>
         {/* <h2>Navigation section</h2> */}
         <div className={styles.wrapper}>
-          <Link href="/candles" className={`${styles.candle} ${styles.card}`}>
+          <Link
+            href={`/${lang}/candles`}
+            className={`${styles.candle} ${styles.card}`}
+          >
             <Image
               src={candleImg}
               alt="candle"
@@ -35,11 +48,14 @@ const Compass = () => {
                 color="var(--cl-gray-50)"
                 className={styles.text}
               >
-                Свічки
+                {dict.candles}
               </Typography>
             </div>
           </Link>
-          <Link href="/boxes" className={`${styles.box} ${styles.card}`}>
+          <Link
+            href={`/${lang}/boxes`}
+            className={`${styles.box} ${styles.card}`}
+          >
             <Image
               src={boxImg}
               alt="box"
@@ -57,11 +73,14 @@ const Compass = () => {
                 color="var(--cl-gray-50)"
                 className={styles.text}
               >
-                Бокси
+                {dict.boxes}
               </Typography>
             </div>
           </Link>
-          <Link href="/candle" className={`${styles.create} ${styles.card}`}>
+          <Link
+            href={`/${lang}/create-your-own`}
+            className={`${styles.create} ${styles.card}`}
+          >
             <Image
               src={createImg}
               alt="create"
@@ -79,7 +98,7 @@ const Compass = () => {
                 color="var(--cl-gray-50)"
                 className={styles.text}
               >
-                Створи свічку сам
+                {dict.createYouOwn}
               </Typography>
             </div>
           </Link>

@@ -5,7 +5,16 @@ import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
 
 import styles from './Subscription.module.scss';
-const Subscription = () => {
+
+interface SubscriptionI {
+  dict: {
+    title: string;
+    text: string;
+    buttonText: string;
+  };
+}
+
+const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
   return (
     <Section className={styles.subscription}>
       <Container>
@@ -14,19 +23,19 @@ const Subscription = () => {
           color="var(--cl-gray-700)"
           className={styles.subscriptionTitle}
         >
-          Підпишись на нашу розсилку
+          {dict.title}
         </Typography>
         <Typography
           variant="bodyRegular"
           color="var(--cl-gray-700)"
           className={styles.subscriptionTypography}
         >
-          Отримуй ексклюзивні пропозиції та будь у курсі всіх наших новинок
+          {dict.text}
         </Typography>
         <div className={styles.subscriptionWrapper}>
           <Input placeholder="Email" className={styles.subscriptionInput} />
           <Button variant="primary" className={styles.subscriptionButton}>
-            Підписатися
+            {dict.buttonText}
           </Button>
         </div>
       </Container>

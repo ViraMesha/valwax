@@ -9,7 +9,13 @@ import Typography from '../Typography/Typography';
 
 import styles from './Quote.module.css';
 
-const Quote = () => {
+interface QuoteI {
+  dict: {
+    text: string;
+  };
+}
+
+const Quote: React.FC<QuoteI> = ({ dict }) => {
   return (
     <Section>
       <Container>
@@ -19,7 +25,7 @@ const Quote = () => {
             color="var(--cl-secondary-900)"
             className={avenir.className}
           >
-            "Свічка, запалена з любові, може висвітлити темні куточки"
+            "{dict.text}"
           </Typography>
         </div>
         <div className={styles.imageContainer}>

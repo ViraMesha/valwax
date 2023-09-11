@@ -4,26 +4,40 @@ import { CiMail } from 'react-icons/ci';
 import { PiPhoneThin } from 'react-icons/pi';
 import Logo from 'public/images/logo/Logo.svg';
 
+import { Locale } from '../../../i18n-config';
 import Container from '../Container/Container';
 import Navigation from '../Navigation/Navigation';
 import Typography from '../Typography/Typography';
 
 import styles from './Footer.module.scss';
 
-const Footer = () => {
+interface FooterI {
+  lang: Locale;
+  dict: {
+    contact: string;
+    privacyPolicy: string;
+    copyright: string;
+  };
+}
+
+const Footer: React.FC<FooterI> = ({ lang, dict }) => {
   return (
     <footer className={styles.footer}>
       <Container>
         <div className={styles.footerWrapper}>
           <Image src={Logo} alt="Logo" width={140} height={114} />
-          <Navigation variant="footer" className={styles.footerNavigation} />
+          <Navigation
+            variant="footer"
+            className={styles.footerNavigation}
+            lang={lang}
+          />
           <div>
             <Typography
               variant="bodyL"
               color="var(--cl-gray-700)"
               className={styles.contactUsText}
             >
-              Зв&apos;язатись з нами
+              {dict.contact}
             </Typography>
             <address>
               <ul className={styles.addressList}>
@@ -60,11 +74,11 @@ const Footer = () => {
         </div>
         <div className={styles.copyright}>
           <Typography variant="bodyRegular" className={styles.hoverableText}>
-            Політика конфіденційності.
+            {dict.privacyPolicy}
           </Typography>
           <div className={styles.copyWrapper}>
             <Typography variant="bodyRegular" className={styles.hoverableText}>
-              Усі права захищенні.
+              {dict.copyright}
             </Typography>
             <div className={styles.copyrightValwax}>
               <AiOutlineCopyrightCircle

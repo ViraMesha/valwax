@@ -10,7 +10,7 @@ import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
 
-import heroCards from './heroCards';
+import { generateHeroCards } from './heroCards';
 
 import styles from './Hero.module.scss';
 
@@ -27,13 +27,18 @@ const sliderSettings: Settings = {
   customPaging: () => <button></button>,
 };
 
-const Hero = () => {
+interface HeroI {
+  dict: { heading: string[][]; buttonText: string };
+}
+
+const Hero: React.FC<HeroI> = ({ dict }) => {
   const sliderRef = useRef<Slider | null>(null);
+  const heroData = generateHeroCards(dict);
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   const disablePrevButton = currentSlide === 0;
-  const disableNextButton = currentSlide === heroCards.length - 1;
+  const disableNextButton = currentSlide === heroData.length - 1;
 
   const handlePrevClick = () => {
     if (!disablePrevButton && sliderRef.current) {
@@ -79,58 +84,38 @@ const Hero = () => {
             {...sliderSettings}
             beforeChange={(prev, next) => setCurrentSlide(next)}
           >
-            {heroCards.map(
-              ({
-                id,
-                backgroundImage,
-                buttonText,
-                heading1,
-                heading2,
-                heading3,
-              }) => (
-                <div key={id} className={styles.slider_body}>
-                  <Image
-                    src={backgroundImage}
-                    alt="Background Image"
-                    quality={100}
-                    priority
-                    fill
-                    sizes="(min-width: 1230) 1200px,
+            {heroData.map(({ id, backgroundImage, headings }) => (
+              <div key={id} className={styles.slider_body}>
+                <Image
+                  src={backgroundImage}
+                  alt="Background Image"
+                  quality={100}
+                  priority
+                  fill
+                  sizes="(min-width: 1230) 1200px,
                     (min-width: 1024) 976px,
                     (min-width: 768px) 720px,
                     (min-width: 667px) 619px,
                     327px"
-                    className={styles.bgImage}
-                  />
-                  <div className={styles.content}>
-                    <div className={styles.heading}>
+                  className={styles.bgImage}
+                />
+                <div className={styles.content}>
+                  <div className={styles.heading}>
+                    {headings.map((title: string, index: number) => (
                       <Typography
+                        key={index}
                         variant="heading1"
                         className={avenir.className}
                         color="var(--cl-secondary-50)"
                       >
-                        {heading1}
+                        {title}
                       </Typography>
-                      <Typography
-                        variant="heading1"
-                        className={avenir.className}
-                        color="var(--cl-secondary-50)"
-                      >
-                        {heading2}
-                      </Typography>
-                      <Typography
-                        variant="heading1"
-                        className={avenir.className}
-                        color="var(--cl-secondary-50)"
-                      >
-                        {heading3}
-                      </Typography>
-                    </div>
-                    <Button variant="primary">{buttonText}</Button>
+                    ))}
                   </div>
+                  <Button variant="primary">{dict.buttonText}</Button>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </Slider>
         </div>
       </Container>
