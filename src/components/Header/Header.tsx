@@ -65,18 +65,19 @@ const Header = ({ lang }: { lang: Locale }) => {
             )}
           </ul>
         </div>
-
         <div
           className={`${styles.burgerMenu} ${
             isMobileMenuOpen && styles.isOpen
           }`}
         >
-          <Navigation
-            className={styles.mobileMenu}
-            onClick={toggleMenuOpen}
-            lang={lang}
-          />
-          <LanguageMenu className={styles.mobileLangMenu} />
+          <Container>
+            <Navigation
+              className={styles.mobileMenu}
+              onClick={toggleMenuOpen}
+              lang={lang}
+            />
+            <LanguageMenu className={styles.mobileLangMenu} />
+          </Container>
         </div>
         {isModal && (
           <Modal onBackdropClick={onBackdropClick}>
