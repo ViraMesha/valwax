@@ -1,17 +1,18 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 import Slider, { Settings } from 'react-slick';
 import { avenir } from '@components/app/fonts';
 
-import Button from '../Button/Button';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
 
 import { generateHeroCards } from './heroCards';
 
+import buttonStyles from '../Button/Button.module.scss';
 import styles from './Hero.module.scss';
 
 const sliderSettings: Settings = {
@@ -52,6 +53,20 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
       sliderRef.current.slickNext();
       setCurrentSlide(prev => prev + 1);
     }
+  };
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    // first prevent the default behavior
+    e.preventDefault();
+    // get the href and remove everything before the hash (#)
+    const href = e.currentTarget.href;
+    const targetId = href.replace(/.*\#/, '');
+    // get the element by id and use scrollIntoView
+    const elem = document.getElementById(targetId);
+    window.scrollTo({
+      top: elem?.getBoundingClientRect().top,
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -112,7 +127,13 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
                       </Typography>
                     ))}
                   </div>
-                  <Button variant="primary">{dict.buttonText}</Button>
+                  <Link
+                    href="#compass"
+                    className={styles.hero_link}
+                    onClick={handleScroll}
+                  >
+                    {dict.buttonText}
+                  </Link>
                 </div>
               </div>
             ))}

@@ -54,7 +54,11 @@ const Header = ({ lang }: { lang: Locale }) => {
             </li>
             {isSmallScreen && (
               <li className={styles.iconsItem}>
-                <button className={styles.menuIcon} onClick={toggleMenuOpen}>
+                <button
+                  className={styles.menuIcon}
+                  onClick={toggleMenuOpen}
+                  aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+                >
                   {isMobileMenuOpen ? (
                     <AiOutlineClose />
                   ) : (

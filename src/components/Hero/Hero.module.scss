@@ -6,7 +6,6 @@
 
 .slider_body {
   border-radius: 20px;
-  background-color: var(--cl-gray-900);
   position: relative;
   height: 360px;
 }
@@ -31,6 +30,35 @@
   @include breakpoint('mobile-small') {
     gap: 12px;
     margin-bottom: 30px;
+  }
+}
+
+.hero_link {
+  padding: 16px 32px;
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 20px;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.54;
+  text-transform: uppercase;
+
+  outline: none;
+
+  background-color: var(--cl-primary-600);
+  color: var(--cl-white);
+  transition: background-color var(--animat);
+
+  &:hover {
+    background-color: var(--cl-primary-700);
+  }
+
+  @include breakpoint('mobile-small') {
+    padding: 12px 20px;
+    font-size: 16px;
   }
 }
 
