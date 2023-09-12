@@ -12,7 +12,6 @@ import Typography from '../Typography/Typography';
 
 import { generateHeroCards } from './heroCards';
 
-import buttonStyles from '../Button/Button.module.scss';
 import styles from './Hero.module.scss';
 
 const sliderSettings: Settings = {
