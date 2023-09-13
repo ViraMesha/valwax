@@ -2,6 +2,10 @@
 
 .subscription {
   text-align: left;
+
+  @include breakpoint('desktop-large') {
+    padding-bottom: 114px;
+  }
 }
 
 .subscriptionTitle {
@@ -9,10 +13,9 @@
   margin-bottom: 16px;
 }
 
-
 @include breakpoint('tablet-small-and-up') {
   .subscriptionTitle {
-   max-width: 286px;
+    max-width: 286px;
   }
 }
 

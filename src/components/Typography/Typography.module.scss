@@ -209,3 +209,18 @@
     font-size: 64px;
   }
 }
+
+.typography--variant-subheadingRegular {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.5;
+
+   @include breakpoint('mobile-large-and-up') {
+    font-size: 36px;
+   }
+   @include breakpoint('tablet-large-and-up') {
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.3;
+   }
+}

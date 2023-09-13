@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { AiOutlineCopyrightCircle } from 'react-icons/ai';
 import { CiMail } from 'react-icons/ci';
 import { PiPhoneThin } from 'react-icons/pi';
@@ -19,6 +20,9 @@ interface FooterI {
     copyright: string;
   };
 }
+
+const PHONE_NUMBER = '+38 095 888 46 14';
+const EMAIL_ADDRESS = 'valwaxua@gmail.com';
 
 const Footer: React.FC<FooterI> = ({ lang, dict }) => {
   return (
@@ -42,21 +46,21 @@ const Footer: React.FC<FooterI> = ({ lang, dict }) => {
             <address>
               <ul className={styles.addressList}>
                 <li className={styles.addressItem}>
-                  <a className={styles.addressLink} href="tel:+380970000000">
+                  <a className={styles.addressLink} href={`tel:${PHONE_NUMBER}`}>
                     <PiPhoneThin style={{ width: 24, height: 24 }} />
                     <Typography
                       variant="bodyRegular"
                       color="var(--cl-gray-700)"
                       className={styles.addressTypography}
                     >
-                      + 38 097 000 00 00
+                      {PHONE_NUMBER}
                     </Typography>
                   </a>
                 </li>
                 <li className={styles.addressItem}>
                   <a
                     className={styles.addressLink}
-                    href="mailto:valwax@gmail.com"
+                    href={`mailto:${EMAIL_ADDRESS}`}
                   >
                     <CiMail style={{ width: 24, height: 24 }} />
                     <Typography
@@ -64,7 +68,7 @@ const Footer: React.FC<FooterI> = ({ lang, dict }) => {
                       color="var(--cl-gray-700)"
                       className={styles.addressTypography}
                     >
-                      valwax@gmail.com
+                      {EMAIL_ADDRESS}
                     </Typography>
                   </a>
                 </li>
@@ -72,27 +76,33 @@ const Footer: React.FC<FooterI> = ({ lang, dict }) => {
             </address>
           </div>
         </div>
+
         <div className={styles.copyright}>
-          <Typography variant="bodyRegular" className={styles.hoverableText}>
-            {dict.privacyPolicy}
-          </Typography>
-          <div className={styles.copyWrapper}>
+          <Link href="/privacy-policy">
             <Typography variant="bodyRegular" className={styles.hoverableText}>
-              {dict.copyright}
+              {dict.privacyPolicy}
             </Typography>
-            <div className={styles.copyrightValwax}>
-              <AiOutlineCopyrightCircle
-                className={styles.copyrightIcon}
-                style={{ width: 16, height: 16 }}
-              ></AiOutlineCopyrightCircle>
+            <div className={styles.copyWrapper}>
               <Typography
                 variant="bodyRegular"
                 className={styles.hoverableText}
               >
-                2023 Valwax
+                {dict.copyright}
               </Typography>
+              <div className={styles.copyrightValwax}>
+                <AiOutlineCopyrightCircle
+                  className={styles.copyrightIcon}
+                  style={{ width: 16, height: 16 }}
+                ></AiOutlineCopyrightCircle>
+                <Typography
+                  variant="bodyRegular"
+                  className={styles.hoverableText}
+                >
+                  2023 Valwax
+                </Typography>
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       </Container>
     </footer>

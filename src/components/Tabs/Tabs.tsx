@@ -14,7 +14,14 @@ import { tabsData, tabsI } from './data';
 
 import styles from './Tabs.module.scss';
 
-const Tabs = () => {
+interface TabsI {
+  dict: {
+    fullTitle: string[],
+    abbreviatedTitle: string[]
+  };
+}
+
+const Tabs: React.FC<TabsI> = ({ dict }) => {
   const [isTabsMenuOpen, setIsTabsMenuOpen] = useState(false);
   const pathname = usePathname();
   const { width } = useWindowSize();
@@ -31,7 +38,7 @@ const Tabs = () => {
       <Container className={styles.container}>
         <ul className={styles.list}>
           {isMobScreen
-            ? tabsData.reduce((acc: any, item: tabsI) => {
+            ? tabsData(dict).reduce((acc: any, item: tabsI) => {
                 if (isCurrent(item.link)) {
                   acc.unshift(
                     <li
@@ -92,7 +99,7 @@ const Tabs = () => {
                 }
                 return acc;
               }, [])
-            : tabsData.map((item: tabsI, index: number) => (
+            : tabsData(dict).map((item: tabsI, index: number) => (
                 <li
                   key={index}
                   className={`${styles.item} ${
