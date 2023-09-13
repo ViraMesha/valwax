@@ -18,6 +18,7 @@ const variantsMapping = {
   bodyRegular: 'p',
   bodyS: 'p',
   bodyS2: 'p',
+  subheadingRegular: 'h4',
 } as const;
 
 interface Props {
