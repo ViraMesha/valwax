@@ -19,7 +19,7 @@ const Candles = async ({ params: { lang } }: { params: { lang: Locale } }) => {
         ]}
         lang={lang}
       />
-      <Tabs />
+      <Tabs dict={page.soyCandles.tabs}/>
       <CandlesPage dict={page.soyCandles} />
     </>
   );
