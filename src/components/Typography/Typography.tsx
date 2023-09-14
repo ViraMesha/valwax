@@ -31,7 +31,6 @@ interface Props {
   color?: string;
   className?: string;
   children?: React.ReactNode;
-  style?: CSSProperties;
 }
 
 // Create a functional component that take
@@ -45,7 +44,6 @@ const Typography: React.FC<Props> = ({
   color,
   children,
   className,
-  style,
   ...props
 }) => {
   // If the variant exists in variantsMapping, we use it.
@@ -57,7 +55,7 @@ const Typography: React.FC<Props> = ({
   } ${className || ''}`;
 
   return (
-    <Component className={textClassName} {...props} style={{ color, ...style }}>
+    <Component className={textClassName} {...props} style={{ color }}>
       {children}
     </Component>
   );

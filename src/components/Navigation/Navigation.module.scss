@@ -19,11 +19,6 @@
   }
 }
 
-.activeLink {
-  border-bottom: 1px solid var(--cl-primary-500);
-}
-
-
 .candlesList {
   width: 100%;
   z-index: 1;
@@ -34,7 +29,7 @@
 
   @include breakpoint('desktop-large') {
     position: absolute;
-    top: 100%;
+    top: 70%;
     left: 100px;
     background-color: var(--cl-white);
     width: 160px;
@@ -75,6 +70,18 @@
   @include breakpoint('desktop-large') {
     padding: 8px 24px 8px 16px;
   }
+}
+
+.linkText {
+  padding: 35px 0;
+}
+
+.activeLink::after {
+  content: '';
+  display: block;
+  bottom: -1px;
+  width: 100%;
+  border-bottom: 1px solid var(--cl-primary-500);
 }
 
 .candlesItem {

@@ -50,18 +50,18 @@ const PaymentAndDeliveryInfo: React.FC<PaymentAndDeliveryInfoProps> = ({
       <Container>
         {dict.map((infoItem, index) => (
           <div key={index}>
-            <Typography variant="exLargeBold" className={styles.paymentTitle}>
+            <Typography variant="subheading3" className={styles.paymentTitle}>
               {infoItem.subTitle}
             </Typography>
             {infoItem.texts.map((text, textIndex) => (
               <Typography
                 key={textIndex}
-                variant="bodyLarge"
+                variant="bodyXLHeavy"
                 className={
                   index === dict.length - 1 &&
                   textIndex === infoItem.texts.length - 1
-                    ? ''
-                    : styles.paymentText
+                    ? styles.paymentText
+                    : styles.paymentTextWithMargin
                 }
               >
                 {splitAndBoldText(text, isUkrainian(text), isEnglish(text))}

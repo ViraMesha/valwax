@@ -31,7 +31,17 @@ const Navigation: React.FC<NavigationPropsI> = ({
 }) => {
   const pathname = usePathname();
   const [isCandlesMenuOpen, setIsCandlesMenuOpen] = useState(false);
-  const isActive = (link: string) => pathname === link;
+  const langPrefix = lang === 'en' ? '/en' : '/uk';
+  const isActive = (link: string) => pathname === `${langPrefix}${link}`;
+
+  const isCandlesActive = () => {
+    for (const candlesItem of candlesMenuItems) {
+      if (isActive(navLinks[candlesItem] ?? '')) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   const toggleDropdown = () => {
     setIsCandlesMenuOpen(!isCandlesMenuOpen);
@@ -65,7 +75,11 @@ const Navigation: React.FC<NavigationPropsI> = ({
                 onMouseLeave={handleMouseLeave}
               >
                 <div className={centerContentClass}>
-                  <span className={styles.linkText}>
+                  <span
+                    className={`${styles.linkText} ${
+                      isCandlesActive() ? styles.activeLink : ''
+                    }`}
+                  >
                     {navigationTranslations[lang]['Свічки']}
                   </span>
                   {isCandlesMenuOpen ? (
@@ -86,11 +100,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                       <li key={index} className={styles.candlesItem}>
                         <Link
                           href={`/${lang}${navLinks[candlesItem]}` ?? ''}
-                          className={`candlesLink${
-                            isActive(navLinks[candlesItem] ?? '')
-                              ? ` ${styles.activeLink}`
-                              : ''
-                          }`}
+                          className={`candlesLink${navLinks[candlesItem]}`}
                           onClick={onClick}
                         >
                           {navigationTranslations[lang][candlesItem]}
