@@ -35,8 +35,8 @@
         "text": "Soy wax is safe. It is not toxic and does not evaporate harmful substances. The low melting point allows you to use candles as long as possible. It is a vegetable wax that is produced from soybeans - a natural and restorative product. Soy wax has a good performance in the solid and molten state of both essential oils and specially formulated synthetic oils."
       },
       "tabs": {
-        "fullTitle": ["Soy candles","Coconut candles","Palm candles"],
-        "abbreviatedTitle": ["Soy","Coconut","Palm"]
+        "fullTitle": ["Soy candles", "Coconut candles", "Palm candles"],
+        "abbreviatedTitle": ["Soy", "Coconut", "Palm"]
       }
     },
     "boxes": {
@@ -47,6 +47,27 @@
         "title": "Boxes for your creativity",
         "text": "Each box is created for the most pleasant emotions. Plunge into this unusual atmosphere, become a real candlestick maker, create a miracle with your own hands. These magical boxes will decorate your evening with a girlfriend or friend, or with a loved one, or give you complete freedom and meditative silence to create a candle on your own. In each box, you will receive an instruction that will help you get everything right."
       }
+    },
+    "paymentAndDelivery": {
+      "header": {
+        "title": "Payment and Delivery"
+      },
+      "info": [
+        {
+          "subTitle": "Payment",
+          "texts": [
+            "Payment to the individual entrepreneur's account. More specific information will be provided later."
+          ]
+        },
+        {
+          "subTitle": "Delivery",
+          "texts": [
+            "You can choose a convenient delivery method:",
+            "1. Delivery by Nova Poshta company within Ukraine to the selected branch with a prepayment of 150 UAH. The cost of delivery is calculated by the carrier, and the customer pays for the delivery.",
+            "2. Delivery by Ukrposhta company within Ukraine to the selected branch with a prepayment of 150 UAH. The cost of delivery is calculated by the carrier, and the customer pays for the delivery."
+          ]
+        }
+      ]
     },
     "privacyPolicy": {
       "header": {
@@ -161,6 +182,7 @@
   "breadcrumbs": {
     "soyCandles": "Scented soy candles",
     "boxes": "Gift boxes",
-    "privacyPolicy": "Privacy policy"
+    "privacyPolicy": "Privacy policy",
+    "paymentAndDelivery": "Payment and delivery"
   }
 }
