@@ -69,6 +69,13 @@
         }
       ]
     },
+    "createYourOwn": {
+      "welcome": {
+        "title": "Create your candle the way you want it",
+        "text1": "Welcome to the Candle Maker!",
+        "text2": "An easy-to-use designer will help you assemble your own unique candle step by step."
+      }
+    },
     "privacyPolicy": {
       "header": {
         "title": "Privacy policy"
@@ -183,6 +190,7 @@
     "soyCandles": "Scented soy candles",
     "boxes": "Gift boxes",
     "privacyPolicy": "Privacy policy",
-    "paymentAndDelivery": "Payment and delivery"
+    "paymentAndDelivery": "Payment and delivery",
+    "createYourOwn": "Create Yourself"
   }
 }

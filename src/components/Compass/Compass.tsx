@@ -22,7 +22,7 @@ interface CompassI {
 
 const Compass: React.FC<CompassI> = ({ dict, lang }) => {
   return (
-    <Section>
+    <Section id="compass">
       <Container>
         {/* <h2>Navigation section</h2> */}
         <div className={styles.wrapper}>
