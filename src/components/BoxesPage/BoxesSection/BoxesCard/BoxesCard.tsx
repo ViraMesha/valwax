@@ -22,7 +22,7 @@ const sliderSettings: Settings = {
   customPaging: () => <button></button>,
 };
 
-const BoxesCard: React.FC<BoxI> = ({ img, title, price, link, text }) => {
+const BoxesCard: React.FC<BoxI> = ({ id, img, title, price, link, text }) => {
   return (
     <li className={styles.card}>
       <div className={styles.img_container}>
@@ -45,7 +45,7 @@ const BoxesCard: React.FC<BoxI> = ({ img, title, price, link, text }) => {
       </div>
       <div className={styles.card_body}>
         <div className={styles.content}>
-          <Link href={link}>
+          <Link href={`${link}/${id}`}>
             <Typography variant="subheadingBold" className={styles.title}>
               {title}
             </Typography>
