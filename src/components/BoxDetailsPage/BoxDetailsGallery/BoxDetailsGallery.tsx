@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-import Slider, { Settings } from 'react-slick';
 
 import styles from './BoxDetailsGallery.module.scss';
 
