@@ -35,6 +35,22 @@
   display: flex;
   gap: 8px;
   margin-top: 26px;
+
+  @include breakpoint('tablet-small') {
+    gap: 33px;
+  }
+
+  @include breakpoint('tablet-large') {
+    gap: 8px;
+  }
+
+  @include breakpoint('desktop') {
+    gap: 34px;
+  }
+
+  @include breakpoint('desktop-large') {
+    gap: 47px;
+  }
 }
 
 .small_img_inner_container {

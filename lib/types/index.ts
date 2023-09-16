@@ -12,7 +12,6 @@ export interface BoxDetailsI {
   price: string;
   aroma: string[];
   components: string[];
-  instruction: string;
   description: string;
   similar: SimilarBoxI[];
 }
