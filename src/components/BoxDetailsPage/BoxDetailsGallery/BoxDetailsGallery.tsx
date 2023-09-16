@@ -19,9 +19,10 @@ const BoxDetailsGallery = ({ images }: { images: string[] }) => {
           src={images[activeImageIndex]}
           priority
           fill
-          alt="A box"
+          alt="Candle-making kit in a box"
           sizes="(min-width: 1230) 660px,
               (min-width: 1024) 604px,
+              (min-width: 768) 358px,
               100%"
         />
         <div className={styles.dots}>
@@ -48,7 +49,7 @@ const BoxDetailsGallery = ({ images }: { images: string[] }) => {
               src={imageSrc}
               priority
               fill
-              alt="A box"
+              alt="Candle-making kit in a box"
               sizes="(min-width: 1230) 130px,
               (min-width: 1024) 125px,
               (min-width: 768px) 84px,
