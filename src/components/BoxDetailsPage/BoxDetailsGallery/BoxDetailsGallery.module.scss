@@ -1,0 +1,123 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
+.img_container {
+  position: relative;
+  border-radius: 20px;
+  width: 100%;
+  height: 383px;
+
+  @include breakpoint('tablet-small') {
+    height: 723px;
+  }
+
+  @include breakpoint('tablet-large') {
+    width: 358px;
+    height: 419px;
+  }
+
+  @include breakpoint('desktop') {
+    width: 604px;
+    height: 705px;
+  }
+  @include breakpoint('desktop-large') {
+    width: 660px;
+    height: 770px;
+  }
+}
+
+.image {
+  border-radius: 20px;
+  object-position: center 30%;
+}
+
+/* Small image container */
+
+.small_img_container {
+  display: flex;
+  gap: 8px;
+  margin-top: 26px;
+
+  @include breakpoint('tablet-small') {
+    gap: 33px;
+  }
+
+  @include breakpoint('tablet-large') {
+    gap: 8px;
+  }
+
+  @include breakpoint('desktop') {
+    gap: 34px;
+  }
+
+  @include breakpoint('desktop-large') {
+    gap: 47px;
+  }
+}
+
+.small_img_inner_container {
+  position: relative;
+  border-radius: 20px;
+  width: 76px;
+  height: 76px;
+
+  @include breakpoint('tablet-small') {
+    width: 130px;
+    height: 130px;
+  }
+
+  @include breakpoint('tablet-large') {
+    width: 84px;
+    height: 84px;
+  }
+
+  @include breakpoint('desktop') {
+    width: 125px;
+    height: 125px;
+  }
+  @include breakpoint('desktop-large') {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+.active {
+  border: 2px solid var(--cl-primary-500);
+}
+
+.small_img_inner_container img {
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Styles for .dots */
+.dots {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  @include breakpoint('mobile-large-and-up') {
+    top: 20px;
+  }
+
+  @include breakpoint('desktop-large') {
+    top: 30px;
+  }
+
+  button {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background-color: var(--cl-gray-100);
+    border: none;
+    cursor: pointer;
+
+    &.active {
+      background-color: var(--cl-primary-500);
+    }
+  }
+}
