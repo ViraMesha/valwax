@@ -3,7 +3,7 @@ import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 
 import { i18n, Locale } from '../../../i18n-config';
-import { getDictionary } from '../../../lib/dictionary';
+import { getDictionary } from '../../../lib/utils/dictionary';
 import { proxima_nova } from '../fonts';
 
 import 'slick-carousel/slick/slick.css';

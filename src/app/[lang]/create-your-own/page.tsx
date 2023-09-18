@@ -2,7 +2,7 @@ import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import WelcomeSection from '@components/components/CreateYourOwn/WelcomeSection/WelcomeSection';
 
 import { Locale } from '../../../../i18n-config';
-import { getDictionary } from '../../../../lib/dictionary';
+import { getDictionary } from '../../../../lib/utils/dictionary';
 
 const CreateYourOwn = async ({
   params: { lang },

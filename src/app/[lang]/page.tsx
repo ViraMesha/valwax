@@ -5,7 +5,7 @@ import Quote from '@components/components/Quote/Quote';
 import Subscription from '@components/components/Subscription/Subscription';
 
 import { Locale } from '../../../i18n-config';
-import { getDictionary } from '../../../lib/dictionary';
+import { getDictionary } from '../../../lib/utils/dictionary';
 import Compass from '../../components/Compass/Compass';
 
 export default async function Home({

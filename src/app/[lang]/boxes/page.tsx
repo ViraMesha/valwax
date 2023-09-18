@@ -4,7 +4,7 @@ import BoxesSection from '@components/components/BoxesPage/BoxesSection/BoxesSec
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 
 import { Locale } from '../../../../i18n-config';
-import { getDictionary } from '../../../../lib/dictionary';
+import { getDictionary } from '../../../../lib/utils/dictionary';
 
 const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
   const { breadcrumbs } = await getDictionary(lang);

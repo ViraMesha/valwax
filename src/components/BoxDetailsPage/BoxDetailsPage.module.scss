@@ -1,7 +1,7 @@
 @import '../../scss/utilities/breakpoint-mixin.scss';
 
-#box_section {
+#gallery_details_section {
   @include breakpoint('desktop-large') {
-    padding-bottom: 114px;
+    padding-bottom: 56px;
   }
 }
