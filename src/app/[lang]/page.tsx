@@ -8,6 +8,17 @@ import { Locale } from '../../../i18n-config';
 import { getDictionary } from '../../../lib/utils/dictionary';
 import Compass from '../../components/Compass/Compass';
 
+export async function generateMetadata({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const { navigation } = await getDictionary(lang);
+  return {
+    title: `Valwax | ${navigation.home}`,
+  };
+}
+
 export default async function Home({
   params: { lang },
 }: {

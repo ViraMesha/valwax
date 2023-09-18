@@ -65,6 +65,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
                 disablePrevButton ? styles.disabled : ''
               }`}
               disabled={disablePrevButton}
+              aria-label="Previous Slide"
             >
               <HiOutlineChevronLeft className={styles.arrowIcon} />
             </button>
@@ -74,6 +75,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
                 disableNextButton ? styles.disabled : ''
               }`}
               disabled={disableNextButton}
+              aria-label="Next Slide"
             >
               <HiOutlineChevronRight className={styles.arrowIcon} />
             </button>

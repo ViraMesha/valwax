@@ -176,5 +176,12 @@
     "boxes": "Подарункові бокси",
     "createYourOwn": "Створи Сам",
     "privacyPolicy": "Політика конфіденційності"
+  },
+
+  "navigation": {
+    "home": "Головна",
+    "createYourOwn": "Створи Сам",
+    "paymentAndDelivery": "Оплата та Доставка",
+    "boxes": "Бокси"
   }
 }

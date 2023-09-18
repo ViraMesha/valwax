@@ -175,5 +175,12 @@
     "boxes": "Gift boxes",
     "createYourOwn": "Create Yourself",
     "privacyPolicy": "Privacy policy"
+  },
+
+  "navigation": {
+    "home": "Home",
+    "createYourOwn": "Create Yourself",
+    "paymentAndDelivery": "Payment and delivery",
+    "boxes": "Boxes"
   }
 }
