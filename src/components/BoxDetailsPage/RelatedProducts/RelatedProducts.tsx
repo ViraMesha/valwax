@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import Slider, { Settings } from 'react-slick';
 import Container from '@components/components/Container/Container';
+import ReusableSlider from '@components/components/ReusableSlider/ReusableSlider';
 import Section from '@components/components/Section/Section';
 import Typography from '@components/components/Typography/Typography';
 import { useWindowSize } from 'usehooks-ts';
@@ -29,19 +29,6 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
     slidesToShow = 4;
   }
 
-  const sliderSettings: Settings = {
-    slidesToShow,
-    slidesToScroll: 1,
-    infinite: false,
-    dots: true,
-    arrows: false,
-    draggable: true,
-    swipe: true,
-    appendDots: (dots: React.ReactNode) => <ul>{dots}</ul>,
-    dotsClass: styles['dots'],
-    customPaging: () => <button></button>,
-  };
-
   return (
     <Section id={styles.related_products_section}>
       <Container>
@@ -51,7 +38,7 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
         >
           {dict.title}
         </Typography>
-        <Slider {...sliderSettings}>
+        <ReusableSlider slidesToShow={slidesToShow} dotsStyles={styles.dots}>
           {relatedProducts.map(({ id, link, img, title, price }: CandleI) => (
             <div key={id} className={styles.card}>
               <Link href={link}>
@@ -78,7 +65,7 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
               </div>
             </div>
           ))}
-        </Slider>
+        </ReusableSlider>
       </Container>
     </Section>
   );

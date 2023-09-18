@@ -1,32 +1,19 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import Slider, { Settings } from 'react-slick';
 import Button from '@components/components/Button/Button';
+import ReusableSlider from '@components/components/ReusableSlider/ReusableSlider';
 import Typography from '@components/components/Typography/Typography';
 
 import { BoxI } from '../boxesData';
 
 import styles from './BoxesCard.module.scss';
 
-const sliderSettings: Settings = {
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  infinite: false,
-  dots: true,
-  arrows: false,
-  draggable: true,
-  swipe: true,
-  appendDots: (dots: React.ReactNode) => <ul>{dots}</ul>,
-  dotsClass: styles['dots'],
-  customPaging: () => <button></button>,
-};
-
 const BoxesCard: React.FC<BoxI> = ({ id, img, title, price, link, text }) => {
   return (
     <li className={styles.card}>
       <div className={styles.img_container}>
-        <Slider {...sliderSettings}>
+        <ReusableSlider dotsStyles={styles.dots}>
           {img.map((imageSrc, index) => (
             <div key={index} className={styles.img_inner_container}>
               <Image
@@ -41,7 +28,7 @@ const BoxesCard: React.FC<BoxI> = ({ id, img, title, price, link, text }) => {
               />
             </div>
           ))}
-        </Slider>
+        </ReusableSlider>
       </div>
       <div className={styles.card_body}>
         <div className={styles.content}>

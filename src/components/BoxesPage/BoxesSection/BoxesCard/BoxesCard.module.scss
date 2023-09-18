@@ -147,10 +147,6 @@
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
 
   @include breakpoint('mobile-large-and-up') {
     top: 20px;
@@ -159,28 +155,4 @@
   @include breakpoint('desktop-large') {
     top: 30px;
   }
-}
-
-.dots > li {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  background-color: var(--cl-gray-100);
-  position: relative;
-}
-
-.dots > li:global(.slick-active) {
-  background-color: var(--cl-primary-500);
-}
-
-.dots button {
-  position: absolute;
-  inset: 0;
-  border: none;
-  background-color: var(--cl-gray-100);
-  cursor: pointer;
-}
-
-.dots > li:global(.slick-active) button {
-  background-color: var(--cl-primary-500);
 }
