@@ -1,0 +1,22 @@
+@import '../../scss/utilities/breakpoint-mixin.scss';
+
+.paymentSection {
+  padding-bottom: 114px;
+}
+
+.paymentTitle {
+  font-weight: 700;
+  margin-bottom: 20px;
+  @include breakpoint('desktop-large') {
+    margin-bottom: 30px;
+  }
+}
+
+.paymentTextWithMargin {
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.paymentText {
+  font-weight: 400;
+}

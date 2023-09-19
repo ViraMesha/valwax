@@ -53,6 +53,27 @@
         "title": "You may also like"
       }
     },
+    "paymentAndDelivery": {
+      "header": {
+        "title": "Payment and Delivery"
+      },
+      "info": [
+        {
+          "subTitle": "Payment",
+          "texts": [
+            "Payment to the individual entrepreneur's account. More specific information will be provided later."
+          ]
+        },
+        {
+          "subTitle": "Delivery",
+          "texts": [
+            "You can choose a convenient delivery method:",
+            "1. Delivery by Nova Poshta company within Ukraine to the selected branch with a prepayment of 150 UAH. The cost of delivery is calculated by the carrier, and the customer pays for the delivery.",
+            "2. Delivery by Ukrposhta company within Ukraine to the selected branch with a prepayment of 150 UAH. The cost of delivery is calculated by the carrier, and the customer pays for the delivery."
+          ]
+        }
+      ]
+    },
     "createYourOwn": {
       "welcome": {
         "title": "Create your candle the way you want it",
@@ -181,6 +202,7 @@
     "home": "Home",
     "createYourOwn": "Create Yourself",
     "paymentAndDelivery": "Payment and delivery",
-    "boxes": "Boxes"
+    "boxes": "Boxes",
+    "privacyPolicy": "Privacy policy"
   }
 }

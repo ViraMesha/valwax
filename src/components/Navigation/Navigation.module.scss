@@ -5,11 +5,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 32px;
-
+  
   font-size: 20px;
   line-height: 1.5;
   color: var(--cl-gray-700);
+
+  @include breakpoint('all-devices-without-desktop') {
+     gap: 32px;
+  }
 
   @include breakpoint('desktop-large') {
     position: relative;
@@ -17,10 +20,8 @@
     flex-direction: row;
     gap: 24px;
   }
-}
 
-.activeLink {
-  border-bottom: 1px solid var(--cl-primary-500);
+
 }
 
 
@@ -34,7 +35,7 @@
 
   @include breakpoint('desktop-large') {
     position: absolute;
-    top: 100%;
+    top: 70%;
     left: 100px;
     background-color: var(--cl-white);
     width: 160px;
@@ -62,6 +63,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
+
+  @include breakpoint('desktop-large') {
+    padding: 35px 0;
+  }
 }
 
 .centerContentFooter {
@@ -77,13 +82,20 @@
   }
 }
 
+.activeLink::after {
+  content: '';
+  display: block;
+  bottom: -1px;
+  width: 100%;
+  border-bottom: 1px solid var(--cl-primary-500);
+}
+
 .candlesItem {
   display: flex;
   align-items: center;
   cursor: pointer;
   font-size: 16px;
   line-height: 1.5;
-  padding: 0;
 
   @include breakpoint('desktop-large') {
     border-bottom: 1px solid var(--cl-secondary-100);
@@ -98,4 +110,11 @@
 .dropdown {
   display: flex;
   flex-direction: column;
+}
+
+.candlesItemPadding {
+
+   @include breakpoint('desktop-large') {
+    padding: 35px 0;
+  }
 }

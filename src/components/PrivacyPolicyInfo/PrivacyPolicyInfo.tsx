@@ -42,7 +42,6 @@ const PrivacyPolicyInfo: React.FC<PrivacyPolicyInfoProps> = ({ dict }) => {
                       ? ''
                       : styles.privacyText
                   }
-                  //   className={styles.privacyText}
                 >
                   {text}
                 </Typography>

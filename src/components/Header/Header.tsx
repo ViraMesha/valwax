@@ -18,7 +18,7 @@ import Search from '../Search/Search';
 
 import LanguageMenu from './LanguageMenu/LanguageMenu';
 
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 
 const Header = ({ lang }: { lang: Locale }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
