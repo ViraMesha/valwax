@@ -194,8 +194,9 @@
   "breadcrumbs": {
     "soyCandles": "Scented soy candles",
     "boxes": "Gift boxes",
-    "createYourOwn": "Create Yourself",
-    "privacyPolicy": "Privacy policy"
+    "createYourOwn": "Create you own",
+    "privacyPolicy": "Privacy policy",
+    "paymentAndDelivery": "Payment and delivery"
   },
 
   "navigation": {

@@ -65,8 +65,8 @@
 }
 
 .iconsItem svg {
-  width: 18px;
-  height: 18px;
+  width: 21px;
+  height: 21px;
 }
 
 /*
@@ -85,7 +85,8 @@
   background-color: var(--cl-white);
   width: 100vw;
   height: fit-content;
-  padding: 80px 0;
+  padding-top: 56px;
+  padding-bottom: 80px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -153,7 +154,7 @@
 
   .iconsItem {
     width: 24px;
-    height: 24px;
+    height: 40px;
   }
 
   .menuIcon {
