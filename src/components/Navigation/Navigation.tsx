@@ -113,9 +113,9 @@ const Navigation: React.FC<NavigationPropsI> = ({
             ) : (
               <Link
                 href={`/${lang}${navLinks[item]}` ?? ''}
-                className={
+                className={`${styles.candlesItemPadding} ${
                   isActive(navLinks[item] ?? '') ? styles.activeLink : ''
-                }
+                }`}
                 onClick={onClick}
               >
                 {navigationTranslations[lang][item]}

@@ -3,6 +3,9 @@
   | Header
   |==============================
 */
+
+@import '../../scss/utilities/breakpoint-mixin.scss';
+
 .header {
   min-height: 60px;
   position: relative;
@@ -14,6 +17,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 56px;
+
+  @include breakpoint('desktop-large') {
+    min-height: 100px;
+  }
 }
 
 /*
