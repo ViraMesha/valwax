@@ -29,16 +29,31 @@
         "buttonText": "Subscribe"
       }
     },
-    "soyCandles": {
-      "waxDesc": {
-        "title": "Why soy?",
-        "text": "Soy wax is safe. It is not toxic and does not evaporate harmful substances. The low melting point allows you to use candles as long as possible. It is a vegetable wax that is produced from soybeans - a natural and restorative product. Soy wax has a good performance in the solid and molten state of both essential oils and specially formulated synthetic oils."
+    "candles": {
+      "soyCandles": {
+        "waxDesc": {
+          "title": "Why soy?",
+          "text": "Soy wax is safe. It is not toxic and does not evaporate harmful substances. The low melting point allows you to use candles as long as possible. It is a vegetable wax that is produced from soybeans - a natural and restorative product. Soy wax has a good performance in the solid and molten state of both essential oils and specially formulated synthetic oils."
+        }
+      },
+      "palmCandles": {
+        "waxDesc": {
+          "title": "Why palm?",
+          "text": "Palm wax is safe. It is not toxic and does not evaporate harmful substances. The low melting point allows you to use candles as long as possible. It is a vegetable wax that is produced from soybeans - a natural and restorative product. Soy wax has a good performance in the solid and molten state of both essential oils and specially formulated synthetic oils."
+        }
+      },
+      "coconutCandles": {
+        "waxDesc": {
+          "title": "Why coconut?",
+          "text": "Coconut wax is safe. It is not toxic and does not evaporate harmful substances. The low melting point allows you to use candles as long as possible. It is a vegetable wax that is produced from soybeans - a natural and restorative product. Soy wax has a good performance in the solid and molten state of both essential oils and specially formulated synthetic oils."
+        }
       },
       "tabs": {
         "fullTitle": ["Soy candles", "Coconut candles", "Palm candles"],
         "abbreviatedTitle": ["Soy", "Coconut", "Palm"]
       }
     },
+
     "boxes": {
       "header": {
         "title": "Boxes for your creativity"
@@ -188,6 +203,8 @@
 
   "breadcrumbs": {
     "soyCandles": "Scented soy candles",
+    "coconutCandles": "Scented coconut candles",
+    "palmCandles": "Scented palm candles",
     "boxes": "Gift boxes",
     "privacyPolicy": "Privacy policy",
     "paymentAndDelivery": "Payment and delivery",

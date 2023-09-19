@@ -1,12 +1,11 @@
 type dataI = {
-  fullTitle: string[],
-  abbreviatedTitle: string[]
+  fullTitle: string[];
+  abbreviatedTitle: string[];
 };
-
 
 export type tabsI = {
   fullTitle: string;
-  abbreviatedTitle : string;
+  abbreviatedTitle: string;
   link: string;
 };
 
@@ -15,8 +14,8 @@ export const tabsData = (data: dataI) => {
     {
       fullTitle: data.fullTitle[0],
       abbreviatedTitle: data.abbreviatedTitle[0],
-      // link: '/soy-candles',
-      link: '/candles',
+      link: '/soy-candles',
+      // link: '/candles',
     },
     {
       fullTitle: data.fullTitle[1],
@@ -29,7 +28,7 @@ export const tabsData = (data: dataI) => {
       link: '/palm-candles',
     },
   ];
-}
+};
 
 // export const tabsData: tabsI[] = [
 //   {
