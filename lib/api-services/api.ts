@@ -1,7 +1,7 @@
 import img1 from '../../public/images/boxes/boxes_section/box.jpg';
 import img2 from '../../public/images/boxes/boxes_section/box2.jpg';
-import img3 from '../../public/images/boxes/boxes_section/boxes3.jpg';
 import { BoxDetailsI } from '../types';
+import { relatedProducts } from '../utils/relatedProducts';
 
 export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
   try {
@@ -9,7 +9,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
 
     const fakeBoxDetails: BoxDetailsI = {
       id: '1',
-      images: [img1.src, img2.src, img3.src],
+      images: [img1.src, img2.src],
       title: 'Бокс - Мінімал',
       price: ' 355,00 ',
       aroma: [
@@ -31,14 +31,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
       ],
       description:
         'Ласкаво просимо на сторінку, де ваша   творчість запалюється , а натхнення вибу- хає на повну ! Тут ви знайдете наші захоп- люючі бокси для створення своїх власних шедеврів свічок. Ми підготували для вас набори, які містять все необхідне: відбір найкращих матеріалів до вимоги у виборі дизайну. Ласкаво просимо на сторінку, де ваша творчість запалюється , а натхнення вибу- хає на повну ! Тут ви знайдете наші захоп- люючі бокси для створення своїх власних шедеврів свічок. Ми підготували для вас набори, які містять все необхідне: відбір найкращих матеріалів до вимоги у виборі дизайну.  Ласкаво просимо на сторінку, де ваша творчість запалюється , а натхнення вибухає на повну ! Тут ви знайдете наші захоплюючі бокси для створення своїх власних шедеврів свічок. Ми підготували для вас набори, які містять все необхідне: відбір найкращих матеріалів до вимоги у виборі дизайну.',
-      similar: [
-        {
-          id: '11',
-          image: img1.src,
-          title: 'Кориця та вапніль. ',
-          price: '370,00',
-        },
-      ],
+      similar: relatedProducts,
     };
 
     return fakeBoxDetails;
