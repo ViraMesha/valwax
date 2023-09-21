@@ -1,0 +1,38 @@
+.searchItem {
+  font-size: 14px;
+  color: var(--cl-gray-700);
+}
+
+.os-scrollbar-vertical {
+  border: 1px solid var(--cl-primary-600);
+  max-width: 12px;
+  padding: 1px;
+  border-radius: 4px;
+}
+
+.os-theme-custom.os-scrollbar-vertical {
+  --os-size: 20px;
+}
+
+.os-scrollbar.os-scrollbar-track-interactive .os-scrollbar-track,
+.os-scrollbar.os-scrollbar-handle-interactive .os-scrollbar-handle {
+  max-width: 10px;
+  min-width: 10px;
+  border-radius: 4px;
+  background-color: var(--cl-primary-600);
+}
+
+.os-scrollbar.os-scrollbar-vertical.os-scrollbar-cornerless,
+.os-scrollbar.os-scrollbar-vertical.os-scrollbar-cornerless.os-scrollbar-rtl {
+  border: 1px solid var(--cl-primary-600);
+  max-width: 12px;
+  padding: 1px;
+  border-radius: 4px;
+}
+
+.customScrollbar .os-scrollbar .os-scrollbar-handle {
+  max-width: 10px;
+  min-width: 10px;
+  border-radius: 4px;
+  background-color: var(--cl-primary-600);
+}
