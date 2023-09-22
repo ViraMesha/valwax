@@ -2,7 +2,18 @@ import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import WelcomeSection from '@components/components/CreateYourOwn/WelcomeSection/WelcomeSection';
 
 import { Locale } from '../../../../i18n-config';
-import { getDictionary } from '../../../../lib/dictionary';
+import { getDictionary } from '../../../../lib/utils/dictionary';
+
+export async function generateMetadata({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const { navigation } = await getDictionary(lang);
+  return {
+    title: `Valwax | ${navigation.createYourOwn}`,
+  };
+}
 
 const CreateYourOwn = async ({
   params: { lang },

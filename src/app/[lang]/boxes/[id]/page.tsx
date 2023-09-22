@@ -4,7 +4,7 @@ import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 
 import { Locale } from '../../../../../i18n-config';
 import { getBoxDetails } from '../../../../../lib/api-services/api';
-import { getDictionary } from '../../../../../lib/dictionary';
+import { getDictionary } from '../../../../../lib/utils/dictionary';
 
 const BoxDetails = async ({
   params: { lang, id },
@@ -12,6 +12,7 @@ const BoxDetails = async ({
   params: { lang: Locale; id: string };
 }) => {
   const { breadcrumbs } = await getDictionary(lang);
+  const { page } = await getDictionary(lang);
   const product = await getBoxDetails(id);
 
   const regex = /(?:Бокс - |Box - )(.*)/;
@@ -33,7 +34,7 @@ const BoxDetails = async ({
         ]}
         lang={lang}
       />
-      <BoxDetailsPage product={product} />
+      <BoxDetailsPage product={product} dict={page.boxDetails} />
     </>
   );
 };

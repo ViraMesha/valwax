@@ -63,6 +63,11 @@
         "text": "Each box is created for the most pleasant emotions. Plunge into this unusual atmosphere, become a real candlestick maker, create a miracle with your own hands. These magical boxes will decorate your evening with a girlfriend or friend, or with a loved one, or give you complete freedom and meditative silence to create a candle on your own. In each box, you will receive an instruction that will help you get everything right."
       }
     },
+    "boxDetails": {
+      "relatedProducts": {
+        "title": "You may also like"
+      }
+    },
     "paymentAndDelivery": {
       "header": {
         "title": "Payment and Delivery"
@@ -206,8 +211,16 @@
     "coconutCandles": "Scented coconut candles",
     "palmCandles": "Scented palm candles",
     "boxes": "Gift boxes",
+    "createYourOwn": "Create you own",
     "privacyPolicy": "Privacy policy",
+    "paymentAndDelivery": "Payment and delivery"
+  },
+
+  "navigation": {
+    "home": "Home",
+    "createYourOwn": "Create Yourself",
     "paymentAndDelivery": "Payment and delivery",
-    "createYourOwn": "Create Yourself"
+    "boxes": "Boxes",
+    "privacyPolicy": "Privacy policy"
   }
 }

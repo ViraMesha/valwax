@@ -1,4 +1,4 @@
-import { CandleI } from '../candleData';
+import { CandleI } from '../../../../lib/types';
 import CandleItemCard from '../CandleItemCard/CandleItemCard';
 
 import styles from './CandleList.module.scss';

@@ -49,7 +49,7 @@ export const navigationTranslations: Record<string, Record<string, string>> = {
   en: {
     Головна: 'Home',
     Свічки: 'Candles',
-    'Створи Сам': 'Create Yourself',
+    'Створи Сам': 'Create your own',
     Бокси: 'Boxes',
     'Оплата та Доставка': 'Payment and delivery',
     'Соєві свічки': 'Soy candles',

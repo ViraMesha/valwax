@@ -3,29 +3,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
-import Slider, { Settings } from 'react-slick';
+import Slider from 'react-slick';
 import { avenir } from '@components/app/fonts';
 
 import Container from '../Container/Container';
+import ReusableSlider from '../ReusableSlider/ReusableSlider';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
 
 import { generateHeroCards } from './heroCards';
 
 import styles from './Hero.module.scss';
-
-const sliderSettings: Settings = {
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  infinite: false,
-  dots: true,
-  arrows: false,
-  draggable: true,
-  swipe: true,
-  appendDots: (dots: React.ReactNode) => <ul>{dots}</ul>,
-  dotsClass: styles['dots'],
-  customPaging: () => <button></button>,
-};
 
 interface HeroI {
   dict: { heading: string[][]; buttonText: string };
@@ -41,16 +29,14 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
   const disableNextButton = currentSlide === heroData.length - 1;
 
   const handlePrevClick = () => {
-    if (!disablePrevButton && sliderRef.current) {
+    if (sliderRef.current) {
       sliderRef.current.slickPrev();
-      setCurrentSlide(prev => prev - 1);
     }
   };
 
   const handleNextClick = () => {
-    if (!disableNextButton && sliderRef.current) {
+    if (sliderRef.current) {
       sliderRef.current.slickNext();
-      setCurrentSlide(prev => prev + 1);
     }
   };
 
@@ -79,6 +65,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
                 disablePrevButton ? styles.disabled : ''
               }`}
               disabled={disablePrevButton}
+              aria-label="Previous Slide"
             >
               <HiOutlineChevronLeft className={styles.arrowIcon} />
             </button>
@@ -88,15 +75,15 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
                 disableNextButton ? styles.disabled : ''
               }`}
               disabled={disableNextButton}
+              aria-label="Next Slide"
             >
               <HiOutlineChevronRight className={styles.arrowIcon} />
             </button>
           </div>
-          <Slider
+          <ReusableSlider
             ref={sliderRef}
-            speed={700}
-            {...sliderSettings}
             beforeChange={(prev, next) => setCurrentSlide(next)}
+            dotsStyles={styles.dots}
           >
             {heroData.map(({ id, backgroundImage, headings }) => (
               <div key={id} className={styles.slider_body}>
@@ -136,7 +123,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
                 </div>
               </div>
             ))}
-          </Slider>
+          </ReusableSlider>
         </div>
       </Container>
     </Section>

@@ -1,8 +1,8 @@
-import Breadcrumbs from "@components/components/Breadcrumbs/Breadcrumbs";
-import PaymentAndDeliveryInfo from "@components/components/PaymentAndDeliveryInfo/PaymentAndDeliveryInfo";
+import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
+import PaymentAndDeliveryInfo from '@components/components/PaymentAndDeliveryInfo/PaymentAndDeliveryInfo';
 
 import { Locale } from '../../../../i18n-config';
-import { getDictionary } from "../../../../lib/dictionary";
+import { getDictionary } from '../../../../lib/utils/dictionary';
 
 const PaymentAndDelivery = async ({
   params: { lang },

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Typography from '@components/components/Typography/Typography';
 
-import { CandleI } from '../candleData';
+import { CandleI } from '../../../../lib/types';
 
 import styles from './CandleItemCard.module.scss';
 

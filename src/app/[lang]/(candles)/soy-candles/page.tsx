@@ -2,8 +2,8 @@ import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlesPage from '@components/components/CandlePage/CandlePage';
 import Tabs from '@components/components/Tabs/Tabs';
 
-import { Locale } from '../../../../../i18n-config';
-import { getDictionary } from '../../../../../lib/dictionary';
+import { Locale } from '../../../../i18n-config';
+import { getDictionary } from '../../../../lib/utils/dictionary';
 
 const SoyCandles = async ({
   params: { lang },
@@ -24,8 +24,8 @@ const SoyCandles = async ({
         ]}
         lang={lang}
       />
-      <Tabs dict={page.candles.tabs} lang={lang} />
-      <CandlesPage dict={page.candles.soyCandles} />
+      <Tabs dict={page.soyCandles.tabs} />
+      <CandlesPage dict={page.soyCandles} />
     </>
   );
 };
