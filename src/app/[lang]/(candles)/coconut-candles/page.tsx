@@ -3,7 +3,7 @@ import CandlesPage from '@components/components/CandlePage/CandlePage';
 import Tabs from '@components/components/Tabs/Tabs';
 
 import { Locale } from '../../../../../i18n-config';
-import { getDictionary } from '../../../../../lib/dictionary';
+import { getDictionary } from '../../../../../lib/utils/dictionary';
 
 const CoconutCandles = async ({
   params: { lang },
