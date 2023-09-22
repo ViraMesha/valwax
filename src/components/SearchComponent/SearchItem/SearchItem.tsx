@@ -1,3 +1,5 @@
+import styles from './SearchItem.module.scss';
+
 interface SearchItemProps {
   result: SearchResult;
 }
@@ -8,7 +10,7 @@ interface SearchResult {
 }
 
 const SearchItem: React.FC<SearchItemProps> = ({ result }) => {
-  return <li>{result.text}</li>;
+  return <li className={styles.searchItem}>{result.text}</li>;
 };
 
 export default SearchItem;
