@@ -27,7 +27,7 @@ const Compass: React.FC<CompassI> = ({ dict, lang }) => {
         {/* <h2>Navigation section</h2> */}
         <div className={styles.wrapper}>
           <Link
-            href={`/${lang}/candles`}
+            href={`/${lang}/soy-candles`}
             className={`${styles.candle} ${styles.card}`}
           >
             <Image

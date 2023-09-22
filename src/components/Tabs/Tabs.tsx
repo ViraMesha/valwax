@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useWindowSize } from 'usehooks-ts';
 
+import { Locale } from '../../../i18n-config';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
@@ -16,12 +17,13 @@ import styles from './Tabs.module.scss';
 
 interface TabsI {
   dict: {
-    fullTitle: string[],
-    abbreviatedTitle: string[]
+    fullTitle: string[];
+    abbreviatedTitle: string[];
   };
+  lang: Locale
 }
 
-const Tabs: React.FC<TabsI> = ({ dict }) => {
+const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   const [isTabsMenuOpen, setIsTabsMenuOpen] = useState(false);
   const pathname = usePathname();
   const { width } = useWindowSize();
@@ -48,7 +50,7 @@ const Tabs: React.FC<TabsI> = ({ dict }) => {
                       }`}
                     >
                       <Link
-                        href={item.link}
+                        href={`/${lang}${item.link}`}
                         className={styles.link}
                         onClick={toggleTabsMenu}
                       >
@@ -79,7 +81,7 @@ const Tabs: React.FC<TabsI> = ({ dict }) => {
                       }`}
                     >
                       <Link
-                        href={item.link}
+                        href={`/${lang}${item.link}`}
                         className={styles.link}
                         onClick={toggleTabsMenu}
                       >
@@ -106,7 +108,7 @@ const Tabs: React.FC<TabsI> = ({ dict }) => {
                     isCurrent(item.link) ? styles.current : ''
                   }`}
                 >
-                  <Link href={item.link} className={styles.link}>
+                  <Link href={`/${lang}${item.link}`} className={styles.link}>
                     <Typography
                       variant="bodyRegular"
                       className={styles.title}
