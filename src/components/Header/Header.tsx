@@ -14,7 +14,7 @@ import sm_logo from '../../../public/images/icons/sm-logo.svg';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
-import Search from '../Search/Search';
+import Search from '../SearchComponent/Search/Search';
 
 import LanguageMenu from './LanguageMenu/LanguageMenu';
 
