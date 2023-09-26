@@ -14,6 +14,7 @@ export interface CandleI {
   img: string;
   title: string;
   price: string;
+  link?: string;
 }
 
 export interface CandleDetailsI {
