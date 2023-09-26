@@ -1,15 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
 
 import { CandleI } from '../../../../lib/types';
 
 import styles from './CandleItemCard.module.scss';
 
-const CandleItemCard: React.FC<CandleI> = ({ img, title, price, link }) => {
+const CandleItemCard: React.FC<CandleI> = ({ id, img, title, price }) => {
+  const pathname = usePathname();
+  const isCurrent = pathname.split('/')[2];
   return (
     <li className={styles.card}>
-      <Link href={link}>
+      <Link href={`${isCurrent}/${id}`}>
         <div className={styles.img_container}>
           <Image
             src={img}
