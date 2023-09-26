@@ -14,11 +14,11 @@ import sm_logo from '../../../public/images/icons/sm-logo.svg';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
-import Search from '../Search/Search';
+import Search from '../SearchComponent/Search/Search';
 
 import LanguageMenu from './LanguageMenu/LanguageMenu';
 
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 
 const Header = ({ lang }: { lang: Locale }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

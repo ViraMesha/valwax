@@ -1,10 +1,3 @@
-interface SimilarBoxI {
-  id: string;
-  image: string;
-  title: string;
-  price: string;
-}
-
 export interface BoxDetailsI {
   id: string;
   images: string[];
@@ -13,5 +6,13 @@ export interface BoxDetailsI {
   aroma: string[];
   components: string[];
   description: string;
-  similar: SimilarBoxI[];
+  similar: CandleI[];
+}
+
+export interface CandleI {
+  id: string;
+  img: string;
+  title: string;
+  price: string;
+  link: string;
 }

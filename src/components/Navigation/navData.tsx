@@ -24,10 +24,10 @@ export const candlesMenuItems: CandlesMenuItem[] = [
 ];
 
 export const navLinks: NavLink = {
-  Головна: '/',
+  Головна: '',
   Свічки: '/candles',
-  'Соєві свічки': '/candles',
-  // 'Соєві свічки': '/soy-candles',
+  // 'Соєві свічки': '/candles',
+  'Соєві свічки': '/soy-candles',
   'Кокосові свічки': '/coconut-candles',
   'Пальмові свічки': '/palm-candles',
   'Створи Сам': '/create-your-own',
@@ -49,7 +49,7 @@ export const navigationTranslations: Record<string, Record<string, string>> = {
   en: {
     Головна: 'Home',
     Свічки: 'Candles',
-    'Створи Сам': 'Create Yourself',
+    'Створи Сам': 'Create your own',
     Бокси: 'Boxes',
     'Оплата та Доставка': 'Payment and delivery',
     'Соєві свічки': 'Soy candles',

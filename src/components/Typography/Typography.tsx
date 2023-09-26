@@ -1,3 +1,5 @@
+import React, { CSSProperties } from 'react';
+
 import styles from './Typography.module.scss';
 
 // Defining the HTML tag that the component will support
@@ -20,6 +22,8 @@ const variantsMapping = {
   bodyS: 'p',
   bodyS2: 'p',
   subheadingRegular: 'h4',
+  exLargeBold: 'h3',
+  bodyLarge: 'p',
 } as const;
 
 interface Props {
@@ -51,7 +55,7 @@ const Typography: React.FC<Props> = ({
   } ${className || ''}`;
 
   return (
-    <Component className={textClassName} {...props} style={{ color: color }}>
+    <Component className={textClassName} {...props} style={{ color }}>
       {children}
     </Component>
   );

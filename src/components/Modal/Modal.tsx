@@ -1,4 +1,4 @@
-import React, { FC} from 'react';
+import React, { FC } from 'react';
 import { createPortal } from 'react-dom';
 
 import styles from './Modal.module.scss';
@@ -9,7 +9,6 @@ interface ModalProps {
 }
 
 const Modal: FC<ModalProps> = ({ children, onBackdropClick }) => {
- 
   return createPortal(
     <div
       className={styles.backdrop}

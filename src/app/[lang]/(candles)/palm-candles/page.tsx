@@ -2,10 +2,14 @@ import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlesPage from '@components/components/CandlePage/CandlePage';
 import Tabs from '@components/components/Tabs/Tabs';
 
-import { Locale } from '../../../../i18n-config';
-import { getDictionary } from '../../../../lib/dictionary';
+import { Locale } from '../../../../../i18n-config';
+import { getDictionary } from '../../../../../lib/utils/dictionary';
 
-const Candles = async ({ params: { lang } }: { params: { lang: Locale } }) => {
+const PalmCandles = async ({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) => {
   const { breadcrumbs } = await getDictionary(lang);
   const { page } = await getDictionary(lang);
   return (
@@ -13,16 +17,16 @@ const Candles = async ({ params: { lang } }: { params: { lang: Locale } }) => {
       <Breadcrumbs
         items={[
           {
-            label: breadcrumbs.soyCandles,
-            path: `/candles`,
+            label: breadcrumbs.palmCandles,
+            path: `/palm-candles`,
           },
         ]}
         lang={lang}
       />
-      <Tabs dict={page.soyCandles.tabs}/>
-      <CandlesPage dict={page.soyCandles} />
+      <Tabs dict={page.candles.tabs} lang={lang} />
+      <CandlesPage dict={page.candles.palmCandles} />
     </>
   );
 };
 
-export default Candles;
+export default PalmCandles;
