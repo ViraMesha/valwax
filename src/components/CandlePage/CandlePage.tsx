@@ -10,18 +10,20 @@ interface CandlesPageI {
       title: string;
       text: string;
     };
-    filter: any
   };
+  dictFilter: {
+    filter: any;
+  }
 }
 
-const CandlesPage: React.FC<CandlesPageI> = ({ dict }) => {
+const CandlesPage: React.FC<CandlesPageI> = ({ dict, dictFilter }) => {
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1230;
   const isSmallScreen = width < 1230;
   return (
     <>
       {isLargeScreen && <WaxDesc dict={dict.waxDesc} />}
-      <CandlesSection dict={dict}/>
+      <CandlesSection dict={dictFilter}/>
       {isSmallScreen && <WaxDesc dict={dict.waxDesc} />}
     </>
   );

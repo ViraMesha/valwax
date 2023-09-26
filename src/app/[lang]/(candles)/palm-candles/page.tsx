@@ -24,7 +24,7 @@ const PalmCandles = async ({
         lang={lang}
       />
       <Tabs dict={page.candles.tabs} lang={lang} />
-      <CandlesPage dict={page.candles.palmCandles} />
+      <CandlesPage dict={page.candles.palmCandles} dictFilter={page.candles}/>
     </>
   );
 };
