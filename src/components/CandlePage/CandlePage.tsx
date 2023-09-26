@@ -10,6 +10,7 @@ interface CandlesPageI {
       title: string;
       text: string;
     };
+    filter: any
   };
 }
 
@@ -20,7 +21,7 @@ const CandlesPage: React.FC<CandlesPageI> = ({ dict }) => {
   return (
     <>
       {isLargeScreen && <WaxDesc dict={dict.waxDesc} />}
-      <CandlesSection />
+      <CandlesSection dict={dict}/>
       {isSmallScreen && <WaxDesc dict={dict.waxDesc} />}
     </>
   );
