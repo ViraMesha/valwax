@@ -18,11 +18,8 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({ dict, className }
         {dict.title}
       </Typography>
       <ul className={styles.list}>
-      {/* <div className={styles.wrapperList}> */}
-
         {dict.option.map((item: string) => (
           <li key={item}>
-            {/* <button className={styles.btn}> */}
               <label className={styles.checkbox}>
                 <input type="checkbox" name={styles.subtitle} value={item} className={`${styles.visuallyHidden} ${styles.input}`}/>
                 <div className={styles.check}>
@@ -30,10 +27,8 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({ dict, className }
                 </div>
                 <Typography variant="bodyRegular" className={styles.typography}>{item}</Typography>
               </label>
-            {/* </button> */}
           </li>
         ))}
-        {/* </div> */}
       </ul>
     </div>
   );

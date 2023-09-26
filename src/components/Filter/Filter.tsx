@@ -3,6 +3,7 @@ import Typography from '../Typography/Typography';
 import FilterCategoryBlock from './FilterCatBlock/FilterCategoryBlock';
 
 import styles from './Filter.module.scss';
+import Button from '../Button/Button';
 
 interface FilterI {
   dict: {
@@ -10,6 +11,8 @@ interface FilterI {
     subtitle: string;
     up: string;
     down: string;
+    cleanUp: string;
+    result: string;
     category: any;
   };
 }
@@ -31,9 +34,28 @@ const Filter: React.FC<FilterI> = ({ dict }) => {
           <Typography variant="bodyRegular">{dict.down}</Typography>
         </button>
       </div>
-      <FilterCategoryBlock dict={dict.category.aroma} className={styles.aromaBlock}/>
-      <FilterCategoryBlock dict={dict.category.color} className={styles.colorBlock}/>
-      <FilterCategoryBlock dict={dict.category.container} className={styles.containerBlock}/>
+      <FilterCategoryBlock
+        dict={dict.category.aroma}
+        className={styles.aromaBlock}
+      />
+      <FilterCategoryBlock
+        dict={dict.category.color}
+        className={styles.colorBlock}
+      />
+      <FilterCategoryBlock
+        dict={dict.category.container}
+        className={styles.containerBlock}
+      />
+      {false && (
+        <div className={styles.wrapperBtn}>
+          <Button variant="dark">
+            <Typography>{dict.cleanUp}</Typography>
+          </Button>
+          <Button variant="light">
+            <Typography>{dict.result}</Typography>
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

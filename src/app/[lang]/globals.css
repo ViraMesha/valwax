@@ -90,16 +90,16 @@ button {
   font-family: inherit;
 }
 
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
   width: 16px;
 }
 
-::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   background: var(--cl-gray-200);
 }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
 
   background: var(--cl-gray-500);
-  border-radius: 4px;
+  border-radius: 8px;
 }

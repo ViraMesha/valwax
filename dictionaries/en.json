@@ -43,6 +43,8 @@
         "subtitle": "Price",
         "up": "From lower to higher",
         "down": "From higher to lower",
+        "cleanUp": "Clean up",
+        "result": "Result",
         "category": {
           "aroma": {
             "title": "Aroma",

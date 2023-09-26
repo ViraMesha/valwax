@@ -5,7 +5,7 @@ import styles from './Button.module.scss';
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   children?: React.ReactNode;
-  variant: 'primary' | 'secondary' | 'tertiary';
+  variant: 'primary' | 'secondary' | 'tertiary' | 'dark' | 'light';
   hasIcon?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
