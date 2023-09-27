@@ -7,18 +7,17 @@
 }
 
 .related_products_title {
-  margin-bottom: 40px;
-  @include breakpoint('only-mobile') {
-    font-size: 36px;
-  }
-}
+  margin-bottom: 24px;
+  text-align: center;
+  line-height: 1.4;
 
-.related_products_title::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 1px;
-  background-color: var(--cl-gray-500);
+  @include breakpoint('tablet-small-and-up') {
+    font-size: 24px;
+  }
+
+  @include breakpoint('desktop-large') {
+    margin-bottom: 40px;
+  }
 }
 
 .card {
@@ -48,22 +47,21 @@
 .img_container {
   position: relative;
   height: 170px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 
   @include breakpoint('mobile-large') {
     height: 183px;
-  }
-
-  @include breakpoint('mobile-large-and-up') {
-    margin-bottom: 16px;
   }
 
   @include breakpoint('tablet-small') {
     height: 314px;
   }
 
+  @include breakpoint('tablet-small-and-up') {
+    margin-bottom: 24px;
+  }
+
   @include breakpoint('tablet-large') {
-    margin-bottom: 16px;
     height: 183px;
   }
 
@@ -81,8 +79,13 @@
 }
 
 .title {
-  color: var(--cl-gray-400);
+  color: var(--cl-gray-500);
   transition: color var(--animat);
+  margin-bottom: 12px;
+
+  @include breakpoint('tablet-small-and-up') {
+    margin-bottom: 16px;
+  }
 }
 
 .title:hover,
@@ -93,7 +96,7 @@
 .price_container {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .price {
@@ -101,11 +104,11 @@
   font-weight: 700;
   line-height: 1.54;
   text-transform: uppercase;
-  color: var(--cl-gray-700);
+  color: var(--cl-gray-800);
 }
 
 .price_container span {
-  color: var(--cl-gray-700);
+  color: var(--cl-gray-800);
 }
 
 /* Styles for dots*/

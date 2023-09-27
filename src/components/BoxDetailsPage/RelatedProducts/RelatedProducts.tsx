@@ -35,6 +35,7 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
         <Typography
           variant="subheadingBold"
           className={styles.related_products_title}
+          color="var(--cl-primary-800)"
         >
           {dict.title}
         </Typography>
