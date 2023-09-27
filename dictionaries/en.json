@@ -30,19 +30,19 @@
       }
     },
     "candles": {
-      "soyCandles": {
+      "soy-candles": {
         "waxDesc": {
           "title": "Why soy?",
           "text": "Soy wax is safe. It is not toxic and does not evaporate harmful substances. The low melting point allows you to use candles as long as possible. It is a vegetable wax that is produced from soybeans - a natural and restorative product. Soy wax has a good performance in the solid and molten state of both essential oils and specially formulated synthetic oils."
         }
       },
-      "palmCandles": {
+      "palm-candles": {
         "waxDesc": {
           "title": "Why palm?",
           "text": "Palm wax is obtained from the fruits of palm trees that grow in tropical regions. Palm wax has a high melting point, which allows candles to burn longer. You will enjoy the warm and cozy atmosphere created by candles with palm wax for a long time. And the frosty patterns of palm wax will enchant you."
         }
       },
-      "coconutCandles": {
+      "coconut-candles": {
         "waxDesc": {
           "title": "Why coconut?",
           "text": "Coconut wax is a natural product. By choosing coconut wax for your candles, you help preserve the environment and support nature. This wax has a natural and pleasant coconut aroma, which adds a special charm to your candles. It creates a warm and cozy atmosphere in any room. Most often used for massage candles."
@@ -207,9 +207,9 @@
   },
 
   "breadcrumbs": {
-    "soyCandles": "Scented soy candles",
-    "coconutCandles": "Scented coconut candles",
-    "palmCandles": "Scented palm candles",
+    "soy-candles": "Scented soy candles",
+    "coconut-candles": "Scented coconut candles",
+    "palm-candles": "Scented palm candles",
     "boxes": "Gift boxes",
     "createYourOwn": "Create you own",
     "privacyPolicy": "Privacy policy",

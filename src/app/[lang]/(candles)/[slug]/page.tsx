@@ -5,28 +5,30 @@ import Tabs from '@components/components/Tabs/Tabs';
 import { Locale } from '../../../../../i18n-config';
 import { getDictionary } from '../../../../../lib/utils/dictionary';
 
-const PalmCandles = async ({
-  params: { lang },
+export default async function Page({
+  params: { slug, lang },
 }: {
-  params: { lang: Locale };
-}) => {
+  params: {
+    slug: 'soy-candles' | 'coconut-candles' | 'palm-candles';
+    lang: Locale;
+  };
+}) {
   const { breadcrumbs } = await getDictionary(lang);
   const { page } = await getDictionary(lang);
+
   return (
     <>
       <Breadcrumbs
         items={[
           {
-            label: breadcrumbs.palmCandles,
-            path: `/palm-candles`,
+            label: breadcrumbs[slug],
+            path: `/${slug}`,
           },
         ]}
         lang={lang}
       />
       <Tabs dict={page.candles.tabs} lang={lang} />
-      <CandlesPage dict={page.candles.palmCandles} />
+      <CandlesPage dict={page.candles[slug]} />
     </>
   );
-};
-
-export default PalmCandles;
+}

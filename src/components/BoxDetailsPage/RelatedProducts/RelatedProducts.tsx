@@ -41,7 +41,7 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
         <ReusableSlider slidesToShow={slidesToShow} dotsStyles={styles.dots}>
           {relatedProducts.map(({ id, link, img, title, price }: CandleI) => (
             <div key={id} className={styles.card}>
-              <Link href={link}>
+              <Link href={`${link}`}>
                 <div className={styles.img_container}>
                   <Image
                     src={img}

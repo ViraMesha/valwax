@@ -1,4 +1,3 @@
-import React from 'react';
 import BoxDetailsPage from '@components/components/BoxDetailsPage/BoxDetailsPage';
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 
