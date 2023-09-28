@@ -9,7 +9,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
 
     const fakeBoxDetails: BoxDetailsI = {
       id: '1',
-      images: [img1.src, img2.src],
+      images: [img1.src, img2.src, img1.src, img2.src],
       title: 'Бокс - Мінімал',
       price: ' 355,00 ',
       aroma: [

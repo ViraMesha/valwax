@@ -1,8 +1,8 @@
 import { BoxDetailsI } from '../../../lib/types';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
+import ProductImgGallery from '../shared/ProductImgGallery/ProductImgGallery';
 
-import BoxDetailsGallery from './BoxDetailsGallery/BoxDetailsGallery';
 import RelatedProducts from './RelatedProducts/RelatedProducts';
 
 import styles from './BoxDetailsPage.module.scss';
@@ -21,7 +21,7 @@ const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({ product, dict }) => {
     <>
       <Section id={styles.gallery_details_section}>
         <Container>
-          <BoxDetailsGallery images={product.images} />
+          <ProductImgGallery images={product.images} />
         </Container>
       </Section>
       <RelatedProducts
