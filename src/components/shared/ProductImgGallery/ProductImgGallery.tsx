@@ -1,13 +1,14 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+import ReusableSlider from '@components/components/ReusableSlider/ReusableSlider';
 
 import styles from './ProductImgGallery.module.scss';
 
 const ProductImgGallery = ({ images }: { images: string[] }) => {
+  const totalImages = images.length;
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const totalImages = images.length;
   const initialPercentage = ((activeImageIndex + 1) / totalImages) * 100;
 
   const [progressBarHeight, setProgressBarHeight] = useState(initialPercentage);
@@ -20,23 +21,28 @@ const ProductImgGallery = ({ images }: { images: string[] }) => {
 
   return (
     <div className={styles.product_detail_images__wrapper}>
-      <ul className={styles.product_detail_images__img_container}>
-        {images.map((_, i) => (
-          <li key={i}>
-            <Image
-              className={styles.product_detail_images__image}
-              src={images[activeImageIndex]}
-              priority
-              fill
-              alt="Candle-making kit in a box"
-              sizes="(min-width: 1230) 458px,
+      <div className={styles.product_detail_images__img_container}>
+        <ReusableSlider vertical verticalSwiping>
+          {images.map((_, i) => (
+            <div
+              key={i}
+              className={styles.product_detail_images__img_inner_container}
+            >
+              <Image
+                className={styles.product_detail_images__image}
+                src={images[activeImageIndex]}
+                priority
+                fill
+                alt="Candle-making kit in a box"
+                sizes="(min-width: 1230) 458px,
               (min-width: 1024) 604px,
               (min-width: 768) 358px,
               100%"
-            />
-          </li>
-        ))}
-      </ul>
+              />
+            </div>
+          ))}
+        </ReusableSlider>
+      </div>
       <div className={styles.product_detail_images__progress_bar}>
         <div
           className={styles.product_detail_images__progress_bar_progress}
