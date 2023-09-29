@@ -1,3 +1,5 @@
+import { useWindowSize } from 'usehooks-ts';
+
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 
@@ -18,8 +20,14 @@ interface FilterI {
 }
 
 const Filter: React.FC<FilterI> = ({ dict }) => {
+
+  const { width } = useWindowSize();
+  const isLargeScreen = width >= 1230;
+
   return (
     <div className={styles.wrapper}>
+
+    <div className={styles.wrapperFilter}>
       <Typography variant="bodyL" className={styles.title}>
         {dict.title}
       </Typography>
@@ -41,22 +49,23 @@ const Filter: React.FC<FilterI> = ({ dict }) => {
       <FilterCategoryBlock
         dict={dict.category.color}
         className={styles.colorBlock}
-      />
+        />
       <FilterCategoryBlock
         dict={dict.category.container}
         className={styles.containerBlock}
-      />
-      {false && (
+        />
+          </div>
+      {!isLargeScreen && (
         <div className={styles.wrapperBtn}>
-          <Button variant="dark">
+          <Button variant="dark" className={styles.button}>
             <Typography>{dict.cleanUp}</Typography>
           </Button>
-          <Button variant="light">
+          <Button variant="light" className={styles.button}>
             <Typography>{dict.result}</Typography>
           </Button>
         </div>
       )}
-    </div>
+      </div>
   );
 };
 

@@ -1,6 +1,13 @@
 @import '../../scss/utilities/breakpoint-mixin.scss';
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.wrapperFilter {
   border-radius: 20px;
   border: 1px solid var(--cl-gray-500);
   background-color: var(--cl-white);
@@ -73,4 +80,24 @@
 
 .containerBlock {
   height: 290px;
+}
+
+.button {
+  width: 133px;
+
+  @include breakpoint('only-mobile-small') {
+    padding: 6px 18px;
+  }
+
+  @include breakpoint('tablet-small') {
+    width: 250px;
+  }
+  
+  @include breakpoint('tablet-large') {
+    width: 301px;
+  }
+  
+  @include breakpoint('desktop') {
+    width: 429px;
+  }
 }
