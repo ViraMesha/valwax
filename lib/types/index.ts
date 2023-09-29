@@ -14,5 +14,16 @@ export interface CandleI {
   img: string;
   title: string;
   price: string;
-  link: string;
+  link?: string;
+}
+
+export interface CandleDetailsI {
+  id: string;
+  images: string[];
+  title: string;
+  description: string;
+  price: string;
+  topNotes: string[];
+  baseNotes: string[];
+  size: string;
 }

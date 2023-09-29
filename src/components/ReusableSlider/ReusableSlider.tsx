@@ -46,7 +46,9 @@ const ReusableSlider = forwardRef<ForwardedRefType, ReusableSliderProps>(
       swipe,
       appendDots: (dots: React.ReactNode) => <ul>{dots}</ul>,
       dotsClass: `${styles.dots} ${dotsStyles || ''}`,
-      customPaging: () => <button></button>,
+      customPaging: i => (
+        <button aria-label="Go to the next or previous slide"></button>
+      ),
     };
     return (
       <Slider

@@ -1,6 +1,6 @@
 import img1 from '../../public/images/boxes/boxes_section/box.jpg';
 import img2 from '../../public/images/boxes/boxes_section/box2.jpg';
-import { BoxDetailsI } from '../types';
+import { BoxDetailsI, CandleDetailsI } from '../types';
 import { relatedProducts } from '../utils/relatedProducts';
 
 export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
@@ -35,6 +35,27 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
     };
 
     return fakeBoxDetails;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
+  try {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    const fakeCandleDetails: CandleDetailsI = {
+      id: '1',
+      images: [img1.src, img2.src],
+      title: 'Ароматична свічка Paradise',
+      description: 'Свічка з соєвого воску з ароматом опалого листя.',
+      price: ' 355,00 ',
+      topNotes: ['Кедр', 'пекан'],
+      baseNotes: ['Кедр', 'пекан'],
+      size: '300 мл',
+    };
+
+    return fakeCandleDetails;
   } catch (error) {
     throw error;
   }
