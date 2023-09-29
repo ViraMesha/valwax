@@ -3,6 +3,7 @@
 .wrapper {
   border-radius: 20px;
   border: 1px solid var(--cl-gray-500);
+  background-color: var(--cl-white);
   min-width: 276px;
   height: 1230px;
   padding: 35px;
@@ -10,6 +11,26 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  
+  @include breakpoint('tablet-small') {
+    min-width: 520px;
+    padding-right: 70px;
+    padding-left: 70px;
+  }
+
+  @include breakpoint('tablet-large') {
+    min-width: 622px;
+    padding-right: 90px;
+    padding-left: 90px;
+  }
+
+  @include breakpoint('desktop') {
+    min-width: 878px;
+    padding-right: 120px;
+    padding-left: 120px;
+  }
+
+
 }
 
 .wrapperBtn {

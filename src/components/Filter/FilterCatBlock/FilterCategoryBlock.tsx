@@ -25,7 +25,7 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({ dict, className }
                 <div className={styles.check}>
                   <BsCheck />
                 </div>
-                <Typography variant="bodyRegular" className={styles.typography}>{item}</Typography>
+                <Typography variant="bodyRegular" className={styles.typography} color='--cl-gray-200'>{item}</Typography>
               </label>
           </li>
         ))}

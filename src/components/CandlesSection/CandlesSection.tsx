@@ -1,3 +1,5 @@
+import { useWindowSize } from 'usehooks-ts';
+
 import Container from '../Container/Container';
 import Filter from '../Filter/Filter';
 import Section from '../Section/Section';
@@ -14,10 +16,14 @@ interface CandlesSectionI {
 }
 
 const CandlesSection: React.FC<CandlesSectionI> = ({dict}) => {
+
+  const { width } = useWindowSize();
+  const isLargeScreen = width >= 1230;
+
   return (
     <Section className={styles.section}>
       <Container className={styles.container}>
-        <Filter dict={dict.filter}/>
+        {isLargeScreen && <Filter dict={dict.filter}/>}
         <CandleList items={candleData} />
       </Container>
     </Section>

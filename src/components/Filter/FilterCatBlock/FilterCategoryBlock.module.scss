@@ -1,3 +1,4 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
 
 .wrapper {
   display: flex;
@@ -14,8 +15,20 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  overflow: auto;
   max-width: 204px;
+  overflow: auto;
+  color: var(--cl-gray-200);
+  
+  @include breakpoint('tablet-small') {
+    max-width: 100%;
+  }
+  @include breakpoint('tablet-large') {
+    max-width: 100%;
+  }
+  @include breakpoint('desktop') {
+    max-width: 100%;
+  }
+
   &::-webkit-scrollbar {
     width: 10px;
     // border-radius: 5px;

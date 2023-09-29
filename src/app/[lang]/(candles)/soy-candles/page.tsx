@@ -24,8 +24,8 @@ const SoyCandles = async ({
         ]}
         lang={lang}
       />
-      <Tabs dict={page.candles.tabs} lang={lang} />
-      <CandlesPage dict={page.candles.soyCandles} dictFilter={page.candles}/>
+      {/* <Tabs dict={page.candles.tabs} lang={lang} /> */}
+      <CandlesPage dictWax={page.candles.soyCandles} dict={page.candles} lang={lang}/>
     </>
   );
 };

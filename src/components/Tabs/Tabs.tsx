@@ -3,11 +3,15 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { IoOptionsOutline } from 'react-icons/io5';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import useModal from '@components/hooks/useModal';
 import { useWindowSize } from 'usehooks-ts';
 
 import { Locale } from '../../../i18n-config';
 import Container from '../Container/Container';
+import Filter from '../Filter/Filter';
+import Modal from '../Modal/Modal';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
 
@@ -17,10 +21,21 @@ import styles from './Tabs.module.scss';
 
 interface TabsI {
   dict: {
-    fullTitle: string[];
-    abbreviatedTitle: string[];
+    tabs: {
+      fullTitle: string[];
+      abbreviatedTitle: string[];
+    };
+    filter: {
+      title: string;
+      subtitle: string;
+      up: string;
+      down: string;
+      cleanUp: string;
+      result: string;
+      category: any;
+    };
   };
-  lang: Locale
+  lang: Locale;
 }
 
 const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
@@ -30,6 +45,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   const isCurrent = (link: string) => link === `/${pathname.split('/')[2]}`;
   const isSmallScreen = width < 1230;
   const isMobScreen = width < 667;
+  const { isModal, toggleModal, onBackdropClick } = useModal();
 
   const toggleTabsMenu = () => {
     setIsTabsMenuOpen(!isTabsMenuOpen);
@@ -40,7 +56,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
       <Container className={styles.container}>
         <ul className={styles.list}>
           {isMobScreen
-            ? tabsData(dict).reduce((acc: any, item: tabsI) => {
+            ? tabsData(dict.tabs).reduce((acc: any, item: tabsI) => {
                 if (isCurrent(item.link)) {
                   acc.unshift(
                     <li
@@ -101,7 +117,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                 }
                 return acc;
               }, [])
-            : tabsData(dict).map((item: tabsI, index: number) => (
+            : tabsData(dict.tabs).map((item: tabsI, index: number) => (
                 <li
                   key={index}
                   className={`${styles.item} ${
@@ -124,6 +140,22 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                 </li>
               ))}
         </ul>
+        {isSmallScreen && (
+          <button className={styles.btn} onClick={toggleModal}>
+            <Typography variant="bodyRegular" color={'var(--cl-primary-200)'}>
+              +3
+            </Typography>
+            <IoOptionsOutline />
+            <Typography variant="bodyRegular" color={'var(--cl-gray-500)'}>
+              {dict.filter.title}
+            </Typography>
+          </button>
+        )}
+        {isModal && (
+          <Modal onBackdropClick={onBackdropClick} className={styles.backdrop}>
+            <Filter dict={dict.filter} />
+          </Modal>
+        )}
       </Container>
     </Section>
   );

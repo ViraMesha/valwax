@@ -23,8 +23,8 @@ const CoconutCandles = async ({
         ]}
         lang={lang}
       />
-      <Tabs dict={page.candles.tabs} lang={lang} />
-      <CandlesPage dict={page.candles.coconutCandles} dictFilter={page.candles}/>
+      {/* <Tabs dict={page.candles.tabs} lang={lang} /> */}
+      <CandlesPage dictWax={page.candles.coconutCandles} dict={page.candles} lang={lang}/>
     </>
   );
 };

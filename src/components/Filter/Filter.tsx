@@ -1,9 +1,9 @@
+import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 
 import FilterCategoryBlock from './FilterCatBlock/FilterCategoryBlock';
 
 import styles from './Filter.module.scss';
-import Button from '../Button/Button';
 
 interface FilterI {
   dict: {

@@ -2,7 +2,6 @@
 
 .section {
 
-
   padding-bottom: 30px;
 
   @include breakpoint('mobile-large-and-up') {
@@ -16,9 +15,12 @@
 
 .container {
   position: relative;
+  display: flex;
+  gap: 8px;
 
   @include breakpoint('only-mobile-small') {
     height: 40px;
+    gap: 16px;
   }
 }
 
@@ -46,6 +48,7 @@
   text-align: center;
   height: 40px;
 
+
   @include breakpoint('only-mobile-small') {
     flex-direction: column;
     border: none
@@ -60,7 +63,7 @@
   }
 
   @include breakpoint('desktop') {
-    width: 240px;
+    width: 270px;
   }
 
   @include breakpoint('desktop-large') {
@@ -74,13 +77,9 @@
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
-  padding: 0px 36px;
   cursor: pointer;
-  
-  @include breakpoint('mobile-large-and-up') {
-    justify-content: center;
-  }
 }
 
 .current {
@@ -95,5 +94,43 @@
 
   @include breakpoint('desktop-large') {
     font-size: 22px;
+  }
+}
+
+.btn {
+  border: 1px solid var(--cl-primary-100);
+  border-radius: 20px;
+  text-align: center;
+  height: 40px;
+  background-color: var(--cl-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 156px;
+
+  @include breakpoint('only-mobile-small') {
+    position: absolute;
+    right: 24px;
+  }
+}
+
+.backdrop {
+  background-color: var(--cl-white);
+  overflow: auto;
+  padding-top: 160px;
+  padding-bottom: 0px;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    // border-radius: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--cl-gray-200);
+  }
+  &::-webkit-scrollbar-thumb {
+    // width: 8px;
+    background: var(--cl-gray-500);
+    border-radius: 4px;
   }
 }
