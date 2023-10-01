@@ -33,7 +33,7 @@ const BoxDetails = async ({
         ]}
         lang={lang}
       />
-      <BoxDetailsPage product={product} dict={page.boxDetails} />
+      <BoxDetailsPage product={product} dict={page.relatedProducts} />
     </>
   );
 };

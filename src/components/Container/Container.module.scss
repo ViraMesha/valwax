@@ -6,8 +6,8 @@
 
   /*Mobile styles (from 0 to 374.98px )*/
   @include breakpoint('mobile-small') {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   /*Mobile styles (from 375x to 666.98px)*/
@@ -45,6 +45,3 @@
     padding-right: 15px;
   }
 }
-
-
-

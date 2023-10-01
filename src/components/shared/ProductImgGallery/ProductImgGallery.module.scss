@@ -60,7 +60,7 @@
     overflow-y: auto;
   }
 
-  @include breakpoint('mobile-large') {
+  @include breakpoint('only-mobile-small') {
     max-height: 650px;
   }
 

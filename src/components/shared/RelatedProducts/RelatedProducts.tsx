@@ -13,14 +13,12 @@ import styles from './RelatedProducts.module.scss';
 
 interface RelatedProductsI {
   relatedProducts: CandleI[];
-  dict: {
-    title: string;
-  };
+  title: string;
 }
 
 const RelatedProducts: React.FC<RelatedProductsI> = ({
   relatedProducts,
-  dict,
+  title,
 }) => {
   const { width } = useWindowSize();
 
@@ -37,7 +35,7 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
           className={styles.related_products_title}
           color="var(--cl-primary-800)"
         >
-          {dict.title}
+          {title}
         </Typography>
         <ReusableSlider
           slidesToShow={slidesToShow}
@@ -46,7 +44,7 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
         >
           {relatedProducts.map(({ id, link, img, title, price }: CandleI) => (
             <div key={id} className={styles.card}>
-              <Link href={`${link}`}>
+              <Link href={`${link}/${id}`}>
                 <div className={styles.img_container}>
                   <Image
                     src={img}
