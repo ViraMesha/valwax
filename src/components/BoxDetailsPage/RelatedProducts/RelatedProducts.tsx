@@ -39,7 +39,11 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
         >
           {dict.title}
         </Typography>
-        <ReusableSlider slidesToShow={slidesToShow} dotsStyles={styles.dots}>
+        <ReusableSlider
+          slidesToShow={slidesToShow}
+          dots
+          dotsStyles={styles.dots}
+        >
           {relatedProducts.map(({ id, link, img, title, price }: CandleI) => (
             <div key={id} className={styles.card}>
               <Link href={`${link}`}>
