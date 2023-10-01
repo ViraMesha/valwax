@@ -51,6 +51,83 @@
       "tabs": {
         "fullTitle": ["Soy candles", "Coconut candles", "Palm candles"],
         "abbreviatedTitle": ["Soy", "Coconut", "Palm"]
+      },
+      "filter": {
+        "title": "Filter",
+        "subtitle": "Price",
+        "up": "From lower to higher",
+        "down": "From higher to lower",
+        "cleanUp": "Clean up",
+        "result": "Result",
+        "cleanFilter": "Clean the filter",
+        "category": {
+          "aroma": {
+            "title": "Aroma",
+            "option": [
+              "Rose Petals",
+              "Pure cotton",
+              "Cinnamon and Vanilla",
+              "Banana-walnut bread",
+              "Dry Gin",
+              "Fresh coffee",
+              "Pumpkin with spices",
+              "Grapefruit and Mint",
+              "Freshly cut grass",
+              "Black Sea",
+              "Ginger and Spices",
+              "Magnolia and Peony",
+              "Peach Nectar",
+              "Mango and coconut milk",
+              "White sage and lavender",
+              "Fallen leaves",
+              "Cashmere Plum",
+              "Christmas bonfire",
+              "Fraser's Spruce",
+              "Mountain fog",
+              "The smell of the earth after the rain",
+              "Baked milk",
+              "Chocolate",
+              "Banana",
+              "Pine forest",
+              "Caramel",
+              "Jasmine",
+              "Orange",
+              "Cinnamon",
+              "Chanel No. 5"
+            ]
+          },
+          "color": {
+            "title": "Color",
+            "option": [
+              "Yellow",
+              "Red",
+              "Black",
+              "Green",
+              "Blue",
+              "Orange",
+              "Violet",
+              "Lavender",
+              "Blue",
+              "White",
+              "Brown",
+              "Angry",
+              "Pink",
+              "Milk (wax color)"
+            ]
+          },
+          "container": {
+            "title": "Container",
+            "option": [
+              "30 ml",
+              "50 ml",
+              "100 ml",
+              "150 ml",
+              "200 ml",
+              "250 ml",
+              "300 ml"
+            ]
+          }
+        }
       }
     },
 

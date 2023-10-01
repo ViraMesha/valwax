@@ -1,0 +1,103 @@
+@import '../../scss/utilities/breakpoint-mixin.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.wrapperFilter {
+  border-radius: 20px;
+  border: 1px solid var(--cl-gray-500);
+  background-color: var(--cl-white);
+  min-width: 276px;
+  height: 1230px;
+  padding: 35px;
+  color: var(--cl-gray-400);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  
+  @include breakpoint('tablet-small') {
+    min-width: 520px;
+    padding-right: 70px;
+    padding-left: 70px;
+  }
+
+  @include breakpoint('tablet-large') {
+    min-width: 622px;
+    padding-right: 90px;
+    padding-left: 90px;
+  }
+
+  @include breakpoint('desktop') {
+    min-width: 878px;
+    padding-right: 120px;
+    padding-left: 120px;
+  }
+
+
+}
+
+.wrapperBtn {
+  display: flex;
+  gap: 20px;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.title {
+  font-weight: 700;
+  text-transform: uppercase;
+
+}
+
+.subtitle {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: inherit;
+  display: flex;
+}
+
+.aromaBlock {
+  height: 366px;
+}
+
+.colorBlock {
+  height: 214px;
+}
+
+.containerBlock {
+  height: 290px;
+}
+
+.button {
+  width: 133px;
+
+  @include breakpoint('only-mobile-small') {
+    padding: 6px 18px;
+  }
+
+  @include breakpoint('tablet-small') {
+    width: 250px;
+  }
+  
+  @include breakpoint('tablet-large') {
+    width: 301px;
+  }
+  
+  @include breakpoint('desktop') {
+    width: 429px;
+  }
+}
