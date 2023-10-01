@@ -1,4 +1,4 @@
-import { BoxDetailsI } from '../../../lib/types';
+import { BoxDetailsI } from '../../types';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import ProductImgGallery from '../shared/ProductImgGallery/ProductImgGallery';

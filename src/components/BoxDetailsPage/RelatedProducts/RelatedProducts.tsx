@@ -7,7 +7,7 @@ import Section from '@components/components/Section/Section';
 import Typography from '@components/components/Typography/Typography';
 import { useWindowSize } from 'usehooks-ts';
 
-import { CandleI } from '../../../../lib/types';
+import { CandleI } from '../../../types';
 
 import styles from './RelatedProducts.module.scss';
 

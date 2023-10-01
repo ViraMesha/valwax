@@ -1,7 +1,7 @@
 import img1 from '../../public/images/boxes/boxes_section/box.jpg';
 import img2 from '../../public/images/boxes/boxes_section/box2.jpg';
-import { BoxDetailsI, CandleDetailsI } from '../types';
-import { relatedProducts } from '../utils/relatedProducts';
+import { BoxDetailsI, CandleDetailsI } from '../../src/types';
+import { relatedProducts } from '../../src/helpers/relatedProducts';
 
 export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
   try {
