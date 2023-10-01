@@ -6,17 +6,21 @@ import styles from './Modal.module.scss';
 interface ModalProps {
   children: React.ReactNode;
   onBackdropClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+  className?: string;
 }
 
-const Modal: FC<ModalProps> = ({ children, onBackdropClick }) => {
+const Modal: FC<ModalProps> = ({ children, onBackdropClick, className }) => {
+
+  const textClassNames = `${styles.backdrop} ${className || ''}`;
+
   return createPortal(
     <div
-      className={styles.backdrop}
+      className={textClassNames}
       onClick={e => {
         onBackdropClick(e);
       }}
     >
-      <div className={styles.modalBox}>{children}</div>
+      <div className={styles.modalBox} id='modal'>{children}</div>
     </div>,
     document.body
   );
