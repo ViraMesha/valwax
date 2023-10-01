@@ -15,8 +15,10 @@ interface ReusableSliderProps {
   dotsStyles?: string;
   speed?: number;
   beforeChange?: (prev: any, next: any) => void;
+  afterChange?: (index: number) => void;
   vertical?: boolean;
   verticalSwiping?: boolean;
+  swipeToSlide?: boolean;
 }
 
 type ForwardedRefType = Slider | null;
@@ -37,6 +39,8 @@ const ReusableSlider = forwardRef<ForwardedRefType, ReusableSliderProps>(
       beforeChange,
       vertical = false,
       verticalSwiping = false,
+      afterChange,
+      swipeToSlide,
     },
     ref
   ) => {
@@ -50,6 +54,7 @@ const ReusableSlider = forwardRef<ForwardedRefType, ReusableSliderProps>(
       swipe,
       vertical,
       verticalSwiping,
+      swipeToSlide,
       appendDots: (dots: React.ReactNode) => <ul>{dots}</ul>,
       dotsClass: `${styles.dots} ${dotsStyles || ''}`,
       customPaging: i => (
@@ -62,6 +67,7 @@ const ReusableSlider = forwardRef<ForwardedRefType, ReusableSliderProps>(
         speed={speed}
         ref={ref}
         beforeChange={beforeChange}
+        afterChange={afterChange}
       >
         {children}
       </Slider>

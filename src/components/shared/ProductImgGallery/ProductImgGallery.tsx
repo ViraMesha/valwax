@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import Slider from 'react-slick';
 import ReusableSlider from '@components/components/ReusableSlider/ReusableSlider';
 
 import styles from './ProductImgGallery.module.scss';
@@ -12,25 +13,33 @@ const ProductImgGallery = ({ images }: { images: string[] }) => {
   const initialPercentage = ((activeImageIndex + 1) / totalImages) * 100;
 
   const [progressBarHeight, setProgressBarHeight] = useState(initialPercentage);
+  const slider1Ref = useRef<Slider | null>(null);
 
   const handleSmallImageClick = (index: number) => {
     setActiveImageIndex(index);
     const newPercentage = ((index + 1) / totalImages) * 100;
     setProgressBarHeight(newPercentage);
+    slider1Ref.current?.slickGoTo(index);
   };
 
   return (
     <div className={styles.product_detail_images__wrapper}>
       <div className={styles.product_detail_images__img_container}>
-        <ReusableSlider vertical verticalSwiping>
-          {images.map((_, i) => (
+        <ReusableSlider
+          vertical
+          verticalSwiping
+          ref={slider1Ref}
+          swipeToSlide={true}
+          afterChange={(index: number) => handleSmallImageClick(index)}
+        >
+          {images.map((imageSrc, i) => (
             <div
               key={i}
               className={styles.product_detail_images__img_inner_container}
             >
               <Image
                 className={styles.product_detail_images__image}
-                src={images[activeImageIndex]}
+                src={imageSrc}
                 priority
                 fill
                 alt="Candle-making kit in a box"
