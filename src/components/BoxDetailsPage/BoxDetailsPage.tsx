@@ -1,19 +1,14 @@
-import { BoxDetailsI } from '../../../lib/types';
+import { BoxDetailsI } from '../../types';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
-
-import BoxDetailsGallery from './BoxDetailsGallery/BoxDetailsGallery';
-import RelatedProducts from './RelatedProducts/RelatedProducts';
+import ProductImgGallery from '../shared/ProductImgGallery/ProductImgGallery';
+import RelatedProducts from '../shared/RelatedProducts/RelatedProducts';
 
 import styles from './BoxDetailsPage.module.scss';
 
 interface BoxDetailsPageI {
   product: BoxDetailsI;
-  dict: {
-    relatedProducts: {
-      title: string;
-    };
-  };
+  dict: { title: string };
 }
 
 const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({ product, dict }) => {
@@ -21,13 +16,10 @@ const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({ product, dict }) => {
     <>
       <Section id={styles.gallery_details_section}>
         <Container>
-          <BoxDetailsGallery images={product.images} />
+          <ProductImgGallery images={product.images} />
         </Container>
       </Section>
-      <RelatedProducts
-        relatedProducts={product.similar}
-        dict={dict.relatedProducts}
-      />
+      <RelatedProducts relatedProducts={product.similar} title={dict.title} />
     </>
   );
 };

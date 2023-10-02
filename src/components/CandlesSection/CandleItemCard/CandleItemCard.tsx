@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
 
-import { CandleI } from '../../../../lib/types';
+import { CandleI } from '../../../types';
 
 import styles from './CandleItemCard.module.scss';
 

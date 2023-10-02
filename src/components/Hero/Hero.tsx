@@ -84,6 +84,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
             ref={sliderRef}
             beforeChange={(prev, next) => setCurrentSlide(next)}
             dotsStyles={styles.dots}
+            dots
           >
             {heroData.map(({ id, backgroundImage, headings }) => (
               <div key={id} className={styles.slider_body}>

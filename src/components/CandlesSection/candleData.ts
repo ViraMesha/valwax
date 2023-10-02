@@ -1,4 +1,4 @@
-import { CandleI } from '../../../lib/types';
+import { CandleI } from '../../types';
 import img1 from '../../../public/images/candles/img-1.jpg';
 import img2 from '../../../public/images/candles/img-2.jpg';
 import img3 from '../../../public/images/candles/img-3.jpg';

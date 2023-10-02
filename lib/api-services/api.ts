@@ -1,7 +1,11 @@
-import img1 from '../../public/images/boxes/boxes_section/box.jpg';
-import img2 from '../../public/images/boxes/boxes_section/box2.jpg';
-import { BoxDetailsI, CandleDetailsI } from '../types';
-import { relatedProducts } from '../utils/relatedProducts';
+import box1 from '../../public/images/boxes/boxes_section/box.jpg';
+import box2 from '../../public/images/boxes/boxes_section/box2.jpg';
+import box3 from '../../public/images/boxes/boxes_section/boxes3.jpg';
+import candle1 from '../../public/images/candles/img-1.jpg';
+import candle2 from '../../public/images/candles/img-2.jpg';
+import candle3 from '../../public/images/candles/img-3.jpg';
+import { relatedProducts } from '../../src/helpers/relatedProducts';
+import { BoxDetailsI, CandleDetailsI } from '../../src/types';
 
 export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
   try {
@@ -9,7 +13,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
 
     const fakeBoxDetails: BoxDetailsI = {
       id: '1',
-      images: [img1.src, img2.src],
+      images: [box1.src, box2.src, box3.src],
       title: 'Бокс - Мінімал',
       price: ' 355,00 ',
       aroma: [
@@ -46,13 +50,14 @@ export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
 
     const fakeCandleDetails: CandleDetailsI = {
       id: '1',
-      images: [img1.src, img2.src],
+      images: [candle1.src, candle2.src, candle3.src, candle1.src],
       title: 'Ароматична свічка Paradise',
       description: 'Свічка з соєвого воску з ароматом опалого листя.',
       price: ' 355,00 ',
       topNotes: ['Кедр', 'пекан'],
       baseNotes: ['Кедр', 'пекан'],
       size: '300 мл',
+      similar: relatedProducts,
     };
 
     return fakeCandleDetails;
