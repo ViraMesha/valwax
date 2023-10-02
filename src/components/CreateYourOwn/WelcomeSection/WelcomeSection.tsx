@@ -20,13 +20,17 @@ interface WelcomeSectionI {
       text1: string[];
       text2: string[];
       text3: string;
-    }
+    };
   };
 }
 
 const WelcomeSection: React.FC<WelcomeSectionI> = ({ dict }) => {
   const { isModal, toggleModal, onBackdropClick } = useModal();
- 
+
+  const handleCloseModal = () => {
+    toggleModal();
+  };
+
   return (
     <Section className={styles.welcome_section}>
       <Container>
@@ -37,17 +41,22 @@ const WelcomeSection: React.FC<WelcomeSectionI> = ({ dict }) => {
           <span>{dict.text1}</span>
           <span>{dict.text2}</span>
         </Typography>
-        <Button
-          variant="secondary"
-          className={styles.welcome_button}
-          onClick={toggleModal}
-        >
-          {dict.text3}
-        </Button>
+        <div className={styles.welcome_buttonWrapper}>
+          <Button
+            variant="secondary"
+            className={styles.welcome_button}
+            onClick={toggleModal}
+          >
+            {dict.text3}
+          </Button>
+        </div>
 
         {isModal && (
           <Modal onBackdropClick={onBackdropClick}>
-            <InstructionModal dict={dict.instruction}></InstructionModal>
+            <InstructionModal
+              dict={dict.instruction}
+              onClose={handleCloseModal}
+            />
           </Modal>
         )}
       </Container>

@@ -1,8 +1,17 @@
 .instructionWrapper {
-    padding: 40px;
-    background-color: var(--cl-white);
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    max-width: 760px;
+  position: relative;
+  padding: 40px;
+  background-color: var(--cl-white);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 760px;
+}
+
+.closeIcon {
+  position: absolute;
+  right: 24px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }
