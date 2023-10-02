@@ -27,8 +27,8 @@ export default async function Page({
         ]}
         lang={lang}
       />
-      <Tabs dict={page.candles.tabs} lang={lang} />
-      <CandlesPage dict={page.candles[slug]} />
+      {/* <Tabs dict={page.candles.tabs} lang={lang} /> */}
+      <CandlesPage dictWax={page.candles[slug]} dict={page.candles} lang={lang}/>
     </>
   );
 }
