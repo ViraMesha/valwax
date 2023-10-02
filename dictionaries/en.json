@@ -167,9 +167,11 @@
     "createYourOwn": {
       "welcome": {
         "title": "Welcome to your personal candle-making studio!",
-        "text1": "Welcome to the Candle Maker!",
-        "text2": "Here, you become an artist of light, and we believe that each candle you create will be unique and expressive, just like you. A candle is more than just a flame. It's the ambiance you craft. It's relaxation and tranquility after a long day. It's a gift for loved ones. It's warmth and comfort.",
-        "text3": "Crafting candle guidelines",
+        "text": [
+          "Welcome to the Candle Maker!",
+          "Here, you become an artist of light, and we believe that each candle you create will be unique and expressive, just like you. A candle is more than just a flame. It's the ambiance you craft. It's relaxation and tranquility after a long day. It's a gift for loved ones. It's warmth and comfort."
+        ],
+        "buttonText": "Crafting candle guidelines",
         "instruction": {
           "text1": [
             "Welcome to the Candle Maker's Studio!",

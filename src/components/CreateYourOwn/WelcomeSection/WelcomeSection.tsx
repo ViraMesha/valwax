@@ -13,9 +13,8 @@ import styles from './WelcomeSection.module.scss';
 interface WelcomeSectionI {
   dict: {
     title: string;
-    text1: string;
-    text2: string;
-    text3: string;
+    text: string[];
+    buttonText: string;
     instruction: {
       text1: string[];
       text2: string[];
@@ -34,12 +33,21 @@ const WelcomeSection: React.FC<WelcomeSectionI> = ({ dict }) => {
   return (
     <Section className={styles.welcome_section}>
       <Container>
-        <Typography variant="heading2" className={avenir.className}>
+        <Typography
+          variant="heading2"
+          className={avenir.className}
+          color="var(--cl-gray-600)"
+        >
           {dict.title}
         </Typography>
-        <Typography variant="bodyRegular" className={styles.welcome_text}>
-          <span>{dict.text1}</span>
-          <span>{dict.text2}</span>
+        <Typography
+          variant="bodyRegular"
+          className={styles.welcome_text}
+          color="var(--cl-gray-500)"
+        >
+          {dict.text.map((text, i) => (
+            <span key={i}>{text}</span>
+          ))}
         </Typography>
         <div className={styles.welcome_buttonWrapper}>
           <Button
@@ -47,7 +55,7 @@ const WelcomeSection: React.FC<WelcomeSectionI> = ({ dict }) => {
             className={styles.welcome_button}
             onClick={toggleModal}
           >
-            {dict.text3}
+            {dict.buttonText}
           </Button>
         </div>
 
