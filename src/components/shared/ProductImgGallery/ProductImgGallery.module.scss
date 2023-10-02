@@ -61,19 +61,19 @@
   }
 
   @include breakpoint('only-mobile-small') {
-    max-height: 650px;
+    max-height: 580px;
   }
 
   @include breakpoint('tablet-small') {
-    max-height: 840px;
+    max-height: 905px;
   }
 
   @include breakpoint('tablet-large') {
-    max-height: 1250px;
+    max-height: 1485px;
   }
 
   @include breakpoint('desktop') {
-    max-height: 1350px;
+    max-height: 1645px;
   }
 }
 

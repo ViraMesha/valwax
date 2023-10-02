@@ -52,9 +52,9 @@ const ProductImgGallery = ({ images }: { images: string[] }) => {
           style={{ height: `${progressBarHeight}%` }}
         ></div>
       </div>
-      <div className={styles.product_detail_images__container}>
+      <ul className={styles.product_detail_images__container}>
         {images.map((imageSrc, index) => (
-          <div
+          <li
             key={index}
             className={styles.product_detail_images__inner_container}
             onClick={() => handleSmallImageClick(index)}
@@ -68,9 +68,9 @@ const ProductImgGallery = ({ images }: { images: string[] }) => {
               sizes="(min-width: 1230) 86px,
               100%"
             />
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
