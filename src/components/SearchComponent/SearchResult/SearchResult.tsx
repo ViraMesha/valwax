@@ -15,11 +15,8 @@ interface SearchResultItem {
 }
 const SearchResult: React.FC<SearchResultProps> = ({ searchResults }) => {
   const SearchWrapper = useRef<HTMLDivElement | null>(null);
-  const hasScroll = searchResults.length > 6;
 
-  // useScrollbar({ root: SearchWrapper, hasScroll });
-
-  return (
+    return (
     <div className={styles.customScrollbar}>
       <CustomScrollBar root={SearchWrapper}>
         <ul className={styles.searchList}>
@@ -33,17 +30,3 @@ const SearchResult: React.FC<SearchResultProps> = ({ searchResults }) => {
 };
 
 export default SearchResult;
-// <div id="customScrollbarDiv"
-    //   style={{
-    //     height: hasScroll ? '385px' : 'auto',
-    //     minHeight: '385px',
-    //   }}
-    //   ref={SearchWrapper}
-    //   // className={styles.customScrollbar}
-    // >
-    //   <ul className={styles.searchList}>
-    //     {searchResults.map(result => (
-    //       <SearchItem key={result.id} result={result}></SearchItem>
-    //     ))}
-    //   </ul>
-    // </div>
