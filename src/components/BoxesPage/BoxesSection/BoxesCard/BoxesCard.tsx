@@ -13,7 +13,7 @@ const BoxesCard: React.FC<BoxI> = ({ id, img, title, price, link, text }) => {
   return (
     <li className={styles.card}>
       <div className={styles.img_container}>
-        <ReusableSlider dotsStyles={styles.dots}>
+        <ReusableSlider dotsStyles={styles.dots} dots>
           {img.map((imageSrc, index) => (
             <div key={index} className={styles.img_inner_container}>
               <Image

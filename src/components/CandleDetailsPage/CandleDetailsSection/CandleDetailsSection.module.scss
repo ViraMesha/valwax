@@ -1,0 +1,6 @@
+@import '../../../scss//utilities//breakpoint-mixin.scss';
+#candle_details_section {
+  @include breakpoint('desktop-large') {
+    padding-bottom: 104px;
+  }
+}

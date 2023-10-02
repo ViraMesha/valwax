@@ -26,4 +26,5 @@ export interface CandleDetailsI {
   topNotes: string[];
   baseNotes: string[];
   size: string;
+  similar: CandleI[];
 }

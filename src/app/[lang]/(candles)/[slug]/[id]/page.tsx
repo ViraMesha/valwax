@@ -1,4 +1,6 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
+import CandleDetailsSection from '@components/components/CandleDetailsPage/CandleDetailsSection/CandleDetailsSection';
+import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
 
 import { Locale } from '../../../../../../i18n-config';
 import { getCandleDetails } from '../../../../../../lib/api-services/api';
@@ -15,6 +17,8 @@ export default async function Candle({
 }) {
   const { breadcrumbs } = await getDictionary(lang);
   const product = await getCandleDetails(id);
+  const { page } = await getDictionary(lang);
+
   return (
     <>
       <Breadcrumbs
@@ -29,6 +33,11 @@ export default async function Candle({
           },
         ]}
         lang={lang}
+      />
+      <CandleDetailsSection images={product.images} />
+      <RelatedProducts
+        relatedProducts={product.similar}
+        title={page.relatedProducts.title}
       />
     </>
   );
