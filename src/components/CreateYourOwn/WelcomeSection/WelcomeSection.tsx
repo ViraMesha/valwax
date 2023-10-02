@@ -2,7 +2,7 @@
 import { avenir } from '@components/app/fonts';
 import Button from '@components/components/Button/Button';
 import Container from '@components/components/Container/Container';
-import InstructionModal from '@components/components/InstructionModal/InstructionModal';
+import InstructionModal from '@components/components/CreateYourOwn/InstructionModal/InstructionModal';
 import Modal from '@components/components/Modal/Modal';
 import Section from '@components/components/Section/Section';
 import Typography from '@components/components/Typography/Typography';
@@ -15,11 +15,7 @@ interface WelcomeSectionI {
     title: string;
     text: string[];
     buttonText: string;
-    instruction: {
-      text1: string[];
-      text2: string[];
-      text3: string;
-    };
+    instruction: string[];
   };
 }
 
