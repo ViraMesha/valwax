@@ -26,7 +26,7 @@ const useModal = (): ModalHook => {
   };
 
   const toggleModal = () => {
-    setIsModal(true);
+    setIsModal(!isModal);
   };
 
   useEffect(() => {
