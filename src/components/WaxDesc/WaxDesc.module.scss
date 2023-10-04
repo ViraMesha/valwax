@@ -1,7 +1,9 @@
 @import '../../scss/utilities/breakpoint-mixin.scss';
 
 .section {
-  padding-bottom: 0;
+  @include breakpoint('desktop-large') {
+    padding-bottom: 0;
+  }
 }
 
 /*Додала чорний фон для підстраховки, якщо фото не загрузиться*/
