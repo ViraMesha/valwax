@@ -173,14 +173,14 @@
         ],
         "buttonText": "Crafting candle guidelines",
         "instruction": [
-            "Welcome to the Candle Maker's Studio!",
-            "Would you like to create a unique candle that matches your taste and mood? You're in the right place! Our candle builder allows you to choose all the necessary components to create the perfect candle just for you. Here are the steps you need to follow:",
-            "1. Choose the shape and size of the container: select the shape of the candle and its size. We have a wide range of containers, from classic cylindrical to unusual shapes, so you can express your individuality.",
-            "2. Select the type of wax: we offer three types of wax for your candles: soy, coconut, and palm. Each of them has its unique advantages, and you can choose the one you prefer.",
-            "3. Choose the scent: pick the fragrance you want to experience when your candle is burning. We have a wide variety of scents, from fresh citrus to warm vanilla notes.",
-            "4. Pick the color: choose the color of the wax and container that you like the most. Your candle can be bright and vibrant or neutral and cozy (without color) - it's your choice.",
-            "5. Add a wick: to make your candle have a wick, select it. A wick will add a special charm to your candle and make the burning more even.",
-            "6. Customization and completion: after completing these steps, we will create a unique candle for you that will meet all your wishes.",
+          "Welcome to the Candle Maker's Studio!",
+          "Would you like to create a unique candle that matches your taste and mood? You're in the right place! Our candle builder allows you to choose all the necessary components to create the perfect candle just for you. Here are the steps you need to follow:",
+          "1. Choose the shape and size of the container: select the shape of the candle and its size. We have a wide range of containers, from classic cylindrical to unusual shapes, so you can express your individuality.",
+          "2. Select the type of wax: we offer three types of wax for your candles: soy, coconut, and palm. Each of them has its unique advantages, and you can choose the one you prefer.",
+          "3. Choose the scent: pick the fragrance you want to experience when your candle is burning. We have a wide variety of scents, from fresh citrus to warm vanilla notes.",
+          "4. Pick the color: choose the color of the wax and container that you like the most. Your candle can be bright and vibrant or neutral and cozy (without color) - it's your choice.",
+          "5. Add a wick: to make your candle have a wick, select it. A wick will add a special charm to your candle and make the burning more even.",
+          "6. Customization and completion: after completing these steps, we will create a unique candle for you that will meet all your wishes.",
           "Don't wait, start creating your candle right now and enjoy the atmosphere it will create in your space. Thank you for choosing us for your creative ideas and special moments!"
         ]
       }
@@ -296,9 +296,9 @@
   },
 
   "breadcrumbs": {
-    "soy-candles": "Scented soy candles",
-    "coconut-candles": "Scented coconut candles",
-    "palm-candles": "Scented palm candles",
+    "soy-candles": "Soy candles",
+    "coconut-candles": "Coconut candles",
+    "palm-candles": "Palm candles",
     "boxes": "Gift boxes",
     "createYourOwn": "Create you own",
     "privacyPolicy": "Privacy policy",
