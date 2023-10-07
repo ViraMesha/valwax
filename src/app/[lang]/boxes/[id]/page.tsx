@@ -11,7 +11,7 @@ const BoxDetails = async ({
   params: { lang: Locale; id: string };
 }) => {
   const { breadcrumbs } = await getDictionary(lang);
-  const { page } = await getDictionary(lang);
+  const { relatedProducts } = await getDictionary(lang);
   const product = await getBoxDetails(id);
 
   const regex = /(?:Бокс - |Box - )(.*)/;
@@ -33,7 +33,7 @@ const BoxDetails = async ({
         ]}
         lang={lang}
       />
-      <BoxDetailsPage product={product} dict={page.relatedProducts} />
+      <BoxDetailsPage product={product} dict={relatedProducts} />
     </>
   );
 };

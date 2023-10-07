@@ -5,7 +5,19 @@ import { CartProductI } from '@components/types';
 
 import styles from './ProductCard.module.scss';
 
-const ProductCard = ({
+interface ProductCardProps {
+  deleteButtonText: string;
+  id: string;
+  img: string;
+  title: string;
+  description: string;
+  price: number;
+  quantity: number;
+  link: string;
+  key: string;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({
   id,
   img,
   title,
@@ -13,7 +25,8 @@ const ProductCard = ({
   description,
   quantity,
   link,
-}: CartProductI) => {
+  deleteButtonText,
+}) => {
   return (
     <li className={styles.card}>
       <Link href={`${link}/${id}`}>
@@ -58,7 +71,7 @@ const ProductCard = ({
           <div>{quantity}</div>
           <button type="button">
             <Typography variant="bodyS" className={styles.delete}>
-              Видалити
+              {deleteButtonText}
             </Typography>
           </button>
         </div>

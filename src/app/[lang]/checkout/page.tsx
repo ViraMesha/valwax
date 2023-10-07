@@ -10,7 +10,9 @@ export default async function Checkout({
   params: { lang: Locale };
 }) {
   const { breadcrumbs } = await getDictionary(lang);
-
+  const {
+    page: { checkout },
+  } = await getDictionary(lang);
   return (
     <>
       <Breadcrumbs
@@ -22,7 +24,7 @@ export default async function Checkout({
         ]}
         lang={lang}
       />
-      <CheckoutPage />
+      <CheckoutPage dict={checkout} />
     </>
   );
 }

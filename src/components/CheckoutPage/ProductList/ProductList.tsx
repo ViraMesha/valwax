@@ -6,17 +6,30 @@ import ProductCard from '../ProductCard/ProductCard';
 
 import styles from './ProductList.module.scss';
 
-const ProductList = () => {
+interface ProductListProps {
+  dict: {
+    deleteButtonText: string;
+    totalText: string;
+  };
+}
+
+const ProductList: React.FC<ProductListProps> = ({
+  dict: { totalText, deleteButtonText },
+}) => {
   return (
     <>
       <ul className={styles.list}>
         {cartProductData.map((product: CartProductI) => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard
+            key={product.id}
+            {...product}
+            deleteButtonText={deleteButtonText}
+          />
         ))}
       </ul>
       <div className={styles.total}>
         <Typography variant="bodyL" color="var(--cl-primary-800)">
-          Разом
+          {totalText}
         </Typography>
         <div className={styles.price_container}>
           <Typography variant="bodyXLHeavy" className={styles.price}>

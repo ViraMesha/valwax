@@ -3,11 +3,22 @@ import Section from '@components/components/Section/Section';
 
 import ProductList from './ProductList/ProductList';
 
-const CheckoutPage = () => {
+interface CheckoutPageProps {
+  dict: {
+    productList: {
+      deleteButtonText: string;
+      totalText: string;
+    };
+  };
+}
+
+const CheckoutPage: React.FC<CheckoutPageProps> = ({
+  dict: { productList },
+}) => {
   return (
     <Section>
       <Container>
-        <ProductList />
+        <ProductList dict={productList} />
       </Container>
     </Section>
   );
