@@ -302,7 +302,8 @@
     "boxes": "Gift boxes",
     "createYourOwn": "Create you own",
     "privacyPolicy": "Privacy policy",
-    "paymentAndDelivery": "Payment and delivery"
+    "paymentAndDelivery": "Payment and delivery",
+    "checkout": "Cart"
   },
 
   "navigation": {

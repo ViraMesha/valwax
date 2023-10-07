@@ -47,6 +47,7 @@ const WelcomeSection: React.FC<WelcomeSectionI> = ({ dict }) => {
         </Typography>
         <div className={styles.welcome_buttonWrapper}>
           <Button
+            type="button"
             variant="secondary"
             className={styles.welcome_button}
             onClick={toggleModal}

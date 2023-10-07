@@ -300,7 +300,8 @@
     "boxes": "Подарункові бокси",
     "createYourOwn": "Створи Сам",
     "privacyPolicy": "Політика конфіденційності",
-    "paymentAndDelivery": "Оплата та доставка"
+    "paymentAndDelivery": "Оплата та доставка",
+    "checkout": "Кошик"
   },
 
   "navigation": {
