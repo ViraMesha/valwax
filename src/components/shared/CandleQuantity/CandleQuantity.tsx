@@ -5,7 +5,7 @@ import Typography from '@components/components/Typography/Typography';
 import styles from './CandleQuantity.module.scss';
 
 interface CandleQuantityProps {
-  quantity: number; // Вказуємо тип для quantity
+  quantity: number; 
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
