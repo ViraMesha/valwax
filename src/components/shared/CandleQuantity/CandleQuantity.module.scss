@@ -10,14 +10,23 @@
   border: 1px solid var(--cl-gray-100);
 }
 
+.buttonGroup > * {
+  flex: 1;
+}
+
 .candleCount {
   border: none;
   background-color: transparent;
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
 
 .candleCount svg {
   width: 100%;
   height: 100%;
+}
+
+.buttonGroup span {
+  text-align: center;
 }

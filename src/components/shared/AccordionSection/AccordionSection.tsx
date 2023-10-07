@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import Typography from '@components/components/Typography/Typography';

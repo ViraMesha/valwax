@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import Button from '@components/components/Button/Button';
@@ -11,8 +9,6 @@ import AccordionSection from '../../shared/AccordionSection/AccordionSection';
 import styles from './CandleDescription.module.scss';
 
 const CandleDescription = () => {
-  const [quantity, setQuantity] = useState(1);
-
   return (
     <div className={styles.candleSectionWrapper}>
       <div className={styles.candleWrapper}>
@@ -41,7 +37,7 @@ const CandleDescription = () => {
           <Typography variant="button" color="var(--cl-gray-500)">
             Кількість:
           </Typography>
-          <CandleQuantity quantity={quantity} setQuantity={setQuantity} />
+          <CandleQuantity />
         </div>
 
         <div className={styles.candeleBuyWrapper}>
