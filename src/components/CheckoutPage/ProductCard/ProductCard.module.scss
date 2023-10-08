@@ -105,13 +105,19 @@
 
 .card__actions {
   display: flex;
-  column-gap: 24px;
-  justify-content: flex-end;
+  column-gap: 70px;
   align-items: flex-end;
 
-  @include breakpoint('tablet-large-and-up') {
+  @include breakpoint('desktop-large') {
     justify-content: space-between;
   }
+}
+
+.buttonGroup {
+  width: 90px;
+  height: 44px;
+  padding: 8px;
+  gap: 11px;
 }
 
 .card__actions > button {

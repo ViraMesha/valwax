@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
-import { CartProductI } from '@components/types';
 
 import styles from './ProductCard.module.scss';
 
@@ -68,7 +68,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
         <div className={styles.card__actions}>
-          <div>{quantity}</div>
+          <CandleQuantity className={styles.buttonGroup} />
           <button type="button">
             <Typography variant="bodyS" className={styles.delete}>
               {deleteButtonText}
