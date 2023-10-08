@@ -1,8 +1,17 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
 .candleWrapper {
-  padding: 24px 0;
-  border-radius: 20px 20px 0px 0px;
-  top: 140px;
   background-color: white;
+}
+
+.candleTitle {
+  margin-bottom: 16px;
+}
+
+.costSymbol {
+  color: var(--cl-primary-500);
+  width: 18px;
+  height: 18px;
 }
 
 .candleDescription {
@@ -14,6 +23,8 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 16px;
+
+
 }
 
 .candeleCost {
@@ -29,8 +40,6 @@
   margin-bottom: 24px;
 }
 
-
-
 .candleCount svg {
   width: 100%;
   height: 100%;
@@ -41,6 +50,19 @@
   flex-direction: column;
   gap: 16px;
   margin-bottom: 24px;
+
+  @include breakpoint('tablet-large') {
+    margin-left: auto;
+    width: 352px;
+  }
+
+   @include breakpoint('desktop') {
+    width: 356px;
+  }
+
+  @include breakpoint('desktop-large') {
+    width: 486px;
+  }
 }
 
 .candeleBuy {

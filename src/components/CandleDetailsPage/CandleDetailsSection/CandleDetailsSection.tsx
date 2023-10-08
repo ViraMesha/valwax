@@ -1,8 +1,12 @@
+'use client';
+
+import React from 'react';
 import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
 import ProductImgGallery from '@components/components/shared/ProductImgGallery/ProductImgGallery';
+import { useWindowSize } from 'usehooks-ts';
 
-import CandleDescription from '../CandleDescription/CandleDescription';
+import Description from '../../shared/Description/Description';
 
 import styles from './CandleDetailsSection.module.scss';
 
@@ -11,13 +15,22 @@ interface CandleDetailsSectionI {
 }
 
 const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({ images }) => {
+  const { width } = useWindowSize();
+  const isLargeScreen = width >= 1024;
   return (
-    <Section
-      id={styles.candle_details_section}
-    >
+    <Section id={styles.candle_details_section}>
       <Container>
-        <ProductImgGallery images={images} />
-        <CandleDescription />
+        {isLargeScreen ? (
+          <div className={styles.flexContainer}>
+            <ProductImgGallery images={images} />
+            <Description />
+          </div>
+        ) : (
+          <>
+            <ProductImgGallery images={images} />
+            <Description />
+          </>
+        )}
       </Container>
     </Section>
   );

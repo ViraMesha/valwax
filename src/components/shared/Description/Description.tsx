@@ -4,15 +4,19 @@ import Button from '@components/components/Button/Button';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
 
-import AccordionSection from '../../shared/AccordionSection/AccordionSection';
+import AccordionSection from '../AccordionSection/AccordionSection';
 
-import styles from './CandleDescription.module.scss';
+import styles from './Description.module.scss';
 
-const CandleDescription = () => {
+const Description = () => {
   return (
     <div className={styles.candleSectionWrapper}>
       <div className={styles.candleWrapper}>
-        <Typography variant="bodyXLHeavy" color="var(--cl-primary-800)">
+        <Typography
+          variant="bodyXLHeavy"
+          color="var(--cl-primary-800)"
+          className={styles.candleTitle}
+        >
           Ароматична свічка Paradise
         </Typography>
         <Typography
@@ -27,10 +31,13 @@ const CandleDescription = () => {
             Вартість:
           </Typography>
           <div className={styles.candeleCost}>
-            <Typography variant="button" color="var(--cl-primary-500)">
+            <Typography
+              variant="subheadingMobile"
+              color="var(--cl-primary-500)"
+            >
               550
             </Typography>
-            <Typography color="var(--cl-primary-500)">&#8372;</Typography>
+            <span className={styles.costSymbol}>&#8372;</span>
           </div>
         </div>
         <div className={styles.candeleQuantity}>
@@ -58,4 +65,4 @@ const CandleDescription = () => {
   );
 };
 
-export default CandleDescription;
+export default Description;

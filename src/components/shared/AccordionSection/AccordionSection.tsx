@@ -23,7 +23,7 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({
   return (
     <div className={styles.accordionSection}>
       <div className={styles.accordionHeader} onClick={toggleExpanded}>
-        <Typography variant="button" color="var(--cl-primary-800)">
+        <Typography variant="subheadingMobile" color="var(--cl-primary-800)">
           {title}
         </Typography>
         <span className={styles.toggleIcon}>

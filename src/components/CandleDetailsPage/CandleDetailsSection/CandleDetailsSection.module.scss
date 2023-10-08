@@ -5,3 +5,10 @@
   }
 }
 
+.flexContainer {
+  display: flex;
+  gap: 140px;
+  @include breakpoint('desktop-large') {
+    gap: 126px;
+  }
+}
