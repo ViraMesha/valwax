@@ -46,8 +46,10 @@ const Header = ({ lang }: { lang: Locale }) => {
         <div className={styles.icons}>
           <LanguageMenu className={styles.langMenu} />
           <ul className={styles.iconsList}>
-            <li className={styles.iconsItem}>
-              <BiShoppingBag />
+            <li className={`${styles.iconsItem} ${styles.cartIcon}`}>
+              <Link href="/checkout">
+                <BiShoppingBag />
+              </Link>
             </li>
             <li className={styles.iconsItem} onClick={toggleModal}>
               <AiOutlineSearch style={{ strokeWidth: '2px' }} />
@@ -55,6 +57,7 @@ const Header = ({ lang }: { lang: Locale }) => {
             {isSmallScreen && (
               <li className={styles.iconsItem}>
                 <button
+                  type="button"
                   className={styles.menuIcon}
                   onClick={toggleMenuOpen}
                   aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}

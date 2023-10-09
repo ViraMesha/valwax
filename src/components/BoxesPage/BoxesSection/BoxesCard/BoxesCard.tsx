@@ -48,7 +48,9 @@ const BoxesCard: React.FC<BoxI> = ({ id, img, title, price, link, text }) => {
           <span>&#8372;</span>
         </div>
         <div className={styles.button_container}>
-          <Button variant="primary">купити</Button>
+          <Button variant="primary" type="button">
+            купити
+          </Button>
           <Link href="/boxes">Переглянути</Link>
         </div>
       </div>

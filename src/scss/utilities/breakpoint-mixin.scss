@@ -47,6 +47,13 @@
     }
   }
 
+  // до 1024px - тільки мобільні і планшети
+  @else if $breakpoint == 'only-mobile-and-tablet' {
+    @media (max-width: #{$tablet-large-breakpoint}) {
+      @content;
+    }
+  }
+
   // до 1230px - мобільні та планшет
   @else if $breakpoint == 'all-devices-without-desktop' {
     @media (max-width: #{$desktop-breakpoint}) {
