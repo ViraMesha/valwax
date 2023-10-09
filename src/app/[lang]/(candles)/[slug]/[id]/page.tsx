@@ -34,7 +34,7 @@ export default async function Candle({
         ]}
         lang={lang}
       />
-      <CandleDetailsSection images={product.images} />
+      <CandleDetailsSection product={product} />
       <RelatedProducts
         relatedProducts={product.similar}
         title={page.relatedProducts.title}
