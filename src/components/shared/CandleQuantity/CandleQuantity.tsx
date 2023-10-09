@@ -6,11 +6,10 @@ import Typography from '@components/components/Typography/Typography';
 import styles from './CandleQuantity.module.scss';
 
 interface CandleQuantityProps {
-  quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+  className?: string;
 }
 
-const CandleQuantity = () => {
+const CandleQuantity: React.FC<CandleQuantityProps> = ({ className }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
@@ -24,7 +23,7 @@ const CandleQuantity = () => {
   };
 
   return (
-    <div className={styles.buttonGroup}>
+    <div className={`${styles.buttonGroup} ${className || ''}`}>
       <button onClick={handleDecrement} className={styles.candleCount}>
         <FiMinus />
       </button>

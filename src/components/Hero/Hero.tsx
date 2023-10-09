@@ -60,6 +60,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
         <div className={styles.body}>
           <div className={styles.controls}>
             <button
+            type="button"
               onClick={handlePrevClick}
               className={`${styles.prevButton} ${
                 disablePrevButton ? styles.disabled : ''
@@ -70,6 +71,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
               <HiOutlineChevronLeft className={styles.arrowIcon} />
             </button>
             <button
+            type="button"
               onClick={handleNextClick}
               className={`${styles.nextButton} ${
                 disableNextButton ? styles.disabled : ''

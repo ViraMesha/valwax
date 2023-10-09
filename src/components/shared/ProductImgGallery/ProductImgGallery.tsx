@@ -40,7 +40,8 @@ const ProductImgGallery = ({ images }: { images: string[] }) => {
                 priority
                 fill
                 alt="Candle-making kit in a box"
-                sizes="(min-width: 1230) 458px"
+                sizes="(min-width: 1230) 458px,
+                (min-width: 1024) 350px"
               />
             </div>
           ))}
@@ -66,6 +67,7 @@ const ProductImgGallery = ({ images }: { images: string[] }) => {
               fill
               alt="Candle-making kit in a box"
               sizes="(min-width: 1230) 86px,
+              (min-width: 1024) 86px,
               100%"
             />
           </li>
