@@ -84,22 +84,38 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
         {/* Ця частина кода тимчасова, замість цієї що вище закоментована */}
         {isCandlePage && (
           <div className={styles.candeleAccordion}>
-            <AccordionSection title="Верхні ноти" content="Кедр, пекан" />
-            <AccordionSection title="Базові ноти" content="Кедр, пекан" />
-            <AccordionSection title="Об’єм" content="Кедр, пекан" />
+            {[
+              { title: 'Верхні ноти', content: 'Кедр, пекан' },
+              { title: 'Базові ноти', content: 'Кедр, пекан' },
+              { title: 'Об’єм', content: 'Кедр, пекан' },
+            ].map((component, index) => (
+              <AccordionSection
+                key={index}
+                title={component.title}
+                content={component.content}
+              />
+            ))}
           </div>
         )}
 
         {isBoxPage && (
           <div className={styles.candeleAccordion}>
-            <AccordionSection title="Тара на 30 мл" content="Кедр, пекан" />
-            <AccordionSection
-              title="Гніт"
-              content="Гніт - це секрет рівномірного та довгого горіння свічок. 
-Ми додаємо його до вашого боксу, щоб ви могли насолоджуватися ідеальним горінням з перших спроб"
-            />
-            <AccordionSection title="Віск" content="Кедр, пекан" />
-            <AccordionSection title="Аромат" content="Кедр, пекан" />
+            {[
+              { title: 'Тара на 30 мл', content: 'Кедр, пекан' },
+              {
+                title: 'Гніт',
+                content:
+                  'Гніт - це секрет рівномірного та довгого горіння свічок. Ми додаємо його до вашого боксу, щоб ви могли насолоджуватися ідеальним горінням з перших спроб',
+              },
+              { title: 'Віск', content: 'Кедр, пекан' },
+              { title: 'Аромат', content: 'Кедр, пекан' },
+            ].map((component, index) => (
+              <AccordionSection
+                key={index}
+                title={component.title}
+                content={component.content}
+              />
+            ))}
           </div>
         )}
       </div>
