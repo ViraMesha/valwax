@@ -7,7 +7,7 @@ import styles from './AccordionSection.module.scss';
 
 interface AccordionSectionProps {
   title: string;
-  content: string;
+  content?: string;
 }
 
 const AccordionSection: React.FC<AccordionSectionProps> = ({
