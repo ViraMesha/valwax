@@ -16,7 +16,7 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
 
-  const components = [
+  const accordionsections = [
     { title: 'Верхні ноти', content: 'Кедр, пекан' },
     { title: 'Базові ноти', content: 'Кедр, пекан' },
     { title: 'Об’єм', content: 'Кедр, пекан' },
@@ -90,7 +90,7 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
         {/* Ця частина кода тимчасова, замість цієї що вище закоментована */}
         {isCandlePage && (
           <div className={styles.candeleAccordion}>
-            {components.map((component, index) => (
+            {accordionsections.map((component, index) => (
               <AccordionSection
                 key={index}
                 title={component.title}
@@ -102,7 +102,7 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
 
         {isBoxPage && (
           <div className={styles.candeleAccordion}>
-            {components.map((component, index) => (
+            {accordionsections.map((component, index) => (
               <AccordionSection
                 key={index}
                 title={component.title}
