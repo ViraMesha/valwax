@@ -16,6 +16,12 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
 
+  const components = [
+    { title: 'Верхні ноти', content: 'Кедр, пекан' },
+    { title: 'Базові ноти', content: 'Кедр, пекан' },
+    { title: 'Об’єм', content: 'Кедр, пекан' },
+  ];
+
   return (
     <div className={styles.candleSectionWrapper}>
       <div className={styles.candleWrapper}>
@@ -84,11 +90,7 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
         {/* Ця частина кода тимчасова, замість цієї що вище закоментована */}
         {isCandlePage && (
           <div className={styles.candeleAccordion}>
-            {[
-              { title: 'Верхні ноти', content: 'Кедр, пекан' },
-              { title: 'Базові ноти', content: 'Кедр, пекан' },
-              { title: 'Об’єм', content: 'Кедр, пекан' },
-            ].map((component, index) => (
+            {components.map((component, index) => (
               <AccordionSection
                 key={index}
                 title={component.title}
@@ -100,16 +102,7 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
 
         {isBoxPage && (
           <div className={styles.candeleAccordion}>
-            {[
-              { title: 'Тара на 30 мл', content: 'Кедр, пекан' },
-              {
-                title: 'Гніт',
-                content:
-                  'Гніт - це секрет рівномірного та довгого горіння свічок. Ми додаємо його до вашого боксу, щоб ви могли насолоджуватися ідеальним горінням з перших спроб',
-              },
-              { title: 'Віск', content: 'Кедр, пекан' },
-              { title: 'Аромат', content: 'Кедр, пекан' },
-            ].map((component, index) => (
+            {components.map((component, index) => (
               <AccordionSection
                 key={index}
                 title={component.title}

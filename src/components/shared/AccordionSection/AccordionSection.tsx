@@ -6,8 +6,8 @@ import Typography from '@components/components/Typography/Typography';
 import styles from './AccordionSection.module.scss';
 
 interface AccordionSectionProps {
-  title: string;
-  content: string;
+  title: string | string[];
+  content: string | string[];
 }
 
 const AccordionSection: React.FC<AccordionSectionProps> = ({
