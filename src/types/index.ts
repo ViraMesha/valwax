@@ -4,7 +4,7 @@ export interface BoxDetailsI {
   title: string;
   price: string;
   aroma: string[];
-  components: { title: string; content: string }[];
+  // components: { title: string; content: string }[];
   description: string;
   similar: CandleI[];
 }
@@ -23,7 +23,7 @@ export interface CandleDetailsI {
   title: string;
   description: string;
   price: string;
-  components: { title: string; content: string }[];
+  // components: { title: string; content: string }[];
   similar: CandleI[];
 }
 
