@@ -4,7 +4,8 @@ export interface BoxDetailsI {
   title: string;
   price: string;
   aroma: string[];
-  accordionsections: { title: string; content: string }[];
+  accordionTitle: string[];
+  accordionContent: string[];
   description: string;
   similar: CandleI[];
 }
@@ -23,7 +24,8 @@ export interface CandleDetailsI {
   title: string;
   description: string;
   price: string;
-  accordionsections: { title: string; content: string }[];
+  accordionTitle: string[];
+  accordionContent: string[];
   similar: CandleI[];
 }
 
