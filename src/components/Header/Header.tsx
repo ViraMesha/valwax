@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
-import { BiShoppingBag } from 'react-icons/bi';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import useModal from '@components/hooks/useModal';
 import { useWindowSize } from 'usehooks-ts';
@@ -16,6 +15,7 @@ import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
 import Search from '../SearchComponent/Search/Search';
 
+import Cart from './Cart/Cart';
 import LanguageMenu from './LanguageMenu/LanguageMenu';
 
 import styles from './Header.module.scss';
@@ -47,9 +47,7 @@ const Header = ({ lang }: { lang: Locale }) => {
           <LanguageMenu className={styles.langMenu} />
           <ul className={styles.iconsList}>
             <li className={`${styles.iconsItem} ${styles.cartIcon}`}>
-              <Link href="/checkout">
-                <BiShoppingBag />
-              </Link>
+              <Cart />
             </li>
             <li className={styles.iconsItem} onClick={toggleModal}>
               <AiOutlineSearch style={{ strokeWidth: '2px' }} />

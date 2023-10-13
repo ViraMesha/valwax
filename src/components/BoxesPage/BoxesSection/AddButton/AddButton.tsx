@@ -3,8 +3,6 @@ import Button from '@components/components/Button/Button';
 
 import { useStateActionsContext } from '../../../../../context/StateContext';
 
-import styles from './AddButton.module.scss';
-
 const AddButton = ({
   product,
 }: {
@@ -19,11 +17,7 @@ const AddButton = ({
 }) => {
   const { onAdd } = useStateActionsContext();
   return (
-    <Button
-      variant="primary"
-      type="button"
-      onClick={() => onAdd(product)}
-    >
+    <Button variant="primary" type="button" onClick={() => onAdd(product)}>
       купити
     </Button>
   );

@@ -1,5 +1,3 @@
-import { useWindowSize } from 'usehooks-ts';
-
 import { Locale } from '../../../i18n-config';
 import CandlesSection from '../CandlesSection/CandlesSection';
 import Tabs from '../Tabs/Tabs';

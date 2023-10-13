@@ -1,5 +1,6 @@
 'use client';
 import { createContext, useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 import { CartProductI } from '@components/types';
 
 type StateContextProps = {
@@ -51,6 +52,7 @@ export const StateContext = ({ children }: StateContextProps) => {
       product.quantity = quantity;
       setCartItems([...cartItems, { ...product }]);
     }
+    toast.success(`${quantity} ${product.title} added to the cart.`);
   };
 
   const onRemove = (id: string) => {
@@ -68,6 +70,7 @@ export const StateContext = ({ children }: StateContextProps) => {
       );
       setCartItems(newCartItems);
     }
+    toast.success('The product was successfully deleted!');
   };
 
   const toggleCartItemQuantity = (id: string, value: 'inc' | 'dec') => {
