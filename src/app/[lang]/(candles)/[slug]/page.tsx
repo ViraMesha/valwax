@@ -1,5 +1,5 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
-import CandlesPage from '@components/components/CandlePage/CandlePage';
+import CandlesPage from '@components/components/CandlesPage/CandlesPage';
 import Tabs from '@components/components/Tabs/Tabs';
 
 import { Locale } from '../../../../../i18n-config';
