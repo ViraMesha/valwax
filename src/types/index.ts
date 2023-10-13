@@ -33,7 +33,7 @@ export interface CartProductI {
   id: string;
   img: string;
   title: string;
-  description: string;
+  description?: string;
   price: number;
   quantity: number;
   link: string;

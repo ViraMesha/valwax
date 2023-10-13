@@ -7,12 +7,12 @@ export interface BoxI {
   id: string;
   img: string[];
   title: string;
-  price: string;
+  price: number;
   link: string;
   text: string;
 }
 
-const price = '355,00';
+const price = 355;
 
 const boxesData: BoxI[] = [
   {

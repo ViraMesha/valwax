@@ -1,35 +1,16 @@
-'use client';
-import Image from 'next/image';
 import Link from 'next/link';
-import Button from '@components/components/Button/Button';
-import ReusableSlider from '@components/components/ReusableSlider/ReusableSlider';
 import Typography from '@components/components/Typography/Typography';
 
+import AddButton from '../AddButton/AddButton';
 import { BoxI } from '../boxesData';
+import BoxImgSlider from '../BoxImgSlider/BoxImgSlider';
 
 import styles from './BoxesCard.module.scss';
 
 const BoxesCard: React.FC<BoxI> = ({ id, img, title, price, link, text }) => {
   return (
     <li className={styles.card}>
-      <div className={styles.img_container}>
-        <ReusableSlider dotsStyles={styles.dots} dots>
-          {img.map((imageSrc, index) => (
-            <div key={index} className={styles.img_inner_container}>
-              <Image
-                className={styles.image}
-                src={imageSrc}
-                priority
-                fill
-                alt={title}
-                sizes="(min-width: 1230) 515px,
-                    (min-width: 1024) 480px,
-                    100%"
-              />
-            </div>
-          ))}
-        </ReusableSlider>
-      </div>
+      <BoxImgSlider img={img} />
       <div className={styles.card_body}>
         <div className={styles.content}>
           <Link href={`${link}/${id}`}>
@@ -48,10 +29,10 @@ const BoxesCard: React.FC<BoxI> = ({ id, img, title, price, link, text }) => {
           <span>&#8372;</span>
         </div>
         <div className={styles.button_container}>
-          <Button variant="primary" type="button">
-            купити
-          </Button>
-          <Link href="/boxes">Переглянути</Link>
+          <AddButton
+            product={{ id, img: img[0], title, price, link, quantity: 0 }}
+          />
+          <Link href={`${link}/${id}`}>Переглянути</Link>
         </div>
       </div>
     </li>
