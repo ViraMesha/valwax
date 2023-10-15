@@ -123,3 +123,8 @@
 .card__actions > button {
   all: unset;
 }
+
+.delete {
+  color: var(--cl-gray-500);
+  cursor: pointer;
+}

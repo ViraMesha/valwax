@@ -3,7 +3,7 @@ import Link from 'next/link';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
 
-import DeleteButton from './DeleteButton/DeleteButton';
+import { useStateActionsContext } from '../../../../context/StateContext';
 
 import styles from './ProductCard.module.scss';
 
@@ -29,6 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   link,
   deleteButtonText,
 }) => {
+  const { onRemove } = useStateActionsContext();
   return (
     <li className={styles.card}>
       <Link href={`${link}/${id}`}>
@@ -78,7 +79,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
             qty={quantity}
             isCartQuantity
           />
-          <DeleteButton id={id} deleteButtonText={deleteButtonText} />
+          <button type="button" onClick={() => onRemove(id)}>
+            <Typography variant="bodyS" className={styles.delete}>
+              {deleteButtonText}
+            </Typography>
+          </button>
         </div>
       </div>
     </li>

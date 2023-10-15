@@ -3,9 +3,9 @@ import Button from '@components/components/Button/Button';
 
 import { useStateActionsContext } from '../../../../../context/StateContext';
 
-const AddButton = ({
+const BuyButton = ({
   product,
-  buyBtn
+  buyBtn,
 }: {
   product: {
     id: string;
@@ -25,4 +25,4 @@ const AddButton = ({
   );
 };
 
-export default AddButton;
+export default BuyButton;

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Typography from '@components/components/Typography/Typography';
 
-import AddButton from '../AddButton/AddButton';
 import { BoxI } from '../boxesData';
 import BoxImgSlider from '../BoxImgSlider/BoxImgSlider';
+import BuyButton from '../BuyButton/BuyButton';
 
 import styles from './BoxesCard.module.scss';
 
@@ -44,7 +44,7 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
           <span>&#8372;</span>
         </div>
         <div className={styles.button_container}>
-          <AddButton
+          <BuyButton
             product={{ id, img: img[0], title, price, link, quantity: 0 }}
             buyBtn={buyBtn}
           />
