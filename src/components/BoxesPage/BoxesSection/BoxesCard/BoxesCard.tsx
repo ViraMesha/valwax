@@ -34,7 +34,11 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
           </Typography>
         </div>
         <div className={styles.price_container}>
-          <Typography variant="bodyRegular" className={styles.price}>
+          <Typography
+            variant="bodyRegular"
+            className={styles.price}
+            color="var(--cl-gray-500)"
+          >
             {price}
           </Typography>
           <span>&#8372;</span>
