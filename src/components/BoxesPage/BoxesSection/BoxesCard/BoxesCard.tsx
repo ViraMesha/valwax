@@ -7,7 +7,18 @@ import BoxImgSlider from '../BoxImgSlider/BoxImgSlider';
 
 import styles from './BoxesCard.module.scss';
 
-const BoxesCard: React.FC<BoxI> = ({ id, img, title, price, link, text }) => {
+type BoxesCardProps = {
+  box: BoxI;
+  dict: {
+    buyBtn: string;
+    reviewBtn: string;
+  };
+};
+
+const BoxesCard: React.FC<BoxesCardProps> = ({
+  box: { id, img, title, price, link, text },
+  dict: { buyBtn, reviewBtn },
+}) => {
   return (
     <li className={styles.card}>
       <BoxImgSlider img={img} />
@@ -31,8 +42,9 @@ const BoxesCard: React.FC<BoxI> = ({ id, img, title, price, link, text }) => {
         <div className={styles.button_container}>
           <AddButton
             product={{ id, img: img[0], title, price, link, quantity: 0 }}
+            buyBtn={buyBtn}
           />
-          <Link href={`${link}/${id}`}>Переглянути</Link>
+          <Link href={`${link}/${id}`}>{reviewBtn}</Link>
         </div>
       </div>
     </li>

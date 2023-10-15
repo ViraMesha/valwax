@@ -70,6 +70,7 @@
 
 .button_container button {
   margin-right: 22px;
+  min-width: 130px;
 }
 
 .button_container a {
@@ -102,4 +103,3 @@
 .button_container a:focus {
   background-color: var(--cl-gray-200);
 }
-

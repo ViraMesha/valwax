@@ -5,6 +5,7 @@ import { useStateActionsContext } from '../../../../../context/StateContext';
 
 const AddButton = ({
   product,
+  buyBtn
 }: {
   product: {
     id: string;
@@ -14,11 +15,12 @@ const AddButton = ({
     link: string;
     quantity: number;
   };
+  buyBtn: string;
 }) => {
   const { onAdd } = useStateActionsContext();
   return (
     <Button variant="primary" type="button" onClick={() => onAdd(product)}>
-      купити
+      {buyBtn}
     </Button>
   );
 };
