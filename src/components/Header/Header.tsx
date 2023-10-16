@@ -5,12 +5,12 @@ import { useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import { BiShoppingBag } from 'react-icons/bi';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
-import useModal from '@components/hooks/useModal';
 import { useWindowSize } from 'usehooks-ts';
 
 import { Locale } from '../../../i18n-config';
 import logo from '../../../public/images/icons/header-logo.svg';
 import sm_logo from '../../../public/images/icons/sm-logo.svg';
+import useModal from '../../hooks/useModal';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
