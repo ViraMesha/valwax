@@ -3,6 +3,8 @@ import Link from 'next/link';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
 
+import { useStateActionsContext } from '../../../../context/StateContext';
+
 import styles from './ProductCard.module.scss';
 
 interface ProductCardProps {
@@ -10,7 +12,7 @@ interface ProductCardProps {
   id: string;
   img: string;
   title: string;
-  description: string;
+  description?: string;
   price: number;
   quantity: number;
   link: string;
@@ -27,6 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   link,
   deleteButtonText,
 }) => {
+  const { onRemove } = useStateActionsContext();
   return (
     <li className={styles.card}>
       <Link href={`${link}/${id}`}>
@@ -52,13 +55,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 {title}
               </Typography>
             </Link>
-            <Typography
-              variant="bodyS"
-              color="var(--cl-gray-500)"
-              className={styles.card__description}
-            >
-              {description}
-            </Typography>
+            {description && (
+              <Typography
+                variant="bodyS"
+                color="var(--cl-gray-500)"
+                className={styles.card__description}
+              >
+                {description}
+              </Typography>
+            )}
           </div>
           <div className={styles.price_container}>
             <Typography variant="button" className={styles.price}>
@@ -68,8 +73,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
         <div className={styles.card__actions}>
-          <CandleQuantity className={styles.buttonGroup} />
-          <button type="button">
+          <CandleQuantity
+            className={styles.buttonGroup}
+            id={id}
+            qty={quantity}
+            isCartQuantity
+          />
+          <button type="button" onClick={() => onRemove(id)}>
             <Typography variant="bodyS" className={styles.delete}>
               {deleteButtonText}
             </Typography>

@@ -12,11 +12,12 @@ interface WaxDescI {
     title: string;
     text: string;
   };
+  className?: string;
 }
 
-const WaxDesc: React.FC<WaxDescI> = ({ dict }) => {
+const WaxDesc: React.FC<WaxDescI> = ({ dict, className }) => {
   return (
-    <Section className={styles.section}>
+    <Section className={`${styles.section} ${className || ''}`}>
       <Container>
         <div className={styles.body}>
           <Image

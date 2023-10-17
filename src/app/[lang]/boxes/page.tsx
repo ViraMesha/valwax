@@ -32,7 +32,7 @@ const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
         lang={lang}
       />
       <BoxesPageHeader dict={page.boxes.header} />
-      <BoxesSection />
+      <BoxesSection dict={page.boxes.section} />
       <BoxesInfo dict={page.boxes.info} />
     </>
   );

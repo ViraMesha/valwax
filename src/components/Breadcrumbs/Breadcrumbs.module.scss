@@ -2,14 +2,10 @@
 
 .section {
   padding-top: 24px;
-  padding-bottom: 30px;
-
-  @include breakpoint('desktop') {
-    padding-top: 20px;
-  }
+  padding-bottom: 40px;
 
   @include breakpoint('desktop-large') {
-    padding-top: 50px;
+    padding-bottom: 56px;
   }
 }
 
@@ -42,7 +38,9 @@
   left: 50%;
   position: absolute;
   background: var(--cl-primary-200);
-  transition: width var(--animat), left var(--animat);
+  transition:
+    width var(--animat),
+    left var(--animat);
   width: 0;
 }
 

@@ -1,3 +1,4 @@
+'use client';
 import { useWindowSize } from 'usehooks-ts';
 
 import Container from '../Container/Container';
@@ -11,19 +12,18 @@ import styles from './CandlesSection.module.scss';
 
 interface CandlesSectionI {
   dict: {
-    filter: any
+    filter: any;
   };
 }
 
-const CandlesSection: React.FC<CandlesSectionI> = ({dict}) => {
-
+const CandlesSection: React.FC<CandlesSectionI> = ({ dict }) => {
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1230;
 
   return (
     <Section className={styles.section}>
       <Container className={styles.container}>
-        {isLargeScreen && <Filter dict={dict.filter}/>}
+        {isLargeScreen && <Filter dict={dict.filter} />}
         <CandleList items={candleData} />
       </Container>
     </Section>
