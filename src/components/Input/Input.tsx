@@ -20,7 +20,9 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ width, height, className, label, error, errorMessage, ...rest }, ref) => {
-    const inputClass = `${className || ''} ${styles.input}`;
+    const inputClass = `${className || ''} ${styles.input} ${
+      error ? styles.errorInput : ''
+    }`;
 
     return (
       <>
