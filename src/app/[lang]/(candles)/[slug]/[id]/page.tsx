@@ -17,7 +17,7 @@ export default async function Candle({
 }) {
   const { breadcrumbs } = await getDictionary(lang);
   const product = await getCandleDetails(id);
-  const { page } = await getDictionary(lang);
+  const { relatedProducts } = await getDictionary(lang);
 
   return (
     <>
@@ -34,10 +34,10 @@ export default async function Candle({
         ]}
         lang={lang}
       />
-      <CandleDetailsSection images={product.images} />
+      <CandleDetailsSection product={product} />
       <RelatedProducts
         relatedProducts={product.similar}
-        title={page.relatedProducts.title}
+        title={relatedProducts.title}
       />
     </>
   );

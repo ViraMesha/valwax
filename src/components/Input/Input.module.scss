@@ -1,13 +1,52 @@
 @import '../../scss/utilities/breakpoint-mixin.scss';
 
-.input {
-  border-radius: 20px;
+/* Label */
+.label {
+  display: inline-block;
+  color: var(--cl-gray-500);
+  font-size: 14px;
+  font-weight: 400;
   line-height: 1.5;
-  width: calc(100%);
+  margin-bottom: 6px;
 }
 
-@include breakpoint('tablet-small-and-up') {
-  .input {
-    width: 400px;
-  }
+/* Input field*/
+.input {
+  color: var(--cl-gray-500);
+  outline: none;
+  padding: 12px 16px;
+  border-radius: 20px;
+  width: 100%;
+  border: 1px solid var(--cl-secondary-700);
+  transition: border var(--animat);
+}
+
+.input,
+.input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.input::placeholder {
+  color: var(--cl-gray-200);
+}
+
+/* Input field focus */
+.input:focus {
+  border: 1px solid var(--cl-secondary-900);
+}
+
+.input.errorInput {
+  border-color: var(--cl-error-500);
+  color: var(--cl-error-500);
+}
+
+/* Error */
+.error {
+  margin-top: 4px;
+  color: var(--cl-error-500);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5; /* 21px */
 }

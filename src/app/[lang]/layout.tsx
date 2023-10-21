@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { ToastContainer } from 'react-toastify';
 import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 
+import { StateContext } from '../../../context/StateContext';
 import { i18n, Locale } from '../../../i18n-config';
 import { getDictionary } from '../../../lib/utils/dictionary';
 import { proxima_nova } from '../fonts';
@@ -9,6 +11,7 @@ import { proxima_nova } from '../fonts';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -31,9 +34,19 @@ export default async function RootLayout({
   return (
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
-        <Header lang={params.lang} />
-        <main className={styles.main}>{children}</main>
-        <Footer lang={params.lang} dict={footer} />
+        <StateContext>
+          <Header lang={params.lang} />
+          <main className={styles.main}>{children}</main>
+          <Footer lang={params.lang} dict={footer} />
+        </StateContext>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          closeOnClick={true}
+          pauseOnHover={true}
+          draggable={true}
+        />
       </body>
     </html>
   );

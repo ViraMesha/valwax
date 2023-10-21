@@ -1,9 +1,8 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef,useState } from 'react';
+import { useEffect, useRef,useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
-import { BiShoppingBag } from 'react-icons/bi';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import { useWindowSize } from 'usehooks-ts';
 
@@ -16,6 +15,7 @@ import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
 import Search from '../SearchComponent/Search/Search';
 
+import Cart from './Cart/Cart';
 import LanguageMenu from './LanguageMenu/LanguageMenu';
 
 import styles from './Header.module.scss';
@@ -34,6 +34,14 @@ const Header = ({ lang }: { lang: Locale }) => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  useEffect(() => {
+    const html = document.querySelector('html');
+
+    isMobileMenuOpen
+      ? html?.classList.add(styles.overflowHidden)
+      : html?.classList.remove(styles.overflowHidden);
+  }, [isMobileMenuOpen]);
+
   return (
     <header className={styles.header} ref={headerRef}>
       <Container className={styles.headerContainer}>
@@ -49,8 +57,8 @@ const Header = ({ lang }: { lang: Locale }) => {
         <div className={styles.icons}>
           <LanguageMenu className={styles.langMenu} />
           <ul className={styles.iconsList}>
-            <li className={styles.iconsItem}>
-              <BiShoppingBag />
+            <li className={`${styles.iconsItem} ${styles.cartIcon}`}>
+              <Cart />
             </li>
             <li className={styles.iconsItem} onClick={toggleModal}>
               <AiOutlineSearch style={{ strokeWidth: '2px' }} />
@@ -58,6 +66,7 @@ const Header = ({ lang }: { lang: Locale }) => {
             {isSmallScreen && (
               <li className={styles.iconsItem}>
                 <button
+                  type="button"
                   className={styles.menuIcon}
                   onClick={toggleMenuOpen}
                   aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}

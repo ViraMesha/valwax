@@ -19,6 +19,8 @@ interface ReusableSliderProps {
   vertical?: boolean;
   verticalSwiping?: boolean;
   swipeToSlide?: boolean;
+  autoplay?: boolean;
+  autoplaySpeed?: number;
 }
 
 type ForwardedRefType = Slider | null;
@@ -41,6 +43,8 @@ const ReusableSlider = forwardRef<ForwardedRefType, ReusableSliderProps>(
       verticalSwiping = false,
       afterChange,
       swipeToSlide,
+      autoplay = false,
+      autoplaySpeed = 2000,
     },
     ref
   ) => {
@@ -55,10 +59,12 @@ const ReusableSlider = forwardRef<ForwardedRefType, ReusableSliderProps>(
       vertical,
       verticalSwiping,
       swipeToSlide,
+      autoplay,
+      autoplaySpeed,
       appendDots: (dots: React.ReactNode) => <ul>{dots}</ul>,
       dotsClass: `${styles.dots} ${dotsStyles || ''}`,
       customPaging: i => (
-        <button aria-label="Go to the next or previous slide"></button>
+        <button type="button" aria-label={`Go to the slide ${i + 1}`}></button>
       ),
     };
     return (

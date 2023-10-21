@@ -1,10 +1,9 @@
-'use client';
-import { useWindowSize } from 'usehooks-ts';
-
 import { Locale } from '../../../i18n-config';
 import CandlesSection from '../CandlesSection/CandlesSection';
 import Tabs from '../Tabs/Tabs';
 import WaxDesc from '../WaxDesc/WaxDesc';
+
+import styles from './CandlesPage.module.scss';
 
 interface CandlesPageI {
   dictWax: {
@@ -12,7 +11,6 @@ interface CandlesPageI {
       title: string;
       text: string;
     };
-
   };
   dict: {
     tabs: {
@@ -25,15 +23,12 @@ interface CandlesPageI {
 }
 
 const CandlesPage: React.FC<CandlesPageI> = ({ dictWax, dict, lang }) => {
-  const { width } = useWindowSize();
-  const isLargeScreen = width >= 1230;
-  const isSmallScreen = width < 1230;
   return (
     <>
       <Tabs dict={dict} lang={lang} />
-      {isLargeScreen && <WaxDesc dict={dictWax.waxDesc} />}
+      <WaxDesc dict={dictWax.waxDesc} className={styles.waxDescAboveCandles} />
       <CandlesSection dict={dict} />
-      {isSmallScreen && <WaxDesc dict={dictWax.waxDesc} />}
+      <WaxDesc dict={dictWax.waxDesc} className={styles.waxDescBelowCandles} />
     </>
   );
 };

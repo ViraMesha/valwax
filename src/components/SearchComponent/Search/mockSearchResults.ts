@@ -10,10 +10,8 @@ const mockSearchResults: (CandleDetailsI | BoxDetailsI)[] = [
     title: 'Ароматична соєва свічка',
     description: 'Опис свічки...',
     price: '250',
-    topNotes: ['Нота 1', 'Нота 2'],
-    baseNotes: ['Базова нота 1', 'Базова нота 2'],
-    size: '280ml',
-    similar: [
+    components: [],
+     similar: [
       { id: '2', img: 'candle2.jpg', title: 'Свічка 2', price: '400' },
       { id: '3', img: 'candle3.jpg', title: 'Свічка 3', price: '350' },
     ],
@@ -27,7 +25,7 @@ const mockSearchResults: (CandleDetailsI | BoxDetailsI)[] = [
     title: 'Ароматична соєва свічка',
     price: '250',
     aroma: ['Арома 1', 'Арома 2'],
-    components: ['Компонент 1', 'Компонент 2'],
+    components: [],
     description: 'Чудовий опис набору...',
     similar: [
       { id: '2', img: 'candle2.jpg', title: 'Свічка 2', price: '400' },

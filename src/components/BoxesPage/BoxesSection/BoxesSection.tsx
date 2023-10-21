@@ -5,11 +5,18 @@ import BoxesList from './BoxesList/BoxesList';
 
 import styles from './BoxesSection.module.scss';
 
-const BoxesSection = () => {
+const BoxesSection = ({
+  dict,
+}: {
+  dict: {
+    buyBtn: string;
+    reviewBtn: string;
+  };
+}) => {
   return (
     <Section className={styles.section}>
       <Container>
-        <BoxesList />
+        <BoxesList dict={dict} />
       </Container>
     </Section>
   );

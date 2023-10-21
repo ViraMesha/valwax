@@ -24,6 +24,7 @@ const variantsMapping = {
   subheadingRegular: 'h4',
   exLargeBold: 'h3',
   bodyLarge: 'p',
+  subheadingMobile: 'h4',
 } as const;
 
 interface Props {
