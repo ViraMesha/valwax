@@ -1,29 +1,14 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
+import { BoxDetailsI, CandleDetailsI } from '@components/types';
 
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
 
+import mockSearchResults from './mockSearchResults';
+
 import styles from './Search.module.scss';
 
-const mockSearchResults = [
-  { id: 1, text: 'Пошуковий результат 1' },
-  { id: 2, text: 'Пошуковий результат 2' },
-  { id: 3, text: 'Пошуковий результат 3' },
-  { id: 4, text: 'Пошуковий результат 4' },
-  { id: 5, text: 'Пошуковий результат 5' },
-  { id: 6, text: 'Пошуковий результат 6' },
-  { id: 7, text: 'Пошуковий результат 7' },
-  { id: 8, text: 'Пошуковий результат 8' },
-  { id: 9, text: 'Пошуковий результат 9' },
-  { id: 10, text: 'Пошуковий результат 10' },
-  { id: 11, text: 'Пошуковий результат 11' },
-  { id: 12, text: 'Пошуковий результат 12' },
-];
-interface SearchResult {
-  id: number;
-  name: string;
-}
 
 interface SearchProps {
   onClose: () => void;
@@ -31,7 +16,9 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ onClose }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [searchResults, setSearchResults] = useState<
+    (CandleDetailsI | BoxDetailsI)[]
+  >([]);
 
   return (
     <div className={styles.modalWrapper}>

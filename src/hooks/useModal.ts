@@ -6,14 +6,16 @@ interface ModalHook {
   onBackdropClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-const useModal = (): ModalHook => {
+const useModal = (
+  headerRef: React.RefObject<HTMLDivElement>
+): ModalHook => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const [originalOverflow, setOriginalOverflow] = useState<string>('');
 
   const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const currentTarget = e.currentTarget as HTMLElement;
-
+     
     if (target === currentTarget) {
       setIsModal(false);
     }
@@ -39,21 +41,27 @@ const useModal = (): ModalHook => {
       }
     };
 
+    const handleHeaderClick = (e: MouseEvent) => {
+      if (
+        headerRef &&
+        headerRef.current &&
+        headerRef.current.contains(e.target as Node)
+      ) {
+        setIsModal(false);
+      }
+    };
+
     window.addEventListener('keydown', onEscKeydown);
     handleBodyScroll();
 
-    const handleRouteChangeStart = () => {
-      setIsModal(false);
-    };
+    document.addEventListener('click', handleHeaderClick);
 
-    
     return () => {
       window.removeEventListener('keydown', onEscKeydown);
       document.body.style.overflow = originalOverflow;
-      document.body.classList.remove('modal-open');
-  
+      document.removeEventListener('click', handleHeaderClick);
     };
-  }, [isModal, originalOverflow]);
+  }, [isModal, originalOverflow, headerRef]);
 
   return {
     isModal,
