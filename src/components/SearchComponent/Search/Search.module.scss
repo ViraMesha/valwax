@@ -36,16 +36,14 @@
   border-radius: 20px;
   outline: none;
   border: 1px solid var(--cl-primary-600);
-  height: 100%;
   max-height: 280px;
 
-  @include breakpoint('desktop') {
-    height: 460px;
-  }
-
+  
   @include breakpoint('tablet-large-and-up') {
     padding: 38px 24px;
+    max-height: 460px;
   }
+  
 }
 
 .searchWrapper .searchInput {
@@ -55,6 +53,11 @@
   color: var(--cl-gray-600);
   outline: none;
   border: 1px solid var(--cl-primary-600);
+
+  &:hover,
+  &:focus {
+    border-color: var(--cl-primary-600);
+  }
 }
 
 .searchIcon {
@@ -82,4 +85,11 @@
   background-color: var(--cl-white);
   outline: none;
   border: 1px solid var(--cl-primary-600);
+}
+
+.noResults {
+  color: var(--cl-primary-600); 
+  font-size: 30px; 
+  margin: 20px 0; 
+  text-align: center; 
 }

@@ -18,7 +18,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ searchResults }) => {
       <CustomScrollBar root={SearchWrapper}>
         <ul className={styles.searchList}>
           {searchResults.map(result => (
-            <SearchItem key={result.id} result={result}></SearchItem>
+            <SearchItem key={result.id} result={result}/>
           ))}
         </ul>
       </CustomScrollBar>

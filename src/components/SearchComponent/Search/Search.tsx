@@ -1,6 +1,7 @@
 import React, { useEffect, useRef,useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import { BoxDetailsI, CandleDetailsI } from '@components/types';
+import { useWindowSize } from 'usehooks-ts';
 import debounce from 'lodash.debounce';
 
 import Input from '../../Input/Input';
@@ -10,19 +11,22 @@ import mockSearchResults from './mockSearchResults';
 
 import styles from './Search.module.scss';
 
-
 interface SearchProps {
   onClose: () => void;
 }
 
 const Search: React.FC<SearchProps> = ({ onClose }) => {
-  const resultWrapperRef = useRef(null);
+ const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<
     (CandleDetailsI | BoxDetailsI)[]
     >([]);
   const [isVisible, setIsVisible] = useState(false);
+  const [showNoResults, setShowNoResults] = useState(false);
+  
+  const { width } = useWindowSize();
+  const isLargeScreen = width >= 1024;
 
   useEffect(() => {
     setIsVisible(true);
@@ -33,36 +37,52 @@ const Search: React.FC<SearchProps> = ({ onClose }) => {
     const filteredResults = mockSearchResults.filter((result) =>
       result.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    setSearchResults(filteredResults);
+     setSearchResults(filteredResults);
+     setShowNoResults(filteredResults.length === 0);
 
-     console.log(filteredResults)
   }, 500);
 
   useEffect(() => {
-  if (searchResults.length > 0) {
-  
     const resultWrapperElement = resultWrapperRef.current;
 
     if (resultWrapperElement) {
-    
-      
+      const numberOfResults = searchResults.length;
+      const minResultHeight = isLargeScreen ? 45 : 30;
+      const gap = isLargeScreen ? 20 : 10;
+      const maxResultHeight = isLargeScreen ? 460 : 280;
+      const padding = isLargeScreen ? 38 : 20;
+
+      let newHeight;
+
+      if (numberOfResults >= 6) {
+        newHeight = maxResultHeight;
+      } else {
+        newHeight =
+          numberOfResults * minResultHeight +
+          2 * padding +
+          (numberOfResults - 1) * gap;
+      }
+
+      resultWrapperElement.style.height = `${newHeight}px`;
     }
-  }
-}, [searchResults]);
+  }, [searchResults, isLargeScreen]);
   
   return (
-     <div className={`${styles.modalWrapper} ${isVisible ? styles.visible : ''}`}>
+    <div
+      className={`${styles.modalWrapper} ${isVisible ? styles.visible : ''}`}
+    >
       <div className={styles.searchWrapper}>
         <AiOutlineSearch
           style={{ strokeWidth: '2px' }}
           className={styles.searchIcon}
           color="var(--cl-gray-700)"
+          onClick={handleSearch}
         />
         <Input
           type="text"
           placeholder="Пошук"
           value={searchQuery}
-          onChange={(e) => {
+          onChange={e => {
             setSearchQuery(e.target.value);
             handleSearch();
           }}
@@ -76,16 +96,15 @@ const Search: React.FC<SearchProps> = ({ onClose }) => {
         />
       </div>
 
+      {showNoResults && (
+        <div className={styles.noResults}>Товарів не знайдено</div>
+      )}
 
-      {searchResults.length > 0 && (
-      <div ref={resultWrapperRef} className={styles.resultWrapper}>
-          <div className={styles.searchWrapper}>
-            <SearchResult searchResults={searchResults} />
-          </div>
+      {!showNoResults && searchResults.length > 0 && (
+        <div ref={resultWrapperRef} className={styles.resultWrapper}>
+          <SearchResult searchResults={searchResults} />
         </div>
-      )
-      }
-      
+      )}
     </div>
   );
 };

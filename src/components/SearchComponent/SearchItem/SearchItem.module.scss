@@ -1,13 +1,28 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
 .searchItem {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 30px;
+  gap: 2px;
+  padding: 0 6px;
+
+  @include breakpoint('tablet-large-and-up') {
     min-height: 45px;
-    gap: 2px;
+    padding: 0 13px 0 6px;
+  }
+
+  &:hover,
+  &:focus {
+    border-radius: 20px;
+    background-color: var(--cl-secondary-50);
+  }
 }
 
 .searchImage {
-    width: 30px;
-    height: 32px;
-    border-radius: 50px;
+  width: 30px;
+  height: 32px;
+  border-radius: 50px;
 }
