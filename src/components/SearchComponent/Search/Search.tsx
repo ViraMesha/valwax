@@ -1,5 +1,6 @@
 import React, { useEffect, useRef,useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
+import Typography from '@components/components/Typography/Typography';
 import { BoxDetailsI, CandleDetailsI } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 import debounce from 'lodash.debounce';
@@ -97,7 +98,13 @@ const Search: React.FC<SearchProps> = ({ onClose }) => {
       </div>
 
       {showNoResults && (
-        <div className={styles.noResults}>Товарів не знайдено</div>
+        <Typography
+          variant="bodyS"
+          color="var(--cl-gray-600)"
+          className={styles.noResults}
+        >
+          Товарів не знайдено
+        </Typography>
       )}
 
       {!showNoResults && searchResults.length > 0 && (
