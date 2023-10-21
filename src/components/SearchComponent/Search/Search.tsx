@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef,useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import { BoxDetailsI, CandleDetailsI } from '@components/types';
+import debounce from 'lodash.debounce';
 
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
@@ -15,13 +16,42 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ onClose }) => {
+  const resultWrapperRef = useRef(null);
+
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<
     (CandleDetailsI | BoxDetailsI)[]
-  >([]);
+    >([]);
+  const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  
+   const handleSearch = debounce(() => {
+    const filteredResults = mockSearchResults.filter((result) =>
+      result.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchResults(filteredResults);
+
+     console.log(filteredResults)
+  }, 500);
+
+  useEffect(() => {
+  if (searchResults.length > 0) {
+  
+    const resultWrapperElement = resultWrapperRef.current;
+
+    if (resultWrapperElement) {
+    
+      
+    }
+  }
+}, [searchResults]);
+  
   return (
-    <div className={styles.modalWrapper}>
+     <div className={`${styles.modalWrapper} ${isVisible ? styles.visible : ''}`}>
       <div className={styles.searchWrapper}>
         <AiOutlineSearch
           style={{ strokeWidth: '2px' }}
@@ -32,7 +62,10 @@ const Search: React.FC<SearchProps> = ({ onClose }) => {
           type="text"
           placeholder="Пошук"
           value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            handleSearch();
+          }}
           className={styles.searchInput}
         />
         <AiOutlineClose
@@ -42,13 +75,17 @@ const Search: React.FC<SearchProps> = ({ onClose }) => {
           onClick={onClose}
         />
       </div>
-      <div className={styles.resultWrapper}>
-        {mockSearchResults.length > 0 && (
+
+
+      {searchResults.length > 0 && (
+      <div ref={resultWrapperRef} className={styles.resultWrapper}>
           <div className={styles.searchWrapper}>
-            <SearchResult searchResults={mockSearchResults} />
+            <SearchResult searchResults={searchResults} />
           </div>
-        )}
-      </div>
+        </div>
+      )
+      }
+      
     </div>
   );
 };

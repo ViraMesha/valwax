@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import { useWindowSize } from 'usehooks-ts';
@@ -21,10 +21,9 @@ import LanguageMenu from './LanguageMenu/LanguageMenu';
 import styles from './Header.module.scss';
 
 const Header = ({ lang }: { lang: Locale }) => {
-  const headerRef = useRef<HTMLDivElement | null>(null);
-
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isModal, toggleModal, onBackdropClick } = useModal(headerRef);
+  const { isModal, toggleModal, onBackdropClick } = useModal();
 
   const { width } = useWindowSize();
   const isSmallScreen = width < 1230;
@@ -43,7 +42,7 @@ const Header = ({ lang }: { lang: Locale }) => {
   }, [isMobileMenuOpen]);
 
   return (
-    <header className={styles.header} ref={headerRef}>
+    <header className={styles.header}>
       <Container className={styles.headerContainer}>
         <Link href={`/${lang}`} className={styles.logo}>
           {isSmallScreen ? (

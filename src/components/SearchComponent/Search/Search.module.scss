@@ -1,7 +1,28 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
 .modalWrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  transform: translateY(-30px);
+  opacity: 0;
+  transition:
+    transform 0.5s ease,
+    opacity 0.9s ease;
+
+  @include breakpoint('mobile-large-and-up') {
+    width: 327px;
+  }
+
+  @include breakpoint('tablet-large-and-up') {
+    width: 724px;
+  }
+}
+
+.modalWrapper.visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .searchWrapper {
@@ -15,7 +36,16 @@
   border-radius: 20px;
   outline: none;
   border: 1px solid var(--cl-primary-600);
+  height: 100%;
   max-height: 280px;
+
+  @include breakpoint('desktop') {
+    height: 460px;
+  }
+
+  @include breakpoint('tablet-large-and-up') {
+    padding: 38px 24px;
+  }
 }
 
 .searchWrapper .searchInput {

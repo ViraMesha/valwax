@@ -22,7 +22,7 @@ const mockSearchResults: (CandleDetailsI | BoxDetailsI)[] = [
       '/images/aboutUs/Image1.jpg',
       '/images/aboutUs/Image3.jpg',
     ],
-    title: 'Ароматична соєва свічка',
+    title: 'Ароматична кокосова свічка',
     price: '250',
     aroma: ['Арома 1', 'Арома 2'],
     components: [],
