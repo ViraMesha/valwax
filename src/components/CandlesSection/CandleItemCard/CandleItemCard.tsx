@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 
 import { CandleI } from '../../../types';
@@ -30,10 +31,7 @@ const CandleItemCard: React.FC<CandleI> = ({ id, img, title, price }) => {
           {title}
         </Typography>
       </Link>
-      <div className={styles.price_container}>
-        <p className={styles.price}>{price}</p>
-        <span>&#8372;</span>
-      </div>
+      <Price />
     </li>
   );
 };

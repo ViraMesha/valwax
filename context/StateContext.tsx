@@ -24,7 +24,10 @@ const Context = createContext<StateContext | null>(null);
 const ActionsContext = createContext<ActionsContextProps | null>(null);
 
 export const StateContext = ({ children }: StateContextProps) => {
-  const [cartItems, setCartItems] = useLocalStorage('cartItems', []);
+  const [cartItems, setCartItems] = useLocalStorage<CartProductI[] | []>(
+    'cartItems',
+    []
+  );
   const [totalPrice, setTotalPrice] = useLocalStorage('totalPrice', 0);
   const [totalQuantities, setTotalQuantities] = useLocalStorage(
     'totalQuantities',

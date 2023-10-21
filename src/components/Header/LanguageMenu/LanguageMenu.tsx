@@ -8,7 +8,7 @@ import { useWindowSize } from 'usehooks-ts';
 
 import languageData, { ILanguage } from './languageData';
 
-import styles from './LanguageMenu.module.css';
+import styles from './LanguageMenu.module.scss';
 
 interface LanguageMenuPropsI {
   className?: string;
