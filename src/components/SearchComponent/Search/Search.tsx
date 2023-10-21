@@ -5,6 +5,7 @@ import { BoxDetailsI, CandleDetailsI } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 import debounce from 'lodash.debounce';
 
+import { Locale } from '../../../../i18n-config';
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
 
@@ -14,18 +15,20 @@ import styles from './Search.module.scss';
 
 interface SearchProps {
   onClose: () => void;
+  lang?: Locale;
 }
 
-const Search: React.FC<SearchProps> = ({ onClose }) => {
- const resultWrapperRef = useRef<HTMLDivElement | null>(null);
+const Search: React.FC<SearchProps> = ({ onClose, lang = 'uk' }) => {
+   
+  const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<
     (CandleDetailsI | BoxDetailsI)[]
-    >([]);
+  >([]);
   const [isVisible, setIsVisible] = useState(false);
   const [showNoResults, setShowNoResults] = useState(false);
-  
+
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1024;
 
@@ -33,14 +36,12 @@ const Search: React.FC<SearchProps> = ({ onClose }) => {
     setIsVisible(true);
   }, []);
 
-  
-   const handleSearch = debounce(() => {
-    const filteredResults = mockSearchResults.filter((result) =>
+  const handleSearch = debounce(() => {
+    const filteredResults = mockSearchResults.filter(result =>
       result.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-     setSearchResults(filteredResults);
-     setShowNoResults(filteredResults.length === 0);
-
+    setSearchResults(filteredResults);
+    setShowNoResults(filteredResults.length === 0);
   }, 500);
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const Search: React.FC<SearchProps> = ({ onClose }) => {
       resultWrapperElement.style.height = `${newHeight}px`;
     }
   }, [searchResults, isLargeScreen]);
-  
+
   return (
     <div
       className={`${styles.modalWrapper} ${isVisible ? styles.visible : ''}`}

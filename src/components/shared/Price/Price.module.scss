@@ -6,8 +6,16 @@
   gap: 4px;
 }
 
-.price__container span {
+.primarySpan {
   color: var(--cl-primary-500);
-  width: 18px;
-  height: 18px;
+ font-size: 18px; 
+}
+
+.secondarySpan {
+  color: var(--cl-gray-700);
+  font-size: 12px; 
+
+  @include breakpoint('tablet-large-and-up') {
+    font-size: 28px; 
+  }
 }

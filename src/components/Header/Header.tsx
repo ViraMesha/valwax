@@ -98,7 +98,7 @@ const Header = ({ lang }: { lang: Locale }) => {
         </div>
         {isModal && (
           <Modal onBackdropClick={onBackdropClick}>
-            <Search onClose={toggleModal} />
+            <Search onClose={toggleModal} lang={lang} />
           </Modal>
         )}
       </Container>

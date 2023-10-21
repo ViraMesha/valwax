@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 import { BoxDetailsI, CandleDetailsI } from '@components/types';
 import Image1 from 'public/images/aboutUs/Image1.jpg';
@@ -10,13 +12,22 @@ export interface SearchResultProps {
 }
 
 const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
-  
+  const slug = 'soy-candles';
   return (
     <li className={styles.searchItem}>
-      <Image src={Image1} alt={result.title} width={30} height={32} className={styles.searchImage} />
-      <Typography variant="bodyS">{result.title}</Typography>
-      <Typography variant="bodyS">{result.price}</Typography>
-      <span>&#8372;</span>
+      <Link href={`/${slug}/${result.id}`}>
+        <div className={styles.searchWrapper}>
+          <Image
+            src={Image1}
+            alt={result.title}
+            width={30}
+            height={32}
+            className={styles.searchImage}
+          />
+          <Typography variant="bodyS">{result.title}</Typography>
+        </div>
+        <Price price={result.price} variant="secondary" />
+      </Link>
     </li>
   );
 };
