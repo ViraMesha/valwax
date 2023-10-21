@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 
 import { BoxI } from '../boxesData';
@@ -22,7 +23,7 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
   return (
     <li className={styles.card}>
       <BoxImgSlider img={img} />
-      <div className={styles.card_body}>
+      <div>
         <div className={styles.content}>
           <Link href={`${link}/${id}`}>
             <Typography variant="subheadingBold" className={styles.title}>
@@ -33,17 +34,8 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
             {text}
           </Typography>
         </div>
-        <div className={styles.price_container}>
-          <Typography
-            variant="bodyRegular"
-            className={styles.price}
-            color="var(--cl-gray-500)"
-          >
-            {price}
-          </Typography>
-          <span>&#8372;</span>
-        </div>
-        <div className={styles.button_container}>
+        <Price priceStyle={styles.price} />
+        <div className={styles.button__container}>
           <BuyButton
             product={{ id, img: img[0], title, price, link, quantity: 0 }}
             buyBtn={buyBtn}

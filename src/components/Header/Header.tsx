@@ -55,7 +55,9 @@ const Header = ({ lang }: { lang: Locale }) => {
           <LanguageMenu className={styles.langMenu} />
           <ul className={styles.iconsList}>
             <li className={`${styles.iconsItem} ${styles.cartIcon}`}>
-              <Cart />
+              <Link href={`/${lang}/checkout`}>
+                <Cart />
+              </Link>
             </li>
             <li className={styles.iconsItem} onClick={toggleModal}>
               <AiOutlineSearch style={{ strokeWidth: '2px' }} />

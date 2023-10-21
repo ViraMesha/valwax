@@ -1,0 +1,13 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
+.price__container {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.price__container span {
+  color: var(--cl-primary-500);
+  width: 18px;
+  height: 18px;
+}

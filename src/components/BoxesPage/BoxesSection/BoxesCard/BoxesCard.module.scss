@@ -40,15 +40,11 @@
   }
 }
 
-.price_container {
-  color: var(--cl-gray-500);
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin-bottom: 20px;
-}
+//=================================================
+// Price
+//=================================================
 
-.price_container .price {
+.card .price {
   font-weight: 700;
   @include breakpoint('only-mobile') {
     font-size: 26px;
@@ -60,20 +56,28 @@
   }
 }
 
-.price_container span {
+.card .price + span {
   font-size: 30px;
-  text-align: center;
   @include breakpoint('only-mobile') {
-    font-size: 28px;
+    font-size: 23px;
   }
 }
+//================================================
 
-.button_container button {
+//=================================================
+// Button
+//=================================================
+
+.button__container {
+  margin-top: 20px;
+}
+
+.button__container button {
   margin-right: 22px;
   min-width: 130px;
 }
 
-.button_container a {
+.button__container a {
   display: inline-block;
   padding: 16px 20px;
   border-radius: 20px;
@@ -96,10 +100,11 @@
   }
 }
 
-.button_container a:hover {
+.button__container a:hover {
   background-color: var(--cl-gray-400);
 }
 
-.button_container a:focus {
+.button__container a:focus {
   background-color: var(--cl-gray-200);
 }
+//====================================================
