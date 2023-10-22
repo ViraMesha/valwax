@@ -8,9 +8,25 @@ const CheckoutForm = () => {
       <fieldset className={styles.form__group}>
         <legend className={styles.group__title}>Контактні дані</legend>
         <div className={styles.contactInfo__wrapper}>
-          <Input label={`Ім’я *`} type="text" placeholder={`Ім’я`} />
-          <Input label="Прізвище *" type="text" placeholder="Прізвище" />
-          <Input label="Email *" type="email" placeholder="Email" />
+          <Input
+            label={`Ім’я *`}
+            placeholder={`Ім’я`}
+            id="user_firstname"
+            required
+          />
+          <Input
+            label="Прізвище *"
+            placeholder="Прізвище"
+            id="user_lastname"
+            required
+          />
+          <Input
+            label="Email *"
+            type="email"
+            placeholder="Email"
+            id="user_email"
+            required
+          />
         </div>
       </fieldset>
     </form>

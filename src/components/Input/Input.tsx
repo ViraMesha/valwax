@@ -16,18 +16,27 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: FieldError | undefined;
   errorMessage?: string;
+  id?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ width, height, className, label, error, errorMessage, ...rest }, ref) => {
+  (
+    { width, height, className, label, error, errorMessage, id, ...rest },
+    ref
+  ) => {
     const inputClass = `${className || ''} ${styles.input} ${
       error ? styles.errorInput : ''
     }`;
 
     return (
       <div>
-        {label && <label className={styles.label}>{label}</label>}
+        {label && (
+          <label className={styles.label} htmlFor={id}>
+            {label}
+          </label>
+        )}
         <input
+          id={id}
           ref={ref}
           style={{ width: width, height: height }}
           {...rest}
