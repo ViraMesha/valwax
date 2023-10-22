@@ -8,6 +8,7 @@ import Typography from '@components/components/Typography/Typography';
 import { useWindowSize } from 'usehooks-ts';
 
 import { CandleI } from '../../../types';
+import Price from '../Price/Price';
 
 import styles from './RelatedProducts.module.scss';
 
@@ -62,10 +63,7 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
                   {title}
                 </Typography>
               </Link>
-              <div className={styles.price_container}>
-                <p className={styles.price}>{price}</p>
-                <span>&#8372;</span>
-              </div>
+              <Price price={price} />
             </div>
           ))}
         </ReusableSlider>

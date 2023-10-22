@@ -2,7 +2,7 @@ export interface BoxDetailsI {
   id: string;
   images: string[];
   title: string;
-  price: string;
+  price: number;
   aroma: string[];
   components: ComponentI[];
   description: string;
@@ -13,7 +13,7 @@ export interface CandleI {
   id: string;
   img: string;
   title: string;
-  price: string;
+  price: number;
   link?: string;
 }
 
@@ -27,7 +27,7 @@ export interface CandleDetailsI {
   images: string[];
   title: string;
   description: string;
-  price: string;
+  price: number;
   components: ComponentI[];
   similar: CandleI[];
 }

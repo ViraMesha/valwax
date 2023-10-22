@@ -25,7 +25,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     }`;
 
     return (
-      <>
+      <div>
         {label && <label className={styles.label}>{label}</label>}
         <input
           ref={ref}
@@ -35,7 +35,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           aria-label={rest.placeholder || ''}
         />
         {error && <p className={styles.error}>{errorMessage}</p>}
-      </>
+      </div>
     );
   }
 );

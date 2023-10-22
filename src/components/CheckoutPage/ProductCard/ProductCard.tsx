@@ -66,7 +66,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </Typography>
             )}
           </div>
-          <Price />
+          <Price price={price} />
         </div>
         <div className={styles.card__actions}>
           <CandleQuantity

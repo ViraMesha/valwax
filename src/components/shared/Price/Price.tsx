@@ -5,9 +5,11 @@ import styles from './Price.module.scss';
 const Price = ({
   priceContainerClassName,
   priceStyle,
+  price,
 }: {
   priceContainerClassName?: string;
   priceStyle?: string;
+  price: number;
 }) => {
   return (
     <div
@@ -18,7 +20,7 @@ const Price = ({
         color="var(--cl-primary-500)"
         className={`${priceStyle || ''}`}
       >
-        550
+        {price}
       </Typography>
       <span>&#8372;</span>
     </div>

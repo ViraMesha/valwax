@@ -15,7 +15,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
       id: '1',
       images: [box1.src, box2.src, box3.src],
       title: 'Бокс - Мінімал',
-      price: ' 355,00 ',
+      price: 355,
       aroma: [
         'Чиста бавовна',
         'Кориця і ваніль',
@@ -51,7 +51,7 @@ export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
       images: [candle1.src, candle2.src, candle3.src, candle1.src],
       title: 'Ароматична свічка Paradise',
       description: 'Свічка з соєвого воску з ароматом опалого листя.',
-      price: ' 355,00 ',
+      price: 355,
       components: [
         { title: 'Верхні ноти', content: 'Кедр, пекан' },
         { title: 'Базові ноти', content: 'Кедр, пекан' },

@@ -1,7 +1,10 @@
 import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
 
+import CheckoutForm from './CheckoutForm/CheckoutForm';
 import ProductList from './ProductList/ProductList';
+
+import styles from './CheckoutPage.module.scss';
 
 interface CheckoutPageProps {
   dict: {
@@ -18,7 +21,10 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
   return (
     <Section>
       <Container>
-        <ProductList dict={productList} />
+        <div className={styles.body}>
+          <ProductList dict={productList} />
+          <CheckoutForm />
+        </div>
       </Container>
     </Section>
   );
