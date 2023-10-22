@@ -1,11 +1,10 @@
-import React, { useEffect, useRef,useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import Typography from '@components/components/Typography/Typography';
 import { BoxDetailsI, CandleDetailsI } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 import debounce from 'lodash.debounce';
 
-import { Locale } from '../../../../i18n-config';
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
 
@@ -15,11 +14,10 @@ import styles from './Search.module.scss';
 
 interface SearchProps {
   onClose: () => void;
-  lang?: Locale;
+  dict: { noResults: string };
 }
 
-const Search: React.FC<SearchProps> = ({ onClose, lang = 'uk' }) => {
-   
+const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
   const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -104,7 +102,7 @@ const Search: React.FC<SearchProps> = ({ onClose, lang = 'uk' }) => {
           color="var(--cl-gray-600)"
           className={styles.noResults}
         >
-          Товарів не знайдено
+          {dict.noResults}
         </Typography>
       )}
 

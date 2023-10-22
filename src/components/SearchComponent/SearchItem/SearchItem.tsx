@@ -14,8 +14,8 @@ export interface SearchResultProps {
 const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
   const slug = 'soy-candles';
   return (
-    <li className={styles.searchItem}>
-      <Link href={`/${slug}/${result.id}`}>
+    <li>
+      <Link href={`/${slug}/${result.id}`} className={styles.searchLink}>
         <div className={styles.searchWrapper}>
           <Image
             src={Image1}

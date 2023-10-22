@@ -1,17 +1,18 @@
 @import '../../../scss/utilities/breakpoint-mixin.scss';
 
-.searchItem {
+.searchImage {
+  width: 30px;
+  height: 32px;
+  border-radius: 50px;
+}
+
+.searchLink {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  min-height: 30px;
-  gap: 2px;
-  padding: 0 6px;
+  padding: 4px 6px;
 
   @include breakpoint('tablet-large-and-up') {
-    min-height: 45px;
-    padding: 0 13px 0 6px;
+    padding: 5px 13px 5px 6px;
   }
 
   &:hover,
@@ -21,19 +22,14 @@
   }
 }
 
-.searchImage {
-  width: 30px;
-  height: 32px;
-  border-radius: 50px;
-}
-
 .searchWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2px;
+   
 
-  @include breakpoint('tablet-large-and-up') {
+@include breakpoint('tablet-large-and-up') {
     gap: 14px;
   }
 }

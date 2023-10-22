@@ -20,14 +20,18 @@ import LanguageMenu from './LanguageMenu/LanguageMenu';
 
 import styles from './Header.module.scss';
 
-const Header = ({ lang }: { lang: Locale }) => {
-  
+const Header = ({
+  lang,
+  dict,
+}: {
+  lang: Locale;
+  dict: { noResults: string };
+}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isModal, toggleModal, onBackdropClick } = useModal();
 
   const { width } = useWindowSize();
   const isSmallScreen = width < 1230;
-
 
   const toggleMenuOpen = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -98,7 +102,7 @@ const Header = ({ lang }: { lang: Locale }) => {
         </div>
         {isModal && (
           <Modal onBackdropClick={onBackdropClick}>
-            <Search onClose={toggleModal} lang={lang} />
+            <Search onClose={toggleModal} dict={dict} />
           </Modal>
         )}
       </Container>

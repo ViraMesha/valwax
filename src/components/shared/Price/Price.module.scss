@@ -2,8 +2,15 @@
 
 .price__container {
   display: flex;
-  align-items: baseline;
   gap: 4px;
+}
+
+.price__container.primary {
+  align-items: baseline;
+}
+
+.price__container.secondary {
+  align-items: center;
 }
 
 .primarySpan {
