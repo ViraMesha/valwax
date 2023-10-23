@@ -10,7 +10,7 @@ const Price = ({
 }: {
   priceContainerClassName?: string;
   priceStyle?: string;
-  price: number;
+  price?: number;
   variant?: 'primary' | 'secondary';
 }) => {
   const isPrimary = variant === 'primary';
