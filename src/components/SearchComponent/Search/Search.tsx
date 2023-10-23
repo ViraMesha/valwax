@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import Typography from '@components/components/Typography/Typography';
-import { BoxDetailsI, CandleDetailsI } from '@components/types';
+import { ProductDetails } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 import debounce from 'lodash.debounce';
 
@@ -21,9 +21,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
   const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<
-    (CandleDetailsI | BoxDetailsI)[]
-  >([]);
+  const [searchResults, setSearchResults] = useState<ProductDetails[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [showNoResults, setShowNoResults] = useState(false);
 

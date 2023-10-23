@@ -5,12 +5,12 @@ import styles from './Price.module.scss';
 const Price = ({
   priceContainerClassName,
   priceStyle,
-  price = '550',
+  price = 550,
   variant = 'primary',
 }: {
   priceContainerClassName?: string;
   priceStyle?: string;
-  price: string;
+  price: number;
   variant?: 'primary' | 'secondary';
 }) => {
   const isPrimary = variant === 'primary';

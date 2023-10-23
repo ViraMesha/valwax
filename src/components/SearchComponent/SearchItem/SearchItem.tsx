@@ -2,20 +2,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
-import { BoxDetailsI, CandleDetailsI } from '@components/types';
+import { ProductDetails } from '@components/types';
 import Image1 from 'public/images/aboutUs/Image1.jpg';
 
 import styles from './SearchItem.module.scss';
 
 export interface SearchResultProps {
-  result: CandleDetailsI | BoxDetailsI;
+  result: ProductDetails;
 }
 
 const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
-  const slug = 'soy-candles';
   return (
     <li>
-      <Link href={`/${slug}/${result.id}`} className={styles.searchLink}>
+      <Link href={`/${result.slug}/${result.id}`} className={styles.searchLink}>
         <div className={styles.searchWrapper}>
           <Image
             src={Image1}

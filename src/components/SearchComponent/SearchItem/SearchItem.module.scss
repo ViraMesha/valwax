@@ -4,6 +4,11 @@
   width: 30px;
   height: 32px;
   border-radius: 50px;
+
+  @include breakpoint('tablet-large-and-up') {
+    width: 46px;
+    height: 45px;
+  }
 }
 
 .searchLink {

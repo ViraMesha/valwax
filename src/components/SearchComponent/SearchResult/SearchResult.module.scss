@@ -15,7 +15,13 @@
 .searchList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+
+  @include breakpoint('tablet-large-and-up') {
+    gap: 10px;
+  }
+}
+
+.searchList.large {
   max-width: 281px;
 
   @include breakpoint('tablet-large-and-up') {
