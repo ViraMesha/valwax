@@ -12,7 +12,7 @@ interface UseScrollbarProps {
 const CustomScrollBar = ({
   root,
   children,
-  minHeight = '385px',
+  minHeight = '240px',
 }: UseScrollbarProps) => {
   useEffect(() => {
     let scrollbars: OverlayScrollbars | undefined;

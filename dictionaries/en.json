@@ -296,6 +296,9 @@
       }
     }
   },
+  "search": {
+    "noResults": "No items found"
+  },
   "footer": {
     "contact": "Contact us",
     "privacyPolicy": "Privacy policy",
