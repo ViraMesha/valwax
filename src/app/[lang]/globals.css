@@ -42,6 +42,14 @@
   --cl-error-500: #ec131a;
   /* size */
 
+  /*PhoneInput*/
+
+  --react-international-phone-height: 49.6px;
+  --react-international-phone-text-color: #3c3c3c;
+  --react-international-phone-font-size: 16px;
+  --react-international-phone-border-radius: 20px;
+  --react-international-phone-border-color: var(--cl-secondary-700);
+
   /* animat */
   --animat: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -103,4 +111,14 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: var(--cl-gray-500);
   border-radius: 8px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: var(--cl-gray-500);
+  transition: background-color var(--animat);
+  background-color: transparent;
 }
