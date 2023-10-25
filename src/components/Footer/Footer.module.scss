@@ -6,7 +6,6 @@
   text-align: center;
   border-top: 2px solid var(--cl-secondary-200);
   position: relative;
-  z-index: 1000;
   background-color: var(--cl-white);
 
   @include breakpoint('desktop-large') {

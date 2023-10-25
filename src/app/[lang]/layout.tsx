@@ -31,11 +31,12 @@ export default async function RootLayout({
   params: { lang: Locale };
 }) {
   const { footer } = await getDictionary(params.lang);
+  const { search } = await getDictionary(params.lang);
   return (
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
         <StateContext>
-          <Header lang={params.lang} />
+          <Header lang={params.lang} dict={search} />
           <main className={styles.main}>{children}</main>
           <Footer lang={params.lang} dict={footer} />
         </StateContext>

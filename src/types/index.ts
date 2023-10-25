@@ -41,3 +41,11 @@ export interface CartProductI {
   quantity: number;
   link: string;
 }
+
+export interface ProductDetails {
+  id: string;
+  images: string[];
+  title: string;
+  price: number;
+  slug: string;
+}

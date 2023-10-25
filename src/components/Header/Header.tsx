@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
-import useModal from '@components/hooks/useModal';
 import { useWindowSize } from 'usehooks-ts';
 
 import { Locale } from '../../../i18n-config';
 import logo from '../../../public/images/icons/header-logo.svg';
 import sm_logo from '../../../public/images/icons/sm-logo.svg';
+import useModal from '../../hooks/useModal';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
@@ -20,7 +20,13 @@ import LanguageMenu from './LanguageMenu/LanguageMenu';
 
 import styles from './Header.module.scss';
 
-const Header = ({ lang }: { lang: Locale }) => {
+const Header = ({
+  lang,
+  dict,
+}: {
+  lang: Locale;
+  dict: { noResults: string };
+}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isModal, toggleModal, onBackdropClick } = useModal();
 
@@ -96,7 +102,7 @@ const Header = ({ lang }: { lang: Locale }) => {
         </div>
         {isModal && (
           <Modal onBackdropClick={onBackdropClick}>
-            <Search onClose={toggleModal} />
+            <Search onClose={toggleModal} dict={dict} />
           </Modal>
         )}
       </Container>
