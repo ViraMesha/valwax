@@ -1,12 +1,22 @@
+'use client'
+
 import Image from 'next/image';
-// import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import Typography from '@components/components/Typography/Typography';
-import { ParameterI } from '@components/types';
+import { OptionEventI, ParameterI } from '@components/types';
 
 import styles from './Parameter.module.scss';
 
+
 const Parameter: React.FC<ParameterI> = ({ dict }) => {
+
+  const [param, setParam] = useState('');
+
+  const handelParamChange = (event: OptionEventI) => {
+    setParam(event.target.value);
+  }
+
   return (
     <label htmlFor={dict.title} className={styles.item}>
       <input
@@ -22,7 +32,7 @@ const Parameter: React.FC<ParameterI> = ({ dict }) => {
           {dict.title}
         </Typography>
         <Typography variant="subheadingMobile" color="var(--cl-primary-500)" className={styles.txt}>
-          зглш
+          {param}
         </Typography>
         <IoIosArrowUp className={`${styles.icon} ${styles.iconUp}`} />
         <IoIosArrowDown className={`${styles.icon} ${styles.iconDown}`} />
@@ -35,6 +45,8 @@ const Parameter: React.FC<ParameterI> = ({ dict }) => {
                 type="radio"
                 name={dict.title}
                 className={`${styles.visuallyHidden} ${styles.input}`}
+                value={option}
+                onChange={handelParamChange}
               />
               {/* <div className={styles.box}> */}
               {dict.images && (

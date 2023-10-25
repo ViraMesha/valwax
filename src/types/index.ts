@@ -70,3 +70,7 @@ export interface ConfiguratorSectionI {
 export interface ParameterI {
   dict: parameterI;
 }
+
+export interface OptionEventI {
+  target: { value: string };
+}
