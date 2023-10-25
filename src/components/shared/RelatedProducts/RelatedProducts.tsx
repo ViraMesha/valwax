@@ -63,7 +63,10 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
                   {title}
                 </Typography>
               </Link>
-              <Price price={price} />
+              <div className={styles.price_container}>
+                <p className={styles.price}>{price}</p>
+                <span>&#8372;</span>
+              </div>
             </div>
           ))}
         </ReusableSlider>
