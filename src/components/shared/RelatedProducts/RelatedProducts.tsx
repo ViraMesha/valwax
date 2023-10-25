@@ -8,6 +8,7 @@ import Typography from '@components/components/Typography/Typography';
 import { useWindowSize } from 'usehooks-ts';
 
 import { CandleI } from '../../../types';
+import Price from '../Price/Price';
 
 import styles from './RelatedProducts.module.scss';
 

@@ -31,7 +31,7 @@ const CandleItemCard: React.FC<CandleI> = ({ id, img, title, price }) => {
           {title}
         </Typography>
       </Link>
-      <Price />
+      <Price price={price} />
     </li>
   );
 };
