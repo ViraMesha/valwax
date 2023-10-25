@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface BoxDetailsI {
   id: string;
   images: string[];
@@ -40,4 +42,31 @@ export interface CartProductI {
   price: number;
   quantity: number;
   link: string;
+}
+
+
+type parameterI = {
+  number: string;
+  title: string;
+  options: string[];
+  images?: StaticImageData[];
+  colors?: string[];
+};
+
+export type configuratorSectionI = {
+  container: parameterI;
+    capacity: parameterI;
+    wax: parameterI;
+    aroma: parameterI;
+    wick: parameterI;
+    color: parameterI;
+}
+
+export interface ConfiguratorSectionI {
+  dict: configuratorSectionI
+}
+
+
+export interface ParameterI {
+  dict: parameterI;
 }

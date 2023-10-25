@@ -1,4 +1,5 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
+import ConfiguratorSection from '@components/components/CreateYourOwn/ConfiguratorSection/ConfiguratorSection';
 import WelcomeSection from '@components/components/CreateYourOwn/WelcomeSection/WelcomeSection';
 
 import { Locale } from '../../../../i18n-config';
@@ -34,6 +35,7 @@ const CreateYourOwn = async ({
         lang={lang}
       />
       <WelcomeSection dict={page.createYourOwn.welcome} />
+      <ConfiguratorSection dict={page.createYourOwn.configurator}/>
     </>
   );
 };
