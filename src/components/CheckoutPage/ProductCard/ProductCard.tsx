@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
+import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 
 import { useStateActionsContext } from '../../../../context/StateContext';
@@ -65,12 +66,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </Typography>
             )}
           </div>
-          <div className={styles.price_container}>
-            <Typography variant="button" className={styles.price}>
-              {price}
-            </Typography>
-            <span>&#8372;</span>
-          </div>
+          <Price price={price} />
         </div>
         <div className={styles.card__actions}>
           <CandleQuantity

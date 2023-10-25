@@ -328,6 +328,9 @@
       }
     }
   },
+  "search": {
+    "noResults": "No items found"
+  },
   "footer": {
     "contact": "Contact us",
     "privacyPolicy": "Privacy policy",
@@ -338,7 +341,7 @@
     "soy-candles": "Soy candles",
     "coconut-candles": "Coconut candles",
     "palm-candles": "Palm candles",
-    "boxes": "Gift boxes",
+    "boxes": "Boxes",
     "createYourOwn": "Create you own",
     "privacyPolicy": "Privacy policy",
     "paymentAndDelivery": "Payment and delivery",

@@ -21,7 +21,7 @@ const ProductList: React.FC<ProductListProps> = ({
   const { totalPrice, cartItems } = useStateContext();
 
   return (
-    <>
+    <div>
       {cartItems.length >= 1 && (
         <>
           <ul className={styles.list}>
@@ -46,7 +46,7 @@ const ProductList: React.FC<ProductListProps> = ({
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

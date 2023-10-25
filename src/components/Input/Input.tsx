@@ -1,4 +1,5 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { ComponentProps, forwardRef, InputHTMLAttributes } from 'react';
+import { FieldError } from 'react-hook-form/dist/types';
 
 import styles from './Input.module.scss';
 
@@ -6,20 +7,47 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   height?: string;
   className?: string;
+  placeholder?: ComponentProps<'input'>['placeholder'];
+  name?: ComponentProps<'input'>['name'];
+  onChange?: ComponentProps<'input'>['onChange'];
+  onBlur?: ComponentProps<'input'>['onBlur'];
+  disabled?: ComponentProps<'input'>['disabled'];
+  type?: ComponentProps<'input'>['type'];
+  label?: string;
+  error?: FieldError | undefined;
+  errorMessage?: string;
+  id?: string;
 }
 
-const Input: React.FC<InputProps> = ({ width, height, className, ...rest }) => {
-  const inputClass = `${className || ''} ${styles.input}`;
- 
-  return (
-    <input
-      style={{ width: width, height: height }}
-      {...rest}
-      className={inputClass}
-      aria-label={rest.placeholder || ''}
-    />
-  );
-};
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  (
+    { width, height, className, label, error, errorMessage, id, ...rest },
+    ref
+  ) => {
+    const inputClass = `${className || ''} ${styles.input} ${
+      error ? styles.errorInput : ''
+    }`;
+
+    return (
+      <div>
+        {label && (
+          <label className={styles.label} htmlFor={id}>
+            {label}
+          </label>
+        )}
+        <input
+          id={id}
+          ref={ref}
+          style={{ width: width, height: height }}
+          {...rest}
+          className={inputClass}
+          aria-label={rest.placeholder || ''}
+        />
+        {error && <p className={styles.error}>{errorMessage}</p>}
+      </div>
+    );
+  }
+);
 
 Input.displayName = 'Input';
 

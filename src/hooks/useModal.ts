@@ -13,7 +13,7 @@ const useModal = (): ModalHook => {
   const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const currentTarget = e.currentTarget as HTMLElement;
-    
+     
     if (target === currentTarget) {
       setIsModal(false);
     }
@@ -45,7 +45,6 @@ const useModal = (): ModalHook => {
     return () => {
       window.removeEventListener('keydown', onEscKeydown);
       document.body.style.overflow = originalOverflow;
-      document.body.classList.remove('modal-open');
     };
   }, [isModal, originalOverflow]);
 
