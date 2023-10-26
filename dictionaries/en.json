@@ -358,5 +358,14 @@
 
   "relatedProducts": {
     "title": "You may also like"
+  },
+
+  "general": {
+    "buttons" : {
+      "buyNow": "Buy now"
+    },
+    "titles": {
+      "price": "Price:"
+    }
   }
 }

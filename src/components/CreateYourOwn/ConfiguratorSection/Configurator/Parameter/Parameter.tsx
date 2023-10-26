@@ -39,7 +39,7 @@ const Parameter: React.FC<ParameterI> = ({ dict }) => {
       </div>
       <ul className={styles.list}>
         {dict.options.map((option, index) => (
-          <li key={option}>
+          <li key={option} className={styles.itemParam}>
             <label className={styles.checkbox}>
               <input
                 type="radio"

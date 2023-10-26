@@ -1,6 +1,27 @@
+@import '../../../../scss/utilities/breakpoint-mixin.scss';
+
+.warpper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include breakpoint('desktop-large') {
+    width: 486px;
+  }
+}
 
 .list {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.warpperPrice {
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  font-weight: 700;
+  margin-right: auto;
 }

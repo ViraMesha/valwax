@@ -1,3 +1,5 @@
+@import '../../../../../scss/utilities/breakpoint-mixin.scss';
+
 
 .item {
   padding: 24px 16px;
@@ -5,7 +7,12 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
+
+  @include breakpoint('desktop-large') {
+    padding: 32px 24px;
+    gap: 24px;
+  }
 }
 
 .list {
@@ -14,6 +21,23 @@
   overflow-x: auto;
   padding: 2px;
   margin: -2px;
+  text-align: center;
+  
+  @include breakpoint('desktop-large') {
+    max-height: 510px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+}
+
+.itemParam {
+  @include breakpoint('all-devices-without-desktop') {
+    max-width: 74px;
+  }
+
+  @include breakpoint('desktop-large') {
+    width: 100px;
+  }
 }
 
 .slider:checked ~ .list {
@@ -23,18 +47,31 @@
 .wrapper {
   display: flex;
   gap: 8px;
+
+
 }
 
 .checkbox {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 8px;
+
+  @include breakpoint('desktop-large') {
+    gap: 12px;
+  }
 }
 
 .box {
   width: 60px;
   height: 60px;
   border-radius: 12px;
+
+  @include breakpoint('desktop-large') {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+  }
 }
 
 .box[title='var(--cl-white)'] {
@@ -47,6 +84,12 @@
   box-sizing: border-box;
   border-radius: 12px;
   transition: transform 0.2s;
+
+  @include breakpoint('desktop-large') {
+    max-width: 100px;
+    height: 100px;
+    border-radius: 20px;
+  }
 }
 
 .input:checked ~ .box{

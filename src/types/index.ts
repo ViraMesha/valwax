@@ -54,15 +54,21 @@ type parameterI = {
 
 export type configuratorSectionI = {
   container: parameterI;
-    capacity: parameterI;
-    wax: parameterI;
-    aroma: parameterI;
-    wick: parameterI;
-    color: parameterI;
+  capacity: parameterI;
+  wax: parameterI;
+  aroma: parameterI;
+  wick: parameterI;
+  color: parameterI;
+}
+
+export type generalI = {
+  buttons: {[key: string]: string;};
+  titles: {[key: string]: string;};
 }
 
 export interface ConfiguratorSectionI {
-  dict: configuratorSectionI
+  dict: configuratorSectionI;
+  dictGeneral: generalI;
 }
 
 

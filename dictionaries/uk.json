@@ -356,5 +356,14 @@
 
   "relatedProducts": {
     "title": "Також може сподобатись"
+  },
+
+  "general": {
+    "buttons" : {
+      "buyNow": "Купити зараз"
+    },
+    "titles": {
+      "price": "Вартість:"
+    }
   }
 }

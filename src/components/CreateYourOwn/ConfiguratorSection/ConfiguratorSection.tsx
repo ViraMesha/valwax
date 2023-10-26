@@ -4,12 +4,16 @@ import { ConfiguratorSectionI } from '@components/types';
 
 import Configurator from './Configurator/Configurator';
 
+import styles from './ConfiguratorSection.module.scss';
 
-const ConfiguratorSection: React.FC<ConfiguratorSectionI> = ({ dict }) => {
+const ConfiguratorSection: React.FC<ConfiguratorSectionI> = ({ dict,dictGeneral }) => {
   return (
     <Section>
-      <Container>
-        <Configurator dict={dict} />
+      <Container className={styles.wrapper}>
+        <div className={styles.div}>
+          {/* image configurator */}
+        </div>
+        <Configurator dict={dict} dictGeneral={dictGeneral}/>
       </Container>
     </Section>
   );
