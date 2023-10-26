@@ -6,12 +6,14 @@
   gap: 24px;
 
   @include breakpoint('desktop') {
-    width: 480px;
+    // width: 480px;
+    flex: 0 1 50%;
   }
   
   @include breakpoint('desktop-large') {
     width: 486px;
     gap: 40px;
+
   }
 }
 

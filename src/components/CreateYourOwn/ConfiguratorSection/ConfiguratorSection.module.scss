@@ -5,6 +5,7 @@
   flex-direction: column;
 
   @include breakpoint('desktop') {
+
     flex-direction: row;
     gap: 16px;
   }
@@ -18,7 +19,8 @@
 .div {
   
   @include breakpoint('desktop') {
-    width: 480px;
+    // width: 480px;
+    flex: 0 1 50%;
   }
   
   @include breakpoint('desktop-large') {
