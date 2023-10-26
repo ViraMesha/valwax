@@ -54,7 +54,6 @@ type parameterI = {
 
 export type configuratorSectionI = {
   container: parameterI;
-  capacity: parameterI;
   wax: parameterI;
   aroma: parameterI;
   wick: parameterI;

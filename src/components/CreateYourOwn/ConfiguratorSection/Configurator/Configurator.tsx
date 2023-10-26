@@ -18,7 +18,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   const {container, wax, aroma, wick, color} = configuratorData(dict);
 
   return (
-    <div className={styles.warpper}>
+    <div className={styles.wrapper}>
       <ul className={styles.list}>
         <Parameter dict={container} />
         {/* <Parameter dict={capacity}/> */}
@@ -27,7 +27,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
         <Parameter dict={wick} />
         <Parameter dict={color} />
       </ul>
-      <div className={styles.warpperPrice}>
+      <div className={styles.wrapperPrice}>
         <Typography
           variant="bodyRegular"
           color="var(--cl-gray-500)"
