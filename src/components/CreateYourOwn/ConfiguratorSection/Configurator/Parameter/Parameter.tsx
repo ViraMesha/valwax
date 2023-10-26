@@ -40,15 +40,15 @@ const Parameter: React.FC<ParameterI> = ({ dict }) => {
       <ul className={styles.list}>
         {dict.options.map((option, index) => (
           <li key={option} className={styles.itemParam}>
-            <label className={styles.checkbox}>
+            <label className={styles.checkbox} htmlFor={option}>
               <input
                 type="radio"
                 name={dict.title}
                 className={`${styles.visuallyHidden} ${styles.input}`}
                 value={option}
                 onChange={handelParamChange}
+                id={option}
               />
-              {/* <div className={styles.box}> */}
               {dict.images && (
                 <Image
                   src={dict.images[index]}
@@ -63,14 +63,13 @@ const Parameter: React.FC<ParameterI> = ({ dict }) => {
                   title={dict.colors[index]}
                 ></div>
               )}
-              {/* </div> */}
-              <Typography
+              {dict.number  !== '1.'  && <Typography
                 variant="bodyRegular"
                 className={styles.typography}
                 color="--cl-gray-200"
               >
                 {option}
-              </Typography>
+              </Typography>}
             </label>
           </li>
         ))}

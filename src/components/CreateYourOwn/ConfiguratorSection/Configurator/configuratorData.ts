@@ -18,49 +18,64 @@ import four from '../../../../../public/images/create-your-own/wick-4.jpg'
 import yinYang from '../../../../../public/images/create-your-own/Yin-Yang.jpg'
 
 
-export const configuratorData = (data: configuratorSectionI) => {
+export const configuratorData = ({container, wax, aroma, wick, color}: configuratorSectionI) => {
   return (
     {
       container: {
-        number: data.container.number,
-        title: data.container.title,
-        options: data.container.options,
+        number: container.number,
+        title: container.title,
+        options: container.options,
         // ["Container 1", "Container 2", "Container 3", "Container 4"]
         images: [hexagon, yinYang, shuttle, yinYang],
       },
-      // capacity: {
-      //   number: data.capacity.number,
-      //   title: data.capacity.title,
-      //   options: data.capacity.options,
-      // },
       wax: {
-        number: data.wax.number,
-        title: data.wax.title,
-        options: data.wax.options,
+        number: wax.number,
+        title: wax.title,
+        options: wax.options,
         // "Соевий", "Кокосовий", "Пальмовий"
         images: [soy, coconut, palm],
       },
       aroma: {
-        number: data.aroma.number,
-        title: data.aroma.title,
-        options: data.aroma.options,
+        number: aroma.number,
+        title: aroma.title,
+        options: aroma.options,
         //  ["Pure Cotton", "Cinnamon & Vanilla", "Rose Petals", "Fresh Coffee", "Dry Gin", "Pumpkin Spice", "Grapefruit and Mint"]
         images: [pureCotton, cinnamonVanilla, cinnamonVanilla, freshCoffee, dryGin, pumpkinSpice, grapefruitMint],
       },
       wick: {
-        number: data.wick.number,
-        title: data.wick.title,
-        options: data.wick.options,
+        number: wick.number,
+        title: wick.title,
+        options: wick.options,
 
         images: [one, two, three, four],
       },
       color: {
-        number: data.color.number,
-        title: data.color.title,
-        options: data.color.options,
+        number: color.number,
+        title: color.title,
+        options: color.options,
         // ["Жовтий", "Червоний", "Лаванда", "Чорний"]
         colors: ['#FFF95E', 'var(--cl-error-500)', '#6E67B7' , 'var(--cl-gray-900)', 'var(--cl-white)']
       }
     }
   )
 };
+
+//
+
+// capacity: {
+//   number: capacity.number,
+//   title: capacity.title,
+//   options: capacity.options,
+// },
+
+// "capacity": {
+//   "number": "2.",
+//   "title": "Select container volume",
+//   "options": ["30 ml", "50 ml", "100 ml", "150 ml", "200 ml"]
+// },
+
+// "capacity": {
+//   "number": "2.",
+//   "title": "Оберіть об’єм тари",
+//   "options": ["30 мл", "50 мл", "100 мл", "150 мл", "200 мл"]
+// },

@@ -15,17 +15,17 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   dict,
   dictGeneral,
 }) => {
-  const data = configuratorData(dict);
+  const {container, wax, aroma, wick, color} = configuratorData(dict);
 
   return (
     <div className={styles.warpper}>
       <ul className={styles.list}>
-        <Parameter dict={data.container} />
-        {/* <Parameter dict={data.capacity}/> */}
-        <Parameter dict={data.wax} />
-        <Parameter dict={data.aroma} />
-        <Parameter dict={data.wick} />
-        <Parameter dict={data.color} />
+        <Parameter dict={container} />
+        {/* <Parameter dict={capacity}/> */}
+        <Parameter dict={wax} />
+        <Parameter dict={aroma} />
+        <Parameter dict={wick} />
+        <Parameter dict={color} />
       </ul>
       <div className={styles.warpperPrice}>
         <Typography
@@ -37,7 +37,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
         </Typography>
         <Price price={price} />
       </div>
-      <Button variant='primary'>
+      <Button variant='primary' className={styles.btn}>
         {dictGeneral.buttons.buyNow}
       </Button>
     </div>

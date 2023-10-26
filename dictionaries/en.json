@@ -191,28 +191,23 @@
           "title": "Select container",
           "options": ["Container 1", "Container 2", "Container 3", "Container 4"]
         },
-        "capacity": {
-          "number": "2.",
-          "title": "Select container volume",
-          "options": ["30 ml", "50 ml", "100 ml", "150 ml", "200 ml"]
-        },
         "wax": {
-          "number": "3.",
+          "number": "2.",
           "title": "Choose wax",
           "options": ["Soy", "Coconut", "Palm"]
         },
         "aroma": {
-          "number": "4.",
+          "number": "3.",
           "title": "Choose a flavor",
           "options": ["Pure Cotton", "Cinnamon & Vanilla", "Rose Petals", "Fresh Coffee", "Dry Gin", "Pumpkin Spice",  "Grapefruit and Mint"]
         },
         "wick": {
-          "number": "5.",
+          "number": "4.",
           "title": "Choose the number of wicks",
           "options": ["One", "Two", "Three", "Four"]
         },
         "color": {
-          "number": "6.",
+          "number": "5.",
           "title": "Choose a color",
           "options": ["Yellow", "Red", "Lavender", "Black", "White"]
         }

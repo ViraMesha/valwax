@@ -5,8 +5,13 @@
   flex-direction: column;
   gap: 24px;
 
+  @include breakpoint('desktop') {
+    width: 480px;
+  }
+  
   @include breakpoint('desktop-large') {
     width: 486px;
+    gap: 40px;
   }
 }
 
@@ -14,14 +19,32 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  
+  @include breakpoint('desktop-large') {
+    gap: 32px;
+  }
 }
 
 .warpperPrice {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+
 }
 
 .price {
   font-weight: 700;
-  margin-right: auto;
+  margin-right: 16px;
+}
+
+.btn {
+
+  margin-left: auto;
+  @include breakpoint('tablet-large') {
+    width: 352px;
+  }
+
+  @include breakpoint('desktop') {
+    width: 356px;
+  }
 }
