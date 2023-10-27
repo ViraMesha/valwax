@@ -59,8 +59,10 @@ const CustomScrollBar = ({
       if (scrollWrapperHorizontal) {
         scrollWrapperHorizontal.style.border = '1px solid var(--cl-primary-600)';
         scrollWrapperHorizontal.style.borderRadius = '4px';
+        // scrollWrapperHorizontal.style.width = '100%';
         scrollWrapperHorizontal.style.height = '12px';
         scrollWrapperHorizontal.style.padding = '0';
+        // scrollWrapperHorizontal.style.position = 'relative';
       }
     }
 
