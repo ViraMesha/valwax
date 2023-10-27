@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { IoIosArrowDown } from "react-icons/io";
 import { IoOptionsOutline } from 'react-icons/io5';
-import { MdKeyboardArrowDown } from 'react-icons/md';
 import useModal from '@components/hooks/useModal';
 import { useWindowSize } from 'usehooks-ts';
 
@@ -84,7 +84,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                             {item.abbreviatedTitle}
                           </Typography>
                           {!isTabsMenuOpen && (
-                            <MdKeyboardArrowDown
+                            <IoIosArrowDown
                               style={{ width: 24, height: 24 }}
                             />
                           )}

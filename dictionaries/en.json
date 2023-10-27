@@ -184,6 +184,33 @@
           "6. Customization and completion: after completing these steps, we will create a unique candle for you that will meet all your wishes.",
           "Don't wait, start creating your candle right now and enjoy the atmosphere it will create in your space. Thank you for choosing us for your creative ideas and special moments!"
         ]
+      },
+      "configurator": {
+        "container": {
+          "number": "1.",
+          "title": "Select container",
+          "options": ["Container 1", "Container 2", "Container 3", "Container 4"]
+        },
+        "wax": {
+          "number": "2.",
+          "title": "Choose wax",
+          "options": ["Soy", "Coconut", "Palm"]
+        },
+        "aroma": {
+          "number": "3.",
+          "title": "Choose a flavor",
+          "options": ["Pure Cotton", "Cinnamon & Vanilla", "Rose Petals", "Fresh Coffee", "Dry Gin", "Pumpkin Spice",  "Grapefruit and Mint"]
+        },
+        "wick": {
+          "number": "4.",
+          "title": "Choose the number of wicks",
+          "options": ["One", "Two", "Three", "Four"]
+        },
+        "color": {
+          "number": "5.",
+          "title": "Choose a color",
+          "options": ["Yellow", "Red", "Lavender", "Black", "White"]
+        }
       }
     },
     "privacyPolicy": {
@@ -326,5 +353,14 @@
 
   "relatedProducts": {
     "title": "You may also like"
+  },
+
+  "general": {
+    "buttons" : {
+      "buyNow": "Buy now"
+    },
+    "titles": {
+      "price": "Price:"
+    }
   }
 }

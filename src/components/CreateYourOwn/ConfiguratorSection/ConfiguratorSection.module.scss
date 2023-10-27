@@ -1,0 +1,29 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint('desktop') {
+
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  @include breakpoint('desktop-large') {
+    flex-direction: row;
+    gap: 126px;
+  }
+}
+
+.div {
+  
+  @include breakpoint('desktop') {
+    // width: 480px;
+    flex: 0 1 50%;
+  }
+  
+  @include breakpoint('desktop-large') {
+    width: 588px;
+  }
+}
