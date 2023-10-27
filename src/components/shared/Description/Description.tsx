@@ -1,9 +1,13 @@
-import Button from '@components/components/Button/Button';
+'use client';
+import { useState } from 'react';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
 import { BoxDetailsI, CandleDetailsI } from '@components/types';
 
+import boxImg from '../../../../public/images/boxes/boxes_section/box.jpg';
+import candleImg from '../../../../public/images/candles/img-1.jpg';
 import AccordionSection from '../AccordionSection/AccordionSection';
+import BuyButtons from '../BuyButtons/BuyButtons';
 
 import styles from './Description.module.scss';
 
@@ -15,6 +19,7 @@ interface DescriptionProps {
 const Description: React.FC<DescriptionProps> = ({ product, id }) => {
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
+  const [quantity, setQuantity] = useState(1);
 
   const accordionsections = [
     { title: 'Верхні ноти', content: 'Кедр, пекан' },
@@ -59,7 +64,7 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
           <Typography variant="button" color="var(--cl-gray-500)">
             Кількість:
           </Typography>
-          <CandleQuantity />
+          <CandleQuantity qty={quantity} setQuantity={setQuantity} />
         </div>
         {isBoxPage && (
           <div>
@@ -68,14 +73,21 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
             </Typography>
           </div>
         )}
-        <div className={styles.candeleBuyWrapper}>
-          <Button variant="secondary" className={styles.candeleBuy}>
-            До кошика
-          </Button>
-          <Button variant="primary" className={styles.candeleBuy}>
-            Купити зараз
-          </Button>
-        </div>
+        <BuyButtons
+          product={{
+            id: isCandlePage ? '123' : '234',
+            img: isCandlePage ? candleImg.src : boxImg.src,
+            title: isCandlePage
+              ? 'Ароматична свічка Paradise'
+              : 'Бокс “Стандарт”',
+            description: isCandlePage
+              ? 'Свічка з соєвого воску з ароматом опалого листя.'
+              : 'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
+            price: 550,
+            link: isCandlePage ? 'soy-candles' : '/boxes',
+            quantity,
+          }}
+        />
 
         {/* <div className={styles.candeleAccordion}>
            {product.components.map((component, index) => (

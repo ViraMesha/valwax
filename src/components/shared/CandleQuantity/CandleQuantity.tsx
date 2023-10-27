@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import Typography from '@components/components/Typography/Typography';
 
@@ -12,6 +12,7 @@ interface CandleQuantityProps {
   isCartQuantity?: boolean;
   id?: string;
   qty?: number;
+  setQuantity?: Dispatch<SetStateAction<number>>;
 }
 
 const CandleQuantity: React.FC<CandleQuantityProps> = ({
@@ -19,17 +20,17 @@ const CandleQuantity: React.FC<CandleQuantityProps> = ({
   isCartQuantity,
   id,
   qty,
+  setQuantity,
 }) => {
   const { toggleCartItemQuantity } = useStateActionsContext();
-  const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
+    setQuantity && qty && setQuantity(qty + 1);
   };
 
   const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+    if (qty && qty > 1) {
+      setQuantity && setQuantity(qty - 1);
     }
   };
 
@@ -61,7 +62,7 @@ const CandleQuantity: React.FC<CandleQuantityProps> = ({
             <FiMinus />
           </button>
           <Typography variant="button" color="var(--cl-primary-900)">
-            {quantity}
+            {qty}
           </Typography>
           <button onClick={handleIncrement} className={styles.candleCount}>
             <FiPlus />
