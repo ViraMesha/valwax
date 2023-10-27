@@ -6,8 +6,8 @@
   gap: 24px;
 
   @include breakpoint('desktop') {
-    // width: 480px;
-    flex: 0 1 50%;
+    width: 480px;
+    // flex: 0 1 50%;
   }
   
   @include breakpoint('desktop-large') {
@@ -41,12 +41,13 @@
 
 .btn {
 
-  margin-left: auto;
   @include breakpoint('tablet-large') {
+    margin-left: auto;
     width: 352px;
   }
-
+  
   @include breakpoint('desktop') {
+    margin-left: auto;
     width: 356px;
   }
 }

@@ -12,7 +12,7 @@ interface UseScrollbarProps {
 const CustomScrollBar = ({
   root,
   children,
-  minHeight = '240px',
+  // minHeight = '240px',
 }: UseScrollbarProps) => {
   useEffect(() => {
     let scrollbars: OverlayScrollbars | undefined;
@@ -31,40 +31,36 @@ const CustomScrollBar = ({
         '.os-scrollbar-vertical .os-scrollbar-handle'
       );
 
-      const scrollWraperVertical = containerElement.querySelector<HTMLElement>(
+      const scrollWrapperVertical = containerElement.querySelector<HTMLElement>(
         '.os-scrollbar.os-scrollbar-vertical.os-scrollbar-cornerless'
       );
 
-      const scrollWraperHorizontal =
+      const scrollWrapperHorizontal =
         containerElement.querySelector<HTMLElement>(
-          '.os-scrollbar.os-scrollbar-vertical.os-scrollbar-cornerless.os-scrollbar-rtl'
+          '.os-scrollbar.os-scrollbar-horizontal.os-scrollbar-cornerless'
         );
-
-      if (scrollbarHorizontal) {
-        scrollbarHorizontal.style.background = 'var(--cl-primary-600)';
-        scrollbarHorizontal.style.height = '30px';
-        scrollbarHorizontal.style.maxHeight = '30px';
-      }
 
       if (scrollbarVertical) {
         scrollbarVertical.style.background = 'var(--cl-primary-600)';
-        scrollbarVertical.style.height = '30px';
-        scrollbarVertical.style.maxHeight = '30px';
       }
 
-      if (scrollWraperVertical) {
-        scrollWraperVertical.style.border = '1px solid var(--cl-primary-600)';
-        scrollWraperVertical.style.borderRadius = '4px';
-        scrollWraperVertical.style.width = '12px';
-        scrollWraperVertical.style.height = '100%';
-        scrollWraperVertical.style.padding = '0';
+      if (scrollWrapperVertical) {
+        scrollWrapperVertical.style.border = '1px solid var(--cl-primary-600)';
+        scrollWrapperVertical.style.borderRadius = '4px';
+        scrollWrapperVertical.style.width = '12px';
+        scrollWrapperVertical.style.height = '100%';
+        scrollWrapperVertical.style.padding = '0';
       }
 
-      if (scrollWraperHorizontal) {
-        scrollWraperHorizontal.style.border = '1px solid var(--cl-primary-600)';
-        scrollWraperHorizontal.style.borderRadius = '4px';
-        scrollWraperHorizontal.style.width = '12px';
-        scrollWraperHorizontal.style.height = '100%';
+      if (scrollbarHorizontal) {
+        scrollbarHorizontal.style.background = 'var(--cl-primary-600)';
+      }
+
+      if (scrollWrapperHorizontal) {
+        scrollWrapperHorizontal.style.border = '1px solid var(--cl-primary-600)';
+        scrollWrapperHorizontal.style.borderRadius = '4px';
+        scrollWrapperHorizontal.style.height = '12px';
+        scrollWrapperHorizontal.style.padding = '0';
       }
     }
 
@@ -81,7 +77,7 @@ const CustomScrollBar = ({
       style={{
         width: '100%',
         height: '100%',
-        minHeight: minHeight,
+        // minHeight: minHeight,
         overflow: 'hidden',
       }}
     >
