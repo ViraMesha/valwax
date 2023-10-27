@@ -20,11 +20,9 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
 }) => {
   return (
     <Section>
-      <Container>
-        <div className={styles.body}>
-          <ProductList dict={productList} />
-          <CheckoutForm />
-        </div>
+      <Container className={styles.body}>
+        <ProductList dict={productList} />
+        <CheckoutForm />
       </Container>
     </Section>
   );

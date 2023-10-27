@@ -37,7 +37,7 @@ const ReusableSlider = forwardRef<ForwardedRefType, ReusableSliderProps>(
       draggable = true,
       swipe = true,
       dotsStyles,
-      speed = 700,
+      speed = 900,
       beforeChange,
       vertical = false,
       verticalSwiping = false,

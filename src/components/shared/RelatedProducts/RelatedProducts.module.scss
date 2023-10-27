@@ -93,24 +93,6 @@
   color: var(--cl-gray-900);
 }
 
-.price_container {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.price {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.54;
-  text-transform: uppercase;
-  color: var(--cl-gray-800);
-}
-
-.price_container span {
-  color: var(--cl-gray-800);
-}
-
 /* Styles for dots*/
 
 .dots {
