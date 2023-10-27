@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { PhoneInput } from 'react-international-phone';
 import Button from '@components/components/Button/Button';
 import Input from '@components/components/Input/Input';
+import Select from '@components/components/Select/Select';
 import validationSchema from '@components/helpers/formValidationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { PhoneNumberUtil } from 'google-libphonenumber';
@@ -55,6 +56,12 @@ const CheckoutForm = () => {
     data.phone = phone;
     console.log(data);
   };
+
+  const options = [
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+    { value: 'option3', label: 'Option 3' },
+  ];
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -111,6 +118,13 @@ const CheckoutForm = () => {
               <p className={styles.error}>Phone is not valid</p>
             )}
           </div>
+        </div>
+      </fieldset>
+
+      <fieldset className={styles.form__group}>
+        <legend className={styles.group__title}>Доставка</legend>
+        <div className={styles.contactInfo__wrapper}>
+          <Select options={options} label="Оберіть область доставки *" />
         </div>
       </fieldset>
       <Button variant="primary" type="submit" className={styles.button}>
