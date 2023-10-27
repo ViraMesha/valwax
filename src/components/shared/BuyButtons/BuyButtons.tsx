@@ -1,3 +1,4 @@
+import { usePathname, useRouter } from 'next/navigation';
 import Button from '@components/components/Button/Button';
 import { CartProductI } from '@components/types';
 
@@ -7,6 +8,14 @@ import styles from './BuyButtons.module.scss';
 
 const BuyButtons = ({ product }: { product: CartProductI }) => {
   const { onAdd } = useStateActionsContext();
+  const pathName = usePathname();
+  const router = useRouter();
+  const lang = pathName.split('/')[1];
+
+  const handleBuyNowButtonClick = () => {
+    onAdd(product, product.quantity);
+    router.push(`/${lang}/checkout`);
+  };
 
   return (
     <div className={styles.candeleBuyWrapper}>
@@ -18,7 +27,12 @@ const BuyButtons = ({ product }: { product: CartProductI }) => {
       >
         До кошика
       </Button>
-      <Button variant="primary" className={styles.candeleBuy}>
+      <Button
+        variant="primary"
+        className={styles.candeleBuy}
+        type="button"
+        onClick={handleBuyNowButtonClick}
+      >
         Купити зараз
       </Button>
     </div>
