@@ -15,8 +15,7 @@ export const tabsData = (data: dataI) => {
     {
       fullTitle: data.fullTitle[0],
       abbreviatedTitle: data.abbreviatedTitle[0],
-      // link: '/soy-candles',
-      link: '/candles',
+      link: '/soy-candles',
     },
     {
       fullTitle: data.fullTitle[1],
@@ -29,6 +28,5 @@ export const tabsData = (data: dataI) => {
       link: '/palm-candles',
     },
   ];
-}
-
+};
 
