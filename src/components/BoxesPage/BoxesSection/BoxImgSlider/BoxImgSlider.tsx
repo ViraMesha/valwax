@@ -4,7 +4,11 @@ import ReusableSlider from '@components/components/ReusableSlider/ReusableSlider
 
 import styles from './BoxImgSlider.module.scss';
 
-const BoxImgSlider = ({ img }: { img: string[] }) => {
+interface BoxImgSliderProps {
+  img: string[];
+}
+
+const BoxImgSlider: React.FC<BoxImgSliderProps> = ({ img }) => {
   return (
     <div className={styles.img_container}>
       <ReusableSlider dotsStyles={styles.dots} dots>

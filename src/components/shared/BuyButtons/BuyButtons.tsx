@@ -6,7 +6,11 @@ import { useStateActionsContext } from '../../../../context/StateContext';
 
 import styles from './BuyButtons.module.scss';
 
-const BuyButtons = ({ product }: { product: CartProductI }) => {
+interface BuyButtonsProps {
+  product: CartProductI;
+}
+
+const BuyButtons: React.FC<BuyButtonsProps> = ({ product }) => {
   const { onAdd } = useStateActionsContext();
   const pathName = usePathname();
   const router = useRouter();
@@ -18,10 +22,10 @@ const BuyButtons = ({ product }: { product: CartProductI }) => {
   };
 
   return (
-    <div className={styles.candeleBuyWrapper}>
+    <div className={styles.candleBuyWrapper}>
       <Button
         variant="secondary"
-        className={styles.candeleBuy}
+        className={styles.candleBuy}
         type="button"
         onClick={() => onAdd(product, product.quantity)}
       >
@@ -29,7 +33,7 @@ const BuyButtons = ({ product }: { product: CartProductI }) => {
       </Button>
       <Button
         variant="primary"
-        className={styles.candeleBuy}
+        className={styles.candleBuy}
         type="button"
         onClick={handleBuyNowButtonClick}
       >
