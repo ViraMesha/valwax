@@ -293,6 +293,14 @@
       "productList": {
         "deleteButtonText": "Delete",
         "totalText": "Total"
+      },
+      "form": {
+        "contactFormTitle": "Contact details",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "phoneNumber": "Enter your phone number",
+        "buttonText": "Place an order"
       }
     }
   },

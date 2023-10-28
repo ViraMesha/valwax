@@ -292,6 +292,14 @@
       "productList": {
         "deleteButtonText": "Видалити",
         "totalText": "Разом"
+      },
+      "form": {
+        "contactFormTitle": "Контактні дані",
+        "firstName": "Ім’я",
+        "lastName": "Прізвище",
+        "email": "Email",
+        "phoneNumber": "Введіть номер телефону",
+        "buttonText": "Оформити замовлення"
       }
     }
   },
