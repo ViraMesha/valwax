@@ -9,6 +9,7 @@ export interface BoxDetailsI {
   components: ComponentI[];
   description: string;
   similar: CandleI[];
+  slug: string
 }
 
 export interface CandleI {
@@ -32,6 +33,7 @@ export interface CandleDetailsI {
   price: number;
   components: ComponentI[];
   similar: CandleI[];
+  slug: string
 }
 
 export interface CartProductI {

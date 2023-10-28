@@ -12,7 +12,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     const fakeBoxDetails: BoxDetailsI = {
-      id: '1',
+      id: '234',
       images: [box1.src, box2.src, box3.src],
       title: 'Бокс - Мінімал',
       price: 355,
@@ -34,6 +34,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
       description:
         'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
       similar: relatedProducts,
+      slug: '/boxes'
     };
 
     return fakeBoxDetails;
@@ -47,7 +48,7 @@ export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     const fakeCandleDetails: CandleDetailsI = {
-      id: '1',
+      id: '123',
       images: [candle1.src, candle2.src, candle3.src, candle1.src],
       title: 'Ароматична свічка Paradise',
       description: 'Свічка з соєвого воску з ароматом опалого листя.',
@@ -58,6 +59,7 @@ export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
         { title: 'Об’єм', content: 'Кедр, пекан' },
       ],
       similar: relatedProducts,
+      slug: '/soy-candles'
     };
 
     return fakeCandleDetails;

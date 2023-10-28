@@ -4,8 +4,6 @@ import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQ
 import Typography from '@components/components/Typography/Typography';
 import { BoxDetailsI, ButtonsDictI, CandleDetailsI } from '@components/types';
 
-import boxImg from '../../../../public/images/boxes/boxes_section/box.jpg';
-import candleImg from '../../../../public/images/candles/img-1.jpg';
 import AccordionSection from '../AccordionSection/AccordionSection';
 import BuyButtons from '../BuyButtons/BuyButtons';
 
@@ -18,7 +16,7 @@ interface DescriptionProps {
 }
 
 const Description: React.FC<DescriptionProps> = ({
-  product,
+  product: { id: productId, images, title, description, price, slug },
   id,
   buttonsDict,
 }) => {
@@ -80,16 +78,12 @@ const Description: React.FC<DescriptionProps> = ({
         )}
         <BuyButtons
           product={{
-            id: isCandlePage ? '123' : '234',
-            img: isCandlePage ? candleImg.src : boxImg.src,
-            title: isCandlePage
-              ? 'Ароматична свічка Paradise'
-              : 'Бокс “Стандарт”',
-            description: isCandlePage
-              ? 'Свічка з соєвого воску з ароматом опалого листя.'
-              : 'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
-            price: 550,
-            link: isCandlePage ? 'soy-candles' : '/boxes',
+            id: productId,
+            img: images[0],
+            title,
+            description,
+            price,
+            link: slug,
             quantity,
           }}
           buttonsDict={buttonsDict}
