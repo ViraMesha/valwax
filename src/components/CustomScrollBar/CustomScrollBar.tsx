@@ -2,11 +2,12 @@ import { useEffect } from 'react';
 import { OverlayScrollbars } from 'overlayscrollbars';
 
 import 'overlayscrollbars/overlayscrollbars.css';
+// import './custom-scrollbar-theme-primary.css';
 
 interface UseScrollbarProps {
   root: React.RefObject<HTMLElement>;
   children?: React.ReactNode;
-  minHeight?: string;
+  // minHeight?: string;
 }
 
 const CustomScrollBar = ({
@@ -18,7 +19,11 @@ const CustomScrollBar = ({
     let scrollbars: OverlayScrollbars | undefined;
 
     if (root.current) {
-      scrollbars = OverlayScrollbars(root.current, {});
+      scrollbars = OverlayScrollbars(root.current, {
+        // scrollbars: {
+        //   theme: 'custom-scrollbar-theme'
+        // }
+      });
     }
 
     const containerElement = root.current;

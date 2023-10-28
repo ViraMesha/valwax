@@ -13,7 +13,6 @@
   @include breakpoint('desktop-large') {
     width: 486px;
     gap: 40px;
-
   }
 }
 
@@ -30,8 +29,15 @@
 .wrapperPrice {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-
+  justify-content: space-between;
+  
+  @include breakpoint('tablet-large') {
+    justify-content: flex-end;
+  }
+  
+  @include breakpoint('desktop') {
+    justify-content: flex-end;
+  }
 }
 
 .price {

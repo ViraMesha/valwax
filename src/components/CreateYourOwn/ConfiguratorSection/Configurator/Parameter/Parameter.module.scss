@@ -37,7 +37,7 @@
 
 
   @include breakpoint('all-devices-without-desktop') {
-    max-width: 74px;
+    // max-width: 74px;
   }
 
   @include breakpoint('desktop-large') {
@@ -83,6 +83,16 @@
   height: 60px;
   border-radius: 12px;
 
+  @include breakpoint('tablet-large') {
+    width: 80px;
+    height: 80px;
+  }
+  
+  @include breakpoint('desktop') {
+    width: 80px;
+    height: 80px;
+  }
+
   @include breakpoint('desktop-large') {
     width: 100px;
     height: 100px;
@@ -101,6 +111,16 @@
   box-sizing: border-box;
   border-radius: 12px;
   transition: transform 0.2s;
+
+  @include breakpoint('tablet-large') {
+    width: 80px;
+    height: 80px;
+  }
+  
+  @include breakpoint('desktop') {
+    width: 80px;
+    height: 80px;
+  }
 
   @include breakpoint('desktop-large') {
     width: 100px;
