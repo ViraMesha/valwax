@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
-import { BoxDetailsI, CandleDetailsI } from '@components/types';
+import { BoxDetailsI, ButtonsDictI, CandleDetailsI } from '@components/types';
 
 import boxImg from '../../../../public/images/boxes/boxes_section/box.jpg';
 import candleImg from '../../../../public/images/candles/img-1.jpg';
@@ -14,9 +14,14 @@ import styles from './Description.module.scss';
 interface DescriptionProps {
   product: BoxDetailsI | CandleDetailsI;
   id?: string;
+  buttonsDict: ButtonsDictI;
 }
 
-const Description: React.FC<DescriptionProps> = ({ product, id }) => {
+const Description: React.FC<DescriptionProps> = ({
+  product,
+  id,
+  buttonsDict,
+}) => {
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
   const [quantity, setQuantity] = useState(1);
@@ -87,6 +92,7 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
             link: isCandlePage ? 'soy-candles' : '/boxes',
             quantity,
           }}
+          buttonsDict={buttonsDict}
         />
 
         {/* <div className={styles.candeleAccordion}>
