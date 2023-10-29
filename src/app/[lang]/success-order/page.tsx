@@ -23,7 +23,7 @@ export default async function SuccessOrder({
         ]}
         lang={lang}
       />
-      <SuccessOrderPage dict={page.successOrder} lang={lang} />;
+      <SuccessOrderPage dict={page.successOrder} lang={lang} />
     </>
   );
 }

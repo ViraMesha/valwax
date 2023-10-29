@@ -1,1 +1,74 @@
-@import '../../../scss/utilities/breakpoint-mixin.scss';
+@import '../../scss/utilities/breakpoint-mixin.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 56px;
+  text-align: center;
+}
+
+.thank_you_message {
+  margin-bottom: 16px;
+}
+
+.wrapper .text {
+  max-width: 768px;
+}
+
+.link {
+  padding: 16px 32px;
+  border-radius: 20px;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.54;
+  text-transform: uppercase;
+
+  background-color: var(--cl-primary-600);
+  color: var(--cl-white);
+  transition: background-color var(--animat);
+
+  @include breakpoint('all-devices-without-desktop') {
+    width: 327px;
+  }
+
+  @include breakpoint('mobile-small') {
+    padding: 12px 20px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  @include breakpoint('desktop-large') {
+    width: 287px;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--cl-primary-700);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--cl-primary-800);
+  }
+
+  &:focus-within:not(:disabled) {
+    background-color: var(--cl-primary-700);
+    outline: 2px solid var(--cl-primary-200);
+  }
+}
+
+.img {
+  width: 160px;
+  height: 160px;
+
+  @include breakpoint('desktop') {
+    width: 196px;
+    height: 196px;
+  }
+
+  @include breakpoint('desktop-large') {
+    width: 228px;
+    height: 228px;
+  }
+}

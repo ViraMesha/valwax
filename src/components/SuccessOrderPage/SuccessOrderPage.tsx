@@ -5,6 +5,7 @@ import { Locale } from '../../../i18n-config';
 import candleImg from '../../../public/images/success-order/candles-vectorportal 1.png';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
+import Typography from '../Typography/Typography';
 
 import styles from './SuccessOrderPage.module.scss';
 
@@ -24,11 +25,33 @@ const SuccessOrderPage = ({
 }: SuccessOrderPageProps) => {
   return (
     <Section>
-      <Container>
-        <h3>{thankYouMessage}</h3>
-        <p>{text}</p>
-        <Link href={`/${lang}#compass`}>{buttonText}</Link>
-        <Image src={candleImg} alt={altText} />
+      <Container className={styles.wrapper}>
+        <div>
+          <Typography
+            variant="bodyXLHeavy"
+            color="var(--cl-primary-700)"
+            className={styles.thank_you_message}
+          >
+            {thankYouMessage}
+          </Typography>
+          <Typography
+            variant="bodyRegular"
+            color="var(--cl-gray-500)"
+            className={styles.text}
+          >
+            {text}
+          </Typography>
+        </div>
+        <Link href={`/${lang}#compass`} className={styles.link}>
+          {buttonText}
+        </Link>
+        <Image
+          src={candleImg}
+          alt={altText}
+          sizes="(min-width: 1230px) 228px,
+          (min-width: 1024) 196px, 160px"
+          className={styles.img}
+        />
       </Container>
     </Section>
   );
