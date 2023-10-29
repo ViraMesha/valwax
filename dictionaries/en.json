@@ -382,5 +382,11 @@
     "titles": {
       "price": "Price:"
     }
+  },
+
+  "metaInfo": {
+    "successOrder": {
+      "description": "Unlock a seamless shopping experience at Valwax. Your order is in progress. Take action and explore more! Buy now with Valwax."
+    }
   }
 }

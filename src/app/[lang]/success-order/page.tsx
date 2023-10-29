@@ -4,6 +4,23 @@ import SuccessOrderPage from '@components/components/SuccessOrderPage/SuccessOrd
 import { Locale } from '../../../../i18n-config';
 import { getDictionary } from '../../../../lib/utils/dictionary';
 
+export async function generateMetadata({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const { breadcrumbs } = await getDictionary(lang);
+  const {
+    metaInfo: {
+      successOrder: { description },
+    },
+  } = await getDictionary(lang);
+  return {
+    title: `Valwax | ${breadcrumbs.successOrder}`,
+    description,
+  };
+}
+
 export default async function SuccessOrder({
   params: { lang },
 }: {
