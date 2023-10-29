@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 import Slider from 'react-slick';
@@ -9,6 +8,7 @@ import { avenir } from '@components/app/fonts';
 import Container from '../Container/Container';
 import ReusableSlider from '../ReusableSlider/ReusableSlider';
 import Section from '../Section/Section';
+import CustomLink from '../shared/CustomLink/CustomLink';
 import Typography from '../Typography/Typography';
 
 import { generateHeroCards } from './heroCards';
@@ -60,7 +60,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
         <div className={styles.body}>
           <div className={styles.controls}>
             <button
-            type="button"
+              type="button"
               onClick={handlePrevClick}
               className={`${styles.prevButton} ${
                 disablePrevButton ? styles.disabled : ''
@@ -71,7 +71,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
               <HiOutlineChevronLeft className={styles.arrowIcon} />
             </button>
             <button
-            type="button"
+              type="button"
               onClick={handleNextClick}
               className={`${styles.nextButton} ${
                 disableNextButton ? styles.disabled : ''
@@ -116,13 +116,13 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
                       </Typography>
                     ))}
                   </div>
-                  <Link
+                  <CustomLink
                     href="#compass"
                     className={styles.hero_link}
                     onClick={handleScroll}
                   >
                     {dict.buttonText}
-                  </Link>
+                  </CustomLink>
                 </div>
               </div>
             ))}

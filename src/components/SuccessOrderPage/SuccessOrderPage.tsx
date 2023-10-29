@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { Locale } from '../../../i18n-config';
 import candleImg from '../../../public/images/success-order/candles-vectorportal 1.png';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
+import CustomLink from '../shared/CustomLink/CustomLink';
 import Typography from '../Typography/Typography';
 
 import styles from './SuccessOrderPage.module.scss';
@@ -42,9 +42,9 @@ const SuccessOrderPage = ({
             {text}
           </Typography>
         </div>
-        <Link href={`/${lang}#compass`} className={styles.link}>
+        <CustomLink href={`/${lang}#compass`} className={styles.link}>
           {buttonText}
-        </Link>
+        </CustomLink>
         <Image
           src={candleImg}
           alt={altText}
