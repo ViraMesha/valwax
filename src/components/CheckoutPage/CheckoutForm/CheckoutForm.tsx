@@ -35,7 +35,27 @@ type CheckoutFormValues = {
   // postOfficeBranchNum: string;
 };
 
-const CheckoutForm = () => {
+interface CheckoutFormProps {
+  dict: {
+    contactFormTitle: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    buttonText: string;
+  };
+}
+
+const CheckoutForm: React.FC<CheckoutFormProps> = ({
+  dict: {
+    contactFormTitle,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    buttonText,
+  },
+}) => {
   const [phone, setPhone] = useState('');
   const [isValidPhone, setIsValidPhone] = useState(true);
 
@@ -59,30 +79,30 @@ const CheckoutForm = () => {
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <fieldset className={styles.form__group}>
-        <legend className={styles.group__title}>Контактні дані</legend>
+        <legend className={styles.group__title}>{contactFormTitle}</legend>
         <div className={styles.contactInfo__wrapper}>
           <Input
-            label={`Ім’я *`}
-            placeholder={`Ім’я`}
-            id="user_firstname"
+            label={`${firstName} *`}
+            placeholder={firstName}
+            id="user_firstName"
             required
             errorMessage={errors.firstName?.message}
             error={errors.firstName}
             {...register('firstName')}
           />
           <Input
-            label="Прізвище *"
-            placeholder="Прізвище"
-            id="user_lastname"
+            label={`${lastName} *`}
+            placeholder={lastName}
+            id="user_lastName"
             required
             errorMessage={errors.lastName?.message}
             error={errors.lastName}
             {...register('lastName')}
           />
           <Input
-            label="Email *"
+            label={`${email} *`}
             type="email"
-            placeholder="Email"
+            placeholder={email}
             id="user_email"
             required
             errorMessage={errors.email?.message}
@@ -92,7 +112,7 @@ const CheckoutForm = () => {
 
           <div>
             <label className={styles.label} htmlFor="phone">
-              Введіть номер телефону
+              {phoneNumber}
             </label>
             <PhoneInput
               inputProps={{
@@ -114,7 +134,7 @@ const CheckoutForm = () => {
         </div>
       </fieldset>
       <Button variant="primary" type="submit" className={styles.button}>
-        Оформити замовлення
+        {buttonText}
       </Button>
     </form>
   );

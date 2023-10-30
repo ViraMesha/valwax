@@ -13,6 +13,7 @@ const BoxDetails = async ({
   const { breadcrumbs } = await getDictionary(lang);
   const { relatedProducts } = await getDictionary(lang);
   const product = await getBoxDetails(id);
+  const { general } = await getDictionary(lang);
 
   const regex = /(?:Бокс - |Box - )(.*)/;
   const match = product.title.match(regex);
@@ -33,7 +34,7 @@ const BoxDetails = async ({
         ]}
         lang={lang}
       />
-      <BoxDetailsPage product={product} dict={relatedProducts} />
+      <BoxDetailsPage product={product} dict={relatedProducts} buttonsDict={general.buttons} />
     </>
   );
 };

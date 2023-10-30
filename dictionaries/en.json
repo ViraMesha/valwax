@@ -189,7 +189,12 @@
         "container": {
           "number": "1.",
           "title": "Select container",
-          "options": ["Container 1", "Container 2", "Container 3", "Container 4"]
+          "options": [
+            "Container 1",
+            "Container 2",
+            "Container 3",
+            "Container 4"
+          ]
         },
         "wax": {
           "number": "2.",
@@ -320,6 +325,14 @@
       "productList": {
         "deleteButtonText": "Delete",
         "totalText": "Total"
+      },
+      "form": {
+        "contactFormTitle": "Contact details",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "phoneNumber": "Enter your phone number",
+        "buttonText": "Place an order"
       }
     }
   },
@@ -356,8 +369,9 @@
   },
 
   "general": {
-    "buttons" : {
-      "buyNow": "Buy now"
+    "buttons": {
+      "buyNow": "Buy now",
+      "addToCart": "Add to cart"
     },
     "titles": {
       "price": "Price:"

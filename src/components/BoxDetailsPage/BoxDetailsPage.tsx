@@ -1,4 +1,4 @@
-import { BoxDetailsI } from '../../types';
+import { BoxDetailsI, ButtonsDictI } from '../../types';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Description from '../shared/Description/Description';
@@ -10,16 +10,25 @@ import styles from './BoxDetailsPage.module.scss';
 interface BoxDetailsPageI {
   product: BoxDetailsI;
   dict: { title: string };
+  buttonsDict: ButtonsDictI;
 }
 
-const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({ product, dict }) => {
+const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({
+  product,
+  dict,
+  buttonsDict,
+}) => {
   return (
     <>
       <Section id={styles.gallery_details_section}>
         <Container>
           <div className={styles.flexContainer}>
             <ProductImgGallery images={product.images} />
-            <Description product={product} id="box_details" />
+            <Description
+              product={product}
+              id="box_details"
+              buttonsDict={buttonsDict}
+            />
           </div>
         </Container>
       </Section>

@@ -12,19 +12,25 @@ interface CheckoutPageProps {
       deleteButtonText: string;
       totalText: string;
     };
+    form: {
+      contactFormTitle: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      phoneNumber: string;
+      buttonText: string;
+    };
   };
 }
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({
-  dict: { productList },
+  dict: { productList, form },
 }) => {
   return (
     <Section>
-      <Container>
-        <div className={styles.body}>
-          <ProductList dict={productList} />
-          <CheckoutForm />
-        </div>
+      <Container className={styles.body}>
+        <ProductList dict={productList} />
+        <CheckoutForm dict={form} />
       </Container>
     </Section>
   );

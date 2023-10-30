@@ -1,6 +1,5 @@
 'use client';
 import Typography from '@components/components/Typography/Typography';
-import cartProductData from '@components/helpers/cartProductData';
 import { CartProductI } from '@components/types';
 
 import { useStateContext } from '../../../../context/StateContext';

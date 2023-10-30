@@ -17,7 +17,7 @@ type BoxesCardProps = {
 };
 
 const BoxesCard: React.FC<BoxesCardProps> = ({
-  box: { id, img, title, price, link, text },
+  box: { id, img, title, price, link, text, description },
   dict: { buyBtn, reviewBtn },
 }) => {
   return (
@@ -37,7 +37,15 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
         <Price priceStyle={styles.price} price={price} />
         <div className={styles.button__container}>
           <BuyButton
-            product={{ id, img: img[0], title, price, link, quantity: 0 }}
+            product={{
+              id,
+              img: img[0],
+              title,
+              price,
+              link,
+              description,
+              quantity: 0,
+            }}
             buyBtn={buyBtn}
           />
           <Link href={`${link}/${id}`}>{reviewBtn}</Link>

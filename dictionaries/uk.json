@@ -319,6 +319,14 @@
       "productList": {
         "deleteButtonText": "Видалити",
         "totalText": "Разом"
+      },
+      "form": {
+        "contactFormTitle": "Контактні дані",
+        "firstName": "Ім’я",
+        "lastName": "Прізвище",
+        "email": "Email",
+        "phoneNumber": "Введіть номер телефону",
+        "buttonText": "Оформити замовлення"
       }
     }
   },
@@ -354,8 +362,9 @@
   },
 
   "general": {
-    "buttons" : {
-      "buyNow": "Купити зараз"
+    "buttons": {
+      "buyNow": "Купити зараз",
+      "addToCart": "До кошика"
     },
     "titles": {
       "price": "Вартість:"
