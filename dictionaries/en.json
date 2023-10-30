@@ -204,15 +204,7 @@
         "aroma": {
           "number": "3.",
           "title": "Choose a flavor",
-          "options": [
-            "Pure Cotton",
-            "Cinnamon & Vanilla",
-            "Rose Petals",
-            "Fresh Coffee",
-            "Dry Gin",
-            "Pumpkin Spice",
-            "Grapefruit and Mint"
-          ]
+          "options": ["Pure Cotton", "Cinnamon & Vanilla", "Rose Petals", "Fresh Coffee", "Dry Gin", "Pumpkin Spice",  "Grapefruit and Mint", "Freshly Cut Grass", "Black Sea", "Ginger and Spices", "Peach Nectar", "Fallen Leaves", "Cashmere Plum", "Christmas Fire", "The earth after the rain"]
         },
         "wick": {
           "number": "4.",

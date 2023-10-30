@@ -19,8 +19,8 @@
 .div {
   
   @include breakpoint('desktop') {
-    // width: 480px;
-    flex: 0 1 50%;
+    width: 480px;
+    // flex: 0 1 50%;
   }
   
   @include breakpoint('desktop-large') {

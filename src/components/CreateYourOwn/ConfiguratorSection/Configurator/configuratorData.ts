@@ -39,8 +39,8 @@ export const configuratorData = ({container, wax, aroma, wick, color}: configura
         number: aroma.number,
         title: aroma.title,
         options: aroma.options,
-        //  ["Pure Cotton", "Cinnamon & Vanilla", "Rose Petals", "Fresh Coffee", "Dry Gin", "Pumpkin Spice", "Grapefruit and Mint"]
-        images: [pureCotton, cinnamonVanilla, cinnamonVanilla, freshCoffee, dryGin, pumpkinSpice, grapefruitMint],
+        //  ["Чиста бавовна", "Кориця і ваніль", "Пелюстки троянд", "Свіжа кава", "Сухий джин", "Гарбуз зі спеціями", "Грейпфрут і м’ята", "Свіжоскошена трава", "Чорне море", "Імбир і спеції", "Персиковий нектар", "Опале листя", "Кашемірова слива", "Різдвяне вогнище", "Запах землі після дощу"]
+        images: [pureCotton, cinnamonVanilla, cinnamonVanilla, freshCoffee, dryGin, pumpkinSpice, grapefruitMint, pureCotton, cinnamonVanilla, cinnamonVanilla, freshCoffee, dryGin, pumpkinSpice, grapefruitMint, dryGin],
       },
       wick: {
         number: wick.number,
