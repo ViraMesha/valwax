@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { Locale } from '../../../i18n-config';
-import candleImg from '../../../public/images/success-order/candles-vectorportal 1.png';
+import candleImg from '../../../public/images/icons/candles-vectorportal.svg';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import CustomLink from '../shared/CustomLink/CustomLink';
