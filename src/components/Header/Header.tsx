@@ -50,9 +50,9 @@ const Header = ({
       <Container className={styles.headerContainer}>
         <Link href={`/${lang}`} className={styles.logo}>
           {isSmallScreen ? (
-            <Image src={sm_logo} alt="Logo" priority />
+            <Image src={sm_logo} alt="logo" width={77} priority />
           ) : (
-            <Image src={logo} alt="Logo" priority />
+            <Image src={logo} alt="logo" width={150} priority />
           )}
         </Link>
         <Navigation className={styles.navbar} lang={lang} />

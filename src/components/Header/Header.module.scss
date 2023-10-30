@@ -30,8 +30,6 @@
 */
 
 .logo {
-  height: 21px;
-  width: 77px;
   margin-right: auto;
 }
 
@@ -119,6 +117,11 @@
   cursor: pointer;
 }
 
+.menuIcon svg {
+  stroke: var(--cl-primary-900);
+  fill: var(--cl-primary-900);
+}
+
 .overflowHidden {
   overflow: hidden;
 }
@@ -160,6 +163,7 @@
   }
 
   .iconsList {
+    color: var(--cl-primary-900);
     gap: 24px;
   }
 

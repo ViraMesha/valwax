@@ -211,7 +211,15 @@
             "Fresh Coffee",
             "Dry Gin",
             "Pumpkin Spice",
-            "Grapefruit and Mint"
+            "Grapefruit and Mint",
+            "Freshly Cut Grass",
+            "Black Sea",
+            "Ginger and Spices",
+            "Peach Nectar",
+            "Fallen Leaves",
+            "Cashmere Plum",
+            "Christmas Fire",
+            "The earth after the rain"
           ]
         },
         "wick": {
@@ -333,6 +341,14 @@
       "productList": {
         "deleteButtonText": "Delete",
         "totalText": "Total"
+      },
+      "form": {
+        "contactFormTitle": "Contact details",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "phoneNumber": "Enter your phone number",
+        "buttonText": "Place an order"
       }
     },
     "successOrder": {
@@ -377,7 +393,8 @@
 
   "general": {
     "buttons": {
-      "buyNow": "Buy now"
+      "buyNow": "Buy now",
+      "addToCart": "Add to cart"
     },
     "titles": {
       "price": "Price:"
