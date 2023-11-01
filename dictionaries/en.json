@@ -356,6 +356,10 @@
       "text": "We are pleased to inform you that your order has been received and is being processed. Our manager will contact you shortly to confirm and clarify the details.",
       "buttonText": "Continue shopping",
       "altText": "A couple of candles in glass containers"
+    },
+    "notFound": {
+      "text": "Oh, oh. Something went wrong...",
+      "linkText": "Return Home"
     }
   },
   "search": {

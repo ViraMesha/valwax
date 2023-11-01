@@ -117,6 +117,7 @@ const Hero: React.FC<HeroI> = ({ dict }) => {
                     ))}
                   </div>
                   <CustomLink
+                    variant="primary"
                     href="#compass"
                     className={styles.hero_link}
                     onClick={handleScroll}
