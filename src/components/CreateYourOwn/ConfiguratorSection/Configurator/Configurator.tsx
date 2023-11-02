@@ -45,7 +45,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
           img: candleImg.src,
           title: 'A custom candle',
           description: {
-            container: '100 мл',
+            container: 'Тара 1',
             wax: 'Соєвий',
             aroma: 'Чиста Бавовна',
             wick: 'Один',

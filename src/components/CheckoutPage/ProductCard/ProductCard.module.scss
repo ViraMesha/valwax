@@ -117,7 +117,7 @@
   all: unset;
 }
 
-.delete {
+.card__actions .delete {
   color: var(--cl-gray-400);
   cursor: pointer;
 

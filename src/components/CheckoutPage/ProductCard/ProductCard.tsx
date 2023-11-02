@@ -10,6 +10,7 @@ import { useStateActionsContext } from '../../../../context/StateContext';
 import styles from './ProductCard.module.scss';
 
 type TProperty = keyof CustomCandleDescription;
+type TPropertyWithoutContainer = Exclude<TProperty, 'container'>;
 
 interface ProductCardProps {
   deleteButtonText: string;
@@ -22,7 +23,6 @@ interface ProductCardProps {
   link: string;
   key: string;
   descriptionPropertyNames: {
-    container: string;
     wax: string;
     aroma: string;
     wick: string;
@@ -89,22 +89,32 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 className={styles.card__description}
               >
                 {/*  Loop through the keys of the description object */}
-                {descriptionKeys.map((property, i) => (
-                  <span key={property}>
-                    {/* Display the property name using propertyNames dictionary */}
-                    {propertyNames[property as TProperty]} -{' '}
-                    <span className={styles.pinkText}>
+                {descriptionKeys.map((property, i) => {
+                  if (property !== 'container') {
+                    return (
+                      <span key={property}>
+                        {/* Display the property name using propertyNames dictionary */}
+                        {propertyNames[property as TPropertyWithoutContainer]} -{' '}
+                        <span className={styles.pinkText}>
+                          {/* Display the property value with pink text color */}
+                          {description[property as TProperty]}
+                        </span>
+                        {/* Add a period if it's the last property, or a comma if not */}
+                        {i === descriptionKeys.length - 1 ? (
+                          <span>.</span>
+                        ) : (
+                          <span>, </span>
+                        )}
+                      </span>
+                    );
+                  }
+                  return (
+                    <span key={property} className={styles.pinkText}>
                       {/* Display the property value with pink text color */}
-                      {description[property as TProperty]}
+                      {description[property as TProperty]},{' '}
                     </span>
-                    {/* Add a period if it's the last property, or a comma if not */}
-                    {i === descriptionKeys.length - 1 ? (
-                      <span>.</span>
-                    ) : (
-                      <span>, </span>
-                    )}
-                  </span>
-                ))}
+                  );
+                })}
               </Typography>
             )}
           </div>

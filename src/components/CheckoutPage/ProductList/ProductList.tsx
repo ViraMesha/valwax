@@ -12,7 +12,6 @@ interface ProductListProps {
     deleteButtonText: string;
     totalText: string;
     descriptionPropertyNames: {
-      container: string;
       wax: string;
       aroma: string;
       wick: string;
