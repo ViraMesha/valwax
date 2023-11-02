@@ -11,11 +11,18 @@ interface ProductListProps {
   dict: {
     deleteButtonText: string;
     totalText: string;
+    descriptionPropertyNames: {
+      container: string;
+      wax: string;
+      aroma: string;
+      wick: string;
+      color: string;
+    };
   };
 }
 
 const ProductList: React.FC<ProductListProps> = ({
-  dict: { totalText, deleteButtonText },
+  dict: { totalText, deleteButtonText, descriptionPropertyNames },
 }) => {
   const { totalPrice, cartItems } = useStateContext();
 
@@ -29,6 +36,7 @@ const ProductList: React.FC<ProductListProps> = ({
                 key={product.id}
                 {...product}
                 deleteButtonText={deleteButtonText}
+                descriptionPropertyNames={descriptionPropertyNames}
               />
             ))}
           </ul>

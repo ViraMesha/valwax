@@ -1,9 +1,11 @@
-import Button from '@components/components/Button/Button';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
+import { nanoid } from 'nanoid';
 
+import candleImg from '../../../../../public/images/candles/img-1.jpg';
 import { ConfiguratorSectionI } from '../../../../types/index';
 
+import ConfiguratorBuyNowBtn from './ConfiguratorBuyNowBtn/ConfiguratorBuyNowBtn';
 import Parameter from './Parameter/Parameter';
 import { configuratorData } from './configuratorData';
 
@@ -15,7 +17,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   dict,
   dictGeneral,
 }) => {
-  const {container, wax, aroma, wick, color} = configuratorData(dict);
+  const { container, wax, aroma, wick, color } = configuratorData(dict);
 
   return (
     <div className={styles.wrapper}>
@@ -37,9 +39,25 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
         </Typography>
         <Price price={price} />
       </div>
-      <Button variant='primary' className={styles.btn}>
+      <ConfiguratorBuyNowBtn
+        product={{
+          id: nanoid(),
+          img: candleImg.src,
+          title: 'A custom candle',
+          description: {
+            container: '100 мл',
+            wax: 'Соєвий',
+            aroma: 'Чиста Бавовна',
+            wick: 'Один',
+            color: 'Жовтий',
+          },
+          price,
+          link: '/create-your-own',
+          quantity: 1,
+        }}
+      >
         {dictGeneral.buttons.buyNow}
-      </Button>
+      </ConfiguratorBuyNowBtn>
     </div>
   );
 };

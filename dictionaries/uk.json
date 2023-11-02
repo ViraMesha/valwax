@@ -334,7 +334,14 @@
     "checkout": {
       "productList": {
         "deleteButtonText": "Видалити",
-        "totalText": "Разом"
+        "totalText": "Разом",
+        "descriptionPropertyNames": {
+          "container": "Об’єм",
+          "wax": "Віск",
+          "aroma": "Аромат",
+          "wick": "Гніт",
+          "color": "Колір"
+        }
       },
       "form": {
         "contactFormTitle": "Контактні дані",
