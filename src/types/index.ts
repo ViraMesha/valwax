@@ -100,3 +100,32 @@ export interface ButtonsDictI {
   buyNow: string;
   addToCart: string;
 }
+
+export interface ProductDescription {
+  wax: string;
+  aroma: string;
+  wick: string;
+  color: string;
+}
+
+export interface CheckoutPageDictionary {
+  productList: {
+    deleteButtonText: string;
+    totalText: string;
+    descriptionPropertyNames: ProductDescription;
+  };
+  form: {
+    contactFormTitle: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    buttonText: string;
+  };
+}
+
+export interface ProductListDictionary {
+  deleteButtonText: string;
+  totalText: string;
+  descriptionPropertyNames: ProductDescription;
+}

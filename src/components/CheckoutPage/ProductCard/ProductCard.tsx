@@ -3,7 +3,10 @@ import Link from 'next/link';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
-import { CustomCandleDescription } from '@components/types';
+import type {
+  CustomCandleDescription,
+  ProductDescription,
+} from '@components/types';
 
 import { useStateActionsContext } from '../../../../context/StateContext';
 
@@ -22,12 +25,7 @@ interface ProductCardProps {
   quantity: number;
   link: string;
   key: string;
-  descriptionPropertyNames: {
-    wax: string;
-    aroma: string;
-    wick: string;
-    color: string;
-  };
+  descriptionPropertyNames: ProductDescription;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
