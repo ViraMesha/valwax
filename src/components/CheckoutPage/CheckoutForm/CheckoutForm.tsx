@@ -11,6 +11,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { PhoneNumberUtil } from 'google-libphonenumber';
 import debounce from 'lodash/debounce';
 
+import { useStateContext } from '../../../../context/StateContext';
+
+import RadioButtons from './RadioButtons/RadioButtons';
 import { fetchAreas, fetchCities, fetchWarehouses } from './api';
 
 import 'react-international-phone/style.css';
@@ -65,6 +68,9 @@ const CheckoutForm = () => {
   const [isAreaSelectOpen, setIsAreaSelectOpen] = useState(false);
   const [isCitySelectOpen, setIsCitySelectOpen] = useState(false);
   const [isWarehouseSelectOpen, setIsWarehouseSelectOpen] = useState(false);
+
+  const { selectedDelivery } = useStateContext();
+  console.log(selectedDelivery);
 
   const {
     register,
@@ -124,8 +130,16 @@ const CheckoutForm = () => {
     fetchDataCity();
 
     const fetchDataWarehouse = async () => {
-      if (isWarehouseSelectOpen && selectedAreas && selectedCity) {
-        const warehouseData = await fetchWarehouses(selectedCity.value);
+      if (
+        isWarehouseSelectOpen &&
+        selectedAreas &&
+        selectedCity &&
+        selectedDelivery
+      ) {
+        const warehouseData = await fetchWarehouses(
+          selectedDelivery,
+          selectedCity.value
+        );
         console.log('selectedCity', selectedCity);
         console.log('selectedCity.ref', selectedCity.ref);
 
@@ -144,6 +158,7 @@ const CheckoutForm = () => {
     isWarehouseSelectOpen,
     selectedAreas,
     selectedCity,
+    selectedDelivery,
   ]);
 
   const selectOptionsArea = areas.map(option => ({
@@ -224,6 +239,7 @@ const CheckoutForm = () => {
 
       <fieldset className={styles.form__group}>
         <legend className={styles.group__title}>Доставка</legend>
+        <RadioButtons />
         <div className={styles.contactInfo__wrapper}>
           <CustomSelect
             value={selectedAreas}
