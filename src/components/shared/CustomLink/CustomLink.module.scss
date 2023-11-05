@@ -1,0 +1,33 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
+.link {
+  padding: 16px 32px;
+  border-radius: 20px;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.54;
+  text-transform: uppercase;
+
+  background-color: var(--cl-primary-600);
+  color: var(--cl-white);
+  transition: background-color var(--animat);
+
+  @include breakpoint('mobile-small') {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--cl-primary-700);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--cl-primary-800);
+  }
+
+  &:focus-visible:not(:disabled) {
+    background-color: var(--cl-primary-700);
+    outline: 2px solid var(--cl-primary-200);
+  }
+}

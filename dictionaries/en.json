@@ -204,7 +204,23 @@
         "aroma": {
           "number": "3.",
           "title": "Choose a flavor",
-          "options": ["Pure Cotton", "Cinnamon & Vanilla", "Rose Petals", "Fresh Coffee", "Dry Gin", "Pumpkin Spice",  "Grapefruit and Mint", "Freshly Cut Grass", "Black Sea", "Ginger and Spices", "Peach Nectar", "Fallen Leaves", "Cashmere Plum", "Christmas Fire", "The earth after the rain"]
+          "options": [
+            "Pure Cotton",
+            "Cinnamon & Vanilla",
+            "Rose Petals",
+            "Fresh Coffee",
+            "Dry Gin",
+            "Pumpkin Spice",
+            "Grapefruit and Mint",
+            "Freshly Cut Grass",
+            "Black Sea",
+            "Ginger and Spices",
+            "Peach Nectar",
+            "Fallen Leaves",
+            "Cashmere Plum",
+            "Christmas Fire",
+            "The earth after the rain"
+          ]
         },
         "wick": {
           "number": "4.",
@@ -324,7 +340,13 @@
     "checkout": {
       "productList": {
         "deleteButtonText": "Delete",
-        "totalText": "Total"
+        "totalText": "Total",
+        "descriptionPropertyNames": {
+          "wax": "Wax",
+          "aroma": "Aroma",
+          "wick": "Wick",
+          "color": "Color"
+        }
       },
       "form": {
         "contactFormTitle": "Contact details",
@@ -334,6 +356,12 @@
         "phoneNumber": "Enter your phone number",
         "buttonText": "Place an order"
       }
+    },
+    "successOrder": {
+      "thankYouMessage": "Thank you for your choice!",
+      "text": "We are pleased to inform you that your order has been received and is being processed. Our manager will contact you shortly to confirm and clarify the details.",
+      "buttonText": "Continue shopping",
+      "altText": "A couple of candles in glass containers"
     }
   },
   "search": {
@@ -353,7 +381,8 @@
     "createYourOwn": "Create you own",
     "privacyPolicy": "Privacy policy",
     "paymentAndDelivery": "Payment and delivery",
-    "checkout": "Cart"
+    "checkout": "Cart",
+    "successOrder": "Order сheckout"
   },
 
   "navigation": {
@@ -375,6 +404,12 @@
     },
     "titles": {
       "price": "Price:"
+    }
+  },
+
+  "metaInfo": {
+    "successOrder": {
+      "description": "Unlock a seamless shopping experience at Valwax. Your order is in progress. Take action and explore more! Buy now with Valwax."
     }
   }
 }
