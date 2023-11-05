@@ -1,7 +1,5 @@
 import { notFound } from 'next/navigation';
 
-const CatchAll = () => {
+export default function CatchAll() {
   return notFound();
-};
-
-export default CatchAll;
+}

@@ -10,10 +10,10 @@ import styles from './CandleItemCard.module.scss';
 
 const CandleItemCard: React.FC<CandleI> = ({ id, img, title, price }) => {
   const pathname = usePathname();
-  const isCurrent = pathname.split('/')[2];
+  const isCurrent = pathname.split('/')[3];
   return (
     <li className={styles.card}>
-      <Link href={`${isCurrent}/${id}`}>
+      <Link href={`/candles/${isCurrent}/${id}`}>
         <div className={styles.img_container}>
           <Image
             src={img}

@@ -22,7 +22,7 @@ export default async function Page({
         items={[
           {
             label: breadcrumbs[slug],
-            path: `/${slug}`,
+            path: `/candles/${slug}`,
           },
         ]}
         lang={lang}
