@@ -76,7 +76,7 @@
   }
 }
 
-.card__title {
+.card__info .card__title {
   color: var(--cl-primary-800);
   margin-bottom: 12px;
   cursor: pointer;
@@ -86,10 +86,14 @@
   }
 }
 
-.card__description {
+.card__info .card__description {
   @include breakpoint('tablet-large-and-up') {
     font-size: 14px;
   }
+}
+
+.card__info .pinkText {
+  color: var(--cl-primary-500);
 }
 
 .card__actions {
@@ -113,7 +117,7 @@
   all: unset;
 }
 
-.delete {
+.card__actions .delete {
   color: var(--cl-gray-400);
   cursor: pointer;
 

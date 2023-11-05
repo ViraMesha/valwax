@@ -1,6 +1,6 @@
 'use client';
 import Typography from '@components/components/Typography/Typography';
-import { CartProductI } from '@components/types';
+import type { CartProductI, ProductListDictionary } from '@components/types';
 
 import { useStateContext } from '../../../../context/StateContext';
 import ProductCard from '../ProductCard/ProductCard';
@@ -8,14 +8,11 @@ import ProductCard from '../ProductCard/ProductCard';
 import styles from './ProductList.module.scss';
 
 interface ProductListProps {
-  dict: {
-    deleteButtonText: string;
-    totalText: string;
-  };
+  dict: ProductListDictionary;
 }
 
 const ProductList: React.FC<ProductListProps> = ({
-  dict: { totalText, deleteButtonText },
+  dict: { totalText, deleteButtonText, descriptionPropertyNames },
 }) => {
   const { totalPrice, cartItems } = useStateContext();
 
@@ -29,6 +26,7 @@ const ProductList: React.FC<ProductListProps> = ({
                 key={product.id}
                 {...product}
                 deleteButtonText={deleteButtonText}
+                descriptionPropertyNames={descriptionPropertyNames}
               />
             ))}
           </ul>

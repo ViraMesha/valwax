@@ -340,7 +340,13 @@
     "checkout": {
       "productList": {
         "deleteButtonText": "Delete",
-        "totalText": "Total"
+        "totalText": "Total",
+        "descriptionPropertyNames": {
+          "wax": "Wax",
+          "aroma": "Aroma",
+          "wick": "Wick",
+          "color": "Color"
+        }
       },
       "form": {
         "contactFormTitle": "Contact details",

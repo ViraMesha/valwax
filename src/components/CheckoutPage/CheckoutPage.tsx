@@ -1,5 +1,6 @@
 import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
+import type { CheckoutPageDictionary } from '@components/types';
 
 import CheckoutForm from './CheckoutForm/CheckoutForm';
 import ProductList from './ProductList/ProductList';
@@ -7,20 +8,7 @@ import ProductList from './ProductList/ProductList';
 import styles from './CheckoutPage.module.scss';
 
 interface CheckoutPageProps {
-  dict: {
-    productList: {
-      deleteButtonText: string;
-      totalText: string;
-    };
-    form: {
-      contactFormTitle: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-      phoneNumber: string;
-      buttonText: string;
-    };
-  };
+  dict: CheckoutPageDictionary;
 }
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({
