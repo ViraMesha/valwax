@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 // import styles from './CustomSelect.module.scss';
 
@@ -8,11 +9,12 @@ interface CustomSelectProps {
   onChange: (newValue: any) => void;
   label?: string;
   options: { value: string; label: string }[];
-  id?: string;
+  // id?: string;
   placeholder?: string;
   onClick?: () => void;
   onMenuOpen?: () => void;
   onInputChange?: () => void;
+  isLoading?: boolean;
 }
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
@@ -20,10 +22,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   onChange,
   options,
   label,
-  id,
+  // id,
   placeholder,
   onMenuOpen,
+  isLoading,
 }) => {
+   console.log("isLoading", isLoading);
+
   const colourStyles = {
     control: (styles: any) => ({
       ...styles,
@@ -53,6 +58,8 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       cursor: 'pointer',
       borderRadius: '20px',
     }),
+
+   
   };
 
   return (
@@ -65,6 +72,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         placeholder={placeholder}
         styles={colourStyles}
         onMenuOpen={onMenuOpen}
+        isLoading={isLoading}
       />
     </div>
   );

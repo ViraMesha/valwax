@@ -69,6 +69,8 @@ const CheckoutForm = () => {
   const [isCitySelectOpen, setIsCitySelectOpen] = useState(false);
   const [isWarehouseSelectOpen, setIsWarehouseSelectOpen] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const { selectedDelivery } = useStateContext();
   console.log(selectedDelivery);
 
@@ -109,7 +111,10 @@ const CheckoutForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (isAreaSelectOpen) {
+        setIsLoading(true);
         const areasData = await fetchAreas();
+        setIsLoading(false);
+
         if (areasData) {
           setAreas(areasData);
           setIsAreaSelectOpen(false);
@@ -120,7 +125,13 @@ const CheckoutForm = () => {
 
     const fetchDataCity = async () => {
       if (isCitySelectOpen && selectedAreas) {
+        console.log("selectedAreas", selectedAreas);
+        console.log("cities", cities);
+        console.log("selectedCity", selectedCity);
+        setIsLoading(true);
         const citiesData = await fetchCities(selectedAreas.ref, inputCity);
+        setIsLoading(false);
+
         if (citiesData) {
           setCities(citiesData);
           setIsCitySelectOpen(false);
@@ -136,10 +147,14 @@ const CheckoutForm = () => {
         selectedCity &&
         selectedDelivery
       ) {
+        setIsLoading(true);
+
         const warehouseData = await fetchWarehouses(
           selectedDelivery,
           selectedCity.value
         );
+        setIsLoading(false);
+
         console.log('selectedCity', selectedCity);
         console.log('selectedCity.ref', selectedCity.ref);
 
@@ -250,6 +265,7 @@ const CheckoutForm = () => {
             options={selectOptionsArea}
             label="Оберіть область доставки *"
             placeholder="Область"
+            isLoading={isLoading}
           />
           <CustomSelect
             value={selectedCity}
@@ -260,6 +276,7 @@ const CheckoutForm = () => {
             options={selectOptionsCity}
             label="Оберіть ваше місто *"
             placeholder="Місто"
+            isLoading={isLoading}
           />
           <CustomSelect
             value={selectedWarehouse}
@@ -270,6 +287,7 @@ const CheckoutForm = () => {
             }}
             label="Оберіть номер відділення або поштомату *"
             placeholder="Номер відділення або поштомату"
+            isLoading={isLoading}
           />
         </div>
       </fieldset>
