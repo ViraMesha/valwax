@@ -27,7 +27,6 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   onMenuOpen,
   isLoading,
 }) => {
-   console.log("isLoading", isLoading);
 
   const colourStyles = {
     control: (styles: any) => ({

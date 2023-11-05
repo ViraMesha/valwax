@@ -36,6 +36,7 @@
     "google-libphonenumber": "^3.2.33",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
+    "nanoid": "^5.0.2",
     "negotiator": "^0.6.3",
     "next": "13.4.10",
     "overlayscrollbars": "^2.3.1",

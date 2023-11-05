@@ -1,20 +1,28 @@
-import Button from '@components/components/Button/Button';
+'use client';
+import { useState } from 'react';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
-import { BoxDetailsI, CandleDetailsI } from '@components/types';
+import { BoxDetailsI, ButtonsDictI, CandleDetailsI } from '@components/types';
 
 import AccordionSection from '../AccordionSection/AccordionSection';
+import BuyButtons from '../BuyButtons/BuyButtons';
 
 import styles from './Description.module.scss';
 
 interface DescriptionProps {
   product: BoxDetailsI | CandleDetailsI;
   id?: string;
+  buttonsDict: ButtonsDictI;
 }
 
-const Description: React.FC<DescriptionProps> = ({ product, id }) => {
+const Description: React.FC<DescriptionProps> = ({
+  product: { id: productId, images, title, description, price, slug },
+  id,
+  buttonsDict,
+}) => {
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
+  const [quantity, setQuantity] = useState(1);
 
   const accordionsections = [
     { title: 'Верхні ноти', content: 'Кедр, пекан' },
@@ -59,7 +67,7 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
           <Typography variant="button" color="var(--cl-gray-500)">
             Кількість:
           </Typography>
-          <CandleQuantity />
+          <CandleQuantity qty={quantity} setQuantity={setQuantity} />
         </div>
         {isBoxPage && (
           <div>
@@ -68,14 +76,18 @@ const Description: React.FC<DescriptionProps> = ({ product, id }) => {
             </Typography>
           </div>
         )}
-        <div className={styles.candeleBuyWrapper}>
-          <Button variant="secondary" className={styles.candeleBuy}>
-            До кошика
-          </Button>
-          <Button variant="primary" className={styles.candeleBuy}>
-            Купити зараз
-          </Button>
-        </div>
+        <BuyButtons
+          product={{
+            id: productId,
+            img: images[0],
+            title,
+            description,
+            price,
+            link: slug,
+            quantity,
+          }}
+          buttonsDict={buttonsDict}
+        />
 
         {/* <div className={styles.candeleAccordion}>
            {product.components.map((component, index) => (

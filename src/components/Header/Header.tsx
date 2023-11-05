@@ -2,8 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
-import { HiOutlineMenuAlt1 } from 'react-icons/hi';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { useWindowSize } from 'usehooks-ts';
 
 import { Locale } from '../../../i18n-config';
@@ -50,9 +49,9 @@ const Header = ({
       <Container className={styles.headerContainer}>
         <Link href={`/${lang}`} className={styles.logo}>
           {isSmallScreen ? (
-            <Image src={sm_logo} alt="Logo" priority />
+            <Image src={sm_logo} alt="logo" width={77} priority />
           ) : (
-            <Image src={logo} alt="Logo" priority />
+            <Image src={logo} alt="logo" width={150} priority />
           )}
         </Link>
         <Navigation className={styles.navbar} lang={lang} />
@@ -69,18 +68,18 @@ const Header = ({
               <AiOutlineSearch style={{ strokeWidth: '2px' }} />
             </li>
             {isSmallScreen && (
-              <li className={styles.iconsItem}>
+              <li
+                className={`${styles.iconsItem} ${
+                  isMobileMenuOpen && styles.menuOpen
+                } ${styles.burgerItem}`}
+              >
                 <button
                   type="button"
                   className={styles.menuIcon}
                   onClick={toggleMenuOpen}
                   aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
                 >
-                  {isMobileMenuOpen ? (
-                    <AiOutlineClose />
-                  ) : (
-                    <HiOutlineMenuAlt1 />
-                  )}
+                  <span></span>
                 </button>
               </li>
             )}

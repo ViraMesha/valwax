@@ -35,7 +35,7 @@
   background-color: var(--cl-primary-800);
 }
 
-.primary:focus:not(:disabled) {
+.primary:focus-visible:not(:disabled) {
   background-color: var(--cl-primary-700);
   outline: 2px solid var(--cl-primary-200);
 }
@@ -50,7 +50,9 @@
   background-color: var(--cl-white);
   color: var(--cl-primary-900);
   border: 2px solid var(--cl-primary-600);
-  transition: background-color var(--animat), border-color var(--animat);
+  transition:
+    background-color var(--animat),
+    border-color var(--animat);
 }
 
 .secondary:hover:not(:disabled),
@@ -110,7 +112,6 @@
   border-color: var(--cl-gray-100);
   cursor: not-allowed;
 }
-
 
 .dark {
   background-color: var(--cl-gray-600);

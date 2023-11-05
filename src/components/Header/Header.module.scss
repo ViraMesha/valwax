@@ -30,8 +30,6 @@
 */
 
 .logo {
-  height: 21px;
-  width: 77px;
   margin-right: auto;
 }
 
@@ -66,6 +64,11 @@
 .iconsItem svg {
   width: 24px;
   height: 24px;
+  transition: color var(--animat);
+}
+
+.iconsItem svg:hover {
+  color: var(--cl-primary-500);
 }
 
 .cartIcon {
@@ -113,10 +116,64 @@
 }
 
 .menuIcon {
+  display: block;
+  width: 100%;
   border: none;
   outline: none;
   background-color: transparent;
   cursor: pointer;
+  position: relative;
+  z-index: 5;
+  height: 16px;
+}
+
+.menuIcon:hover span,
+.menuIcon:hover::before,
+.menuIcon:hover::after {
+  background-color: var(--cl-primary-500);
+}
+
+.menuIcon span,
+.menuIcon::before,
+.menuIcon::after {
+  content: '';
+  left: 10px;
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: var(--cl-primary-900);
+  transition: all var(--animat) 0s;
+  border-radius: 2px;
+}
+
+.menuIcon span {
+  width: 18px;
+}
+
+.menuIcon::before {
+  top: 0;
+}
+
+.menuIcon::after {
+  bottom: 0;
+}
+
+.menuIcon span {
+  top: calc(50% - 1px);
+}
+
+.iconsItem.menuOpen .menuIcon span {
+  width: 0;
+}
+
+.iconsItem.menuOpen .menuIcon::before {
+  top: calc(50% - 1px);
+  transform: rotate(-45deg);
+}
+
+.iconsItem.menuOpen .menuIcon::after {
+  bottom: calc(50% - 1px);
+  transform: rotate(45deg);
 }
 
 .overflowHidden {
@@ -160,6 +217,7 @@
   }
 
   .iconsList {
+    color: var(--cl-primary-900);
     gap: 24px;
   }
 

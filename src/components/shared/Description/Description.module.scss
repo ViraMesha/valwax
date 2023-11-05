@@ -23,8 +23,6 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 16px;
-
-
 }
 
 .candeleCost {
@@ -43,30 +41,6 @@
 .candleCount svg {
   width: 100%;
   height: 100%;
-}
-
-.candeleBuyWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
-
-  @include breakpoint('tablet-large') {
-    margin-left: auto;
-    width: 352px;
-  }
-
-   @include breakpoint('desktop') {
-    width: 356px;
-  }
-
-  @include breakpoint('desktop-large') {
-    width: 486px;
-  }
-}
-
-.candeleBuy {
-  width: 100%;
 }
 
 .candeleAccordion {

@@ -9,6 +9,7 @@ export interface BoxDetailsI {
   components: ComponentI[];
   description: string;
   similar: CandleI[];
+  slug: string;
 }
 
 export interface CandleI {
@@ -32,13 +33,22 @@ export interface CandleDetailsI {
   price: number;
   components: ComponentI[];
   similar: CandleI[];
+  slug: string;
 }
+
+export type CustomCandleDescription = {
+  container: string;
+  wax: string;
+  aroma: string;
+  wick: string;
+  color: string;
+};
 
 export interface CartProductI {
   id: string;
   img: string;
   title: string;
-  description?: string;
+  description?: string | CustomCandleDescription;
   price: number;
   quantity: number;
   link: string;
@@ -95,4 +105,37 @@ export interface SelectOptions {
   ref: string;
   value: string;
   label: string;
+}
+export interface ButtonsDictI {
+  buyNow: string;
+  addToCart: string;
+}
+
+export interface ProductDescription {
+  wax: string;
+  aroma: string;
+  wick: string;
+  color: string;
+}
+
+export interface CheckoutPageDictionary {
+  productList: {
+    deleteButtonText: string;
+    totalText: string;
+    descriptionPropertyNames: ProductDescription;
+  };
+  form: {
+    contactFormTitle: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    buttonText: string;
+  };
+}
+
+export interface ProductListDictionary {
+  deleteButtonText: string;
+  totalText: string;
+  descriptionPropertyNames: ProductDescription;
 }
