@@ -64,6 +64,8 @@ interface CheckoutFormProps {
     cityPlaceholder: string;
     warehouseLabel: string;
     warehousePlaceholder: string;
+    notesLabel: string;
+    notesPlaceholder: string;
   };
 }
 
@@ -83,6 +85,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     cityPlaceholder,
     warehouseLabel,
     warehousePlaceholder,
+    notesLabel,
+    notesPlaceholder,
   },
 }) => {
   const [phone, setPhone] = useState('');
@@ -102,6 +106,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const [isAreaSelectOpen, setIsAreaSelectOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [orderNotes, setOrderNotes] = useState('');
 
   const { selectedDelivery } = useDeliveryContext();
 
@@ -139,6 +144,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   const handleSelectWarehouse = (value: SelectOptions) => {
     setSelectedWarehouse(value);
+  };
+
+  const handleOrderNotesChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const newValue = event.target.value;
+    setOrderNotes(newValue);
   };
 
   useEffect(() => {
@@ -299,6 +311,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
             label={warehouseLabel}
             placeholder={warehousePlaceholder}
             isLoading={isLoading}
+          />
+          <Input
+            label={notesLabel}
+            placeholder={notesPlaceholder}
+            multiline
+            value={orderNotes}
+            onChange={event => handleOrderNotesChange(event)}
+            height="218px"
           />
         </div>
       </fieldset>

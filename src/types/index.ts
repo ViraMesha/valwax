@@ -131,6 +131,15 @@ export interface CheckoutPageDictionary {
     email: string;
     phoneNumber: string;
     delivery: string;
+    deliveryOptions: string[];
+    areaLabel: string;
+    areaPlaceholder: string;
+    cityLabel: string;
+    cityPlaceholder: string;
+    warehouseLabel: string;
+    warehousePlaceholder: string;
+    notesLabel: string;
+    notesPlaceholder: string;
     buttonText: string;
   };
 }

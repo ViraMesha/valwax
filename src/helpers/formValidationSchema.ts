@@ -26,7 +26,7 @@ const validationSchema = object().shape({
   postOfficeBranchNum: string().required('Необхідно вказати номер відділення'),
   // cashOnDelivery: bool().oneOf([true, false]),
   // cardPayment: bool().oneOf([true, false]),
-  // comment: string().max(1000),
+  notes: string().max(1000),
 });
 
 export default validationSchema;

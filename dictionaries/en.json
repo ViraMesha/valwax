@@ -366,6 +366,8 @@
         "cityPlaceholder": "City",
         "warehouseLabel": "Select the branch or post office number *",
         "warehousePlaceholder": "Branch or post office number",
+        "notesLabel": "Notes to orders (optional)",
+        "notesPlaceholder": "Notes on your order, such as special notes for delivery",
         "buttonText": "Place an order"
       }
     },
