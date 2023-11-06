@@ -1,8 +1,5 @@
 import React from 'react';
 import Select from 'react-select';
-import ClipLoader from 'react-spinners/ClipLoader';
-
-// import styles from './CustomSelect.module.scss';
 
 interface CustomSelectProps {
   value: any;
@@ -15,6 +12,7 @@ interface CustomSelectProps {
   onMenuOpen?: () => void;
   onInputChange?: () => void;
   isLoading?: boolean;
+  name?: string;
 }
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
@@ -22,12 +20,11 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   onChange,
   options,
   label,
-  // id,
   placeholder,
   onMenuOpen,
   isLoading,
+  name
 }) => {
-
   const colourStyles = {
     control: (styles: any) => ({
       ...styles,
@@ -57,8 +54,6 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       cursor: 'pointer',
       borderRadius: '20px',
     }),
-
-   
   };
 
   return (

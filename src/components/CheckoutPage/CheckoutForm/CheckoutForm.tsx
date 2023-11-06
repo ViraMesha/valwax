@@ -11,7 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { PhoneNumberUtil } from 'google-libphonenumber';
 import debounce from 'lodash/debounce';
 
-import { useStateContext } from '../../../../context/StateContext';
+import { useDeliveryContext } from '../../../../context/DeliveryContext';
 
 import RadioButtons from './RadioButtons/RadioButtons';
 import { fetchAreas, fetchCities, fetchWarehouses } from './api';
@@ -42,10 +42,10 @@ type CheckoutFormValues = {
   firstName: string;
   lastName: string;
   email: string;
-  // post: string;
-  // deliveryArea: string;
-  // deliveryCity: string;
-  // postOfficeBranchNum: string;
+  delivery: string;
+  deliveryArea: string;
+  deliveryCity: string;
+  postOfficeBranchNum: string;
 };
 
 interface CheckoutFormProps {
@@ -56,6 +56,14 @@ interface CheckoutFormProps {
     email: string;
     phoneNumber: string;
     buttonText: string;
+    delivery: string;
+    deliveryOptions: string[];
+    areaLabel: string;
+    areaPlaceholder: string;
+    cityLabel: string;
+    cityPlaceholder: string;
+    warehouseLabel: string;
+    warehousePlaceholder: string;
   };
 }
 
@@ -67,6 +75,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     email,
     phoneNumber,
     buttonText,
+    delivery,
+    deliveryOptions,
+    areaLabel,
+    areaPlaceholder,
+    cityLabel,
+    cityPlaceholder,
+    warehouseLabel,
+    warehousePlaceholder,
   },
 }) => {
   const [phone, setPhone] = useState('');
@@ -76,8 +92,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const [cities, setCities] = useState<AreaData[]>([]);
   const [warehouse, setWarehouse] = useState<AreaData[]>([]);
 
-  const [inputCity, setInputCity] = useState<string>('');
-
   const [selectedAreas, setSelectedAreas] = useState<SelectOptions | null>(
     null
   );
@@ -86,13 +100,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     useState<SelectOptions | null>(null);
 
   const [isAreaSelectOpen, setIsAreaSelectOpen] = useState(false);
-  const [isCitySelectOpen, setIsCitySelectOpen] = useState(false);
-  const [isWarehouseSelectOpen, setIsWarehouseSelectOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const { selectedDelivery } = useStateContext();
-  console.log(selectedDelivery);
+  const { selectedDelivery } = useDeliveryContext();
 
   const {
     register,
@@ -103,7 +114,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   } = useForm<CheckoutFormValues>({
     mode: 'onBlur',
     defaultValues: {},
-    resolver: yupResolver(validationSchema),
+    // resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = (data: CheckoutFormValues) => {
@@ -112,7 +123,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   };
 
   const handleSelectArea = (value: SelectOptions) => {
-    console.log('SelectArea', value);
+    setCities([]);
+    setWarehouse([]);
     setSelectedCity(null);
     setSelectedWarehouse(null);
 
@@ -120,9 +132,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   };
 
   const handleSelectCity = debounce(async (value: SelectOptions) => {
-    setInputCity(JSON.stringify(value));
-
     setSelectedWarehouse(null);
+
     setSelectedCity(value);
   }, 300);
 
@@ -132,49 +143,39 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      if (isAreaSelectOpen) {
-        setIsLoading(true);
-        const areasData = await fetchAreas();
-        setIsLoading(false);
+      setIsLoading(true);
+      const areasData = await fetchAreas();
+      setIsLoading(false);
 
-        if (areasData) {
-          setAreas(areasData);
-          setIsAreaSelectOpen(false);
-        }
+      if (areasData) {
+        setAreas(areasData);
+        setIsAreaSelectOpen(false);
       }
     };
-    fetchData();
+
+    if (isAreaSelectOpen) {
+      fetchData();
+    }
 
     const fetchDataCity = async () => {
-      if (
-        isCitySelectOpen &&
-        selectedAreas &&
-        !selectedCity &&
-        cities.length === 0
-      ) {
+      if (selectedAreas && !selectedCity && cities.length === 0) {
         setIsLoading(true);
-        const citiesData = await fetchCities(selectedAreas.ref, inputCity);
-        console.log('citiesData2', citiesData);
+        const citiesData = await fetchCities(selectedAreas.ref);
 
         setIsLoading(false);
 
         if (citiesData) {
           setCities(citiesData);
-          console.log('cities', cities);
-
-          setIsCitySelectOpen(false);
         }
       }
     };
-    fetchDataCity();
+
+    if (selectedAreas && !selectedCity && cities.length === 0) {
+      fetchDataCity();
+    }
 
     const fetchDataWarehouse = async () => {
-      if (
-        isWarehouseSelectOpen &&
-        selectedAreas &&
-        selectedCity &&
-        selectedDelivery
-      ) {
+      if (selectedAreas && selectedCity && selectedDelivery) {
         setIsLoading(true);
 
         const warehouseData = await fetchWarehouses(
@@ -182,31 +183,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
           selectedCity.value
         );
 
-        console.log('selectedCity', selectedCity);
-        console.log('selectedCity.ref', selectedCity.ref);
-
         if (warehouseData) {
           setIsLoading(false);
           setWarehouse(warehouseData);
-          setIsWarehouseSelectOpen(false);
         }
       }
     };
-    fetchDataWarehouse();
-  }, [
-    cities,
-    inputCity,
-    isAreaSelectOpen,
-    isCitySelectOpen,
-    isWarehouseSelectOpen,
-    selectedAreas,
-    selectedCity,
-    selectedDelivery,
-  ]);
 
-  useEffect(() => {
-    console.log('cities', cities);
-  }, [cities]);
+    fetchDataWarehouse();
+  }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
 
   const selectOptionsArea = areas.map(option => ({
     ref: option.Ref,
@@ -285,8 +270,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       </fieldset>
 
       <fieldset className={styles.form__group}>
-        <legend className={styles.group__title}>Доставка</legend>
-        <RadioButtons />
+        <legend className={styles.group__title}>{delivery}</legend>
+        <RadioButtons options={deliveryOptions} />
         <div className={styles.contactInfo__wrapper}>
           <CustomSelect
             value={selectedAreas}
@@ -295,30 +280,24 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
             }}
             onChange={value => handleSelectArea(value)}
             options={selectOptionsArea}
-            label="Оберіть область доставки *"
-            placeholder="Область"
+            label={areaLabel}
+            placeholder={areaPlaceholder}
             isLoading={isLoading}
           />
           <CustomSelect
             value={selectedCity}
-            onMenuOpen={() => {
-              setIsCitySelectOpen(true);
-            }}
             onChange={value => handleSelectCity(value)}
             options={selectOptionsCity}
-            label="Оберіть ваше місто *"
-            placeholder="Місто"
+            label={cityLabel}
+            placeholder={cityPlaceholder}
             isLoading={isLoading}
           />
           <CustomSelect
             value={selectedWarehouse}
             onChange={value => handleSelectWarehouse(value)}
             options={selectOptionsWarehouse}
-            onMenuOpen={() => {
-              setIsWarehouseSelectOpen(true);
-            }}
-            label="Оберіть номер відділення або поштомату *"
-            placeholder="Номер відділення або поштомату"
+            label={warehouseLabel}
+            placeholder={warehousePlaceholder}
             isLoading={isLoading}
           />
         </div>

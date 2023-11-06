@@ -348,6 +348,18 @@
         "lastName": "Прізвище",
         "email": "Email",
         "phoneNumber": "Введіть номер телефону",
+        "delivery": "Доставка",
+        "deliveryOptions": [
+          "Нова Пошта (Відділення)",
+          "Нова Пошта (Поштомат)",
+          "Укр Пошта"
+        ],
+        "areaLabel": "Оберіть область доставки *",
+        "areaPlaceholder": "Область",
+        "cityLabel": " Оберіть ваше місто *",
+        "cityPlaceholder": "Місто",
+        "warehouseLabel": "Оберіть номер відділення або поштомату *",
+        "warehousePlaceholder": "Номер відділення або поштомату",
         "buttonText": "Оформити замовлення"
       }
     },

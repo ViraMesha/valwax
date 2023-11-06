@@ -28,7 +28,7 @@ export const fetchAreas = async () => {
   }
 };
 
-export const fetchCities = async (Ref: string, SelectedCity: string) => {
+export const fetchCities = async (Ref: string) => {
   try {
     let allCities: AreaData[] = [];
     let page = 1;
@@ -45,7 +45,7 @@ export const fetchCities = async (Ref: string, SelectedCity: string) => {
           calledMethod: 'getSettlements',
           methodProperties: {
             AreaRef: Ref,
-            FindByString: SelectedCity,
+            // FindByString: SelectedCity,
             Page: String(page),
           },
         }),
@@ -178,8 +178,6 @@ export const fetchWarehouses = async (
       console.log(warehouses);
     }
   }
-
-  console.log(allWarehouses);
 
   return allWarehouses;
 };

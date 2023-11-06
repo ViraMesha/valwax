@@ -12,14 +12,12 @@ type StateContext = {
   cartItems: CartProductI[];
   totalPrice: number;
   totalQuantities: number;
-  selectedDelivery: string | null;
 };
 
 type ActionsContextProps = {
   onAdd: (product: CartProductI, quantity?: number) => void;
   toggleCartItemQuantity: (id: string, value: 'inc' | 'dec') => void;
   onRemove: (id: string) => void;
-  chooseDelivery: (delivery: string | null) => void;
 };
 
 const Context = createContext<StateContext | null>(null);
@@ -35,9 +33,6 @@ export const StateContext = ({ children }: StateContextProps) => {
     'totalQuantities',
     0
   );
-  const [selectedDelivery, setSelectedDelivery] = useLocalStorage<
-    string | null
-  >('selectedDelivery', null);
 
   // Create a reference to store a found product
   const foundProductRef = useRef<CartProductI | undefined>();
@@ -172,27 +167,19 @@ export const StateContext = ({ children }: StateContextProps) => {
     [cartItems, setCartItems, setTotalPrice, setTotalQuantities]
   );
 
-  const chooseDelivery = useCallback(
-    (delivery: string | null) => {
-      setSelectedDelivery(delivery);
-    },
-    [setSelectedDelivery]
-  );
-
   const contextValue = useMemo(
     () => ({
       cartItems,
       totalPrice,
       totalQuantities,
-      selectedDelivery,
     }),
-    [cartItems, totalPrice, totalQuantities, selectedDelivery]
+    [cartItems, totalPrice, totalQuantities]
   );
 
   return (
     <Context.Provider value={contextValue}>
       <ActionsContext.Provider
-        value={{ onAdd, toggleCartItemQuantity, onRemove, chooseDelivery }}
+        value={{ onAdd, toggleCartItemQuantity, onRemove }}
       >
         {children}
       </ActionsContext.Provider>
