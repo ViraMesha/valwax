@@ -56,7 +56,7 @@ export const fetchCities = async (Ref: string) => {
         allCities = allCities.concat(data.data);
 
         if (data.data.length === 0) {
-          break; 
+          break;
         }
 
         page++;
@@ -157,7 +157,10 @@ export const fetchWarehouses = async (
   CityName: string
 ) => {
   const typeOfWarehouseRefs = [];
-  if (selectedDelivery === 'Нова пошта (Поштомат)') {
+  if (
+    selectedDelivery === 'Нова пошта (Поштомат)' ||
+    selectedDelivery === 'Nova Poshta (Parcel Locker)'
+  ) {
     typeOfWarehouseRefs.push('95dc212d-479c-4ffb-a8ab-8c1b9073d0bc');
     typeOfWarehouseRefs.push('f9316480-5f2d-425d-bc2c-ac7cd29decf0');
   } else {
