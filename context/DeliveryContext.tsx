@@ -9,6 +9,7 @@ type DeliveryContextProps = {
 
 type DeliveryContext = {
   selectedDelivery: string | null;
+  
 };
 
 type ActionsContextProps = {

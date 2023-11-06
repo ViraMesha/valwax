@@ -205,6 +205,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     fetchDataWarehouse();
   }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
 
+  useEffect(() => {
+    setSelectedWarehouse(null);
+  }, [selectedDelivery]);
+
   const selectOptionsArea = areas.map(option => ({
     ref: option.Ref,
     value: option.Description,
