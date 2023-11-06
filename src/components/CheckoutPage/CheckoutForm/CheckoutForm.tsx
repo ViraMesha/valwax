@@ -38,7 +38,7 @@ type CheckoutFormValues = {
   // cashOnDelivery?: boolean | undefined;
   // cardPayment?: boolean | undefined;
   // comment?: string | undefined;
-  phone?: string;
+  phone: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -114,7 +114,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   } = useForm<CheckoutFormValues>({
     mode: 'onBlur',
     defaultValues: {},
-    // resolver: yupResolver(validationSchema),
+    resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = (data: CheckoutFormValues) => {

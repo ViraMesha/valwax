@@ -130,6 +130,7 @@ export interface CheckoutPageDictionary {
     lastName: string;
     email: string;
     phoneNumber: string;
+    delivery: string;
     buttonText: string;
   };
 }
