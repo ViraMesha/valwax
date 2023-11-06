@@ -364,8 +364,9 @@
       "altText": "A couple of candles in glass containers"
     },
     "notFound": {
-      "text": "Oh, oh. Something went wrong...",
-      "linkText": "Return Home"
+      "text": "Sorry, we couldn't find what you were looking for. The page may have been deleted, moved, or never existed. Please return to the main page for further searches. Sorry for the inconvenience.",
+      "linkText": "Return Home",
+      "altText": "An image of a young boy holding a lit candle close to his chest, creating a warm and intimate atmosphere."
     }
   },
   "search": {
