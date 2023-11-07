@@ -138,11 +138,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   const handleSelectCity = debounce(async (value: SelectOptions) => {
     setSelectedWarehouse(null);
+    setWarehouse([]);
 
     setSelectedCity(value);
   }, 300);
 
   const handleSelectWarehouse = (value: SelectOptions) => {
+    setSelectedWarehouse(null);
+    setWarehouse([]);
+
     setSelectedWarehouse(value);
   };
 
@@ -189,6 +193,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     const fetchDataWarehouse = async () => {
       if (selectedAreas && selectedCity && selectedDelivery) {
         setIsLoading(true);
+        setWarehouse([]);
 
         const warehouseData = await fetchWarehouses(
           selectedDelivery,
@@ -197,6 +202,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
         if (warehouseData) {
           setIsLoading(false);
+          console.log(warehouseData);
           setWarehouse(warehouseData);
         }
       }
