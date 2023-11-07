@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown } from 'react-icons/io';
 import { IoOptionsOutline } from 'react-icons/io5';
 import useModal from '@components/hooks/useModal';
 import { useWindowSize } from 'usehooks-ts';
@@ -44,7 +44,8 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   const [isTabsMenuOpen, setIsTabsMenuOpen] = useState(false);
   const pathname = usePathname();
   const { width } = useWindowSize();
-  const isCurrent = (link: string) => link === `/${pathname.split('/')[2]}`;
+  const isCurrent = (link: string) =>
+    link === `/candles/${pathname.split('/')[3]}`;
   const isSmallScreen = width < 1230;
   const isMobScreen = width < 667;
   const { isModal, toggleModal, onBackdropClick } = useModal();
@@ -84,9 +85,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                             {item.abbreviatedTitle}
                           </Typography>
                           {!isTabsMenuOpen && (
-                            <IoIosArrowDown
-                              style={{ width: 24, height: 24 }}
-                            />
+                            <IoIosArrowDown style={{ width: 24, height: 24 }} />
                           )}
                         </Link>
                       </li>
@@ -160,7 +159,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
             <Filter dict={dict.filter} />
           </Modal>
         )}
-        {isSmallScreen && <FilterTags dict={dict.filter}/>}
+        {isSmallScreen && <FilterTags dict={dict.filter} />}
       </Container>
     </Section>
   );

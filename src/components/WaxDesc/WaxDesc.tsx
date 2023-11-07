@@ -29,10 +29,10 @@ const WaxDesc: React.FC<WaxDescI> = ({ dict, className }) => {
           />
           <div className={styles.content}>
             <Typography variant="bodyXLHeavy" className={styles.title}>
-              {dict.title}
+              {dict?.title}
             </Typography>
             <Typography variant="bodyXL" className={styles.text}>
-              {dict.text}
+              {dict?.text}
             </Typography>
           </div>
         </div>

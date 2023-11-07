@@ -42,7 +42,11 @@ const SuccessOrderPage = ({
             {text}
           </Typography>
         </div>
-        <CustomLink href={`/${lang}#compass`} className={styles.link}>
+        <CustomLink
+          variant="primary"
+          href={`/${lang}#compass`}
+          className={styles.link}
+        >
           {buttonText}
         </CustomLink>
         <Image

@@ -14,17 +14,17 @@ export const tabsData = (data: dataI) => {
     {
       fullTitle: data.fullTitle[0],
       abbreviatedTitle: data.abbreviatedTitle[0],
-      link: '/soy-candles',
+      link: '/candles/soy-candles',
     },
     {
       fullTitle: data.fullTitle[1],
       abbreviatedTitle: data.abbreviatedTitle[1],
-      link: '/coconut-candles',
+      link: '/candles/coconut-candles',
     },
     {
       fullTitle: data.fullTitle[2],
       abbreviatedTitle: data.abbreviatedTitle[2],
-      link: '/palm-candles',
+      link: '/candles/palm-candles',
     },
   ];
 };

@@ -26,11 +26,11 @@ export default async function Candle({
         items={[
           {
             label: breadcrumbs[slug],
-            path: `/${slug}`,
+            path: `/candles/${slug}`,
           },
           {
             label: product.title,
-            path: `/${slug}/${product.id}`,
+            path: `/candles/${slug}/${product.id}`,
           },
         ]}
         lang={lang}

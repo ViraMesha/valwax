@@ -6,16 +6,22 @@ interface CustomLinkProps extends LinkProps {
   href: string;
   className?: string;
   children: React.ReactNode;
+  variant: 'primary' | 'secondary';
 }
 
 const CustomLink = ({
   href,
   className,
   children,
+  variant,
   ...rest
 }: CustomLinkProps) => {
   return (
-    <Link href={href} className={`${styles.link} ${className || ''}`} {...rest}>
+    <Link
+      href={href}
+      className={`${styles.link} ${className || ''} ${styles[variant]}`}
+      {...rest}
+    >
       {children}
     </Link>
   );
