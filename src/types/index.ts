@@ -96,6 +96,16 @@ export interface ProductDetails {
   slug: string;
 }
 
+export interface AreaData {
+  Ref: string;
+  Description: string;
+}
+
+export interface SelectOptions {
+  ref: string;
+  value: string;
+  label: string;
+}
 export interface ButtonsDictI {
   buyNow: string;
   addToCart: string;
@@ -120,6 +130,16 @@ export interface CheckoutPageDictionary {
     lastName: string;
     email: string;
     phoneNumber: string;
+    delivery: string;
+    deliveryOptions: string[];
+    areaLabel: string;
+    areaPlaceholder: string;
+    cityLabel: string;
+    cityPlaceholder: string;
+    warehouseLabel: string;
+    warehousePlaceholder: string;
+    notesLabel: string;
+    notesPlaceholder: string;
     buttonText: string;
   };
 }

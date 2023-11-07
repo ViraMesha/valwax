@@ -1,0 +1,46 @@
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.label {
+  color: var(--cl-gray-500);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.select {
+  padding: 12px 36px 12px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--cl-secondary-700);
+  background-color: transparent;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--cl-gray-200);
+  
+}
+
+.select:focus {
+  outline: none;
+  border: 1px solid var(--cl-secondary-700);
+}
+
+.selectCustomArrow {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 16px;
+  bottom: 16px;
+  pointer-events: none;
+}

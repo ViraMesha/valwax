@@ -354,6 +354,20 @@
         "lastName": "Last name",
         "email": "Email",
         "phoneNumber": "Enter your phone number",
+        "delivery": "Delivery",
+        "deliveryOptions": [
+          "Nova Poshta (Branch)",
+          "Nova Poshta (Parcel Locker)",
+          "Ukrposhta"
+        ],
+        "areaLabel": "Choose a delivery area *",
+        "areaPlaceholder": "Area",
+        "cityLabel": "Choose your city *",
+        "cityPlaceholder": "City",
+        "warehouseLabel": "Select the branch or post office number *",
+        "warehousePlaceholder": "Branch or post office number",
+        "notesLabel": "Notes to orders (optional)",
+        "notesPlaceholder": "Notes on your order, such as special notes for delivery",
         "buttonText": "Place an order"
       }
     },
