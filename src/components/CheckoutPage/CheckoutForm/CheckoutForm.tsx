@@ -207,6 +207,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   useEffect(() => {
     setSelectedWarehouse(null);
+    setWarehouse([]);
   }, [selectedDelivery]);
 
   const selectOptionsArea = areas.map(option => ({
