@@ -1,7 +1,7 @@
 import { bool, object, string } from 'yup';
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const phoneRegex = /^\+38 \(\d{3}\) \d{3} \d{4}$/;
+const phoneRegex = /^(\d{2}[-\s]?)(\d{3}[-\s]?)(\d{2}[-\s]?){2}$/;
 
 const validationSchema = object().shape({
   firstName: string().trim().required("Введіть ім'я"),
@@ -13,7 +13,7 @@ const validationSchema = object().shape({
   phone: string()
     .trim()
     .required("Телефон є обов'язковим полем")
-    .matches(phoneRegex, 'Введіть номер телефону у форматі +38 (067) 333 4444'),
+    .matches(phoneRegex, 'Введіть дійсний номер телефону'),
   delivery: string()
     .required('Необхідно вказати спосіб доставки')
     .oneOf([
