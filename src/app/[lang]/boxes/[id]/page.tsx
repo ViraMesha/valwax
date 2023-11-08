@@ -5,6 +5,20 @@ import { Locale } from '../../../../../i18n-config';
 import { getBoxDetails } from '../../../../../lib/api-services/api';
 import { getDictionary } from '../../../../../lib/utils/dictionary';
 
+export async function generateMetadata({
+  params: { lang, id },
+}: {
+  params: {
+    lang: Locale;
+    id: string;
+  };
+}) {
+  const product = await getBoxDetails(id);
+  return {
+    title: `Valwax | ${product.title}`,
+  };
+}
+
 const BoxDetails = async ({
   params: { lang, id },
 }: {
@@ -34,7 +48,11 @@ const BoxDetails = async ({
         ]}
         lang={lang}
       />
-      <BoxDetailsPage product={product} dict={relatedProducts} buttonsDict={general.buttons} />
+      <BoxDetailsPage
+        product={product}
+        dict={relatedProducts}
+        buttonsDict={general.buttons}
+      />
     </>
   );
 };
