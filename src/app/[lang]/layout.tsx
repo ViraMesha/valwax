@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ToastContainer } from 'react-toastify';
 import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
+import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollToTopButton';
 
 import { DeliveryContextProvider } from '../../../context/DeliveryContext';
 import { StateContext } from '../../../context/StateContext';
@@ -43,6 +44,7 @@ export default async function RootLayout({
             <Footer lang={params.lang} dict={footer} />
           </DeliveryContextProvider>
         </StateContext>
+        <ScrollToTopButton />
         <ToastContainer
           position="top-right"
           autoClose={5000}

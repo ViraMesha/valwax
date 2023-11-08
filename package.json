@@ -46,6 +46,7 @@
     "react-icons": "^4.10.1",
     "react-international-phone": "^4.0.0",
     "react-loader-spinner": "^5.4.5",
+    "react-scroll-up": "^1.4.0",
     "react-select": "^5.7.7",
     "react-slick": "^0.29.0",
     "react-spinners": "^0.13.8",
