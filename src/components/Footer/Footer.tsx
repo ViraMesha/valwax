@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { AiOutlineCopyrightCircle } from 'react-icons/ai';
 import { CiMail } from 'react-icons/ci';
 import { PiPhoneThin } from 'react-icons/pi';
+import type { NavDictI } from '@components/types';
 import Logo from 'public/images/logo/Logo.svg';
 
 import { Locale } from '../../../i18n-config';
@@ -19,12 +20,13 @@ interface FooterI {
     privacyPolicy: string;
     copyright: string;
   };
+  navDict: NavDictI;
 }
 
 const PHONE_NUMBER = '+38 095 888 46 14';
 const EMAIL_ADDRESS = 'valwaxua@gmail.com';
 
-const Footer: React.FC<FooterI> = ({ lang, dict }) => {
+const Footer: React.FC<FooterI> = ({ lang, dict, navDict }) => {
   return (
     <footer className={styles.footer}>
       <Container>
@@ -34,6 +36,7 @@ const Footer: React.FC<FooterI> = ({ lang, dict }) => {
             variant="footer"
             className={styles.footerNavigation}
             lang={lang}
+            navDict={navDict}
           />
           <div>
             <Typography
@@ -46,7 +49,10 @@ const Footer: React.FC<FooterI> = ({ lang, dict }) => {
             <address>
               <ul className={styles.addressList}>
                 <li className={styles.addressItem}>
-                  <a className={styles.addressLink} href={`tel:${PHONE_NUMBER}`}>
+                  <a
+                    className={styles.addressLink}
+                    href={`tel:${PHONE_NUMBER}`}
+                  >
                     <PiPhoneThin style={{ width: 24, height: 24 }} />
                     <Typography
                       variant="bodyRegular"
