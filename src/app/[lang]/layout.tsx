@@ -37,11 +37,11 @@ export default async function RootLayout({
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
         <StateContext>
-          <DeliveryContextProvider>
+          {/* <DeliveryContextProvider> */}
             <Header lang={params.lang} dict={search} />
             <main className={styles.main}>{children}</main>
             <Footer lang={params.lang} dict={footer} />
-          </DeliveryContextProvider>
+          {/* </DeliveryContextProvider> */}
         </StateContext>
         <ToastContainer
           position="top-right"

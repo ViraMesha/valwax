@@ -5,7 +5,7 @@ interface CustomSelectProps {
   value: any;
   onChange: (newValue: any) => void;
   label?: string;
-  options: { value: string; label: string }[];
+  options: {ref?: string; value?: string; label?: string }[];
   // id?: string;
   placeholder?: string;
   onClick?: () => void;

@@ -97,8 +97,14 @@ export interface ProductDetails {
 }
 
 export interface AreaData {
-  Ref: string;
-  Description: string;
+  Ref?: string;
+  Description?: string;
+  REGION_ID?: string;
+  REGION_UA?: string;
+  CITY_ID?: string;
+  CITY_UA?: string;
+  POSTOFFICE_ID?: string;
+  POSTOFFICE_UA?: string;
 }
 
 export interface SelectOptions {
