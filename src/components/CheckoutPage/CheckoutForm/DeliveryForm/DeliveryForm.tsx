@@ -22,7 +22,7 @@ import {
 } from '../api';
 import RadioButtons from '../RadioButtons/RadioButtons';
 
-import 'react-international-phone/style.css';
+// import 'react-international-phone/style.css';
 import styles from './DeliveryForm.module.scss';
 
 type DeliveryFormValues = {
