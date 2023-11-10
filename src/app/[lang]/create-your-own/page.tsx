@@ -10,9 +10,9 @@ export async function generateMetadata({
 }: {
   params: { lang: Locale };
 }) {
-  const { navigation } = await getDictionary(lang);
+  const { breadcrumbs } = await getDictionary(lang);
   return {
-    title: `Valwax | ${navigation.createYourOwn}`,
+    title: `Valwax | ${breadcrumbs.createYourOwn}`,
   };
 }
 
@@ -35,7 +35,10 @@ const CreateYourOwn = async ({
         lang={lang}
       />
       <WelcomeSection dict={page.createYourOwn.welcome} />
-      <ConfiguratorSection dict={page.createYourOwn.configurator} dictGeneral={general}/>
+      <ConfiguratorSection
+        dict={page.createYourOwn.configurator}
+        dictGeneral={general}
+      />
     </>
   );
 };

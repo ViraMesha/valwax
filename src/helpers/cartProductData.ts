@@ -7,7 +7,7 @@ const img = candle3.src;
 const title = 'Ароматична свічка Paradise';
 const description = 'Свічка з соєвого воску з ароматом опалого листя.';
 const quantity = 2;
-const link = '/soy-candles';
+const link = 'candles//soy-candles';
 
 const cartProductData: CartProductI[] = [
   {

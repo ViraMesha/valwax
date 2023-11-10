@@ -4,6 +4,17 @@ import PaymentAndDeliveryInfo from '@components/components/PaymentAndDeliveryInf
 import { Locale } from '../../../../i18n-config';
 import { getDictionary } from '../../../../lib/utils/dictionary';
 
+export async function generateMetadata({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const { breadcrumbs } = await getDictionary(lang);
+  return {
+    title: `Valwax | ${breadcrumbs.paymentAndDelivery}`,
+  };
+}
+
 const PaymentAndDelivery = async ({
   params: { lang },
 }: {

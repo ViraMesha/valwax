@@ -34,7 +34,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
       description:
         'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
       similar: relatedProducts,
-      slug: '/boxes'
+      slug: '/boxes',
     };
 
     return fakeBoxDetails;
@@ -59,7 +59,7 @@ export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
         { title: 'Об’єм', content: 'Кедр, пекан' },
       ],
       similar: relatedProducts,
-      slug: '/soy-candles'
+      slug: '/candles/soy-candles',
     };
 
     return fakeCandleDetails;

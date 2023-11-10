@@ -26,9 +26,9 @@ const CandlesPage: React.FC<CandlesPageI> = ({ dictWax, dict, lang }) => {
   return (
     <>
       <Tabs dict={dict} lang={lang} />
-      <WaxDesc dict={dictWax.waxDesc} className={styles.waxDescAboveCandles} />
+      <WaxDesc dict={dictWax?.waxDesc} className={styles.waxDescAboveCandles} />
       <CandlesSection dict={dict} />
-      <WaxDesc dict={dictWax.waxDesc} className={styles.waxDescBelowCandles} />
+      <WaxDesc dict={dictWax?.waxDesc} className={styles.waxDescBelowCandles} />
     </>
   );
 };

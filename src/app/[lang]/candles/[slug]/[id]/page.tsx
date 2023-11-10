@@ -6,6 +6,20 @@ import { Locale } from '../../../../../../i18n-config';
 import { getCandleDetails } from '../../../../../../lib/api-services/api';
 import { getDictionary } from '../../../../../../lib/utils/dictionary';
 
+export async function generateMetadata({
+  params: { lang, id },
+}: {
+  params: {
+    lang: Locale;
+    id: string;
+  };
+}) {
+  const product = await getCandleDetails(id);
+  return {
+    title: `Valwax | ${product.title}`,
+  };
+}
+
 export default async function Candle({
   params: { lang, id, slug },
 }: {
@@ -26,11 +40,11 @@ export default async function Candle({
         items={[
           {
             label: breadcrumbs[slug],
-            path: `/${slug}`,
+            path: `/candles/${slug}`,
           },
           {
             label: product.title,
-            path: `/${slug}/${product.id}`,
+            path: `/candles/${slug}/${product.id}`,
           },
         ]}
         lang={lang}

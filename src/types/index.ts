@@ -155,3 +155,14 @@ export interface ProductListDictionary {
   totalText: string;
   descriptionPropertyNames: ProductDescription;
 }
+
+export interface NavDictI {
+  home: string;
+  candles: string;
+  soy: string;
+  coconut: string;
+  palm: string;
+  createYourOwn: string;
+  paymentAndDelivery: string;
+  boxes: string;
+}

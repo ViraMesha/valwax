@@ -376,6 +376,11 @@
       "text": "We are pleased to inform you that your order has been received and is being processed. Our manager will contact you shortly to confirm and clarify the details.",
       "buttonText": "Continue shopping",
       "altText": "A couple of candles in glass containers"
+    },
+    "notFound": {
+      "text": "Sorry, we couldn't find what you were looking for. The page may have been deleted, moved, or never existed. Please return to the main page for further searches. Sorry for the inconvenience.",
+      "linkText": "Return Home",
+      "altText": "An image of a young boy holding a lit candle close to his chest, creating a warm and intimate atmosphere."
     }
   },
   "search": {
@@ -392,7 +397,7 @@
     "coconut-candles": "Coconut candles",
     "palm-candles": "Palm candles",
     "boxes": "Boxes",
-    "createYourOwn": "Create you own",
+    "createYourOwn": "Create your own",
     "privacyPolicy": "Privacy policy",
     "paymentAndDelivery": "Payment and delivery",
     "checkout": "Cart",
@@ -401,10 +406,13 @@
 
   "navigation": {
     "home": "Home",
-    "createYourOwn": "Create Yourself",
+    "candles": "Candles",
+    "soy": "Soy candles",
+    "coconut": "Coconut candles",
+    "palm": "Palm candles",
+    "createYourOwn": "Create your own",
     "paymentAndDelivery": "Payment and delivery",
-    "boxes": "Boxes",
-    "privacyPolicy": "Privacy policy"
+    "boxes": "Boxes"
   },
 
   "relatedProducts": {

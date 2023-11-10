@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import type { NavDictI } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 
 import { Locale } from '../../../i18n-config';
@@ -19,13 +20,13 @@ import LanguageMenu from './LanguageMenu/LanguageMenu';
 
 import styles from './Header.module.scss';
 
-const Header = ({
-  lang,
-  dict,
-}: {
+interface HeaderProps {
   lang: Locale;
   dict: { noResults: string };
-}) => {
+  navDict: NavDictI;
+}
+
+const Header = ({ lang, dict, navDict }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isModal, toggleModal, onBackdropClick } = useModal();
 
@@ -54,7 +55,7 @@ const Header = ({
             <Image src={logo} alt="logo" width={150} priority />
           )}
         </Link>
-        <Navigation className={styles.navbar} lang={lang} />
+        <Navigation className={styles.navbar} lang={lang} navDict={navDict} />
 
         <div className={styles.icons}>
           <LanguageMenu className={styles.langMenu} />
@@ -95,6 +96,7 @@ const Header = ({
               className={styles.mobileMenu}
               onClick={toggleMenuOpen}
               lang={lang}
+              navDict={navDict}
             />
             <LanguageMenu className={styles.mobileLangMenu} />
           </Container>

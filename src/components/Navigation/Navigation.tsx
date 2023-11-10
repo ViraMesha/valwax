@@ -4,15 +4,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import type { NavDictI } from '@components/types';
 
 import { Locale } from '../../../i18n-config';
 
-import {
-  candlesMenuItems,
-  navigationTranslations,
-  navItems,
-  navLinks,
-} from './navData';
+import { generateNavLinks } from './navData';
 
 import styles from './Navigation.module.scss';
 
@@ -21,6 +17,7 @@ interface NavigationPropsI {
   onClick?: () => void;
   variant?: string;
   lang?: Locale;
+  navDict: NavDictI;
 }
 
 const Navigation: React.FC<NavigationPropsI> = ({
@@ -28,11 +25,21 @@ const Navigation: React.FC<NavigationPropsI> = ({
   onClick,
   variant,
   lang = 'uk',
+  navDict,
 }) => {
   const pathname = usePathname();
   const [isCandlesMenuOpen, setIsCandlesMenuOpen] = useState(false);
   const langPrefix = lang === 'en' ? '/en' : '/uk';
   const isActive = (link: string) => pathname === `${langPrefix}${link}`;
+  const navLinks = generateNavLinks(navDict);
+  const navItems = [
+    navDict.home,
+    navDict.candles,
+    navDict.createYourOwn,
+    navDict.boxes,
+    navDict.paymentAndDelivery,
+  ];
+  const candlesMenuItems = [navDict.soy, navDict.coconut, navDict.palm];
 
   const isCandlesActive = () => {
     for (const candlesItem of candlesMenuItems) {
@@ -67,7 +74,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
       <ul className={`${styles.navigationList} ${className || ''}`}>
         {navItems.map((item, index) => (
           <li key={index} className={styles.navigationItem}>
-            {item === 'Свічки' ? (
+            {item === navDict.candles ? (
               <div
                 className={styles.dropdown}
                 onClick={toggleDropdown}
@@ -80,7 +87,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                       isCandlesActive() ? styles.activeLink : ''
                     }`}
                   >
-                    {navigationTranslations[lang]['Свічки']}
+                    {navDict.candles}
                   </span>
                   {isCandlesMenuOpen ? (
                     <MdKeyboardArrowUp
@@ -103,7 +110,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                           className={`candlesLink${navLinks[candlesItem]}`}
                           onClick={onClick}
                         >
-                          {navigationTranslations[lang][candlesItem]}
+                          {candlesItem}
                         </Link>
                       </li>
                     ))}
@@ -118,7 +125,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                 }`}
                 onClick={onClick}
               >
-                {navigationTranslations[lang][item]}
+                {item}
               </Link>
             )}
           </li>
