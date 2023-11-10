@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 
-import { DeliveryContextProvider } from '../../../context/DeliveryContext';
+// import { DeliveryContextProvider } from '../../../context/DeliveryContext';
 import { StateContext } from '../../../context/StateContext';
 import { i18n, Locale } from '../../../i18n-config';
 import { getDictionary } from '../../../lib/utils/dictionary';
