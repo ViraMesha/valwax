@@ -1,14 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { PhoneInput } from 'react-international-phone';
 import Button from '@components/components/Button/Button';
 import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
 import validationSchema from '@components/helpers/formValidationSchema';
 import { AreaData, SelectOptions } from '@components/types';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { PhoneNumberUtil } from 'google-libphonenumber';
 import debounce from 'lodash/debounce';
 
 import { useDeliveryContext } from '../../../../context/DeliveryContext';
@@ -16,18 +14,7 @@ import { useDeliveryContext } from '../../../../context/DeliveryContext';
 import RadioButtons from './RadioButtons/RadioButtons';
 import { fetchAreas, fetchCities, fetchWarehouses } from './api';
 
-import 'react-international-phone/style.css';
 import styles from './CheckoutForm.module.scss';
-
-const phoneUtil = PhoneNumberUtil.getInstance();
-
-const validatePhone = (phone: string) => {
-  try {
-    return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone));
-  } catch (error) {
-    return false;
-  }
-};
 
 export interface Option {
   value: string;
@@ -89,8 +76,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     notesPlaceholder,
   },
 }) => {
-  const [phone, setPhone] = useState('');
-  const [isValidPhone, setIsValidPhone] = useState(true);
 
   const [areas, setAreas] = useState<AreaData[]>([]);
   const [cities, setCities] = useState<AreaData[]>([]);
@@ -123,7 +108,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   });
 
   const onSubmit = (data: CheckoutFormValues) => {
-    data.phone = phone;
     console.log(data);
   };
 
@@ -268,27 +252,16 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
             {...register('email')}
           />
 
-          <div>
-            <label className={styles.label} htmlFor="phone">
-              {phoneNumber}
-            </label>
-            <PhoneInput
-              inputProps={{
-                id: 'phone',
-              }}
-              defaultCountry="ua"
-              value={phone}
-              showDisabledDialCodeAndPrefix
-              disableDialCodeAndPrefix
-              className={styles.phoneInput__container}
-              onChange={phone => setPhone(phone)}
-              placeholder="93-000-00-00"
-              onBlur={() => setIsValidPhone(validatePhone(phone))}
-            />
-            {!isValidPhone && (
-              <p className={styles.error}>Phone is not valid</p>
-            )}
-          </div>
+          <Input
+            isPhone
+            label={phoneNumber}
+            type="tel"
+            placeholder="93-000-00-00"
+            id="phone"
+            errorMessage={errors.phone?.message}
+            error={errors.phone}
+            {...register('phone')}
+          />
         </div>
       </fieldset>
 

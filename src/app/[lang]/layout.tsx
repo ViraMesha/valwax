@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ToastContainer } from 'react-toastify';
 import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
+import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollToTopButton';
 
 import { DeliveryContextProvider } from '../../../context/DeliveryContext';
 import { StateContext } from '../../../context/StateContext';
@@ -33,16 +34,18 @@ export default async function RootLayout({
 }) {
   const { footer } = await getDictionary(params.lang);
   const { search } = await getDictionary(params.lang);
+  const { navigation } = await getDictionary(params.lang);
   return (
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
         <StateContext>
           <DeliveryContextProvider>
-            <Header lang={params.lang} dict={search} />
+            <Header lang={params.lang} dict={search} navDict={navigation} />
             <main className={styles.main}>{children}</main>
-            <Footer lang={params.lang} dict={footer} />
+            <Footer lang={params.lang} dict={footer} navDict={navigation} />
           </DeliveryContextProvider>
         </StateContext>
+        <ScrollToTopButton />
         <ToastContainer
           position="top-right"
           autoClose={5000}

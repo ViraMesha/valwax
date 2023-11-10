@@ -399,10 +399,13 @@
 
   "navigation": {
     "home": "Головна",
+    "candles": "Свічки",
+    "soy": "Соєві свічки",
+    "coconut": "Кокосові свічки",
+    "palm": "Пальмові свічки",
     "createYourOwn": "Створи Сам",
     "paymentAndDelivery": "Оплата та Доставка",
-    "boxes": "Бокси",
-    "privacyPolicy": "Політика конфіденційності"
+    "boxes": "Бокси"
   },
 
   "relatedProducts": {

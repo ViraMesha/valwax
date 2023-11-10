@@ -1,12 +1,13 @@
+import Image from 'next/image';
 import React, {
-  ChangeEvent,
-  ComponentProps,
   forwardRef,
   InputHTMLAttributes,
-  Ref,
   TextareaHTMLAttributes,
 } from 'react';
 import { FieldError } from 'react-hook-form/dist/types';
+
+import flagImg from '../../../public/images/icons/flag-ukraine.svg';
+import Typography from '../Typography/Typography';
 
 import styles from './Input.module.scss';
 
@@ -24,6 +25,7 @@ type InputProps = {
   id?: string;
   multiline?: boolean;
   value?: string;
+  isPhone?: boolean;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -47,21 +49,51 @@ const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
     id,
     multiline = false,
     value,
+    isPhone,
     ...rest
   } = props;
 
   const inputClass = `${className || ''} ${styles.input} ${
-    error ? styles.errorInput : ''
-  }`;
+    error && styles.errorInput
+  } ${multiline && styles.textarea}`;
 
-  if (multiline) {
-    return (
-      <div>
-        {label && (
-          <label className={styles.label} htmlFor={id}>
-            {label}
-          </label>
-        )}
+  const renderInput = () => {
+    return isPhone ? (
+      <div className={`${styles.phoneInput} ${error && styles.errorInput}`}>
+        <div className={styles.phoneFlag}>
+          <Image src={flagImg} alt="A Ukrainian flag" />
+          <Typography variant="bodyRegular" color="var(--cl-gray-500)">
+            +380
+          </Typography>
+        </div>
+        <input
+          id={id}
+          style={{ width: width, height: height }}
+          {...(rest as InputAttributes)}
+          ref={ref as React.RefObject<HTMLInputElement>}
+          aria-label={rest.placeholder || ''}
+        />
+      </div>
+    ) : (
+      <input
+        id={id}
+        style={{ width: width, height: height }}
+        {...(rest as InputAttributes)}
+        ref={ref as React.RefObject<HTMLInputElement>}
+        className={inputClass}
+        aria-label={rest.placeholder || ''}
+      />
+    );
+  };
+
+  return (
+    <div>
+      {label && (
+        <label className={styles.label} htmlFor={id}>
+          {label}
+        </label>
+      )}
+      {multiline ? (
         <textarea
           id={id}
           style={{ width: width, height: height }}
@@ -71,29 +103,12 @@ const Input = forwardRef<InputRefType, InputProps>((props, ref) => {
           aria-label={rest.placeholder || ''}
           value={value}
         />
-        {error && <p className={styles.error}>{errorMessage}</p>}
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        {label && (
-          <label className={styles.label} htmlFor={id}>
-            {label}
-          </label>
-        )}
-        <input
-          id={id}
-          style={{ width: width, height: height }}
-          {...(rest as InputAttributes)}
-          ref={ref as React.RefObject<HTMLInputElement>}
-          className={inputClass}
-          aria-label={rest.placeholder || ''}
-        />
-        {error && <p className={styles.error}>{errorMessage}</p>}
-      </div>
-    );
-  }
+      ) : (
+        renderInput()
+      )}
+      {error && <p className={styles.error}>{errorMessage}</p>}
+    </div>
+  );
 });
 
 Input.displayName = 'Input';
