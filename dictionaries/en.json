@@ -148,22 +148,23 @@
       "header": {
         "title": "Payment and Delivery"
       },
-      "info": [
-        {
-          "subTitle": "Payment",
-          "texts": [
-            "Payment to the individual entrepreneur's account. More specific information will be provided later."
-          ]
+      "paymentOptions": {
+        "subTitle": "Payment Options",
+        "description": "Full payment to the account of the Individual Entrepreneur (IE) or a minimum prepayment of 150 Ukrainian hryvnias."
+      },
+      "deliveryOptions": {
+        "subTitle": "Delivery Options",
+        "time": "Shipment is processed within 3-5 business days.",
+        "methods": {
+          "title": "Possible delivery options include:",
+          "availableMethods": [
+          "- To the Nova Poshta branch",
+          "- To the Nova Poshta automated parcel locker",
+          "- To the Ukrposhta branch"
+        ]
         },
-        {
-          "subTitle": "Delivery",
-          "texts": [
-            "You can choose a convenient delivery method:",
-            "1. Delivery by Nova Poshta company within Ukraine to the selected branch with a prepayment of 150 UAH. The cost of delivery is calculated by the carrier, and the customer pays for the delivery.",
-            "2. Delivery by Ukrposhta company within Ukraine to the selected branch with a prepayment of 150 UAH. The cost of delivery is calculated by the carrier, and the customer pays for the delivery."
-          ]
-        }
-      ]
+        "paymentInfo": "Delivery payment is not included in the product's price and is paid by the recipient at the New Mail office, according to New Mail's tariffs, except for cases of online delivery payment."
+      }
     },
     "createYourOwn": {
       "welcome": {

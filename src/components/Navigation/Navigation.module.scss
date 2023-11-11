@@ -23,7 +23,10 @@
 }
 
 .navigationItem {
-  width: 100%;
+   @include breakpoint('all-devices-without-desktop') {
+    width: 100%;
+   }
+  
 }
 
 .candlesList {
@@ -119,6 +122,6 @@
   }
 }
 
-.arrowIcon {
+.centerContent .arrowIcon {
   margin-left: auto;
 }
