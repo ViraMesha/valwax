@@ -178,14 +178,15 @@ export const fetchAreasUkr = async () => {
 
 export const fetchCitiesUkr = async (RegionId: string) => {
   try {
-    const response = await fetch('https://www.ukrposhta.ua/address-classifier-ws/get_city_by_region_id_and_district_id_and_city_ua', {
+    // const response = await fetch('https://www.ukrposhta.ua/address-classifier-ws/get_city_by_region_id_and_district_id_and_city_ua', {
+    const response = await fetch(`${urlUkrPoshta}${methodCity}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         // 'Cache-Control': 'no-cache',
         // 'Accept-Encoding': 'gzip, deflate, br',
         // 'Connection': 'keep-alive',
-        // 'Authorization': `Bearer ${process.env.UKRPOSHTA_KEY}` ,
+        // 'Authorization': `Bearer ${ApiKeyUP}` ,
       }
     });
 
@@ -210,7 +211,7 @@ export const fetchWarehousesUkr = async (CityId: string) => {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'Authorization': `Bearer ${process.env.UKRPOSHTA_KEY}`,
+        'Authorization': `Bearer ${ApiKeyUP}`,
       }
     });
 
