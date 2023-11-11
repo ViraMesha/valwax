@@ -1,5 +1,7 @@
 import { AreaData } from '@components/types';
 
+const ApiKeyNP = process.env.NOVAPOSHTA_KEY
+
 export const fetchAreas = async () => {
   try {
     const response = await fetch('https://api.novaposhta.ua/v2.0/json/', {
@@ -8,7 +10,7 @@ export const fetchAreas = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        apiKey: 'db13235cc7d43525383c2704e4f8b5a9',
+        apiKey: ApiKeyNP,
         modelName: 'Address',
         calledMethod: 'getSettlementAreas',
       }),
@@ -40,7 +42,7 @@ export const fetchCities = async (Ref: string) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          apiKey: 'db13235cc7d43525383c2704e4f8b5a9',
+          apiKey: ApiKeyNP,
           modelName: 'Address',
           calledMethod: 'getSettlements',
           methodProperties: {
@@ -85,7 +87,7 @@ const fetchWarehousesByTypeOfWarehouseRef = async (
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        apiKey: 'db13235cc7d43525383c2704e4f8b5a9',
+        apiKey: ApiKeyNP,
         modelName: 'Address',
         calledMethod: 'getWarehouses',
         methodProperties: {
@@ -147,12 +149,7 @@ const methodAreas = 'get_regions_by_region_ua'
 const methodCity = 'get_city_by_region_id_and_district_id_and_city_ua'
 const methodPostoffices  = 'get_postoffices_by_postcode_cityid_cityvpzid'
 
-
-// interface objCityI {
-//   REGION_ID: string;
-// }
-
-// type arrayCitiesI = objCityI[]
+const ApiKeyUP = process.env.UKRPOSHTA_KEY
 
 
 export const fetchAreasUkr = async () => {
@@ -185,7 +182,6 @@ export const fetchCitiesUkr = async (RegionId: string) => {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        // 'Authorization': 'Bearer',
         // 'Cache-Control': 'no-cache',
         // 'Accept-Encoding': 'gzip, deflate, br',
         // 'Connection': 'keep-alive',
@@ -214,7 +210,7 @@ export const fetchWarehousesUkr = async (CityId: string) => {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        // 'Authorization': 'Bearer',
+        'Authorization': `Bearer ${process.env.UKRPOSHTA_KEY}`,
       }
     });
 
