@@ -179,7 +179,7 @@ export const fetchAreasUkr = async () => {
 export const fetchCitiesUkr = async (RegionId: string) => {
   try {
     // const response = await fetch('https://www.ukrposhta.ua/address-classifier-ws/get_city_by_region_id_and_district_id_and_city_ua', {
-    const response = await fetch(`${urlUkrPoshta}${methodCity}`, {
+    const response = await fetch(`${urlUkrPoshta}${methodCity}?region_id=${RegionId}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -187,6 +187,7 @@ export const fetchCitiesUkr = async (RegionId: string) => {
         // 'Accept-Encoding': 'gzip, deflate, br',
         // 'Connection': 'keep-alive',
         // 'Authorization': `Bearer ${ApiKeyUP}` ,
+        'Authorization': `Bearer f9027fbb-cf33-3e11-84bb-5484491e2c94` ,
       }
     });
 
@@ -211,7 +212,8 @@ export const fetchWarehousesUkr = async (CityId: string) => {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'Authorization': `Bearer ${ApiKeyUP}`,
+        // 'Authorization': `Bearer ${ApiKeyUP}`,
+        'Authorization': `Bearer f9027fbb-cf33-3e11-84bb-5484491e2c94` ,
       }
     });
 
