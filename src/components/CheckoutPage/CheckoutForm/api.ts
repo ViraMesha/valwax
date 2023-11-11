@@ -186,8 +186,7 @@ export const fetchCitiesUkr = async (RegionId: string) => {
         // 'Cache-Control': 'no-cache',
         // 'Accept-Encoding': 'gzip, deflate, br',
         // 'Connection': 'keep-alive',
-        // 'Authorization': `Bearer ${ApiKeyUP}` ,
-        'Authorization': `Bearer f9027fbb-cf33-3e11-84bb-5484491e2c94` ,
+        'Authorization': `Bearer ${ApiKeyUP}` ,
       }
     });
 
@@ -212,8 +211,7 @@ export const fetchWarehousesUkr = async (CityId: string) => {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        // 'Authorization': `Bearer ${ApiKeyUP}`,
-        'Authorization': `Bearer f9027fbb-cf33-3e11-84bb-5484491e2c94` ,
+        'Authorization': `Bearer ${ApiKeyUP}`,
       }
     });
 
