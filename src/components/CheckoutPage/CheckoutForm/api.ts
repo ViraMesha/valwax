@@ -144,27 +144,16 @@ export const fetchWarehouses = async (
 };
 
 
-const urlUkrPoshta = 'https://www.ukrposhta.ua/address-classifier-ws/'
-const methodAreas = 'get_regions_by_region_ua'
-const methodCity = 'get_city_by_region_id_and_district_id_and_city_ua'
-const methodPostoffices  = 'get_postoffices_by_postcode_cityid_cityvpzid'
-
-const ApiKeyUP = process.env.UKRPOSHTA_KEY
-
-
 export const fetchAreasUkr = async () => {
   try {
-    const response = await fetch(`${urlUkrPoshta}${methodAreas}`, {
+    const response = await fetch(`/api/checkout/areas`, {
       method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-      }
     });
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data.Entries.Entry);
-      return data.Entries.Entry;
+      console.log(data);
+      return data;
     } else {
       console.error('Помилка завантаження даних з API');
       return null;
@@ -178,23 +167,14 @@ export const fetchAreasUkr = async () => {
 
 export const fetchCitiesUkr = async (RegionId: string) => {
   try {
-    // const response = await fetch('https://www.ukrposhta.ua/address-classifier-ws/get_city_by_region_id_and_district_id_and_city_ua', {
-    const response = await fetch(`${urlUkrPoshta}${methodCity}?region_id=${RegionId}`, {
+    const response = await fetch(`/api/checkout/cities?region_id=${RegionId}`, {
       method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        // 'Cache-Control': 'no-cache',
-        // 'Accept-Encoding': 'gzip, deflate, br',
-        // 'Connection': 'keep-alive',
-        // 'Authorization': `Bearer ${ApiKeyUP}` ,
-        'Authorization': `Bearer f9027fbb-cf33-3e11-84bb-5484491e2c94` ,
-      }
     });
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data.Entries.Entry);
-      return data.Entries.Entry.filter((obj: {REGION_ID: string}) => obj.REGION_ID === RegionId);
+      console.log(data);
+      return data;
     } else {
       console.error('Помилка завантаження даних з API');
       return null;
@@ -208,19 +188,14 @@ export const fetchCitiesUkr = async (RegionId: string) => {
 export const fetchWarehousesUkr = async (CityId: string) => {
   console.log('CityId', CityId)
   try {
-    const response = await fetch(`${urlUkrPoshta}${methodPostoffices}?city_id=${CityId}`, {
+    const response = await fetch(`/api/checkout/warehouses?city_id=${CityId}`, {
       method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        // 'Authorization': `Bearer ${ApiKeyUP}`,
-        'Authorization': `Bearer f9027fbb-cf33-3e11-84bb-5484491e2c94` ,
-      }
     });
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data.Entries.Entry);
-      return data.Entries.Entry;
+      console.log(data);
+      return data;
     } else {
       console.error('Помилка завантаження даних з API');
       return null;
