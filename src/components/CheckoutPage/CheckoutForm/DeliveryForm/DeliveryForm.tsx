@@ -131,8 +131,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
 
   const fetchData = async () => {
     setIsLoading(true);
-    // const areasData = await fetchAreas();
-    // const areasDataUkr = await fetchAreasUkr()
     const areasData = await (selectedDelivery === deliveryOptions[2]
       ? fetchAreasUkr()
       : fetchAreas());
@@ -181,13 +179,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   }, []);
 
   useEffect(() => {
-    // if (isAreaSelectOpen) {
-    //   fetchData();
-    // }
-
-    // if (selectedDelivery === deliveryOptions[2]) {
-    // }
-    //
 
     if (selectedAreas && !selectedCity && cities.length === 0) {
       fetchDataCity();
