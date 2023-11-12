@@ -4,7 +4,7 @@ import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollToTopButton';
 
-import { DeliveryContextProvider } from '../../../context/DeliveryContext';
+// import { DeliveryContextProvider } from '../../../context/DeliveryContext';
 import { StateContext } from '../../../context/StateContext';
 import { i18n, Locale } from '../../../i18n-config';
 import { getDictionary } from '../../../lib/utils/dictionary';
@@ -39,11 +39,11 @@ export default async function RootLayout({
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
         <StateContext>
-          <DeliveryContextProvider>
+          {/* <DeliveryContextProvider> */}
             <Header lang={params.lang} dict={search} navDict={navigation} />
             <main className={styles.main}>{children}</main>
             <Footer lang={params.lang} dict={footer} navDict={navigation} />
-          </DeliveryContextProvider>
+          {/* </DeliveryContextProvider> */}
         </StateContext>
         <ScrollToTopButton />
         <ToastContainer

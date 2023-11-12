@@ -36,11 +36,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
               {option.label}
             </option>
           ))}
-          
-           
-          
         </select>
-         <MdKeyboardArrowDown className={styles.selectCustomArrow}/>
+        <MdKeyboardArrowDown className={styles.selectCustomArrow} />
       </div>
     );
   }

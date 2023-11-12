@@ -1,19 +1,20 @@
 'use client';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '@components/components/Button/Button';
-import CustomSelect from '@components/components/CustomSelect/CustomSelect';
+// import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
 import validationSchema from '@components/helpers/formValidationSchema';
-import { AreaData, SelectOptions } from '@components/types';
+// import { AreaData, SelectOptions } from '@components/types';
 import { yupResolver } from '@hookform/resolvers/yup';
-import debounce from 'lodash/debounce';
 
-import { useDeliveryContext } from '../../../../context/DeliveryContext';
+// import debounce from 'lodash/debounce';
+// import { useDeliveryContext } from '../../../../context/DeliveryContext';
+import DeliveryForm from './DeliveryForm/DeliveryForm';
 
-import RadioButtons from './RadioButtons/RadioButtons';
-import { fetchAreas, fetchCities, fetchWarehouses } from './api';
-
+// import RadioButtons from './RadioButtons/RadioButtons';
+// import { fetchAreas, fetchCities, fetchWarehouses } from './api';
 import styles from './CheckoutForm.module.scss';
 
 export interface Option {
@@ -77,23 +78,23 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   },
 }) => {
 
-  const [areas, setAreas] = useState<AreaData[]>([]);
-  const [cities, setCities] = useState<AreaData[]>([]);
-  const [warehouse, setWarehouse] = useState<AreaData[]>([]);
+  // const [areas, setAreas] = useState<AreaData[]>([]);
+  // const [cities, setCities] = useState<AreaData[]>([]);
+  // const [warehouse, setWarehouse] = useState<AreaData[]>([]);
 
-  const [selectedAreas, setSelectedAreas] = useState<SelectOptions | null>(
-    null
-  );
-  const [selectedCity, setSelectedCity] = useState<SelectOptions | null>(null);
-  const [selectedWarehouse, setSelectedWarehouse] =
-    useState<SelectOptions | null>(null);
+  // const [selectedAreas, setSelectedAreas] = useState<SelectOptions | null>(
+  //   null
+  // );
+  // const [selectedCity, setSelectedCity] = useState<SelectOptions | null>(null);
+  // const [selectedWarehouse, setSelectedWarehouse] =
+  //   useState<SelectOptions | null>(null);
 
-  const [isAreaSelectOpen, setIsAreaSelectOpen] = useState(false);
+  // const [isAreaSelectOpen, setIsAreaSelectOpen] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [orderNotes, setOrderNotes] = useState('');
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [orderNotes, setOrderNotes] = useState('');
 
-  const { selectedDelivery } = useDeliveryContext();
+  // const { selectedDelivery } = useDeliveryContext();
 
   const {
     register,
@@ -111,112 +112,112 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     console.log(data);
   };
 
-  const handleSelectArea = (value: SelectOptions) => {
-    setCities([]);
-    setWarehouse([]);
-    setSelectedCity(null);
-    setSelectedWarehouse(null);
+  // const handleSelectArea = (value: SelectOptions) => {
+  //   setCities([]);
+  //   setWarehouse([]);
+  //   setSelectedCity(null);
+  //   setSelectedWarehouse(null);
 
-    setSelectedAreas(value);
-  };
+  //   setSelectedAreas(value);
+  // };
 
-  const handleSelectCity = debounce(async (value: SelectOptions) => {
-    setSelectedWarehouse(null);
-    setWarehouse([]);
+  // const handleSelectCity = debounce(async (value: SelectOptions) => {
+  //   setSelectedWarehouse(null);
+  //   setWarehouse([]);
 
-    setSelectedCity(value);
-  }, 300);
+  //   setSelectedCity(value);
+  // }, 300);
 
-  const handleSelectWarehouse = (value: SelectOptions) => {
-    setSelectedWarehouse(null);
-    setWarehouse([]);
+  // const handleSelectWarehouse = (value: SelectOptions) => {
+  //   setSelectedWarehouse(null);
+  //   setWarehouse([]);
 
-    setSelectedWarehouse(value);
-  };
+  //   setSelectedWarehouse(value);
+  // };
 
-  const handleOrderNotesChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const newValue = event.target.value;
-    setOrderNotes(newValue);
-  };
+  // const handleOrderNotesChange = (
+  //   event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   const newValue = event.target.value;
+  //   setOrderNotes(newValue);
+  // };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const areasData = await fetchAreas();
-      setIsLoading(false);
+  // const fetchData = async () => {
+  //   setIsLoading(true);
+  //   const areasData = await fetchAreas();
+  //   setIsLoading(false);
 
-      if (areasData) {
-        setAreas(areasData);
-        setIsAreaSelectOpen(false);
-      }
-    };
+  //   if (areasData) {
+  //     setAreas(areasData);
+  //     setIsAreaSelectOpen(false);
+  //   }
+  // };
 
-    if (isAreaSelectOpen) {
-      fetchData();
-    }
+  // const fetchDataCity = async () => {
+  //   if (selectedAreas && !selectedCity && cities.length === 0) {
+  //     setIsLoading(true);
+  //     const citiesData = await fetchCities(selectedAreas.ref);
 
-    const fetchDataCity = async () => {
-      if (selectedAreas && !selectedCity && cities.length === 0) {
-        setIsLoading(true);
-        const citiesData = await fetchCities(selectedAreas.ref);
+  //     setIsLoading(false);
 
-        setIsLoading(false);
+  //     if (citiesData) {
+  //       setCities(citiesData);
+  //     }
+  //   }
+  // };
 
-        if (citiesData) {
-          setCities(citiesData);
-        }
-      }
-    };
+  // const fetchDataWarehouse = async () => {
+  //   if (selectedAreas && selectedCity && selectedDelivery) {
+  //     setIsLoading(true);
+  //     setWarehouse([]);
 
-    if (selectedAreas && !selectedCity && cities.length === 0) {
-      fetchDataCity();
-    }
+  //     const warehouseData = await fetchWarehouses(
+  //       selectedDelivery,
+  //       selectedCity.value
+  //     );
 
-    const fetchDataWarehouse = async () => {
-      if (selectedAreas && selectedCity && selectedDelivery) {
-        setIsLoading(true);
-        setWarehouse([]);
+  //     if (warehouseData) {
+  //       setIsLoading(false);
+  //       console.log(warehouseData);
+  //       setWarehouse(warehouseData);
+  //     }
+  //   }
+  // };
 
-        const warehouseData = await fetchWarehouses(
-          selectedDelivery,
-          selectedCity.value
-        );
+  // useEffect(() => {
+  //   if (isAreaSelectOpen) {
+  //     fetchData();
+  //   }
 
-        if (warehouseData) {
-          setIsLoading(false);
-          console.log(warehouseData);
-          setWarehouse(warehouseData);
-        }
-      }
-    };
+  //   if (selectedAreas && !selectedCity && cities.length === 0) {
+  //     fetchDataCity();
+  //   }
 
-    fetchDataWarehouse();
-  }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
+  //   fetchDataWarehouse();
+  // }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
 
-  useEffect(() => {
-    setSelectedWarehouse(null);
-    setWarehouse([]);
-  }, [selectedDelivery]);
+  // useEffect(() => {
+  //   setSelectedWarehouse(null);
+  //   setWarehouse([]);
+  // }, [selectedDelivery]);
 
-  const selectOptionsArea = areas.map(option => ({
-    ref: option.Ref,
-    value: option.Description,
-    label: option.Description,
-  }));
+  // const selectOptionsArea = areas.map(option => ({
+  //   ref: option.Ref,
+  //   value: option.Description,
+  //   label: option.Description,
+  // }));
 
-  const selectOptionsCity = cities.map(option => ({
-    ref: option.Ref,
-    value: option.Description,
-    label: option.Description,
-  }));
+  // const selectOptionsCity = cities.map(option => ({
+  //   ref: option.Ref,
+  //   value: option.Description,
+  //   label: option.Description,
+  // }));
 
-  const selectOptionsWarehouse = warehouse.map(option => ({
-    ref: option.Ref,
-    value: option.Description,
-    label: option.Description,
-  }));
+  // const selectOptionsWarehouse = warehouse.map(option => ({
+  //   ref: option.Ref,
+  //   value: option.Description,
+  //   label: option.Description,
+  // }));
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -265,7 +266,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         </div>
       </fieldset>
 
-      <fieldset className={styles.form__group}>
+      {/* <fieldset className={styles.form__group}>
         <legend className={styles.group__title}>{delivery}</legend>
         <RadioButtons options={deliveryOptions} />
         <div className={styles.contactInfo__wrapper}>
@@ -305,7 +306,22 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
             height="218px"
           />
         </div>
-      </fieldset>
+      </fieldset> */}
+
+      <DeliveryForm
+        {...{
+          delivery,
+          deliveryOptions,
+          areaLabel,
+          areaPlaceholder,
+          cityLabel,
+          cityPlaceholder,
+          warehouseLabel,
+          warehousePlaceholder,
+          notesLabel,
+          notesPlaceholder,
+        }}
+      />
       <Button variant="primary" type="submit" className={styles.button}>
         {buttonText}
       </Button>
