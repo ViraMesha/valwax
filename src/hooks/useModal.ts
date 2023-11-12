@@ -31,20 +31,20 @@ const useModal = (): ModalHook => {
 
   useEffect(() => {
     const handleBodyScroll = (): void => {
-      if (isModal) {
+       if (isModal) {
         setOriginalOverflow(document.body.style.overflow);
         document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', onEscKeydown); 
       } else {
         document.body.style.overflow = originalOverflow;
+        window.removeEventListener('keydown', onEscKeydown); 
       }
     };
 
-    window.addEventListener('keydown', onEscKeydown);
     handleBodyScroll();
 
     return () => {
       window.removeEventListener('keydown', onEscKeydown);
-      document.body.style.overflow = originalOverflow;
     };
   }, [isModal, originalOverflow]);
 

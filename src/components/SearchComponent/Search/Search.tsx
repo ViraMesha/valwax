@@ -97,7 +97,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
       {showNoResults && (
         <Typography
           variant="bodyS"
-          color="var(--cl-gray-600)"
+          color="var(--cl-gray-400)"
           className={styles.noResults}
         >
           {dict.noResults}
