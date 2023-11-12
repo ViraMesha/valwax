@@ -1,14 +1,13 @@
 @import '../../../scss/utilities/breakpoint-mixin.scss';
 
 .customScrollbar {
-  min-height: 240px;
-  height: 240px;
-  overflow: hidden;
+  // min-height: min-content;
+  max-height: 280px;
+  // overflow: hidden;
   position: relative;
 
   @include breakpoint('tablet-large-and-up') {
-    min-height: 385px;
-    height: 385px;
+    max-height: 385px;
   }
 }
 

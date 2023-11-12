@@ -10,12 +10,14 @@ export interface SearchResultProps {
   searchResults: ProductDetails[];
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({ searchResults }) => {
+const SearchResult: React.FC<SearchResultProps> = ({
+  searchResults
+}) => {
   const SearchWrapper = useRef<HTMLDivElement | null>(null);
 
   return (
     <div className={styles.customScrollbar}>
-      <CustomScrollBar root={SearchWrapper}>
+      <CustomScrollBar root={SearchWrapper} maxHeight='240px'>
         <ul
           className={`${styles.searchList} ${
             searchResults.length >= 6 ? styles.large : ''

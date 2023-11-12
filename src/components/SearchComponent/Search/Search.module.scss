@@ -36,11 +36,15 @@
   border-radius: 20px;
   outline: none;
   border: 1px solid var(--cl-primary-600);
+  gap: 10px;
+  min-height: min-content;
   max-height: 280px;
 
+
   @include breakpoint('tablet-large-and-up') {
+    max-height: 385px;
     padding: 38px 24px;
-    max-height: 460px;
+    gap: 20px;
   }
 }
 
