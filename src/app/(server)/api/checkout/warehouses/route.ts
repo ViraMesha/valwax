@@ -1,6 +1,6 @@
 import { NextRequest,NextResponse } from "next/server"
 
-const urlUkrPoshta = process.env.NEXT_PUBLIC_API_URL
+const urlUkrPoshta = 'https://www.ukrposhta.ua/address-classifier-ws'
 const methodPostoffices  = '/get_postoffices_by_postcode_cityid_cityvpzid'
 
 const ApiKeyUP = process.env.UKRPOSHTA_KEY
