@@ -1,0 +1,39 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.list {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.item {
+  padding: 2px 8px;
+  border-radius: 20px;
+  background-color: var(--cl-primary-50);
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.txt {
+  font-size: 12px;
+}
+
+.icon {
+  width: 10px;
+  height: 10px;
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+  text-decoration-line: underline;
+}

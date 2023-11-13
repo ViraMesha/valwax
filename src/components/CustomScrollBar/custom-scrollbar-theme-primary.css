@@ -1,0 +1,18 @@
+
+
+.custom-scrollbar-theme {
+
+  --os-size: 10px;
+  --os-handle-border-radius: 4px;
+  
+  --os-track-border: 2px solid green !important;
+  --os-track-border-radius: 4px;
+
+  --os-track-bg: var(--cl-gray-50);
+  --os-track-border-radius: 4px;
+  --os-track-bg-hover: var(--cl-gray-50);
+  --os-track-bg-active: var(--cl-gray-50);
+  --os-handle-bg: var(--cl-gray-200);
+  --os-handle-bg-hover: var(--cl-gray-200);
+  --os-handle-bg-active: var(--cl-gray-200);
+}

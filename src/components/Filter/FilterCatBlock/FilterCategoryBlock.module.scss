@@ -1,0 +1,99 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  font-weight: 700;
+
+}
+
+.wrapperList {
+  max-width: 204px;
+  overflow: auto;
+
+  @include breakpoint('tablet-small') {
+    max-width: 100%;
+  }
+  @include breakpoint('tablet-large') {
+    max-width: 100%;
+  }
+  @include breakpoint('desktop') {
+    max-width: 100%;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: var(--cl-gray-200);
+  
+  // &::-webkit-scrollbar {
+  //   width: 10px;
+  //   // border-radius: 5px;
+  // }
+  // &::-webkit-scrollbar-track {
+  //   background: var(--cl-gray-200);
+  // }
+  // &::-webkit-scrollbar-thumb {
+  //   // width: 8px;
+  //   background: var(--cl-gray-500);
+  //   border-radius: 4px;
+  // }
+}
+
+.checkbox {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: inherit;
+}
+
+.check {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--cl-gray-200);
+  border-radius: 3.5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: var(--cl-white);
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: inherit;
+  }
+}
+
+.input:checked ~ .typography {
+  color: var(--cl-gray-500);
+}
+
+.input:checked ~ .check {
+  fill: var(--cl-success-500);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}

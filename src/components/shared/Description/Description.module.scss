@@ -1,0 +1,50 @@
+@import '../../../scss/utilities/breakpoint-mixin.scss';
+
+.candleWrapper {
+  background-color: white;
+}
+
+.candleTitle {
+  margin-bottom: 16px;
+}
+
+.costSymbol {
+  color: var(--cl-primary-500);
+  width: 18px;
+  height: 18px;
+}
+
+.candleDescription {
+  max-width: 268px;
+  margin-bottom: 24px;
+}
+
+.candeleCostWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.candeleCost {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.candeleQuantity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.candleCount svg {
+  width: 100%;
+  height: 100%;
+}
+
+.candeleAccordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
