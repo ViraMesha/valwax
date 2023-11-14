@@ -5,7 +5,74 @@ import candle1 from '../../public/images/candles/img-1.jpg';
 import candle2 from '../../public/images/candles/img-2.jpg';
 import candle3 from '../../public/images/candles/img-3.jpg';
 import { relatedProducts } from '../../src/helpers/relatedProducts';
-import { BoxDetailsI, CandleDetailsI } from '../../src/types';
+import { BoxDetailsI, CandleDetailsI, CandleI } from '../../src/types';
+
+export const getAllCandles = async (): Promise<CandleI[]> => {
+  try {
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    const fakeCandles: CandleI[] = [
+      {
+        id: '1',
+        img: candle1.src,
+        title: 'Осінь.',
+        price: 370,
+      },
+      {
+        id: '2',
+        img: candle2.src,
+        title: 'Імбир і спеції.',
+        price: 355,
+      },
+      {
+        id: '3',
+        img: candle3.src,
+        title: 'Кашемірова слива.',
+        price: 355,
+      },
+      {
+        id: '4',
+        img: candle1.src,
+        title: 'Осінь.',
+        price: 370,
+      },
+      {
+        id: '5',
+        img: candle2.src,
+        title: 'Імбир і спеції.',
+        price: 355,
+      },
+      {
+        id: '6',
+        img: candle3.src,
+        title: 'Кашемірова слива.',
+        price: 355,
+      },
+      {
+        id: '7',
+        img: candle1.src,
+        title: 'Осінь.',
+        price: 370,
+      },
+      {
+        id: '8',
+        img: candle2.src,
+        title: 'Імбир і спеції.',
+        price: 355,
+      },
+      {
+        id: '9',
+        img: candle3.src,
+        title: 'Кашемірова слива.',
+        price: 355,
+      },
+    ];
+
+    return fakeCandles;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
   try {
