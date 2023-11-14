@@ -61,6 +61,9 @@ const Navigation: React.FC<NavigationPropsI> = ({
   const handleMouseLeave = () => {
     setIsCandlesMenuOpen(false);
   };
+
+  const navigationItemClass = variant === 'footer' ? "" : styles.navigationItem
+
   const centerContentClass =
     variant === 'footer' ? styles.centerContentFooter : styles.centerContent;
 
@@ -73,7 +76,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
     <nav>
       <ul className={`${styles.navigationList} ${className || ''}`}>
         {navItems.map((item, index) => (
-          <li key={index} className={styles.navigationItem}>
+          <li key={index} className={navigationItemClass}>
             {item === navDict.candles ? (
               <div
                 className={styles.dropdown}

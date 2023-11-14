@@ -26,7 +26,6 @@
    @include breakpoint('all-devices-without-desktop') {
     width: 100%;
    }
-  
 }
 
 .candlesList {
@@ -71,6 +70,10 @@
   @include breakpoint('desktop-large') {
     padding: 35px 0;
   }
+
+   @include breakpoint('all-devices-without-desktop') {
+    width: 100%;
+   }
 }
 
 .centerContentFooter {

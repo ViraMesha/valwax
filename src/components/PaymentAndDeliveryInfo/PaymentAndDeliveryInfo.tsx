@@ -1,5 +1,4 @@
 import { BsBoxSeam } from 'react-icons/bs';
-// import { FaCreditCard } from 'react-icons/fa';
 import { BsCreditCard } from 'react-icons/bs';
 
 import Container from '../Container/Container';
@@ -38,7 +37,9 @@ const PaymentAndDeliveryInfo: React.FC<PaymentAndDeliveryInfoProps> = ({
   return (
     <Section className={styles.paymentSection}>
       <Container>
-        <Typography variant="subheadingBold" className={styles.sectionTitle}>{header.title}</Typography>
+        <Typography variant="subheadingBold" className={styles.sectionTitle}>
+          {header.title}
+        </Typography>
         <div className={styles.paymentWrapper}>
           <div className={styles.paymentOptions}>
             <div className={styles.iconCircle}>
@@ -51,7 +52,7 @@ const PaymentAndDeliveryInfo: React.FC<PaymentAndDeliveryInfoProps> = ({
             >
               {paymentOptions.subTitle}
             </Typography>
-            <Typography variant="bodyRegular">
+            <Typography variant="bodyRegular" color="var(--cl-gray-600)">
               {paymentOptions.description}
             </Typography>
           </div>
@@ -67,10 +68,14 @@ const PaymentAndDeliveryInfo: React.FC<PaymentAndDeliveryInfoProps> = ({
             >
               {subTitle}
             </Typography>
-            <Typography>{time}</Typography>
+            <Typography variant="bodyRegular" color="var(--cl-gray-600)">
+              {time}
+            </Typography>
 
             <div>
-              <Typography variant="bodyRegular">{methods.title}</Typography>
+              <Typography variant="bodyRegular" color="var(--cl-gray-600)">
+                {methods.title}
+              </Typography>
               <ul>
                 {methods.availableMethods.map((method, index) => (
                   <li key={index}>{method}</li>
@@ -78,7 +83,13 @@ const PaymentAndDeliveryInfo: React.FC<PaymentAndDeliveryInfoProps> = ({
               </ul>
             </div>
 
-            <Typography  className={styles.paymentInfo}>{paymentInfo}</Typography>
+            <Typography
+              variant="bodyRegular"
+              color="var(--cl-gray-600)"
+              className={styles.paymentInfo}
+            >
+              {paymentInfo}
+            </Typography>
           </div>
         </div>
       </Container>

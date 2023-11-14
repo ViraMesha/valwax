@@ -3,9 +3,13 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  gap: 24px;
+
+  @include breakpoint('tablet-large') {
+    gap: 32px;
+  }
 
   @include breakpoint('desktop') {
-
     flex-direction: row;
     gap: 16px;
   }
@@ -25,5 +29,33 @@
   
   @include breakpoint('desktop-large') {
     width: 588px;
+  }
+}
+
+.image {
+  width: 327px;
+  height: 300px;
+  position: sticky;
+  top: 32px;
+  border-radius: 20px;
+
+  @include breakpoint('tablet-small') {
+    width: 619px;
+    height: 440px;
+  }
+
+  @include breakpoint('tablet-large') {
+    width: 720px;
+    height: 550px;
+  }
+
+  @include breakpoint('desktop') {
+    width: 480px;
+    height: 516px;
+  }
+
+  @include breakpoint('desktop-large') {
+    width: 588px;
+    height: 560px;
   }
 }

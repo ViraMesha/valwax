@@ -1,18 +1,21 @@
 import React, { ChangeEvent, useEffect } from 'react';
 
-import { useDeliveryActionsContext } from '../../../../../context/DeliveryContext';
-import { useDeliveryContext } from '../../../../../context/DeliveryContext';
+// import { useDeliveryActionsContext } from '../../../../../context/DeliveryContext';
+// import { useDeliveryContext } from '../../../../../context/DeliveryContext';
 interface RadioButtonsProps {
   options: string[];
+  onChangeSelector: React.Dispatch<React.SetStateAction<string>>;
+  checkedSelector: string;
+
 }
 
-const RadioButtons: React.FC<RadioButtonsProps> = ({ options }) => {
-  const { chooseDelivery } = useDeliveryActionsContext();
-  const { selectedDelivery } = useDeliveryContext();
+const RadioButtons: React.FC<RadioButtonsProps> = ({ options, onChangeSelector, checkedSelector }) => {
+  // const { chooseDelivery } = useDeliveryActionsContext();
+  // const { selectedDelivery } = useDeliveryContext();
 
-  const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
-    chooseDelivery(event.target.value);
-  };
+  // const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   chooseDelivery(event.target.value);
+  // };
 
   
   return (
@@ -23,8 +26,8 @@ const RadioButtons: React.FC<RadioButtonsProps> = ({ options }) => {
             <input
               type="radio"
               value={option}
-              checked={selectedDelivery === option}
-              onChange={handleOptionChange}
+              checked={checkedSelector === option}
+              onChange={() => onChangeSelector(option)}
             />
             {option}
           </label>

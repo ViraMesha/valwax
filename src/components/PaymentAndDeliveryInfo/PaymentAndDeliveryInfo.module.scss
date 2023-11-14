@@ -10,7 +10,7 @@
 
 .paymentOptions,
 .deliveryOptions {
-  padding: 16px 8px 36px 8px;
+  padding: 16px 16px;
   border-radius: 20px;
   background-color: var(--cl-secondary-50);
   display: flex;
@@ -18,21 +18,21 @@
   gap: 24px;
   min-height: 306px;
 
-  @include breakpoint('tablet-small') {
-    min-height: 428px;
-  }
+  // @include breakpoint('tablet-small') {
+  //   min-height: 428px;
+  // }
 
-  @include breakpoint('tablet-large') {
-    min-height: 282px;
-  }
+  // @include breakpoint('tablet-large') {
+  //   min-height: 282px;
+  // }
 
   @include breakpoint('desktop') {
-    min-height: 450px;
+    // min-height: 450px;
     min-width: 473px;
   }
 
   @include breakpoint('desktop-large') {
-    min-height: 428px;
+    // min-height: 428px;
     min-width: 585px;
   }
 }

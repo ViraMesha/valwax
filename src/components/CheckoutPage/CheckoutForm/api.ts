@@ -1,5 +1,7 @@
 import { AreaData } from '@components/types';
 
+const ApiKeyNP = process.env.NOVAPOSHTA_KEY
+
 export const fetchAreas = async () => {
   try {
     const response = await fetch('https://api.novaposhta.ua/v2.0/json/', {
@@ -8,7 +10,7 @@ export const fetchAreas = async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        apiKey: 'db13235cc7d43525383c2704e4f8b5a9',
+        apiKey: ApiKeyNP,
         modelName: 'Address',
         calledMethod: 'getSettlementAreas',
       }),
@@ -40,7 +42,7 @@ export const fetchCities = async (Ref: string) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          apiKey: 'db13235cc7d43525383c2704e4f8b5a9',
+          apiKey: ApiKeyNP,
           modelName: 'Address',
           calledMethod: 'getSettlements',
           methodProperties: {
@@ -85,7 +87,7 @@ const fetchWarehousesByTypeOfWarehouseRef = async (
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        apiKey: 'db13235cc7d43525383c2704e4f8b5a9',
+        apiKey: ApiKeyNP,
         modelName: 'Address',
         calledMethod: 'getWarehouses',
         methodProperties: {
@@ -139,4 +141,67 @@ export const fetchWarehouses = async (
   }
 
   return allWarehouses;
+};
+
+
+export const fetchAreasUkr = async () => {
+  try {
+    const response = await fetch(`/api/checkout/areas`, {
+      method: 'GET',
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } else {
+      console.error('Помилка завантаження даних з API');
+      return null;
+    }
+  } catch (error) {
+    console.error('Помилка завантаження даних з API', error);
+    return null;
+  }
+};
+
+
+export const fetchCitiesUkr = async (RegionId: string) => {
+  try {
+    const response = await fetch(`/api/checkout/cities?region_id=${RegionId}`, {
+      method: 'GET',
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } else {
+      console.error('Помилка завантаження даних з API');
+      return null;
+    }
+  } catch (error) {
+    console.error('Помилка завантаження даних з API', error);
+    return null;
+  }
+};
+
+export const fetchWarehousesUkr = async (CityId: string) => {
+  console.log('CityId', CityId)
+  try {
+    const response = await fetch(`/api/checkout/warehouses?city_id=${CityId}`, {
+      method: 'GET',
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } else {
+      console.error('Помилка завантаження даних з API');
+      return null;
+    }
+  } catch (error) {
+    console.error('Помилка завантаження даних з API', error);
+    return null;
+  }
 };
