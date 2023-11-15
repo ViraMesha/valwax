@@ -24,54 +24,54 @@ const BoxesSkeleton = () => {
   const largeDesk = width >= 1230;
   const isDesktop = width >= 1024;
 
-  const renderSkeleton = () => {
-    return !isDesktop ? (
-      [...Array(4)].map((_, index) => (
-        <li key={index}>
-          {mob && <BoxesMobSkeleton />}
-          {smallTab && <BoxesTabSmallSkeleton />}
-          {largeTab && <BoxesTabLargeSkeleton />}
-        </li>
-      ))
-    ) : (
-      <>
-        {desk && (
-          <>
-            <li>
-              <BoxesDeskSkeleton />
-            </li>
-            <li>
-              <ReversedBoxesDeskSkeleton />
-            </li>
-            <li>
-              <BoxesDeskSkeleton />
-            </li>
-            <li>
-              <ReversedBoxesDeskSkeleton />
-            </li>
-          </>
-        )}
-        {largeDesk && (
-          <>
-            <li>
-              <BoxesDeskLargeSkeleton />
-            </li>
-            <li>
-              <ReversedBoxesDeskLargeSkeleton />
-            </li>
-            <li>
-              <BoxesDeskLargeSkeleton />
-            </li>
-            <li>
-              <ReversedBoxesDeskLargeSkeleton />
-            </li>
-          </>
-        )}
-      </>
-    );
-  };
-
-  return <ul className={styles.wrapper}>{renderSkeleton()}</ul>;
+  return (
+    <ul className={styles.wrapper}>
+      {!isDesktop ? (
+        [...Array(4)].map((_, index) => (
+          <li key={index}>
+            {mob && <BoxesMobSkeleton />}
+            {smallTab && <BoxesTabSmallSkeleton />}
+            {largeTab && <BoxesTabLargeSkeleton />}
+          </li>
+        ))
+      ) : (
+        <>
+          {desk && (
+            <>
+              <li>
+                <BoxesDeskSkeleton />
+              </li>
+              <li>
+                <ReversedBoxesDeskSkeleton />
+              </li>
+              <li>
+                <BoxesDeskSkeleton />
+              </li>
+              <li>
+                <ReversedBoxesDeskSkeleton />
+              </li>
+            </>
+          )}
+          {largeDesk && (
+            <>
+              <li>
+                <BoxesDeskLargeSkeleton />
+              </li>
+              <li>
+                <ReversedBoxesDeskLargeSkeleton />
+              </li>
+              <li>
+                <BoxesDeskLargeSkeleton />
+              </li>
+              <li>
+                <ReversedBoxesDeskLargeSkeleton />
+              </li>
+            </>
+          )}
+        </>
+      )}
+    </ul>
+  );
 };
 
 export default BoxesSkeleton;
