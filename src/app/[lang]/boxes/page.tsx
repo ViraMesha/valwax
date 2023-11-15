@@ -4,6 +4,7 @@ import BoxesSection from '@components/components/BoxesPage/BoxesSection/BoxesSec
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 
 import { Locale } from '../../../../i18n-config';
+import { getBoxes } from '../../../../lib/api-services/api';
 import { getDictionary } from '../../../../lib/utils/dictionary';
 
 export async function generateMetadata({
@@ -20,6 +21,7 @@ export async function generateMetadata({
 const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
   const { breadcrumbs } = await getDictionary(lang);
   const { page } = await getDictionary(lang);
+  const boxes = getBoxes();
   return (
     <>
       <Breadcrumbs
@@ -32,7 +34,7 @@ const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
         lang={lang}
       />
       <BoxesPageHeader dict={page.boxes.header} />
-      <BoxesSection dict={page.boxes.section} />
+      <BoxesSection dict={page.boxes.section} boxes={boxes} />
       <BoxesInfo dict={page.boxes.info} />
     </>
   );
