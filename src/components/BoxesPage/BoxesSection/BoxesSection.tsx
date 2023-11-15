@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
+import BoxesSkeleton from '@components/components/Skeletons/BoxesSkeleton/BoxesSkeleton';
 import { BoxI } from '@components/types';
 
 import BoxesList from './BoxesList/BoxesList';
@@ -20,7 +21,7 @@ const BoxesSection = ({
   return (
     <Section className={styles.section}>
       <Container>
-        <Suspense fallback={<p>Loading boxes...</p>}>
+        <Suspense fallback={<BoxesSkeleton />}>
           <BoxesList dict={dict} boxes={boxes} />
         </Suspense>
       </Container>
