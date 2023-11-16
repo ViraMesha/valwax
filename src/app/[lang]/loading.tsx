@@ -7,7 +7,7 @@ export default function Loading() {
   return (
     <Section>
       <Container className={styles.container}>
-        <p>Loading...</p>
+        <span className="loader"></span>
       </Container>
     </Section>
   );
