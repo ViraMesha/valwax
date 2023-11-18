@@ -5,6 +5,7 @@ import { ProductDetails } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 import debounce from 'lodash.debounce';
 
+import { useModalContext } from '../../../../context/ModalContext';
 import { fetchSearchResults } from '../../../../lib/api-services/api';
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
@@ -17,6 +18,8 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
+  const { isModal } = useModalContext();
+
   const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -49,32 +52,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
     setShowNoResults(resultValues.length === 0);
   }, 500);
 
-  useEffect(() => {
-    const resultWrapperElement = resultWrapperRef.current;
-
-    if (resultWrapperElement) {
-      const numberOfResults = searchResults.length;
-      const minResultHeight = isLargeScreen ? 45 : 30;
-      const gap = isLargeScreen ? 20 : 10;
-      const maxResultHeight = isLargeScreen ? 460 : 280;
-      const padding = isLargeScreen ? 38 : 20;
-
-      let newHeight;
-
-      if (numberOfResults >= 6) {
-        newHeight = maxResultHeight;
-      } else {
-        newHeight =
-          numberOfResults * minResultHeight +
-          2 * padding +
-          (numberOfResults - 1) * gap;
-      }
-
-      resultWrapperElement.style.height = `${newHeight}px`;
-    }
-  }, [searchResults, isLargeScreen]);
-
-  return (
+  return isModal ? (
     <div
       className={`${styles.modalWrapper} ${isVisible ? styles.visible : ''}`}
     >
@@ -108,7 +86,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
       {showNoResults && (
         <Typography
           variant="bodyS"
-          color="var(--cl-gray-600)"
+          color="var(--cl-gray-400)"
           className={styles.noResults}
         >
           {dict.noResults}
@@ -121,7 +99,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
         </div>
       )}
     </div>
-  );
+  ) : null;
 };
 
 export default Search;

@@ -5,6 +5,8 @@ import Typography from '@components/components/Typography/Typography';
 import { ProductDetails } from '@components/types';
 import Image1 from 'public/images/aboutUs/Image1.jpg';
 
+import { useModalContext } from '../../../../context/ModalContext';
+
 import styles from './SearchItem.module.scss';
 
 export interface SearchResultProps {
@@ -12,10 +14,15 @@ export interface SearchResultProps {
 }
 
 const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
+  const { toggleModal } = useModalContext();
+
+  const handleItemClick = () => {
+    toggleModal();
+  };
   return (
-    <li>
+    <li onClick={handleItemClick}>
       <Link
-        href={`/candles/soy-candles/${result.id}`}
+        href={`/candles/${result.slug}/${result.id}`}
         className={styles.searchLink}
       >
         <div className={styles.searchWrapper}>

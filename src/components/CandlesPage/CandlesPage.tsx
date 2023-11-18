@@ -1,3 +1,5 @@
+import { CandleI } from '@components/types';
+
 import { Locale } from '../../../i18n-config';
 import CandlesSection from '../CandlesSection/CandlesSection';
 import Tabs from '../Tabs/Tabs';
@@ -20,14 +22,20 @@ interface CandlesPageI {
     filter: any;
   };
   lang: Locale;
+  candles: Promise<CandleI[]>;
 }
 
-const CandlesPage: React.FC<CandlesPageI> = ({ dictWax, dict, lang }) => {
+const CandlesPage: React.FC<CandlesPageI> = ({
+  dictWax,
+  dict,
+  lang,
+  candles,
+}) => {
   return (
     <>
       <Tabs dict={dict} lang={lang} />
       <WaxDesc dict={dictWax?.waxDesc} className={styles.waxDescAboveCandles} />
-      <CandlesSection dict={dict} />
+      <CandlesSection dict={dict} candles={candles} />
       <WaxDesc dict={dictWax?.waxDesc} className={styles.waxDescBelowCandles} />
     </>
   );

@@ -36,11 +36,15 @@
   border-radius: 20px;
   outline: none;
   border: 1px solid var(--cl-primary-600);
+  gap: 10px;
+  min-height: min-content;
   max-height: 280px;
 
   @include breakpoint('tablet-large-and-up') {
-    padding: 38px 24px;
+    min-height: min-content;
     max-height: 460px;
+    padding: 38px 24px;
+    gap: 20px;
   }
 }
 
@@ -87,6 +91,19 @@
 
 .noResults {
   text-align: center;
+  width: 100%;
+  padding: 14px 24px 14px 54px;
+  background-color: var(--cl-white);
+  border-radius: 20px;
+  border: 1px solid var(--cl-primary-600);
+
+  @include breakpoint('mobile-large-and-up') {
+    width: 327px;
+  }
+
+  @include breakpoint('tablet-large-and-up') {
+    width: 724px;
+  }
 }
 
 /*Loader*/
