@@ -17,3 +17,11 @@
   display: flex;
   gap: 28px;
 }
+
+.section .filter {
+  display: none;
+
+  @include breakpoint('desktop-large') {
+    display: flex;
+  }
+}

@@ -166,3 +166,12 @@ export interface NavDictI {
   paymentAndDelivery: string;
   boxes: string;
 }
+export interface BoxI {
+  id: string;
+  img: string[];
+  title: string;
+  price: number;
+  link: string;
+  text: string;
+  description: string;
+}

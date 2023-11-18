@@ -38,8 +38,8 @@
   --cl-secondary-50: #fff8f9;
 
   --cl-blue-500: #0150e8;
-  --cl-success-500: #0A9800;
-  --cl-error-500: #EC131A;
+  --cl-success-500: #0a9800;
+  --cl-error-500: #ec131a;
   /* size */
 
   /*PhoneInput*/
@@ -121,4 +121,61 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: var(--cl-gray-500);
   transition: background-color var(--animat);
   background-color: transparent;
+}
+
+/*
+  |==============================
+  | Loader
+  |==============================
+*/
+.loader {
+  display: block;
+  position: relative;
+  height: 20px;
+  width: 140px;
+  background-image: linear-gradient(var(--cl-gray-100) 20px, transparent 0),
+    linear-gradient(var(--cl-gray-100) 20px, transparent 0),
+    linear-gradient(var(--cl-gray-100) 20px, transparent 0),
+    linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 20px auto;
+  background-position:
+    0 0,
+    40px 0,
+    80px 0,
+    120px 0;
+  animation: pgfill 1s linear infinite;
+}
+
+@keyframes pgfill {
+  0% {
+    background-image: linear-gradient(var(--cl-gray-100) 20px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+  }
+  25% {
+    background-image: linear-gradient(var(--cl-primary-500) 20px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+  }
+  50% {
+    background-image: linear-gradient(var(--cl-primary-500) 20px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+  }
+  75% {
+    background-image: linear-gradient(var(--cl-primary-500) 20px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+  }
+  100% {
+    background-image: linear-gradient(var(--cl-primary-500) 20px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 20px, transparent 0);
+  }
 }

@@ -4,13 +4,14 @@ import CandleItemCard from '../CandleItemCard/CandleItemCard';
 import styles from './CandleList.module.scss';
 
 interface CandleListProps {
-  items: CandleI[];
+  items: Promise<CandleI[]>;
 }
 
-const CandleList: React.FC<CandleListProps> = ({ items }) => {
+const CandleList: React.FC<CandleListProps> = async ({ items }) => {
+  const candles = await items;
   return (
     <ul className={styles.list}>
-      {items.map((item: CandleI) => (
+      {candles.map((item: CandleI) => (
         <CandleItemCard key={item.id} {...item} />
       ))}
     </ul>
