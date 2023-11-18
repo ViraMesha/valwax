@@ -38,7 +38,6 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
   };
 
   const handleSearch = debounce(async searchQuery => {
-    console.log(searchQuery.length);
     if (searchQuery.trim().length < 3) {
       return;
     }
@@ -49,8 +48,6 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
     setSearchResults(resultValues);
     setShowNoResults(resultValues.length === 0);
   }, 500);
-
-  console.log(searchResults);
 
   useEffect(() => {
     const resultWrapperElement = resultWrapperRef.current;
