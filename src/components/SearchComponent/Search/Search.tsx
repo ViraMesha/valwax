@@ -31,10 +31,15 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
     setIsVisible(true);
   }, []);
 
-  const handleSearch = debounce(async searchQuery => {
+  const handleChange = (value: string) => {
     setSearchResults([]);
+    setSearchQuery(value);
+    handleSearch(value);
+  };
+
+  const handleSearch = debounce(async searchQuery => {
     console.log(searchQuery.length);
-    if (searchQuery.length < 3) {
+    if (searchQuery.trim().length < 3) {
       return;
     }
     setIsLoading(true);
@@ -43,8 +48,9 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
     setIsLoading(false);
     setSearchResults(resultValues);
     setShowNoResults(resultValues.length === 0);
-    console.log(searchResults);
   }, 500);
+
+  console.log(searchResults);
 
   useEffect(() => {
     const resultWrapperElement = resultWrapperRef.current;
@@ -86,10 +92,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
           type="text"
           placeholder="Пошук"
           value={searchQuery}
-          onChange={e => {
-            setSearchQuery(e.target.value);
-            handleSearch(e.target.value);
-          }}
+          onChange={e => handleChange(e.target.value)}
           className={styles.searchInput}
         />
         <AiOutlineClose
