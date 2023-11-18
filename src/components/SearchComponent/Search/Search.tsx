@@ -5,10 +5,9 @@ import { ProductDetails } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 import debounce from 'lodash.debounce';
 
+import { fetchSearchResults } from '../../../../lib/api-services/api';
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
-
-import mockSearchResults from './mockSearchResults';
 
 import styles from './Search.module.scss';
 
@@ -24,7 +23,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
   const [searchResults, setSearchResults] = useState<ProductDetails[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [showNoResults, setShowNoResults] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1024;
 
@@ -32,12 +31,19 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
     setIsVisible(true);
   }, []);
 
-  const handleSearch = debounce(() => {
-    const filteredResults = mockSearchResults.filter(result =>
-      result.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setSearchResults(filteredResults);
-    setShowNoResults(filteredResults.length === 0);
+  const handleSearch = debounce(async searchQuery => {
+    setSearchResults([]);
+    console.log(searchQuery.length);
+    if (searchQuery.length < 3) {
+      return;
+    }
+    setIsLoading(true);
+    const results = await fetchSearchResults(searchQuery.toLowerCase().trim());
+    const resultValues = [...results.boxList, ...results.candleList];
+    setIsLoading(false);
+    setSearchResults(resultValues);
+    setShowNoResults(resultValues.length === 0);
+    console.log(searchResults);
   }, 500);
 
   useEffect(() => {
@@ -82,7 +88,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
           value={searchQuery}
           onChange={e => {
             setSearchQuery(e.target.value);
-            handleSearch();
+            handleSearch(e.target.value);
           }}
           className={styles.searchInput}
         />
@@ -92,6 +98,11 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
           color="var(--cl-gray-700)"
           onClick={onClose}
         />
+        {isLoading && (
+          <div className={styles.loaderWrapper}>
+            <span className={styles.loader}></span>
+          </div>
+        )}
       </div>
 
       {showNoResults && (
