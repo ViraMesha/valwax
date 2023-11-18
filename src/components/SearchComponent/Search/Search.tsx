@@ -32,13 +32,13 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
   }, []);
 
   const handleChange = (value: string) => {
-    setSearchResults([]);
     setSearchQuery(value);
     handleSearch(value);
   };
 
   const handleSearch = debounce(async searchQuery => {
     if (searchQuery.trim().length < 3) {
+      setSearchResults([]);
       return;
     }
     setIsLoading(true);
