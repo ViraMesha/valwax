@@ -1,3 +1,5 @@
+import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
+
 import box1 from '../../public/images/boxes/boxes_section/box.jpg';
 import box2 from '../../public/images/boxes/boxes_section/box2.jpg';
 import box3 from '../../public/images/boxes/boxes_section/boxes3.jpg';
@@ -73,7 +75,7 @@ export const fetchSearchResults = async (query: string | undefined) => {
     const response = await fetch(`/api/search?query=${query}`);
     const data = await response.json();
     return data;
-  } catch (error) {
-    console.error('Error by fetching search results');
+  } catch (error: unknown) {
+    extractErrorMessage(error);
   }
 };
