@@ -2,7 +2,6 @@
 
 .card {
   overflow: hidden;
-  border-radius: 20px;
   flex-basis: 154px;
 
   @include breakpoint('tablet-small') {

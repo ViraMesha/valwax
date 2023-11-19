@@ -2,6 +2,7 @@ import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlesPage from '@components/components/CandlesPage/CandlesPage';
 
 import { Locale } from '../../../../../i18n-config';
+import { getCandles } from '../../../../../lib/api-services/api';
 import { getDictionary } from '../../../../../lib/utils/dictionary';
 
 export async function generateMetadata({
@@ -28,6 +29,7 @@ export default async function Page({
 }) {
   const { breadcrumbs } = await getDictionary(lang);
   const { page } = await getDictionary(lang);
+  const candles = getCandles();
 
   return (
     <>
@@ -45,6 +47,7 @@ export default async function Page({
         dictWax={page.candles[slug]}
         dict={page.candles}
         lang={lang}
+        candles={candles}
       />
     </>
   );

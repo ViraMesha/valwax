@@ -6,10 +6,10 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import type { NavDictI } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 
+import { useModalContext } from '../../../context/ModalContext';
 import { Locale } from '../../../i18n-config';
 import logo from '../../../public/images/icons/header-logo.svg';
 import sm_logo from '../../../public/images/icons/sm-logo.svg';
-import useModal from '../../hooks/useModal';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
@@ -28,7 +28,7 @@ interface HeaderProps {
 
 const Header = ({ lang, dict, navDict }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isModal, toggleModal, onBackdropClick } = useModal();
+   const { isModal, toggleModal, onBackdropClick } = useModalContext();
 
   const { width } = useWindowSize();
   const isSmallScreen = width < 1230;

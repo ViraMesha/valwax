@@ -1,12 +1,12 @@
-'use client';
-import { useWindowSize } from 'usehooks-ts';
+import { Suspense } from 'react';
+import { CandleI } from '@components/types';
 
 import Container from '../Container/Container';
 import Filter from '../Filter/Filter';
 import Section from '../Section/Section';
+import CandlesSkeleton from '../Skeletons/CandlesSkeleton/CandlesSkeleton';
 
 import CandleList from './CandleList/CandleList';
-import candleData from './candleData';
 
 import styles from './CandlesSection.module.scss';
 
@@ -14,17 +14,17 @@ interface CandlesSectionI {
   dict: {
     filter: any;
   };
+  candles: Promise<CandleI[]>;
 }
 
-const CandlesSection: React.FC<CandlesSectionI> = ({ dict }) => {
-  const { width } = useWindowSize();
-  const isLargeScreen = width >= 1230;
-
+const CandlesSection: React.FC<CandlesSectionI> = ({ dict, candles }) => {
   return (
     <Section className={styles.section}>
       <Container className={styles.container}>
-        {isLargeScreen && <Filter dict={dict.filter} />}
-        <CandleList items={candleData} />
+        <Filter dict={dict.filter} className={styles.filter} />
+        <Suspense fallback={<CandlesSkeleton />}>
+          <CandleList items={candles} />
+        </Suspense>
       </Container>
     </Section>
   );

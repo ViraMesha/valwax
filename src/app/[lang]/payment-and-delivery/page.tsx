@@ -33,7 +33,7 @@ const PaymentAndDelivery = async ({
         ]}
         lang={lang}
       />
-      <PaymentAndDeliveryInfo dict={page.paymentAndDelivery.info} />
+      <PaymentAndDeliveryInfo dict={page.paymentAndDelivery} />
     </>
   );
 };
