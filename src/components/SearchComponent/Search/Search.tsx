@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 import Typography from '@components/components/Typography/Typography';
 import { ProductDetails } from '@components/types';
-import { useWindowSize } from 'usehooks-ts';
 import debounce from 'lodash.debounce';
 
 import { useModalContext } from '../../../../context/ModalContext';
@@ -27,8 +27,6 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showNoResults, setShowNoResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { width } = useWindowSize();
-  const isLargeScreen = width >= 1024;
 
   useEffect(() => {
     setIsVisible(true);
@@ -44,12 +42,20 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
       setSearchResults([]);
       return;
     }
-    setIsLoading(true);
-    const results = await fetchSearchResults(searchQuery.toLowerCase().trim());
-    const resultValues = [...results.boxList, ...results.candleList];
-    setIsLoading(false);
-    setSearchResults(resultValues);
-    setShowNoResults(resultValues.length === 0);
+    try {
+      setIsLoading(true);
+      const results = await fetchSearchResults(
+        searchQuery.toLowerCase().trim()
+      );
+      const resultValues = [...results?.boxList, ...results?.candleList];
+      setIsLoading(false);
+      setSearchResults(resultValues);
+      setShowNoResults(resultValues.length === 0);
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+      toast.error('Ooops! Something went wrong!');
+    }
   }, 500);
 
   return isModal ? (
