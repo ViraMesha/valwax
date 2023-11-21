@@ -62,9 +62,11 @@
   align-items: center;
 
   border-radius: 6px;
-  background-color: rgba(255, 248, 249, 0.5);
+  background-color: var(--cl-secondary-100);
 
   cursor: pointer;
+
+  transition: background-color var(--animat);
 }
 
 .prevButton.disabled,
@@ -81,6 +83,11 @@
   color: var(--cl-primary-500);
   width: 30px;
   height: 30px;
+}
+
+.prevButton:hover:not(:disabled),
+.nextButton:hover:not(:disabled) {
+  background-color: rgba(255, 248, 249, 0.5);
 }
 
 /* Styles for dots*/
