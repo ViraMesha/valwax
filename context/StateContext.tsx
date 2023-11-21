@@ -73,7 +73,7 @@ export const StateContext = ({ children }: StateContextProps) => {
         product.quantity = quantity;
         setCartItems([...cartItems, { ...product }]);
       }
-      toast.success(`${quantity} ${product.title} added to the cart.`);
+      toast.success(`${product.title} added to the cart.`);
     },
     [cartItems, setCartItems, setTotalPrice, setTotalQuantities]
   );
@@ -104,7 +104,7 @@ export const StateContext = ({ children }: StateContextProps) => {
         );
         setCartItems(newCartItems);
       }
-      toast.success('A product was successfully deleted!');
+      toast.success('The product was successfully deleted!');
     },
     [cartItems, setCartItems, setTotalPrice, setTotalQuantities]
   );
