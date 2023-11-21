@@ -1,11 +1,19 @@
+'use client';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import Button from '@components/components/Button/Button';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 import { nanoid } from 'nanoid';
 
+import { useStateActionsContext } from '../../../../../context/StateContext';
 import candleImg from '../../../../../public/images/candles/img-1.jpg';
-import { ConfiguratorSectionI } from '../../../../types/index';
+import {
+  ConfiguratorSectionI,
+  CustomCandleDescription,
+} from '../../../../types/index';
 
-import ConfiguratorBuyNowBtn from './ConfiguratorBuyNowBtn/ConfiguratorBuyNowBtn';
 import Parameter from './Parameter/Parameter';
 import { configuratorData } from './configuratorData';
 
@@ -19,15 +27,75 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
 }) => {
   const { container, wax, aroma, wick, color } = configuratorData(dict);
 
+  const initParamCandle = {
+    container: '',
+    wax: '',
+    aroma: '',
+    wick: '',
+    color: '',
+  };
+
+  const [paramCandle, setParamCendle] =
+    useState<CustomCandleDescription>(initParamCandle);
+
+  const { onAdd } = useStateActionsContext();
+  const pathName = usePathname();
+  const router = useRouter();
+  const lang = pathName.split('/')[1];
+
+  const product = {
+    id: nanoid(),
+    img: candleImg.src,
+    title: 'A custom candle',
+    description: paramCandle,
+    price,
+    link: '/create-your-own',
+    quantity: 1,
+  };
+
+  const handleChangeCandleParam = (key: string, param: string) => {
+    setParamCendle({ ...paramCandle, [key]: param });
+  };
+
+  const handleBuyNowButtonClick = () => {
+    const allParamNotEmpty = Object.values(paramCandle).every(v => v !== '');
+    if (allParamNotEmpty) {
+      onAdd(product);
+      router.push(`/${lang}/checkout`);
+      return;
+    }
+    toast.warning('Кожен параметр свічки повинен бути заповнений');
+  };
+
   return (
     <div className={styles.wrapper}>
       <ul className={styles.list}>
-        <Parameter dict={container} />
+        <Parameter
+          dict={container}
+          onChangeParam={handleChangeCandleParam}
+          parameter="container"
+        />
         {/* <Parameter dict={capacity}/> */}
-        <Parameter dict={wax} />
-        <Parameter dict={aroma} />
-        <Parameter dict={wick} />
-        <Parameter dict={color} />
+        <Parameter
+          dict={wax}
+          onChangeParam={handleChangeCandleParam}
+          parameter="wax"
+        />
+        <Parameter
+          dict={aroma}
+          onChangeParam={handleChangeCandleParam}
+          parameter="aroma"
+        />
+        <Parameter
+          dict={wick}
+          onChangeParam={handleChangeCandleParam}
+          parameter="wick"
+        />
+        <Parameter
+          dict={color}
+          onChangeParam={handleChangeCandleParam}
+          parameter="color"
+        />
       </ul>
       <div className={styles.wrapperPrice}>
         <Typography
@@ -39,25 +107,12 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
         </Typography>
         <Price price={price} />
       </div>
-      <ConfiguratorBuyNowBtn
-        product={{
-          id: nanoid(),
-          img: candleImg.src,
-          title: 'A custom candle',
-          description: {
-            container: 'Тара 1',
-            wax: 'Соєвий',
-            aroma: 'Чиста Бавовна',
-            wick: 'Один',
-            color: 'Жовтий',
-          },
-          price,
-          link: '/create-your-own',
-          quantity: 1,
-        }}
+      <Button
+        variant="primary"
+        onClick={handleBuyNowButtonClick}
       >
         {dictGeneral.buttons.buyNow}
-      </ConfiguratorBuyNowBtn>
+      </Button>
     </div>
   );
 };

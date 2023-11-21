@@ -9,23 +9,25 @@ import { OptionEventI, ParameterI } from '@components/types';
 
 import styles from './Parameter.module.scss';
 
-const Parameter: React.FC<ParameterI> = ({ dict }) => {
+const Parameter: React.FC<ParameterI> = ({ dict, onChangeParam, parameter }) => {
   const [param, setParam] = useState('');
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handelParamChange = (event: OptionEventI) => {
+    console.log('event.target', event.target)
     setParam(event.target.value);
+    onChangeParam(parameter, event.target.value)
   };
 
   return (
     <div className={styles.item}>
       <input
-        id={dict.title}
+        id={parameter}
         type="checkbox"
         className={`${styles.visuallyHidden} ${styles.slider}`}
       />
-      <label className={styles.wrapper} htmlFor={dict.title}>
+      <label className={styles.wrapper} htmlFor={parameter}>
         <Typography variant="subheadingMobile" color="var(--cl-primary-800)">
           {dict.number}
         </Typography>

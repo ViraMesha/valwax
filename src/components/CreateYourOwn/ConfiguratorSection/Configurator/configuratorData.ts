@@ -59,23 +59,3 @@ export const configuratorData = ({container, wax, aroma, wick, color}: configura
     }
   )
 };
-
-//
-
-// capacity: {
-//   number: capacity.number,
-//   title: capacity.title,
-//   options: capacity.options,
-// },
-
-// "capacity": {
-//   "number": "2.",
-//   "title": "Select container volume",
-//   "options": ["30 ml", "50 ml", "100 ml", "150 ml", "200 ml"]
-// },
-
-// "capacity": {
-//   "number": "2.",
-//   "title": "Оберіть об’єм тари",
-//   "options": ["30 мл", "50 мл", "100 мл", "150 мл", "200 мл"]
-// },
