@@ -58,7 +58,6 @@ export default async function Page({
         dict={page.candles}
         lang={lang}
         candles={promise}
-        page={currentPage}
       />
     </>
   );
