@@ -420,6 +420,9 @@
     },
     "titles": {
       "price": "Вартість:"
+    },
+    "messages": {
+      "notAllParam": "Each candle parameter must be selected"
     }
   },
 

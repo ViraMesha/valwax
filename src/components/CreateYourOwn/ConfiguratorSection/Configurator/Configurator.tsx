@@ -64,7 +64,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
       router.push(`/${lang}/checkout`);
       return;
     }
-    toast.warning('Кожен параметр свічки повинен бути заповнений');
+    toast.warning(dictGeneral.messages.notAllParam);
   };
 
   return (
@@ -107,10 +107,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
         </Typography>
         <Price price={price} />
       </div>
-      <Button
-        variant="primary"
-        onClick={handleBuyNowButtonClick}
-      >
+      <Button variant="primary" onClick={handleBuyNowButtonClick}>
         {dictGeneral.buttons.buyNow}
       </Button>
     </div>
