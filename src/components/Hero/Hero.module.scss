@@ -62,7 +62,7 @@
   align-items: center;
 
   border-radius: 6px;
-  background-color: var(--cl-secondary-100);
+  background-color: rgba(255, 248, 249, 0.5);
 
   cursor: pointer;
 
@@ -87,7 +87,7 @@
 
 .prevButton:hover:not(:disabled),
 .nextButton:hover:not(:disabled) {
-  background-color: rgba(255, 248, 249, 0.5);
+  background-color: var(--cl-secondary-100);
 }
 
 /* Styles for dots*/
