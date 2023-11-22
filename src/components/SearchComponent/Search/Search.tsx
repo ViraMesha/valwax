@@ -47,10 +47,9 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
       const results = await fetchSearchResults(
         searchQuery.toLowerCase().trim()
       );
-      const resultValues = [...results?.boxList, ...results?.candleList];
       setIsLoading(false);
-      setSearchResults(resultValues);
-      setShowNoResults(resultValues.length === 0);
+      setSearchResults(results.boxesAndCandles);
+      setShowNoResults(results.boxesAndCandles.length === 0);
     } catch (error) {
       setIsLoading(false);
       console.error(error);
