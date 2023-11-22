@@ -35,7 +35,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
     color: '',
   };
 
-  const [paramCandle, setParamCendle] =
+  const [paramCandle, setParamCandle] =
     useState<CustomCandleDescription>(initParamCandle);
 
   const { onAdd } = useStateActionsContext();
@@ -54,7 +54,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   };
 
   const handleChangeCandleParam = (key: string, param: string) => {
-    setParamCendle({ ...paramCandle, [key]: param });
+    setParamCandle({ ...paramCandle, [key]: param });
   };
 
   const handleBuyNowButtonClick = () => {

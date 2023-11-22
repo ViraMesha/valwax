@@ -15,7 +15,6 @@ const Parameter: React.FC<ParameterI> = ({ dict, onChangeParam, parameter }) => 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handelParamChange = (event: OptionEventI) => {
-    console.log('event.target', event.target)
     setParam(event.target.value);
     onChangeParam(parameter, event.target.value)
   };
