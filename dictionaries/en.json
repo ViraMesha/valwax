@@ -427,6 +427,9 @@
     },
     "titles": {
       "price": "Price:"
+    },
+    "messages": {
+      "notAllParam": "Each candle parameter must be selected"
     }
   },
 

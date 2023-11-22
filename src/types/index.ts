@@ -73,6 +73,7 @@ export type configuratorSectionI = {
 export type generalI = {
   buttons: { [key: string]: string };
   titles: { [key: string]: string };
+  messages: { [key: string]: string };
 };
 
 export interface ConfiguratorSectionI {
@@ -82,6 +83,8 @@ export interface ConfiguratorSectionI {
 
 export interface ParameterI {
   dict: parameterI;
+  onChangeParam: (v: string, p: string) => void;
+  parameter: string;
 }
 
 export interface OptionEventI {
