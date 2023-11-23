@@ -1,4 +1,5 @@
 'use client';
+import { redirect, usePathname } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
 import type { CartProductI, ProductListDictionary } from '@components/types';
 
@@ -14,7 +15,13 @@ interface ProductListProps {
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
 }) => {
+  const pathName = usePathname();
+  const lang = pathName.split('/')[1];
   const { totalPrice, cartItems } = useStateContext();
+
+  if (!cartItems.length) {
+    redirect(`/${lang}`);
+  }
 
   return (
     <div>

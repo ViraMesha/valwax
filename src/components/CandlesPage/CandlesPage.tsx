@@ -2,6 +2,7 @@ import { CandleI } from '@components/types';
 
 import { Locale } from '../../../i18n-config';
 import CandlesSection from '../CandlesSection/CandlesSection';
+import Pagination from '../shared/Pagination/Pagination';
 import Tabs from '../Tabs/Tabs';
 import WaxDesc from '../WaxDesc/WaxDesc';
 
@@ -36,6 +37,7 @@ const CandlesPage: React.FC<CandlesPageI> = ({
       <Tabs dict={dict} lang={lang} />
       <WaxDesc dict={dictWax?.waxDesc} className={styles.waxDescAboveCandles} />
       <CandlesSection dict={dict} candles={candles} />
+      <Pagination />
       <WaxDesc dict={dictWax?.waxDesc} className={styles.waxDescBelowCandles} />
     </>
   );

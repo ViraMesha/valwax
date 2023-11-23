@@ -67,7 +67,7 @@
   transition: color var(--animat);
 }
 
-.iconsItem svg:hover {
+.iconsItem:hover svg {
   color: var(--cl-primary-500);
 }
 
