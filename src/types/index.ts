@@ -178,3 +178,28 @@ export interface BoxI {
   text: string;
   description: string;
 }
+
+type FilterI = {
+  // dict: {
+    title: string;
+    subtitle: string;
+    up: string;
+    down: string;
+    cleanUp: string;
+    result: string;
+    category: { [key: string]: { title: string; option: string[] } };
+  // };
+  // className?: string;
+}
+
+export interface FilterII {
+  dict: FilterI;
+  className?: string;
+}
+
+export interface CandlesSectionI {
+  dict: {
+    filter: FilterI;
+  };
+  candles: Promise<CandleI[]>;
+}

@@ -1,4 +1,5 @@
-'use client'
+'use client';
+import { FilterII } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 
 import Button from '../Button/Button';
@@ -7,23 +8,29 @@ import Typography from '../Typography/Typography';
 import FilterCategoryBlock from './FilterCatBlock/FilterCategoryBlock';
 
 import styles from './Filter.module.scss';
+// import { useState } from 'react';
+// import { boolean } from 'yup';
+// import { useFilter } from '../../../context/FilterContext';
 
-interface FilterI {
-  dict: {
-    title: string;
-    subtitle: string;
-    up: string;
-    down: string;
-    cleanUp: string;
-    result: string;
-    category: any;
-  };
-  className?: string;
-}
 
-const Filter: React.FC<FilterI> = ({ dict, className }) => {
+
+const Filter: React.FC<FilterII> = ({ dict, className }) => {
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1230;
+
+  // const [filterVar, setFilterVar] = useState <string[]> ([]);
+
+  // const handleModifyFilter = (param: string) => {
+  //   if (filterVar.includes(param)) {
+  //     setFilterVar(filterVar.filter(par => par !== param))
+  //     return
+  //   }
+  //   // setFilterVar([...filterVar, param])
+  //   const newFilterVar=[...filterVar, param]
+  //   setFilterVar(newFilterVar)
+  //   console.log('newFilterVar', newFilterVar)
+  //   console.log(filterVar)
+  // }
 
   return (
     <div className={`${styles.wrapper} ${className || ''}`}>
@@ -45,14 +52,17 @@ const Filter: React.FC<FilterI> = ({ dict, className }) => {
         <FilterCategoryBlock
           dict={dict.category.aroma}
           className={styles.aromaBlock}
+          // onModifyFilter={modifyFilter}
         />
         <FilterCategoryBlock
           dict={dict.category.color}
           className={styles.colorBlock}
+          // onModifyFilter={modifyFilter}
         />
         <FilterCategoryBlock
           dict={dict.category.container}
           className={styles.containerBlock}
+          // onModifyFilter={modifyFilter}
         />
       </div>
       {!isLargeScreen && (
