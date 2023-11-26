@@ -21,10 +21,7 @@ const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
   };
   return (
     <li onClick={handleItemClick}>
-      <Link
-        href={`/candles/${result.slug}/${result.id}`}
-        className={styles.searchLink}
-      >
+      <Link href={`${result.slug}/${result.id}`} className={styles.searchLink}>
         <div className={styles.searchWrapper}>
           <Image
             src={Image1}
