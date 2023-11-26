@@ -50,9 +50,23 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
       <Container className={styles.headerContainer}>
         <Link href={`/${lang}`} className={styles.logo}>
           {isSmallScreen ? (
-            <Image src={sm_logo} alt="logo" width={77} priority />
+            <Image
+              src={sm_logo}
+              alt="logo"
+              width={77}
+              height={20}
+              priority
+              className={styles.smallLogo}
+            />
           ) : (
-            <Image src={logo} alt="logo" width={150} priority />
+            <Image
+              src={logo}
+              alt="logo"
+              width={150}
+              height={40}
+              priority
+              className={styles.bigLogo}
+            />
           )}
         </Link>
         <Navigation className={styles.navbar} lang={lang} navDict={navDict} />

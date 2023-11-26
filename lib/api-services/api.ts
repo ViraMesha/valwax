@@ -1,3 +1,5 @@
+import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
+
 import box1 from '../../public/images/boxes/boxes_section/box.jpg';
 import box2 from '../../public/images/boxes/boxes_section/box2.jpg';
 import box3 from '../../public/images/boxes/boxes_section/boxes3.jpg';
@@ -302,5 +304,19 @@ export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
     return fakeCandleDetails;
   } catch (error) {
     throw error;
+  }
+};
+
+export const fetchSearchResults = async (query: string | undefined) => {
+  try {
+    const response = await fetch(`/api/search?query=${query}`);
+    if (!response.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error: unknown) {
+    extractErrorMessage(error);
   }
 };
