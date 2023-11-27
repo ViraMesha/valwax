@@ -1,3 +1,8 @@
+'use client';
+import { useForm } from 'react-hook-form';
+import emailValidationSchema from '@components/helpers/emailValidationSchema';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 import Input from '../Input/Input';
@@ -14,7 +19,29 @@ interface SubscriptionI {
   };
 }
 
+interface FormValues {
+  email: string;
+}
+
 const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    setError,
+    setValue,
+    reset,
+  } = useForm<FormValues>({
+    mode: 'onBlur',
+    defaultValues: {},
+    resolver: yupResolver(emailValidationSchema),
+  });
+
+  const onSubmit = (data: FormValues) => {
+    console.log(data);
+    reset();
+  };
+
   return (
     <Section className={styles.subscription}>
       <Container>
@@ -32,12 +59,22 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
         >
           {dict.text}
         </Typography>
-        <div className={styles.subscriptionWrapper}>
-          <Input placeholder="Email" className={styles.subscriptionInput} />
+        <form
+          className={styles.subscriptionWrapper}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <Input
+            type="email"
+            placeholder="Email"
+            className={styles.subscriptionInput}
+            errorMessage={errors.email?.message}
+            error={errors.email}
+            {...register('email')}
+          />
           <Button variant="primary" className={styles.subscriptionButton}>
             {dict.buttonText}
           </Button>
-        </div>
+        </form>
       </Container>
     </Section>
   );

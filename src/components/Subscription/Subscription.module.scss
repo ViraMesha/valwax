@@ -39,6 +39,10 @@
   }
 }
 
+.subscriptionButton {
+  align-self: flex-start;
+}
+
 @include breakpoint('only-mobile') {
   .subscriptionButton {
     width: calc(100%);
