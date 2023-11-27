@@ -48,6 +48,7 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <Container className={styles.headerContainer}>
+        {/* Logo */}
         <Link href={`/${lang}`} className={styles.logo}>
           {isSmallScreen ? (
             <Image
@@ -69,8 +70,10 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
             />
           )}
         </Link>
+        {/* Desktop navigation */}
         <Navigation className={styles.navbar} lang={lang} navDict={navDict} />
 
+        {/* Icons: Language menu, cart icon and search icon */}
         <div className={styles.icons}>
           <LanguageMenu className={styles.langMenu} />
           <ul className={styles.iconsList}>
@@ -98,6 +101,7 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
             )}
           </ul>
         </div>
+        {/* Mobile menu */}
         <div
           className={`${styles.burgerMenu} ${
             isMobileMenuOpen && styles.isOpen
