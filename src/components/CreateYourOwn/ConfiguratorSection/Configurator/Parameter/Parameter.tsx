@@ -10,8 +10,8 @@ import { OptionEventI, ParameterI } from '@components/types';
 import styles from './Parameter.module.scss';
 
 const Parameter: React.FC<ParameterI> = ({ dict, onChangeParam, parameter }) => {
-  const [param, setParam] = useState('');
 
+  const [param, setParam] = useState('');
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handelParamChange = (event: OptionEventI) => {

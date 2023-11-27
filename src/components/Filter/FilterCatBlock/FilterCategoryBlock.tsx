@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { BsCheck } from 'react-icons/bs';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import Typography from '@components/components/Typography/Typography';
@@ -22,8 +22,7 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const { filterVar, modifyFilter } = useFilterContext();
-  // const foo = ['2', '3', '4'];
+  const { modifyFilter, isSelected } = useFilterContext();
 
   return (
     <div className={`${styles.wrapper} ${className}`}>
@@ -37,22 +36,13 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
               <li
                 key={index}
                 onClick={() => modifyFilter(item)}
-                className={`${styles.checkbox} ${filterVar.includes(item) && styles.checked}`}
+                className={`${styles.checkbox} ${
+                  isSelected(item) ? styles.checked : ''
+                }`}
                 // className={`${styles.checkbox} ${
                 //   filterVar.indexOf(item) !== -1 && styles.checked
                 // }`}
               >
-                {/* <input
-                    id={item}
-                    type="checkbox"
-                    name={styles.subtitle}
-                    value={item}
-                    // checked={filterVar.includes(item)}
-                    checked={false}
-                    // onChange={}
-                    className={`${styles.visuallyHidden} ${styles.input}`}
-                  /> */}
-
                 <div className={styles.check}>
                   <BsCheck />
                 </div>

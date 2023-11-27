@@ -77,14 +77,6 @@
   }
 }
 
-// .input:checked ~ .typography {
-//   color: var(--cl-gray-500);
-// }
-
-// .input:checked ~ .check {
-//   fill: var(--cl-success-500);
-// }
-
 .checked > .typography {
   color: var(--cl-gray-500);
 }

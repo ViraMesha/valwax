@@ -10,13 +10,6 @@ import CandleList from './CandleList/CandleList';
 
 import styles from './CandlesSection.module.scss';
 
-// interface CandlesSectionI {
-//   dict: {
-//     filter: FilterI;
-//   };
-//   candles: Promise<CandleI[]>;
-// }
-
 const CandlesSection: React.FC<CandlesSectionI> = ({ dict, candles }) => {
   return (
     <Section className={styles.section}>

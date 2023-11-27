@@ -1,36 +1,20 @@
 'use client';
-import { FilterII } from '@components/types';
+import { FilterI } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 
+import { useFilterContext } from '../../../context/FilterContext';
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 
 import FilterCategoryBlock from './FilterCatBlock/FilterCategoryBlock';
 
 import styles from './Filter.module.scss';
-// import { useState } from 'react';
-// import { boolean } from 'yup';
-// import { useFilter } from '../../../context/FilterContext';
 
-
-
-const Filter: React.FC<FilterII> = ({ dict, className }) => {
+const Filter: React.FC<FilterI> = ({ dict, className, onModal }) => {
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1230;
 
-  // const [filterVar, setFilterVar] = useState <string[]> ([]);
-
-  // const handleModifyFilter = (param: string) => {
-  //   if (filterVar.includes(param)) {
-  //     setFilterVar(filterVar.filter(par => par !== param))
-  //     return
-  //   }
-  //   // setFilterVar([...filterVar, param])
-  //   const newFilterVar=[...filterVar, param]
-  //   setFilterVar(newFilterVar)
-  //   console.log('newFilterVar', newFilterVar)
-  //   console.log(filterVar)
-  // }
+  const { configurationFilter, modifySort, cleanFilter } = useFilterContext();
 
   return (
     <div className={`${styles.wrapper} ${className || ''}`}>
@@ -42,22 +26,34 @@ const Filter: React.FC<FilterII> = ({ dict, className }) => {
           <Typography variant="bodyRegular" className={styles.subtitle}>
             {dict.subtitle}
           </Typography>
-          <button className={styles.btn}>
+          <button
+            className={`${styles.btn} ${
+              configurationFilter.sortSettings === dict.up
+                ? styles.btnActive
+                : ''
+            }`}
+            onClick={() => modifySort(dict.up)}
+          >
             <Typography variant="bodyRegular">{dict.up}</Typography>
           </button>
-          <button className={styles.btn}>
+          <button
+            className={`${styles.btn} ${
+              configurationFilter.sortSettings === dict.down
+                ? styles.btnActive
+                : ''
+            }`}
+            onClick={() => modifySort(dict.down)}
+          >
             <Typography variant="bodyRegular">{dict.down}</Typography>
           </button>
         </div>
         <FilterCategoryBlock
           dict={dict.category.aroma}
           className={styles.aromaBlock}
-          // onModifyFilter={modifyFilter}
         />
         <FilterCategoryBlock
           dict={dict.category.color}
           className={styles.colorBlock}
-          // onModifyFilter={modifyFilter}
         />
         <FilterCategoryBlock
           dict={dict.category.container}
@@ -67,10 +63,14 @@ const Filter: React.FC<FilterII> = ({ dict, className }) => {
       </div>
       {!isLargeScreen && (
         <div className={styles.wrapperBtn}>
-          <Button variant="dark" className={styles.button}>
+          <Button
+            variant="dark"
+            className={styles.button}
+            onClick={cleanFilter}
+          >
             <Typography>{dict.cleanUp}</Typography>
           </Button>
-          <Button variant="light" className={styles.button}>
+          <Button variant="light" className={styles.button} onClick={onModal}>
             <Typography>{dict.result}</Typography>
           </Button>
         </div>
