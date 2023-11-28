@@ -21,7 +21,7 @@ export async function generateMetadata({
 const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
   const { breadcrumbs } = await getDictionary(lang);
   const { page } = await getDictionary(lang);
-  const boxes = getBoxes();
+  const promise = getBoxes();
   return (
     <>
       <Breadcrumbs
@@ -34,7 +34,7 @@ const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
         lang={lang}
       />
       <BoxesPageHeader dict={page.boxes.header} />
-      <BoxesSection dict={page.boxes.section} boxes={boxes} />
+      <BoxesSection dict={page.boxes.section} boxes={promise} />
       <BoxesInfo dict={page.boxes.info} />
     </>
   );

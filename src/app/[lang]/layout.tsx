@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ToastContainer } from 'react-toastify';
+import { Slide, ToastContainer } from 'react-toastify';
 import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollToTopButton';
@@ -36,6 +36,7 @@ export default async function RootLayout({
   const { footer } = await getDictionary(params.lang);
   const { search } = await getDictionary(params.lang);
   const { navigation } = await getDictionary(params.lang);
+
   return (
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
@@ -51,11 +52,12 @@ export default async function RootLayout({
         <ScrollToTopButton />
         <ToastContainer
           position="top-right"
-          autoClose={5000}
+          autoClose={2000}
           hideProgressBar={false}
           closeOnClick={true}
           pauseOnHover={true}
           draggable={true}
+          transition={Slide}
         />
       </body>
     </html>

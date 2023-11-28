@@ -12,7 +12,7 @@ import styles from './CandlesSection.module.scss';
 
 const CandlesSection: React.FC<CandlesSectionI> = ({ dict, candles }) => {
   return (
-    <Section className={styles.section}>
+    <Section id={styles.section}>
       <Container className={styles.container}>
         <Filter dict={dict.filter} className={styles.filter} />
         <Suspense fallback={<CandlesSkeleton />}>

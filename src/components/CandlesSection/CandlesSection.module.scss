@@ -1,12 +1,6 @@
 @import '../../scss/utilities/breakpoint-mixin.scss';
 
-.section {
-  // padding-top: 40px;
-
-  @include breakpoint('tablet-small') {
-    // padding-top: 50px;
-  }
-
+#section {
   @include breakpoint('desktop-large') {
     padding-top: 56px;
     padding-bottom: 120px;
@@ -18,7 +12,7 @@
   gap: 28px;
 }
 
-.section .filter {
+.container .filter {
   display: none;
 
   @include breakpoint('desktop-large') {

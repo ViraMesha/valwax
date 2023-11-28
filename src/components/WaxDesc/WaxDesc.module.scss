@@ -1,6 +1,6 @@
 @import '../../scss/utilities/breakpoint-mixin.scss';
 
-.section {
+#section {
   @include breakpoint('desktop-large') {
     padding-bottom: 0;
   }

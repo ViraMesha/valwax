@@ -1,3 +1,5 @@
+import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
+
 import box1 from '../../public/images/boxes/boxes_section/box.jpg';
 import box2 from '../../public/images/boxes/boxes_section/box2.jpg';
 import box3 from '../../public/images/boxes/boxes_section/boxes3.jpg';
@@ -8,7 +10,10 @@ import candle3 from '../../public/images/candles/img-3.jpg';
 import { relatedProducts } from '../../src/helpers/relatedProducts';
 import { BoxDetailsI, BoxI, CandleDetailsI, CandleI } from '../../src/types';
 
-export const getCandles = async (): Promise<CandleI[]> => {
+export const getCandles = async (
+  currentPage = 1,
+  perPage = 9
+): Promise<CandleI[]> => {
   try {
     await new Promise(resolve => setTimeout(resolve, 5000));
 
@@ -67,9 +72,120 @@ export const getCandles = async (): Promise<CandleI[]> => {
         title: 'Кашемірова слива.',
         price: 355,
       },
+      {
+        id: '10',
+        img: candle1.src,
+        title: 'Осінь.',
+        price: 370,
+      },
+      {
+        id: '11',
+        img: candle2.src,
+        title: 'Імбир і спеції.',
+        price: 355,
+      },
+      {
+        id: '12',
+        img: candle3.src,
+        title: 'Кашемірова слива.',
+        price: 355,
+      },
+      {
+        id: '13',
+        img: candle1.src,
+        title: 'Осінь.',
+        price: 370,
+      },
+      {
+        id: '14',
+        img: candle2.src,
+        title: 'Імбир і спеції.',
+        price: 355,
+      },
+      {
+        id: '15',
+        img: candle3.src,
+        title: 'Кашемірова слива.',
+        price: 355,
+      },
+      {
+        id: '16',
+        img: candle1.src,
+        title: 'Осінь.',
+        price: 370,
+      },
+      {
+        id: '17',
+        img: candle2.src,
+        title: 'Імбир і спеції.',
+        price: 355,
+      },
+      {
+        id: '18',
+        img: candle3.src,
+        title: 'Кашемірова слива.',
+        price: 355,
+      },
+      {
+        id: '19',
+        img: candle1.src,
+        title: 'Осінь.',
+        price: 370,
+      },
+      {
+        id: '20',
+        img: candle2.src,
+        title: 'Імбир і спеції.',
+        price: 355,
+      },
+      {
+        id: '21',
+        img: candle3.src,
+        title: 'Кашемірова слива.',
+        price: 355,
+      },
+      {
+        id: '22',
+        img: candle1.src,
+        title: 'Осінь.',
+        price: 370,
+      },
+      {
+        id: '23',
+        img: candle2.src,
+        title: 'Імбир і спеції.',
+        price: 355,
+      },
+      {
+        id: '24',
+        img: candle3.src,
+        title: 'Кашемірова слива.',
+        price: 355,
+      },
+      {
+        id: '25',
+        img: candle1.src,
+        title: 'Осінь.',
+        price: 370,
+      },
+      {
+        id: '26',
+        img: candle2.src,
+        title: 'Імбир і спеції.',
+        price: 355,
+      },
+      {
+        id: '27',
+        img: candle3.src,
+        title: 'Кашемірова слива.',
+        price: 355,
+      },
     ];
 
-    return fakeCandles;
+    const start = (currentPage - 1) * perPage;
+    const end = start + perPage;
+
+    return fakeCandles.slice(start, end);
   } catch (error) {
     throw error;
   }
@@ -188,5 +304,19 @@ export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
     return fakeCandleDetails;
   } catch (error) {
     throw error;
+  }
+};
+
+export const fetchSearchResults = async (query: string | undefined) => {
+  try {
+    const response = await fetch(`/api/search?query=${query}`);
+    if (!response.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error: unknown) {
+    extractErrorMessage(error);
   }
 };

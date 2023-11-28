@@ -28,7 +28,7 @@ interface HeaderProps {
 
 const Header = ({ lang, dict, navDict }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-   const { isModal, toggleModal, onBackdropClick } = useModalContext();
+  const { isModal, toggleModal, onBackdropClick } = useModalContext();
 
   const { width } = useWindowSize();
   const isSmallScreen = width < 1230;
@@ -50,9 +50,23 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
       <Container className={styles.headerContainer}>
         <Link href={`/${lang}`} className={styles.logo}>
           {isSmallScreen ? (
-            <Image src={sm_logo} alt="logo" width={77} priority />
+            <Image
+              src={sm_logo}
+              alt="logo"
+              width={77}
+              height={20}
+              priority
+              className={styles.smallLogo}
+            />
           ) : (
-            <Image src={logo} alt="logo" width={150} priority />
+            <Image
+              src={logo}
+              alt="logo"
+              width={150}
+              height={40}
+              priority
+              className={styles.bigLogo}
+            />
           )}
         </Link>
         <Navigation className={styles.navbar} lang={lang} navDict={navDict} />
@@ -61,9 +75,7 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
           <LanguageMenu className={styles.langMenu} />
           <ul className={styles.iconsList}>
             <li className={`${styles.iconsItem} ${styles.cartIcon}`}>
-              <Link href={`/${lang}/checkout`}>
-                <Cart />
-              </Link>
+              <Cart lang={lang} />
             </li>
             <li className={styles.iconsItem} onClick={toggleModal}>
               <AiOutlineSearch style={{ strokeWidth: '2px' }} />

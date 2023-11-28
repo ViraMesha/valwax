@@ -41,7 +41,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   };
 
   return (
-    <Section className={styles.section}>
+    <Section id={styles.section}>
       <Container className={styles.container}>
         <div className={styles.wrapper}>
           <ul className={styles.list}>

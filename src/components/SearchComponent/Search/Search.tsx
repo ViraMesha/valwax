@@ -1,15 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 import Typography from '@components/components/Typography/Typography';
 import { ProductDetails } from '@components/types';
-import { useWindowSize } from 'usehooks-ts';
 import debounce from 'lodash.debounce';
 
 import { useModalContext } from '../../../../context/ModalContext';
+import { fetchSearchResults } from '../../../../lib/api-services/api';
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
-
-import mockSearchResults from './mockSearchResults';
 
 import styles from './Search.module.scss';
 
@@ -27,20 +26,35 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
   const [searchResults, setSearchResults] = useState<ProductDetails[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [showNoResults, setShowNoResults] = useState(false);
-
-  const { width } = useWindowSize();
-  const isLargeScreen = width >= 1024;
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const handleSearch = debounce(() => {
-    const filteredResults = mockSearchResults.filter(result =>
-      result.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setSearchResults(filteredResults);
-    setShowNoResults(filteredResults.length === 0);
+  const handleChange = (value: string) => {
+    setSearchQuery(value);
+    handleSearch(value);
+  };
+
+  const handleSearch = debounce(async searchQuery => {
+    if (searchQuery.trim().length < 3) {
+      setSearchResults([]);
+      return;
+    }
+    try {
+      setIsLoading(true);
+      const results = await fetchSearchResults(
+        searchQuery.toLowerCase().trim()
+      );
+      setIsLoading(false);
+      setSearchResults(results.boxesAndCandles);
+      setShowNoResults(results.boxesAndCandles.length === 0);
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+      toast.error('Ooops! Something went wrong!');
+    }
   }, 500);
 
   return isModal ? (
@@ -58,10 +72,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
           type="text"
           placeholder="Пошук"
           value={searchQuery}
-          onChange={e => {
-            setSearchQuery(e.target.value);
-            handleSearch();
-          }}
+          onChange={e => handleChange(e.target.value)}
           className={styles.searchInput}
         />
         <AiOutlineClose
@@ -70,6 +81,11 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
           color="var(--cl-gray-700)"
           onClick={onClose}
         />
+        {isLoading && (
+          <div className={styles.loaderWrapper}>
+            <span className={styles.loader}></span>
+          </div>
+        )}
       </div>
 
       {showNoResults && (

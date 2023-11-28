@@ -14,17 +14,14 @@ export interface SearchResultProps {
 }
 
 const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
- const { toggleModal } = useModalContext();
-  
+  const { toggleModal } = useModalContext();
+
   const handleItemClick = () => {
     toggleModal();
   };
   return (
     <li onClick={handleItemClick}>
-      <Link
-        href={`/candles/${result.slug}/${result.id}`}
-        className={styles.searchLink}
-      >
+      <Link href={`${result.slug}/${result.id}`} className={styles.searchLink}>
         <div className={styles.searchWrapper}>
           <Image
             src={Image1}
