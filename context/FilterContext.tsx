@@ -69,9 +69,9 @@ export const FilterProvider = ({ children }: FilterContextProps) => {
     return configurationFilter.filterParam.includes(item) ? true : false;
   };
 
-  useEffect(() => {
-    console.log('Updated filterVar', configurationFilter);
-  }, [configurationFilter]);
+  // useEffect(() => {
+  //   console.log('Updated filterVar', configurationFilter);
+  // }, [configurationFilter]);
 
   return (
     <FilterContext.Provider
