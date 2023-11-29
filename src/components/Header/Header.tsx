@@ -43,7 +43,11 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
     isMobileMenuOpen
       ? html?.classList.add(styles.overflowHidden)
       : html?.classList.remove(styles.overflowHidden);
-  }, [isMobileMenuOpen]);
+
+    if (!isSmallScreen && isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  }, [isMobileMenuOpen, isSmallScreen]);
 
   return (
     <header className={styles.header}>
