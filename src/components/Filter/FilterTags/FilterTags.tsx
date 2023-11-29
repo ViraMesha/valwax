@@ -7,25 +7,24 @@ import { useFilterContext } from '../../../../context/FilterContext';
 
 import styles from './FilterTags.module.scss';
 
-
 const FilterTags: React.FC<FilterTagsI> = ({ dict }) => {
-  const { configurationFilter, modifyFilter, cleanFilter } = useFilterContext();
+  const { configurationFilter, toggleFilterParam, cleanFilter } =
+    useFilterContext();
 
-  const isFilterApplied =
-    configurationFilter.filterParam.length === 0 ? false : true;
+  const isFilterApplied = configurationFilter.filterParams.length !== 0;
 
   return (
     <>
       <div className={styles.wrapper}>
         <ul className={styles.list}>
-          {configurationFilter.filterParam.map(item => (
+          {configurationFilter.filterParams.map(item => (
             <li key={item} className={styles.item}>
               <Typography variant="bodyS2" className={styles.txt}>
                 {item}
               </Typography>
               <IoClose
                 className={styles.icon}
-                onClick={() => modifyFilter(item)}
+                onClick={() => toggleFilterParam(item)}
               />
             </li>
           ))}

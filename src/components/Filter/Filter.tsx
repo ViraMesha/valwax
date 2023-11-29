@@ -14,7 +14,7 @@ const Filter: React.FC<FilterI> = ({ dict, className, onModal }) => {
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1230;
 
-  const { configurationFilter, modifySort, cleanFilter } = useFilterContext();
+  const { configurationFilter, updateSortSetting, cleanFilter } = useFilterContext();
 
   return (
     <div className={`${styles.wrapper} ${className || ''}`}>
@@ -28,21 +28,21 @@ const Filter: React.FC<FilterI> = ({ dict, className, onModal }) => {
           </Typography>
           <button
             className={`${styles.btn} ${
-              configurationFilter.sortSettings === dict.up
+              configurationFilter.sortSetting === dict.up
                 ? styles.btnActive
                 : ''
             }`}
-            onClick={() => modifySort(dict.up)}
+            onClick={() => updateSortSetting(dict.up)}
           >
             <Typography variant="bodyRegular">{dict.up}</Typography>
           </button>
           <button
             className={`${styles.btn} ${
-              configurationFilter.sortSettings === dict.down
+              configurationFilter.sortSetting === dict.down
                 ? styles.btnActive
                 : ''
             }`}
-            onClick={() => modifySort(dict.down)}
+            onClick={() => updateSortSetting(dict.down)}
           >
             <Typography variant="bodyRegular">{dict.down}</Typography>
           </button>
@@ -58,7 +58,6 @@ const Filter: React.FC<FilterI> = ({ dict, className, onModal }) => {
         <FilterCategoryBlock
           dict={dict.category.container}
           className={styles.containerBlock}
-          // onModifyFilter={modifyFilter}
         />
       </div>
       {!isLargeScreen && (

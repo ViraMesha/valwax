@@ -34,7 +34,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
 
   const { configurationFilter } = useFilterContext();
 
-  const numberSelectedFilters = configurationFilter.filterParam.length;
+  const numberSelectedFilters = configurationFilter.filterParams.length;
 
   const toggleTabsMenu = () => {
     setIsTabsMenuOpen(!isTabsMenuOpen);
@@ -131,9 +131,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
           {isSmallScreen && (
             <button className={styles.btn} onClick={toggleModal}>
               <Typography variant="bodyRegular" color={'var(--cl-primary-200)'}>
-                {numberSelectedFilters === 0
-                  ? ''
-                  : `+ ${numberSelectedFilters}`}
+                {(numberSelectedFilters !== 0) && `+ ${numberSelectedFilters}`}
               </Typography>
               <IoOptionsOutline />
               <Typography variant="bodyRegular" color={'var(--cl-gray-500)'}>

@@ -3,14 +3,14 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
 type ConfigurationFilterI = {
-  sortSettings: string;
-  filterParam: string[];
+  sortSetting: string;
+  filterParams: string[];
 };
 
 type FilterContextI = {
   configurationFilter: ConfigurationFilterI;
-  modifyFilter: (p: string) => void;
-  modifySort: (p: string) => void;
+  toggleFilterParam: (p: string) => void;
+  updateSortSetting: (p: string) => void;
   cleanFilter: () => void;
   isSelected: (i: string) => boolean;
 };
@@ -22,43 +22,30 @@ type FilterContextProps = {
 const FilterContext = createContext<FilterContextI | undefined>(undefined);
 
 export const FilterProvider = ({ children }: FilterContextProps) => {
-  const initConfigurationFilter = { sortSettings: '', filterParam: [] };
+  const initConfigurationFilter = { sortSetting: '', filterParams: [] };
 
   const [configurationFilter, setConfigurationFilter] =
     useState<ConfigurationFilterI>(initConfigurationFilter);
 
-  const modifyFilter = (param: string) => {
+  const toggleFilterParam = (param: string) => {
     setConfigurationFilter(prevConfigurationFilter => {
-      if (prevConfigurationFilter.filterParam.includes(param)) {
-        return {
-          ...prevConfigurationFilter,
-          filterParam: prevConfigurationFilter.filterParam.filter(
-            par => par !== param
-          ),
-        };
-      } else {
-        return {
-          ...prevConfigurationFilter,
-          filterParam: [...prevConfigurationFilter.filterParam, param],
-        };
-      }
+      const isParamIncluded =
+        prevConfigurationFilter.filterParams.includes(param);
+      const updatedFilterParams = isParamIncluded
+        ? prevConfigurationFilter.filterParams.filter(par => par !== param)
+        : [...prevConfigurationFilter.filterParams, param];
+      return {
+        ...prevConfigurationFilter,
+        filterParams: updatedFilterParams,
+      };
     });
   };
-
-  const modifySort = (set: string) => {
-    setConfigurationFilter(prevConfigurationFilter => {
-      if (prevConfigurationFilter.sortSettings === set) {
-        return {
-          ...prevConfigurationFilter,
-          sortSettings: '',
-        };
-      } else {
-        return {
-          ...prevConfigurationFilter,
-          sortSettings: set,
-        };
-      }
-    });
+  
+  const updateSortSetting = (set: string) => {
+    setConfigurationFilter(prevConfigurationFilter => ({
+      ...prevConfigurationFilter,
+      sortSetting: prevConfigurationFilter.sortSetting === set ? '' : set,
+    }));
   };
 
   const cleanFilter = () => {
@@ -66,7 +53,7 @@ export const FilterProvider = ({ children }: FilterContextProps) => {
   };
 
   const isSelected = (item: string): boolean => {
-    return configurationFilter.filterParam.includes(item) ? true : false;
+    return configurationFilter.filterParams.includes(item) ? true : false;
   };
 
   // useEffect(() => {
@@ -77,8 +64,8 @@ export const FilterProvider = ({ children }: FilterContextProps) => {
     <FilterContext.Provider
       value={{
         configurationFilter,
-        modifyFilter,
-        modifySort,
+        toggleFilterParam,
+        updateSortSetting,
         cleanFilter,
         isSelected,
       }}

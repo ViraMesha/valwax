@@ -22,7 +22,7 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const { modifyFilter, isSelected } = useFilterContext();
+  const { toggleFilterParam, isSelected } = useFilterContext();
 
   return (
     <div className={`${styles.wrapper} ${className}`}>
@@ -35,7 +35,7 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
             {dict.option.map((item: string, index: number) => (
               <li
                 key={index}
-                onClick={() => modifyFilter(item)}
+                onClick={() => toggleFilterParam(item)}
                 className={`${styles.checkbox} ${
                   isSelected(item) ? styles.checked : ''
                 }`}

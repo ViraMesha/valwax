@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import { getInstData } from '../../../lib/api-services/apiInstagram';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
@@ -25,7 +26,7 @@ const Instagram = async () => {
             <a
               href="https://www.instagram.com/valwax"
               aria-label="Посилання на istagram"
-              target="_b"
+              target="_blank"
               rel="noopener noreferrere"
               className={styles.link}
             >
@@ -56,15 +57,6 @@ const Instagram = async () => {
       </Section>
     </>
   );
-};
-
-const ApiKey = process.env.INSTAGRAM_KEY
-
-export const getInstData = async () => {
-  const url = `https://graph.instagram.com/me/media?&fields=id,caption,media_type,media_url&access_token=${ApiKey}`;
-  const data = await fetch(url);
-  const feed = await data.json();
-  return feed.data;
 };
 
 export default Instagram;
