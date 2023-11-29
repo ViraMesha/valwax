@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
-import { useWindowSize } from 'usehooks-ts';
+import { useToggle } from 'usehooks-ts';
 
 import languageData, { ILanguage } from './languageData';
 
@@ -15,30 +15,16 @@ interface LanguageMenuPropsI {
 }
 
 const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, toggleMenu, setIsMenuOpen] = useToggle(false);
   const [selectedLanguage, setSelectedLanguage] = useState<ILanguage>(
     languageData[0]
   );
-  const { width } = useWindowSize();
-  const isDesktop = width >= 1230;
   const pathName = usePathname();
   const lang = pathName.split('/')[1];
-
-  const toggleMenu = () => {
-    setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen);
-  };
 
   const handleLanguageSelect = (language: ILanguage) => {
     setSelectedLanguage(language);
     setIsMenuOpen(false);
-  };
-
-  const handleMouseEnter = () => {
-    isDesktop && setIsMenuOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    isDesktop && setIsMenuOpen(false);
   };
 
   const redirectedPathName = (locale: string) => {
@@ -49,11 +35,7 @@ const LanguageMenu: React.FC<LanguageMenuPropsI> = ({ className }) => {
   };
 
   return (
-    <div
-      className={`${styles.languageMenu} ${className || ''}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className={`${styles.languageMenu} ${className || ''}`}>
       <div className={styles.languageContainer} onClick={toggleMenu}>
         <Image
           src={

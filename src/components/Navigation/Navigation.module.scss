@@ -68,7 +68,9 @@
   gap: 8px;
 
   @include breakpoint('desktop-large') {
-    padding: 35px 0;
+    & > span {
+      padding: 31.6px 0;
+    }
   }
 
   @include breakpoint('all-devices-without-desktop') {
@@ -95,10 +97,11 @@
   bottom: -1px;
   width: 100%;
   border-bottom: 1px solid var(--cl-primary-500);
+  transition: border-bottom-color var(--animat);
 }
 
 .navigationList:hover .activeLink:not(:hover)::after {
-  border-bottom: none;
+  border-bottom-color: transparent;
 }
 
 .candlesItem {
