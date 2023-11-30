@@ -21,8 +21,8 @@ const CreateYourOwn = async ({
 }: {
   params: { lang: Locale };
 }) => {
-  const { breadcrumbs } = await getDictionary(lang);
-  const { page, general } = await getDictionary(lang);
+  const { breadcrumbs, page, general } = await getDictionary(lang);
+  
   return (
     <>
       <Breadcrumbs

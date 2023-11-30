@@ -1,7 +1,7 @@
 'use client';
 import Button from '@components/components/Button/Button';
 
-import { useStateActionsContext } from '../../../../../context/StateContext';
+import { useCartActionsContext } from '../../../../../context/CartContext';
 
 interface BuyButtonProps {
   product: {
@@ -17,7 +17,7 @@ interface BuyButtonProps {
 }
 
 const BuyButton: React.FC<BuyButtonProps> = ({ product, buyBtn }) => {
-  const { onAdd } = useStateActionsContext();
+  const { onAdd } = useCartActionsContext();
   return (
     <Button variant="primary" type="button" onClick={() => onAdd(product)}>
       {buyBtn}

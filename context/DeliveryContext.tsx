@@ -9,7 +9,7 @@
 
 // type DeliveryContext = {
 //   selectedDelivery: string | null;
-  
+
 // };
 
 // type ActionsContextProps = {
@@ -50,7 +50,7 @@
 // export const useDeliveryContext = () => {
 //   const context = useContext(Context);
 //   if (!context)
-//     throw new Error('useStateContext must be used within a ContextProvider');
+//     throw new Error('useCartContext must be used within a ContextProvider');
 
 //   return context;
 // };
@@ -59,7 +59,7 @@
 //   const context = useContext(ActionsContext);
 //   if (!context)
 //     throw new Error(
-//       'useStateActionsContext must be used within a ContextProvider'
+//       'useCartActionsContext must be used within a ContextProvider'
 //     );
 
 //   return context;

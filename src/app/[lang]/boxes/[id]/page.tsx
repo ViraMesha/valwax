@@ -24,10 +24,8 @@ const BoxDetails = async ({
 }: {
   params: { lang: Locale; id: string };
 }) => {
-  const { breadcrumbs } = await getDictionary(lang);
-  const { relatedProducts } = await getDictionary(lang);
+  const { breadcrumbs, relatedProducts, general } = await getDictionary(lang);
   const product = await getBoxDetails(id);
-  const { general } = await getDictionary(lang);
 
   const regex = /(?:Бокс - |Box - )(.*)/;
   const match = product.title.match(regex);

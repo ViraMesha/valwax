@@ -9,12 +9,10 @@ export async function generateMetadata({
 }: {
   params: { lang: Locale };
 }) {
-  const { breadcrumbs } = await getDictionary(lang);
-  const {
-    metaInfo: {
-      successOrder: { description },
-    },
-  } = await getDictionary(lang);
+  const { breadcrumbs, metaInfo: {
+    successOrder: { description },
+  } } = await getDictionary(lang);
+ 
   return {
     title: `Valwax | ${breadcrumbs.successOrder}`,
     description,
@@ -26,8 +24,7 @@ export default async function SuccessOrder({
 }: {
   params: { lang: Locale };
 }) {
-  const { page } = await getDictionary(lang);
-  const { breadcrumbs } = await getDictionary(lang);
+  const { page, breadcrumbs } = await getDictionary(lang);
 
   return (
     <>

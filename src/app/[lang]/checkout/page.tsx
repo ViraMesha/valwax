@@ -20,10 +20,8 @@ export default async function Checkout({
 }: {
   params: { lang: Locale };
 }) {
-  const { breadcrumbs } = await getDictionary(lang);
-  const {
-    page: { checkout },
-  } = await getDictionary(lang);
+  const { breadcrumbs,  page: { checkout } } = await getDictionary(lang);
+ 
   return (
     <>
       <Breadcrumbs

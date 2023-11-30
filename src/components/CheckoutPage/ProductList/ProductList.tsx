@@ -3,7 +3,7 @@ import { redirect, usePathname } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
 import type { CartProductI, ProductListDictionary } from '@components/types';
 
-import { useStateContext } from '../../../../context/StateContext';
+import { useCartContext } from '../../../../context/CartContext';
 import ProductCard from '../ProductCard/ProductCard';
 
 import styles from './ProductList.module.scss';
@@ -17,7 +17,7 @@ const ProductList: React.FC<ProductListProps> = ({
 }) => {
   const pathName = usePathname();
   const lang = pathName.split('/')[1];
-  const { totalPrice, cartItems } = useStateContext();
+  const { totalPrice, cartItems } = useCartContext();
 
   if (!cartItems.length) {
     redirect(`/${lang}`);

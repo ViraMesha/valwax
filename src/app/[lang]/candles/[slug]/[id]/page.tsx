@@ -29,10 +29,8 @@ export default async function Candle({
     slug: 'soy-candles' | 'coconut-candles' | 'palm-candles';
   };
 }) {
-  const { breadcrumbs } = await getDictionary(lang);
+  const { breadcrumbs, relatedProducts, general } = await getDictionary(lang);
   const product = await getCandleDetails(id);
-  const { relatedProducts } = await getDictionary(lang);
-  const { general } = await getDictionary(lang);
 
   return (
     <>

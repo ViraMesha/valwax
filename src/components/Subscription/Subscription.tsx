@@ -1,7 +1,7 @@
 'use client';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import emailValidationSchema from '@components/helpers/emailValidationSchema';
+import { showToast } from '@components/helpers/showToast';
 import useStatusState from '@components/hooks/useStatusState';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -50,11 +50,11 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
       handleStatus('isLoading', true);
       await sendEmail(data?.email);
       console.log(data);
-      toast.success('Your email was successfully sent!');
+      showToast('Your email was successfully sent!');
     } catch (error) {
       handleStatus('hasError', true);
       console.log(error);
-      toast.error('Ooops😌 Something went wrong!');
+      showToast('Ooops😌 Something went wrong!', 'error');
     } finally {
       handleStatus('isLoading', false);
       reset();

@@ -1,9 +1,9 @@
 'use client';
 import Link from 'next/link';
 import { BiShoppingBag } from 'react-icons/bi';
-import { toast } from 'react-toastify';
+import { showToast } from '@components/helpers/showToast';
 
-import { useStateContext } from '../../../../context/StateContext';
+import { useCartContext } from '../../../../context/CartContext';
 import { Locale } from '../../../../i18n-config';
 
 import styles from './Cart.module.scss';
@@ -13,11 +13,12 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ lang }) => {
-  const { totalQuantities, cartItems } = useStateContext();
+  const { totalQuantities, cartItems } = useCartContext();
 
   const handleCartClick = () => {
-    toast.warning(
-      'Your cart is empty. Please add items before proceeding to checkout.'
+    showToast(
+      'Your cart is empty. Please add items before proceeding to checkout.',
+      'warning'
     );
   };
 
