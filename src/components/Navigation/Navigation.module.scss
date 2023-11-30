@@ -72,7 +72,8 @@
   }
 }
 
-.centerContent > span {
+.centerContent > span,
+.centerContentFooter > span {
   position: relative;
 
   @include breakpoint('all-devices-without-desktop') {
@@ -161,7 +162,8 @@
 }
 
 .candlesItemPadding::before,
-.centerContent > span::before {
+.centerContent > span::before,
+.centerContentFooter > span::before {
   content: '';
   position: absolute;
   left: 0;
@@ -177,7 +179,8 @@
 }
 
 .candlesItemPadding:not(.activeLink):hover::before,
-.centerContent > span:not(.activeLink):hover::before {
+.centerContent > span:not(.activeLink):hover::before,
+.centerContentFooter > span:not(.activeLink):hover::before {
   width: 100%;
   transform-origin: 100% 0;
   transform: scaleX(1);
