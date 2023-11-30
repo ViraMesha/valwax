@@ -53,7 +53,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
     } catch (error) {
       setIsLoading(false);
       console.error(error);
-      toast.error('Ooops! Something went wrong!');
+      toast.error('Ooops😌 Something went wrong!');
     }
   }, 500);
 

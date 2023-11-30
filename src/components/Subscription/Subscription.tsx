@@ -1,8 +1,11 @@
 'use client';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import emailValidationSchema from '@components/helpers/emailValidationSchema';
+import useStatusState from '@components/hooks/useStatusState';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { sendEmail } from '../../../lib/api-services/api';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 import Input from '../Input/Input';
@@ -24,6 +27,11 @@ interface FormValues {
 }
 
 const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
+  const { state, handleStatus } = useStatusState({
+    isLoading: false,
+    hasError: false,
+  });
+
   const {
     register,
     handleSubmit,
@@ -37,9 +45,20 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
     resolver: yupResolver(emailValidationSchema),
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data: FormValues) => {
+    try {
+      handleStatus('isLoading', true);
+      await sendEmail(data?.email);
+      console.log(data);
+      toast.success('Your email was successfully sent!');
+    } catch (error) {
+      handleStatus('hasError', true);
+      console.log(error);
+      toast.error('Ooops😌 Something went wrong!');
+    } finally {
+      handleStatus('isLoading', false);
+      reset();
+    }
   };
 
   return (
@@ -71,7 +90,12 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
             error={errors.email}
             {...register('email')}
           />
-          <Button variant="primary" className={styles.subscriptionButton}>
+          <Button
+            variant="primary"
+            className={styles.subscriptionButton}
+            disabled={!!errors?.email || state.isLoading}
+            isLoading={state.isLoading}
+          >
             {dict.buttonText}
           </Button>
         </form>

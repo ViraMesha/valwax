@@ -1,4 +1,6 @@
+import { delayFn } from '@components/helpers/delayFn';
 import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
+import { handleErrorWithMessage } from '@components/helpers/handleErrorWithMessage';
 
 import box1 from '../../public/images/boxes/boxes_section/box.jpg';
 import box2 from '../../public/images/boxes/boxes_section/box2.jpg';
@@ -15,7 +17,7 @@ export const getCandles = async (
   perPage = 9
 ): Promise<CandleI[]> => {
   try {
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    await delayFn(1000);
 
     const fakeCandles: CandleI[] = [
       {
@@ -198,7 +200,7 @@ export const getBoxes = async (): Promise<BoxI[]> => {
     'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.';
 
   try {
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    await delayFn(1000);
 
     const fakeBoxes: BoxI[] = [
       {
@@ -248,7 +250,7 @@ export const getBoxes = async (): Promise<BoxI[]> => {
 
 export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
   try {
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await delayFn(1000);
 
     const fakeBoxDetails: BoxDetailsI = {
       id: '234',
@@ -284,7 +286,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
 
 export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
   try {
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await delayFn(1000);
 
     const fakeCandleDetails: CandleDetailsI = {
       id: '123',
@@ -317,6 +319,16 @@ export const fetchSearchResults = async (query: string | undefined) => {
     const data = await response.json();
     return data;
   } catch (error: unknown) {
-    extractErrorMessage(error);
+    handleErrorWithMessage(error);
+  }
+};
+
+export const sendEmail = async (email: string) => {
+  try {
+    await delayFn(1000);
+    throw new Error('Failed to fetch data');
+    console.log(`Email sent to ${email}`);
+  } catch (error: unknown) {
+    handleErrorWithMessage(error);
   }
 };
