@@ -67,14 +67,25 @@
   align-items: center;
   gap: 8px;
 
-  @include breakpoint('desktop-large') {
-    & > span {
-      padding: 31.6px 0;
+  @include breakpoint('all-devices-without-desktop') {
+    width: 100%;
+  }
+}
+
+.centerContent > span {
+  position: relative;
+
+  @include breakpoint('all-devices-without-desktop') {
+    &::before {
+      bottom: -1px;
     }
   }
 
-  @include breakpoint('all-devices-without-desktop') {
-    width: 100%;
+  @include breakpoint('desktop-large') {
+    padding: 31.6px 0;
+    &::before {
+      bottom: 30px;
+    }
   }
 }
 
@@ -129,28 +140,11 @@
 
 .candlesItemPadding {
   position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--cl-primary-500);
-    transform-origin: 100% 50%;
-    transition: all var(--animat);
-    transform: scaleX(0);
-    transform: scaleY(1);
-    transform: scaleZ(1);
-    will-change: transform;
-  }
 
-  &:not(.activeLink):hover::before {
-    width: 100%;
-    transform-origin: 100% 0;
-    transform: scaleX(1);
-    transform: scaleY(1);
-    transform: scaleZ(1);
+  @include breakpoint('all-devices-without-desktop') {
+    &::before {
+      bottom: -1px;
+    }
   }
 
   @include breakpoint('desktop-large') {
@@ -164,4 +158,29 @@
 
 .centerContent .arrowIcon {
   margin-left: auto;
+}
+
+.candlesItemPadding::before,
+.centerContent > span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--cl-primary-500);
+  transform-origin: 100% 50%;
+  transition: all var(--animat);
+  transform: scaleX(0);
+  transform: scaleY(1);
+  transform: scaleZ(1);
+  will-change: transform;
+}
+
+.candlesItemPadding:not(.activeLink):hover::before,
+.centerContent > span:not(.activeLink):hover::before {
+  width: 100%;
+  transform-origin: 100% 0;
+  transform: scaleX(1);
+  transform: scaleY(1);
+  transform: scaleZ(1);
 }
