@@ -110,6 +110,7 @@
   justify-content: center;
   gap: 8px;
   width: 156px;
+  cursor: pointer;
 
   @include breakpoint('only-mobile-small') {
     position: absolute;

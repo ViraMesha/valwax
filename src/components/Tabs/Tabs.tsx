@@ -6,9 +6,10 @@ import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoOptionsOutline } from 'react-icons/io5';
 import useModal from '@components/hooks/useModal';
+import { TabsI } from '@components/types';
 import { useWindowSize } from 'usehooks-ts';
 
-import { Locale } from '../../../i18n-config';
+import { useFilterContext } from '../../../context/FilterContext';
 import Container from '../Container/Container';
 import Filter from '../Filter/Filter';
 import FilterTags from '../Filter/FilterTags/FilterTags';
@@ -20,25 +21,6 @@ import { tabsData, tabsI } from './data';
 
 import styles from './Tabs.module.scss';
 
-interface TabsI {
-  dict: {
-    tabs: {
-      fullTitle: string[];
-      abbreviatedTitle: string[];
-    };
-    filter: {
-      title: string;
-      subtitle: string;
-      up: string;
-      down: string;
-      cleanUp: string;
-      result: string;
-      category: any;
-      cleanFilter: string;
-    };
-  };
-  lang: Locale;
-}
 
 const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   const [isTabsMenuOpen, setIsTabsMenuOpen] = useState(false);
@@ -49,6 +31,10 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   const isSmallScreen = width < 1230;
   const isMobScreen = width < 667;
   const { isModal, toggleModal, onBackdropClick } = useModal();
+
+  const { configurationFilter } = useFilterContext();
+
+  const numberSelectedFilters = configurationFilter.filterParams.length;
 
   const toggleTabsMenu = () => {
     setIsTabsMenuOpen(!isTabsMenuOpen);
@@ -145,7 +131,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
           {isSmallScreen && (
             <button className={styles.btn} onClick={toggleModal}>
               <Typography variant="bodyRegular" color={'var(--cl-primary-200)'}>
-                +7
+                {!!numberSelectedFilters && `+ ${numberSelectedFilters}`}
               </Typography>
               <IoOptionsOutline />
               <Typography variant="bodyRegular" color={'var(--cl-gray-500)'}>
@@ -156,7 +142,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
         </div>
         {isModal && (
           <Modal onBackdropClick={onBackdropClick} className={styles.backdrop}>
-            <Filter dict={dict.filter} />
+            <Filter dict={dict.filter} onModal={toggleModal} />
           </Modal>
         )}
         {isSmallScreen && <FilterTags dict={dict.filter} />}

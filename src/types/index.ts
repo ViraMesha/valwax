@@ -1,5 +1,7 @@
 import { StaticImageData } from 'next/image';
 
+import { Locale } from '../../i18n-config';
+
 export interface BoxDetailsI {
   id: string;
   images: string[];
@@ -177,4 +179,53 @@ export interface BoxI {
   link: string;
   text: string;
   description: string;
+}
+
+type FilterT = {
+    title: string;
+    subtitle: string;
+    up: string;
+    down: string;
+    cleanUp: string;
+    result: string;
+    category: { [key: string]: { title: string; option: string[] } };
+}
+
+export interface FilterI {
+  dict: FilterT;
+  className?: string;
+  onModal?: () => void;
+}
+
+export interface CandlesSectionI {
+  dict: {
+    filter: FilterT;
+  };
+  candles: Promise<CandleI[]>;
+}
+
+export interface FilterTagsI {
+  dict: {
+    cleanFilter: string;
+  };
+}
+
+export interface TabsI {
+  dict: {
+    tabs: {
+      fullTitle: string[];
+      abbreviatedTitle: string[];
+    };
+    filter: {
+      title: string;
+      subtitle: string;
+      up: string;
+      down: string;
+      cleanUp: string;
+      result: string;
+      category: any;
+      cleanFilter: string;
+    };
+  };
+  lang: Locale;
 }

@@ -4,6 +4,7 @@ import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollToTopButton';
 
+import { FilterProvider } from '../../../context/FilterContext';
 import { ModalProvider } from '../../../context/ModalContext';
 import { StateContext } from '../../../context/StateContext';
 import { i18n, Locale } from '../../../i18n-config';
@@ -41,9 +42,11 @@ export default async function RootLayout({
       <body>
         <StateContext>
           <ModalProvider>
-            <Header lang={params.lang} dict={search} navDict={navigation} />
-            <main className={styles.main}>{children}</main>
-            <Footer lang={params.lang} dict={footer} navDict={navigation} />
+            <FilterProvider>
+              <Header lang={params.lang} dict={search} navDict={navigation} />
+              <main className={styles.main}>{children}</main>
+              <Footer lang={params.lang} dict={footer} navDict={navigation} />
+            </FilterProvider>
           </ModalProvider>
         </StateContext>
         <ScrollToTopButton />

@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { CandleI } from '@components/types';
+import { CandlesSectionI } from '@components/types';
 
 import Container from '../Container/Container';
 import Filter from '../Filter/Filter';
@@ -9,13 +9,6 @@ import CandlesSkeleton from '../Skeletons/CandlesSkeleton/CandlesSkeleton';
 import CandleList from './CandleList/CandleList';
 
 import styles from './CandlesSection.module.scss';
-
-interface CandlesSectionI {
-  dict: {
-    filter: any;
-  };
-  candles: Promise<CandleI[]>;
-}
 
 const CandlesSection: React.FC<CandlesSectionI> = ({ dict, candles }) => {
   return (
