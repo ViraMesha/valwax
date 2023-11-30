@@ -6,7 +6,7 @@ import imageInsta4 from '../../public/images/insta/4444.jpg';
 
 const ApiKey = process.env.INSTAGRAM_KEY
 
-const feed = [
+const feeds = [
   {
     id: '17968609187358267',
     caption:
@@ -114,9 +114,9 @@ export const getInstData = async () => {
   const url = `https://graph.instagram.com/me/media?&fields=id,caption,media_type,media_url&access_token=${ApiKey}`;
   try {
     const response = await fetch(url);
-    const feed = await response.json();
-    return feed.data;
+    const feeds = await response.json();
+    return feeds.data;
   } catch (error) {
-    return feed;
+    return feeds;
   };
 };

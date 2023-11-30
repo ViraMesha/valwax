@@ -131,7 +131,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
           {isSmallScreen && (
             <button className={styles.btn} onClick={toggleModal}>
               <Typography variant="bodyRegular" color={'var(--cl-primary-200)'}>
-                {(numberSelectedFilters !== 0) && `+ ${numberSelectedFilters}`}
+                {!!numberSelectedFilters && `+ ${numberSelectedFilters}`}
               </Typography>
               <IoOptionsOutline />
               <Typography variant="bodyRegular" color={'var(--cl-gray-500)'}>

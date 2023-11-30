@@ -27,7 +27,7 @@ const Instagram = async () => {
               href="https://www.instagram.com/valwax"
               aria-label="Посилання на istagram"
               target="_blank"
-              rel="noopener noreferrere"
+              rel="noopener noreferrer nofollow"
               className={styles.link}
             >
               <Typography variant="bodyL" color="var(--cl-gray-500)">

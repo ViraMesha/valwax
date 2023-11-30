@@ -25,15 +25,18 @@
 
 .txt {
   font-size: 12px;
+  cursor: default;
 }
 
 .icon {
   width: 10px;
   height: 10px;
+  cursor: pointer;
 }
 
 .btn {
   border: none;
   background-color: transparent;
   text-decoration-line: underline;
+  cursor: pointer;
 }
