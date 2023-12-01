@@ -422,7 +422,7 @@
       "price": "Вартість:"
     },
     "messages": {
-      "notAllParam": "Each candle parameter must be selected"
+      "notAllParam": "Кожен параметр свічки повинен бути обраний"
     }
   },
 

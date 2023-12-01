@@ -5,6 +5,7 @@ import Header from '@components/components/Header/Header';
 import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollToTopButton';
 
 import { CartContextProvider } from '../../../context/CartContext';
+import { FilterProvider } from '../../../context/FilterContext';
 import { ModalProvider } from '../../../context/ModalContext';
 import { i18n, Locale } from '../../../i18n-config';
 import { getDictionary } from '../../../lib/utils/dictionary';
@@ -39,9 +40,11 @@ export default async function RootLayout({
       <body>
         <CartContextProvider>
           <ModalProvider>
-            <Header lang={params.lang} dict={search} navDict={navigation} />
-            <main className={styles.main}>{children}</main>
-            <Footer lang={params.lang} dict={footer} navDict={navigation} />
+            <FilterProvider>
+              <Header lang={params.lang} dict={search} navDict={navigation} />
+              <main className={styles.main}>{children}</main>
+              <Footer lang={params.lang} dict={footer} navDict={navigation} />
+            </FilterProvider>
           </ModalProvider>
         </CartContextProvider>
         <ScrollToTopButton />
