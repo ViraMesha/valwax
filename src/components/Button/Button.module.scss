@@ -174,14 +174,19 @@
 */
 
 .loader {
-  width: 20px;
-  height: 20px;
+  width: 27.8px;
+  height: 27.8px;
   border: 5px solid var(--cl-gray-50);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+
+  @include breakpoint('mobile-small') {
+    width: 24.64px;
+    height: 24.64px;
+  }
 }
 
 @keyframes rotation {
