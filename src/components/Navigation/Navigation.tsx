@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import useCloseDropdownOnNavigation from '@components/hooks/useCloseDropdownOnNavigation';
 import type { NavDictI } from '@components/types';
 import { useToggle } from 'usehooks-ts';
 
@@ -28,7 +29,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
   navDict,
 }) => {
   const pathname = usePathname();
-  const [isCandlesMenuOpen, toggleDropdown] = useToggle(false);
+  const [isCandlesMenuOpen, toggleDropdown, setIsCandlesMenuOpen] = useToggle(false);
   const langPrefix = lang === 'en' ? '/en' : '/uk';
   const isActive = (link: string) => pathname === `${langPrefix}${link}`;
   const navLinks = generateNavLinks(navDict);
@@ -40,6 +41,8 @@ const Navigation: React.FC<NavigationPropsI> = ({
     navDict.paymentAndDelivery,
   ];
   const candlesMenuItems = [navDict.soy, navDict.coconut, navDict.palm];
+
+  useCloseDropdownOnNavigation(setIsCandlesMenuOpen)
 
   const isCandlesActive = () => {
     for (const candlesItem of candlesMenuItems) {
