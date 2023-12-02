@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Select from 'react-select';
+
+import CustomScrollBar from '../CustomScrollBar/CustomScrollBar';
+
+import styles from './CustomSelect.module.scss';
 
 interface CustomSelectProps {
   value: any;
   onChange: (newValue: any) => void;
   label?: string;
-  options: {ref?: string; value?: string; label?: string }[];
+  options: { ref?: string; value?: string; label?: string }[];
   // id?: string;
   placeholder?: string;
   onClick?: () => void;
@@ -23,8 +27,10 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   placeholder,
   onMenuOpen,
   isLoading,
-  name
+  name,
 }) => {
+  const SelectWrapper = useRef<HTMLDivElement | null>(null);
+
   const colourStyles = {
     control: (styles: any) => ({
       ...styles,
@@ -35,39 +41,60 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       fontSize: '16px',
       lineHeight: '150%',
       color: 'var(--cl-gray-200)',
+      outline: 'none',
+      appearance: 'none',
+      borderColor: 'var(--cl-secondary-700)',
+      '&:hover': {
+        borderColor: 'var(--cl-secondary-700)',
+      },
+      '&:focus': {
+        outline: 'none',
+        borderColor: 'var(--cl-secondary-700)',
+        boxShadow: 'none',
+      },
+      transition: 'borderColor var(--animat)',
     }),
     indicatorSeparator: (styles: any) => ({
       ...styles,
       display: 'none',
     }),
-    Svg: (styles: any) => ({
+    svg: (styles: any) => ({
       ...styles,
+      width: '16',
+      height: '16',
       fill: 'var(--cl-primary-900)',
     }),
-    indicatorContainer: (styles: any) => ({
-      ...styles,
-      color: 'var(--cl-primary-900)',
-    }),
+
     option: (styles: any, { isDisabled }: { isDisabled: boolean }) => ({
       ...styles,
       backgroundColor: 'var(--cl-white)',
       cursor: 'pointer',
       borderRadius: '20px',
     }),
+
+    menuPortal: (provided: any) => ({
+      ...provided,
+      minHeight: '300px', // Задаємо мінімальну висоту випадаючого списку
+     
+      // Інші властивості, які вам потрібно змінити
+    }),
   };
 
   return (
     <div>
-      {label && <label>{label}</label>}
-      <Select
-        value={value}
-        onChange={onChange}
-        options={options}
-        placeholder={placeholder}
-        styles={colourStyles}
-        onMenuOpen={onMenuOpen}
-        isLoading={isLoading}
-      />
+      {label && <label className={styles.label}>{label}</label>}
+      <CustomScrollBar root={SelectWrapper} maxHeight="240px">
+        <Select
+          value={value}
+          onChange={onChange}
+          options={options}
+          placeholder={placeholder}
+          styles={colourStyles}
+          onMenuOpen={onMenuOpen}
+          isLoading={isLoading}
+          menuPortalTarget={document.body}
+        />
+      </CustomScrollBar>
     </div>
   );
 };

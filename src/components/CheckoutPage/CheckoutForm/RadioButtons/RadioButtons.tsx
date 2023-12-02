@@ -1,4 +1,7 @@
 import React, { ChangeEvent, useEffect } from 'react';
+import { FaCheck } from "react-icons/fa6";
+
+import styles from './RadioButtons.module.scss';
 
 // import { useDeliveryActionsContext } from '../../../../../context/DeliveryContext';
 // import { useDeliveryContext } from '../../../../../context/DeliveryContext';
@@ -8,6 +11,7 @@ interface RadioButtonsProps {
   checkedSelector: string;
 
 }
+
 
 const RadioButtons: React.FC<RadioButtonsProps> = ({ options, onChangeSelector, checkedSelector }) => {
   // const { chooseDelivery } = useDeliveryActionsContext();
@@ -19,16 +23,22 @@ const RadioButtons: React.FC<RadioButtonsProps> = ({ options, onChangeSelector, 
 
   
   return (
-    <div>
+    <div className={styles.radioButtonsContainer}>
       {options.map((option, index) => (
         <div key={index}>
-          <label>
+          <label className={styles.radioButtonsLabel}>
             <input
+              className={styles.radioButtonsInput}
               type="radio"
               value={option}
               checked={checkedSelector === option}
               onChange={() => onChangeSelector(option)}
             />
+            <span className={styles.radioButtonsIcon}>
+              {checkedSelector === option && (
+                <FaCheck style={{ color: 'var(--cl-white)', width: '12px' }} />
+              )}
+            </span>
             {option}
           </label>
           <br />
