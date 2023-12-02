@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
-import { toast } from 'react-toastify';
 import Typography from '@components/components/Typography/Typography';
+import { showToast } from '@components/helpers/showToast';
 import { ProductDetails } from '@components/types';
 import debounce from 'lodash.debounce';
 
@@ -53,7 +53,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
     } catch (error) {
       setIsLoading(false);
       console.error(error);
-      toast.error('Ooops! Something went wrong!');
+      showToast('Ooops😌 Something went wrong!', 'error');
     }
   }, 500);
 

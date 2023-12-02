@@ -1,3 +1,11 @@
+'use client';
+import { useForm } from 'react-hook-form';
+import emailValidationSchema from '@components/helpers/emailValidationSchema';
+import { showToast } from '@components/helpers/showToast';
+import useStatusState from '@components/hooks/useStatusState';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { sendEmail } from '../../../lib/api-services/api';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 import Input from '../Input/Input';
@@ -14,7 +22,45 @@ interface SubscriptionI {
   };
 }
 
+interface FormValues {
+  email: string;
+}
+
 const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
+  const { state, handleStatus } = useStatusState({
+    isLoading: false,
+    hasError: false,
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    setError,
+    setValue,
+    reset,
+  } = useForm<FormValues>({
+    mode: 'onBlur',
+    defaultValues: {},
+    resolver: yupResolver(emailValidationSchema),
+  });
+
+  const onSubmit = async (data: FormValues) => {
+    try {
+      handleStatus('isLoading', true);
+      await sendEmail(data?.email);
+      console.log(data);
+      showToast('Your email was successfully sent!');
+    } catch (error) {
+      handleStatus('hasError', true);
+      console.log(error);
+      showToast('Ooops😌 Something went wrong!', 'error');
+    } finally {
+      handleStatus('isLoading', false);
+      reset();
+    }
+  };
+
   return (
     <Section className={styles.subscription}>
       <Container>
@@ -32,12 +78,27 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
         >
           {dict.text}
         </Typography>
-        <div className={styles.subscriptionWrapper}>
-          <Input placeholder="Email" className={styles.subscriptionInput} />
-          <Button variant="primary" className={styles.subscriptionButton}>
+        <form
+          className={styles.subscriptionWrapper}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <Input
+            type="email"
+            placeholder="Email"
+            className={styles.subscriptionInput}
+            errorMessage={errors.email?.message}
+            error={errors.email}
+            {...register('email')}
+          />
+          <Button
+            variant="primary"
+            className={styles.subscriptionButton}
+            disabled={!!errors?.email || state.isLoading}
+            isLoading={state.isLoading}
+          >
             {dict.buttonText}
           </Button>
-        </div>
+        </form>
       </Container>
     </Section>
   );

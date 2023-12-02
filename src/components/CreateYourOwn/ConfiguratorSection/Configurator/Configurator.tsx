@@ -1,13 +1,13 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import Button from '@components/components/Button/Button';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
+import { showToast } from '@components/helpers/showToast';
 import { nanoid } from 'nanoid';
 
-import { useStateActionsContext } from '../../../../../context/StateContext';
+import { useCartActionsContext } from '../../../../../context/CartContext';
 import candleImg from '../../../../../public/images/candles/img-1.jpg';
 import {
   ConfiguratorSectionI,
@@ -38,7 +38,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   const [paramCandle, setParamCandle] =
     useState<CustomCandleDescription>(initParamCandle);
 
-  const { onAdd } = useStateActionsContext();
+  const { onAdd } = useCartActionsContext();
   const pathName = usePathname();
   const router = useRouter();
   const lang = pathName.split('/')[1];
@@ -64,7 +64,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
       router.push(`/${lang}/checkout`);
       return;
     }
-    toast.warning(dictGeneral.messages.notAllParam);
+    showToast(dictGeneral.messages.notAllParam, 'warning');
   };
 
   return (

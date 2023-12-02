@@ -20,8 +20,8 @@ const PaymentAndDelivery = async ({
 }: {
   params: { lang: Locale };
 }) => {
-  const { breadcrumbs } = await getDictionary(lang);
-  const { page } = await getDictionary(lang);
+  const { breadcrumbs, page } = await getDictionary(lang);
+
   return (
     <>
       <Breadcrumbs

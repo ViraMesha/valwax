@@ -2,7 +2,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Button from '@components/components/Button/Button';
 import { ButtonsDictI, CartProductI } from '@components/types';
 
-import { useStateActionsContext } from '../../../../context/StateContext';
+import { useCartActionsContext } from '../../../../context/CartContext';
 
 import styles from './BuyButtons.module.scss';
 
@@ -15,7 +15,7 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
   product,
   buttonsDict: { buyNow, addToCart },
 }) => {
-  const { onAdd } = useStateActionsContext();
+  const { onAdd } = useCartActionsContext();
   const pathName = usePathname();
   const router = useRouter();
   const lang = pathName.split('/')[1];

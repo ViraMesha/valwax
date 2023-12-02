@@ -1,10 +1,11 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlesPage from '@components/components/CandlesPage/CandlesPage';
-import Pagination from '@components/components/shared/Pagination/Pagination';
 
 import { Locale } from '../../../../../i18n-config';
 import { getCandles } from '../../../../../lib/api-services/api';
 import { getDictionary } from '../../../../../lib/utils/dictionary';
+
+import { convertStringToNumber } from './../../../../helpers/convertStringToNumber';
 
 export async function generateMetadata({
   params: { slug, lang },
@@ -31,13 +32,10 @@ export default async function Page({
   };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const { breadcrumbs } = await getDictionary(lang);
-  const { page } = await getDictionary(lang);
+  const { breadcrumbs, page } = await getDictionary(lang);
 
-  const currentPage =
-    typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
-  const perPage =
-    typeof searchParams.perPage === 'string' ? Number(searchParams.perPage) : 9;
+  const currentPage = convertStringToNumber(searchParams.page, 1);
+  const perPage = convertStringToNumber(searchParams.perPage, 9);
 
   const promise = getCandles(currentPage, perPage);
 
@@ -52,7 +50,6 @@ export default async function Page({
         ]}
         lang={lang}
       />
-      {/* <Tabs dict={page.candles.tabs} lang={lang} /> */}
       <CandlesPage
         dictWax={page.candles[slug]}
         dict={page.candles}

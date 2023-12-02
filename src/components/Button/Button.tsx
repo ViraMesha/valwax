@@ -8,6 +8,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'primary' | 'secondary' | 'tertiary' | 'dark' | 'light';
   hasIcon?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  isLoading?: boolean;
 }
 
 const Button: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const Button: React.FC<Props> = ({
   variant = 'primary',
   hasIcon,
   className,
+  isLoading,
   ...rest
 }) => {
   const buttonClass = `${styles.button} ${styles[variant]} ${
@@ -30,7 +32,11 @@ const Button: React.FC<Props> = ({
       {...rest}
       className={buttonClass}
     >
-      <span>{children}</span>
+      {isLoading ? (
+        <span className={styles.loader}></span>
+      ) : (
+        <span>{children}</span>
+      )}
       {hasIcon && <TbArrowRight className={styles.icon} />}
     </button>
   );

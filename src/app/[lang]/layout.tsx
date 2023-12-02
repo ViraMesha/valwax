@@ -4,9 +4,9 @@ import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollToTopButton';
 
+import { CartContextProvider } from '../../../context/CartContext';
 import { FilterProvider } from '../../../context/FilterContext';
 import { ModalProvider } from '../../../context/ModalContext';
-import { StateContext } from '../../../context/StateContext';
 import { i18n, Locale } from '../../../i18n-config';
 import { getDictionary } from '../../../lib/utils/dictionary';
 import { proxima_nova } from '../fonts';
@@ -33,14 +33,12 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  const { footer } = await getDictionary(params.lang);
-  const { search } = await getDictionary(params.lang);
-  const { navigation } = await getDictionary(params.lang);
+  const { footer, search, navigation } = await getDictionary(params.lang);
 
   return (
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
-        <StateContext>
+        <CartContextProvider>
           <ModalProvider>
             <FilterProvider>
               <Header lang={params.lang} dict={search} navDict={navigation} />
@@ -48,7 +46,7 @@ export default async function RootLayout({
               <Footer lang={params.lang} dict={footer} navDict={navigation} />
             </FilterProvider>
           </ModalProvider>
-        </StateContext>
+        </CartContextProvider>
         <ScrollToTopButton />
         <ToastContainer
           position="top-right"

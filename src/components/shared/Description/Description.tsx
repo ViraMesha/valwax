@@ -16,10 +16,11 @@ interface DescriptionProps {
 }
 
 const Description: React.FC<DescriptionProps> = ({
-  product: { id: productId, images, title, description, price, slug },
+  product,
   id,
   buttonsDict,
 }) => {
+  const { id: productId, images, title, description, price, slug } = product;
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
   const [quantity, setQuantity] = useState(1);
@@ -78,11 +79,9 @@ const Description: React.FC<DescriptionProps> = ({
         )}
         <BuyButtons
           product={{
+            ...product,
             id: productId,
             img: images[0],
-            title,
-            description,
-            price,
             link: slug,
             quantity,
           }}

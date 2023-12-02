@@ -8,7 +8,7 @@ import type {
   ProductDescription,
 } from '@components/types';
 
-import { useStateActionsContext } from '../../../../context/StateContext';
+import { useCartActionsContext } from '../../../../context/CartContext';
 
 import styles from './ProductCard.module.scss';
 
@@ -39,7 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   deleteButtonText,
   descriptionPropertyNames: propertyNames,
 }) => {
-  const { onRemove } = useStateActionsContext();
+  const { onRemove } = useCartActionsContext();
   const isCustomCandle = link.includes('create-your-own');
 
   // Extract the keys of the description object

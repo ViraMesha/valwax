@@ -1,29 +1,33 @@
 'use client';
 import { createContext, useCallback, useContext, useMemo, useRef } from 'react';
-import { toast } from 'react-toastify';
+import { DECREMENT, INCREMENT } from '@components/constants';
+import { showToast } from '@components/helpers/showToast';
 import { useLocalStorage } from '@components/hooks/useLocalStorage';
 import { CartProductI } from '@components/types';
 
-type StateContextProps = {
+interface CartContextProps {
   children: React.ReactNode;
-};
+}
 
-type StateContext = {
+interface CartContextI {
   cartItems: CartProductI[];
   totalPrice: number;
   totalQuantities: number;
-};
+}
 
-type ActionsContextProps = {
+interface CartActionsContextProps {
   onAdd: (product: CartProductI, quantity?: number) => void;
-  toggleCartItemQuantity: (id: string, value: 'inc' | 'dec') => void;
+  toggleCartItemQuantity: (
+    id: string,
+    value: typeof INCREMENT | typeof DECREMENT
+  ) => void;
   onRemove: (id: string) => void;
-};
+}
 
-const Context = createContext<StateContext | null>(null);
-const ActionsContext = createContext<ActionsContextProps | null>(null);
+const CartContext = createContext<CartContextI | null>(null);
+const CartActionsContext = createContext<CartActionsContextProps | null>(null);
 
-export const StateContext = ({ children }: StateContextProps) => {
+export const CartContextProvider = ({ children }: CartContextProps) => {
   const [cartItems, setCartItems] = useLocalStorage<CartProductI[] | []>(
     'cartItems',
     []
@@ -73,7 +77,7 @@ export const StateContext = ({ children }: StateContextProps) => {
         product.quantity = quantity;
         setCartItems([...cartItems, { ...product }]);
       }
-      toast.success(`${product.title} added to the cart.`);
+      showToast(`${product.title} added to the cart.`);
     },
     [cartItems, setCartItems, setTotalPrice, setTotalQuantities]
   );
@@ -104,7 +108,7 @@ export const StateContext = ({ children }: StateContextProps) => {
         );
         setCartItems(newCartItems);
       }
-      toast.success('The product was successfully deleted!');
+      showToast('The product was successfully deleted!');
     },
     [cartItems, setCartItems, setTotalPrice, setTotalQuantities]
   );
@@ -177,29 +181,29 @@ export const StateContext = ({ children }: StateContextProps) => {
   );
 
   return (
-    <Context.Provider value={contextValue}>
-      <ActionsContext.Provider
+    <CartContext.Provider value={contextValue}>
+      <CartActionsContext.Provider
         value={{ onAdd, toggleCartItemQuantity, onRemove }}
       >
         {children}
-      </ActionsContext.Provider>
-    </Context.Provider>
+      </CartActionsContext.Provider>
+    </CartContext.Provider>
   );
 };
 
-export const useStateContext = () => {
-  const context = useContext(Context);
+export const useCartContext = () => {
+  const context = useContext(CartContext);
   if (!context)
-    throw new Error('useStateContext must be used within a ContextProvider');
+    throw new Error('useCartContext must be used within a ContextProvider');
 
   return context;
 };
 
-export const useStateActionsContext = () => {
-  const context = useContext(ActionsContext);
+export const useCartActionsContext = () => {
+  const context = useContext(CartActionsContext);
   if (!context)
     throw new Error(
-      'useStateActionsContext must be used within a ContextProvider'
+      'useCartActionsContext must be used within a ContextProvider'
     );
 
   return context;
