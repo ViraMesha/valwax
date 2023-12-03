@@ -1,14 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-// import { PhoneInput } from 'react-international-phone';
-// import Button from '@components/components/Button/Button';
 import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
 import validationSchema from '@components/helpers/formValidationSchema';
 import { AreaData, SelectOptions } from '@components/types';
 import { yupResolver } from '@hookform/resolvers/yup';
-// import { PhoneNumberUtil } from 'google-libphonenumber';
 import debounce from 'lodash/debounce';
 
 // import { useDeliveryContext } from '../../../../../context/DeliveryContext';
@@ -22,7 +19,6 @@ import {
 } from '../api';
 import RadioButtons from '../RadioButtons/RadioButtons';
 
-// import 'react-international-phone/style.css';
 import styles from './DeliveryForm.module.scss';
 
 type DeliveryFormValues = {
@@ -40,29 +36,33 @@ type DeliveryFormValues = {
 };
 
 interface DeliveryFormProps {
-  delivery: string;
-  deliveryOptions: string[];
-  areaLabel: string;
-  areaPlaceholder: string;
-  cityLabel: string;
-  cityPlaceholder: string;
-  warehouseLabel: string;
-  warehousePlaceholder: string;
-  notesLabel: string;
-  notesPlaceholder: string;
+  dict: {
+    delivery: string;
+    deliveryOptions: string[];
+    areaLabel: string;
+    areaPlaceholder: string;
+    cityLabel: string;
+    cityPlaceholder: string;
+    warehouseLabel: string;
+    warehousePlaceholder: string;
+    notesLabel: string;
+    notesPlaceholder: string;
+  };
 }
 
 const DeliveryForm: React.FC<DeliveryFormProps> = ({
-  delivery,
-  deliveryOptions,
-  areaLabel,
-  areaPlaceholder,
-  cityLabel,
-  cityPlaceholder,
-  warehouseLabel,
-  warehousePlaceholder,
-  notesLabel,
-  notesPlaceholder,
+  dict: {
+    delivery,
+    deliveryOptions,
+    areaLabel,
+    areaPlaceholder,
+    cityLabel,
+    cityPlaceholder,
+    warehouseLabel,
+    warehousePlaceholder,
+    notesLabel,
+    notesPlaceholder,
+  },
 }) => {
   const [areas, setAreas] = useState<AreaData[]>([]);
   const [cities, setCities] = useState<AreaData[]>([]);
@@ -94,11 +94,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     defaultValues: {},
     resolver: yupResolver(validationSchema),
   });
-
-  // const onSubmit = (data: DeliveryFormValues) => {
-  //   data.phone = phone;
-  //   console.log(data);
-  // };
 
   const handleSelectArea = (value: SelectOptions) => {
     setCities([]);
@@ -179,21 +174,33 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   }, []);
 
   useEffect(() => {
-
     if (selectedAreas && !selectedCity && cities.length === 0) {
       fetchDataCity();
     }
 
     fetchDataWarehouse();
+    
+    console.log('useEffect' ,
+      'selectedAreas',
+      selectedAreas,
+      'selectedCity',
+      selectedCity,
+      'selectedWarehouse',
+      selectedWarehouse
+    );
+
   }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
 
   useEffect(() => {
-    if ((selectedDelivery ===  deliveryOptions[2] && areas.length === 25) || (selectedDelivery !==  deliveryOptions[2] && areas.length === 26)) {
+    if (
+      (selectedDelivery === deliveryOptions[2] && areas.length === 25) ||
+      (selectedDelivery !== deliveryOptions[2] && areas.length === 26)
+    ) {
       fetchData();
-      setSelectedAreas(null)
-      setAreas([])
-      setSelectedCity(null)
-      setCities([])
+      setSelectedAreas(null);
+      setAreas([]);
+      setSelectedCity(null);
+      setCities([]);
     }
     setSelectedWarehouse(null);
     setWarehouse([]);
