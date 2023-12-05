@@ -228,4 +228,40 @@ export interface TabsI {
     };
   };
   lang: Locale;
+};
+
+
+export interface CheckoutFormValues {
+  // cashOnDelivery?: boolean | undefined;
+  // cardPayment?: boolean | undefined;
+  notes?: string | undefined;
+  phone: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  // delivery: string;
+  deliveryArea: { [key: string]: string };
+  deliveryCity: { [key: string]: string };
+  postOfficeBranchNum: { [key: string]: string };
 }
+
+export interface CheckoutFormProps {
+  dict: {
+    contactFormTitle: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    buttonText: string;
+    delivery: string;
+    deliveryOptions: string[];
+    areaLabel: string;
+    areaPlaceholder: string;
+    cityLabel: string;
+    cityPlaceholder: string;
+    warehouseLabel: string;
+    warehousePlaceholder: string;
+    notesLabel: string;
+    notesPlaceholder: string;
+  };
+};

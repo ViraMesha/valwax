@@ -14,16 +14,16 @@ const validationSchema = object().shape({
     .trim()
     .required("Телефон є обов'язковим полем")
     .matches(phoneRegex, 'Введіть дійсний номер телефону'),
-  delivery: string()
-    .required('Необхідно вказати спосіб доставки')
-    .oneOf([
-      'nova-poshta(post-office)',
-      'nova-poshta(parcel-locker)',
-      'ukr-poshta',
-    ]),
-  deliveryArea: string().required('Необхідно вказати область доставки'),
-  deliveryCity: string().required('Необхідно вказати Ваше місто'),
-  postOfficeBranchNum: string().required('Необхідно вказати номер відділення'),
+  // delivery: string()
+  //   .required('Необхідно вказати спосіб доставки')
+  //   .oneOf([
+  //     'nova-poshta(post-office)',
+  //     'nova-poshta(parcel-locker)',
+  //     'ukr-poshta',
+  //   ]),
+  deliveryArea: object().required('Необхідно вказати область доставки'),
+  deliveryCity: object().required('Необхідно вказати Ваше місто'),
+  postOfficeBranchNum: object().required('Необхідно вказати номер відділення'),
   // cashOnDelivery: bool().oneOf([true, false]),
   // cardPayment: bool().oneOf([true, false]),
   notes: string().max(1000),

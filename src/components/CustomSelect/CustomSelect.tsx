@@ -23,7 +23,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   placeholder,
   onMenuOpen,
   isLoading,
-  name
+  name,
 }) => {
   const colourStyles = {
     control: (styles: any) => ({

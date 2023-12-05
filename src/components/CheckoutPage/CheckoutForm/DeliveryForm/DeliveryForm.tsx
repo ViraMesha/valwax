@@ -37,6 +37,13 @@ type DeliveryFormValues = {
 
 interface DeliveryFormProps {
   dict: {
+    contactFormTitle: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    buttonText: string;
+
     delivery: string;
     deliveryOptions: string[];
     areaLabel: string;
@@ -48,6 +55,7 @@ interface DeliveryFormProps {
     notesLabel: string;
     notesPlaceholder: string;
   };
+  formControl: any;
 }
 
 const DeliveryForm: React.FC<DeliveryFormProps> = ({
@@ -63,6 +71,13 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     notesLabel,
     notesPlaceholder,
   },
+  formControl: {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    setError,
+    setValue,
+  }
 }) => {
   const [areas, setAreas] = useState<AreaData[]>([]);
   const [cities, setCities] = useState<AreaData[]>([]);
@@ -80,40 +95,29 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [orderNotes, setOrderNotes] = useState('');
 
-  // const { selectedDelivery } = useDeliveryContext();
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-    setError,
-    setValue,
-  } = useForm<DeliveryFormValues>({
-    mode: 'onBlur',
-    defaultValues: {},
-    resolver: yupResolver(validationSchema),
-  });
 
   const handleSelectArea = (value: SelectOptions) => {
     setCities([]);
     setWarehouse([]);
     setSelectedCity(null);
     setSelectedWarehouse(null);
+    setValue('deliveryArea', value)
     setSelectedAreas(value);
   };
 
   const handleSelectCity = debounce(async (value: SelectOptions) => {
     setSelectedWarehouse(null);
     setWarehouse([]);
-
+    setValue('deliveryCity', value)
     setSelectedCity(value);
   }, 300);
 
   const handleSelectWarehouse = (value: SelectOptions) => {
     setSelectedWarehouse(null);
     setWarehouse([]);
-
+    setValue('postOfficeBranchNum', value)
     setSelectedWarehouse(value);
   };
 
@@ -122,6 +126,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   ) => {
     const newValue = event.target.value;
     setOrderNotes(newValue);
+    setValue('notes', newValue)
   };
 
   const fetchData = async () => {
