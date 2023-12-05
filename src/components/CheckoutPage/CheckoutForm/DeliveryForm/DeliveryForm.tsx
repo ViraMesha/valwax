@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 // import { PhoneInput } from 'react-international-phone';
 // import Button from '@components/components/Button/Button';
@@ -132,7 +132,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     setOrderNotes(newValue);
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     const areasData = await (selectedDelivery === deliveryOptions[2]
       ? fetchAreasUkr()
@@ -143,8 +143,9 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
       setAreas(areasData);
       setIsAreaSelectOpen(false);
     }
-  };
+  }, [selectedDelivery, deliveryOptions]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataCity = async () => {
     if (selectedAreas && !selectedCity && cities.length === 0) {
       setIsLoading(true);
@@ -160,6 +161,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataWarehouse = async () => {
     if (selectedAreas && selectedCity && selectedDelivery) {
       setIsLoading(true);
@@ -179,7 +181,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   useEffect(() => {
 
@@ -188,7 +190,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     }
 
     fetchDataWarehouse();
-  }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
+  }, [cities, fetchDataCity, fetchDataWarehouse, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
 
   useEffect(() => {
     if ((selectedDelivery ===  deliveryOptions[2] && areas.length === 25) || (selectedDelivery !==  deliveryOptions[2] && areas.length === 26)) {
@@ -200,7 +202,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     }
     setSelectedWarehouse(null);
     setWarehouse([]);
-  }, [selectedDelivery]);
+  }, [areas.length, deliveryOptions, fetchData, selectedDelivery]);
 
   const selectOptionsArea = areas.map(option =>
     selectedDelivery === deliveryOptions[2]
