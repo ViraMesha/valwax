@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import Select from 'react-select';
+import React, { useEffect, useRef, useState } from 'react';
+import Select, { components } from 'react-select';
 
 import CustomScrollBar from '../CustomScrollBar/CustomScrollBar';
 
@@ -10,7 +10,6 @@ interface CustomSelectProps {
   onChange: (newValue: any) => void;
   label?: string;
   options: { ref?: string; value?: string; label?: string }[];
-  // id?: string;
   placeholder?: string;
   onClick?: () => void;
   onMenuOpen?: () => void;
@@ -30,6 +29,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   name,
 }) => {
   const SelectWrapper = useRef<HTMLDivElement | null>(null);
+  const [selectedValue, setSelectedValue] = useState(value);
 
   const colourStyles = {
     control: (styles: any) => ({
@@ -44,57 +44,66 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       outline: 'none',
       appearance: 'none',
       borderColor: 'var(--cl-secondary-700)',
+      transition: 'borderColor var(--animat)',
+      boxShadow: 'none',
       '&:hover': {
         borderColor: 'var(--cl-secondary-700)',
       },
       '&:focus': {
-        outline: 'none',
         borderColor: 'var(--cl-secondary-700)',
-        boxShadow: 'none',
       },
-      transition: 'borderColor var(--animat)',
     }),
     indicatorSeparator: (styles: any) => ({
       ...styles,
       display: 'none',
     }),
-    svg: (styles: any) => ({
+    Svg: (styles: any) => ({
       ...styles,
       width: '16',
       height: '16',
       fill: 'var(--cl-primary-900)',
     }),
 
-    option: (styles: any, { isDisabled }: { isDisabled: boolean }) => ({
+    option: (styles: any, { isFocused, isSelected }: any) => ({
       ...styles,
-      backgroundColor: 'var(--cl-white)',
       cursor: 'pointer',
-      borderRadius: '20px',
+      borderRadius: '8px',
+      backgroundColor:
+        isSelected || isFocused ? 'var(--cl-secondary-50)' : 'var(--cl-white)',
+      color: 'var(--cl-gray-500)',
     }),
+  };
 
-    menuPortal: (provided: any) => ({
-      ...provided,
-      minHeight: '300px', // Задаємо мінімальну висоту випадаючого списку
-     
-      // Інші властивості, які вам потрібно змінити
-    }),
+  useEffect(() => {
+    setSelectedValue(value);
+  }, [value]);
+
+  const MenuList = (props: any) => {
+    return (
+      <components.MenuList {...props}>
+        <CustomScrollBar root={SelectWrapper} maxHeight="240px">
+          {props.children}
+        </CustomScrollBar>
+      </components.MenuList>
+    );
   };
 
   return (
     <div>
       {label && <label className={styles.label}>{label}</label>}
-      <CustomScrollBar root={SelectWrapper} maxHeight="240px">
-        <Select
-          value={value}
-          onChange={onChange}
-          options={options}
-          placeholder={placeholder}
-          styles={colourStyles}
-          onMenuOpen={onMenuOpen}
-          isLoading={isLoading}
-          menuPortalTarget={document.body}
-        />
-      </CustomScrollBar>
+      <Select
+        value={selectedValue}
+        onChange={newValue => {
+          setSelectedValue(newValue);
+          onChange(newValue);
+        }}
+        options={options}
+        placeholder={placeholder}
+        styles={colourStyles}
+        onMenuOpen={onMenuOpen}
+        isLoading={isLoading}
+        components={{ MenuList }}
+      />
     </div>
   );
 };

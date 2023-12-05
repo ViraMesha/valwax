@@ -42,6 +42,7 @@ type DeliveryFormValues = {
 interface DeliveryFormProps {
   delivery: string;
   deliveryOptions: string[];
+  paymentOptions: string[];
   areaLabel: string;
   areaPlaceholder: string;
   cityLabel: string;
@@ -55,6 +56,7 @@ interface DeliveryFormProps {
 const DeliveryForm: React.FC<DeliveryFormProps> = ({
   delivery,
   deliveryOptions,
+  paymentOptions,
   areaLabel,
   areaPlaceholder,
   cityLabel,
@@ -80,8 +82,9 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [orderNotes, setOrderNotes] = useState('');
 
-  // const { selectedDelivery } = useDeliveryContext();
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
+  const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
+ 
 
   const {
     register,
@@ -277,6 +280,12 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
           placeholder={warehousePlaceholder}
           isLoading={isLoading}
         />
+      </div>
+        <RadioButtons
+          options={paymentOptions}
+          onChangeSelector={setSelectedPayment}
+          checkedSelector={selectedPayment}
+        />
         <Input
           label={notesLabel}
           placeholder={notesPlaceholder}
@@ -285,7 +294,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
           onChange={event => handleOrderNotesChange(event)}
           height="218px"
         />
-      </div>
+     
     </fieldset>
   );
 };
