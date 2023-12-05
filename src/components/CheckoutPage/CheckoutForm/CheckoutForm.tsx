@@ -79,7 +79,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     notesPlaceholder,
   },
 }) => {
-
   // const [areas, setAreas] = useState<AreaData[]>([]);
   // const [cities, setCities] = useState<AreaData[]>([]);
   // const [warehouse, setWarehouse] = useState<AreaData[]>([]);

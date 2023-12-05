@@ -6,15 +6,15 @@
 }
 
 .radioButtonsWrapper {
-display: flex;
-flex-direction: column;
-justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .radioButtonsLabel {
   display: flex;
   padding-left: 24px;
-  position: relative;  
+  position: relative;
   align-items: center;
 }
 
@@ -45,8 +45,8 @@ justify-content: center;
   border: 1px solid var(--cl-gray-300);
   background-color: var(--cl-gray-100);
   cursor: pointer;
-   top: 50%; 
-   transform: translateY(-50%); 
+  top: 50%;
+  transform: translateY(-50%);
 
   transition:
     background-color var(--animat),

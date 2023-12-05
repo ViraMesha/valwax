@@ -37,7 +37,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       backgroundColor: 'white',
       borderRadius: '20px',
       padding: '5px 15px',
-      fontFamily: 'Proxima Nova',
+      fontFamily: 'var(--font-mono)',
       fontSize: '16px',
       lineHeight: '150%',
       color: 'var(--cl-gray-200)',

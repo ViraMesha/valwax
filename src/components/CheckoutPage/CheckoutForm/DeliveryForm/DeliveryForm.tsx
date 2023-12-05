@@ -84,7 +84,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
 
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
   const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
- 
 
   const {
     register,
@@ -184,21 +183,31 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   }, [fetchData]);
 
   useEffect(() => {
-
     if (selectedAreas && !selectedCity && cities.length === 0) {
       fetchDataCity();
     }
 
     fetchDataWarehouse();
-  }, [cities, fetchDataCity, fetchDataWarehouse, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
+  }, [
+    cities,
+    fetchDataCity,
+    fetchDataWarehouse,
+    isAreaSelectOpen,
+    selectedAreas,
+    selectedCity,
+    selectedDelivery,
+  ]);
 
   useEffect(() => {
-    if ((selectedDelivery ===  deliveryOptions[2] && areas.length === 25) || (selectedDelivery !==  deliveryOptions[2] && areas.length === 26)) {
+    if (
+      (selectedDelivery === deliveryOptions[2] && areas.length === 25) ||
+      (selectedDelivery !== deliveryOptions[2] && areas.length === 26)
+    ) {
       fetchData();
-      setSelectedAreas(null)
-      setAreas([])
-      setSelectedCity(null)
-      setCities([])
+      setSelectedAreas(null);
+      setAreas([]);
+      setSelectedCity(null);
+      setCities([]);
     }
     setSelectedWarehouse(null);
     setWarehouse([]);
@@ -283,20 +292,19 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
           isLoading={isLoading}
         />
       </div>
-        <RadioButtons
-          options={paymentOptions}
-          onChangeSelector={setSelectedPayment}
-          checkedSelector={selectedPayment}
-        />
-        <Input
-          label={notesLabel}
-          placeholder={notesPlaceholder}
-          multiline
-          value={orderNotes}
-          onChange={event => handleOrderNotesChange(event)}
-          height="218px"
-        />
-     
+      <RadioButtons
+        options={paymentOptions}
+        onChangeSelector={setSelectedPayment}
+        checkedSelector={selectedPayment}
+      />
+      <Input
+        label={notesLabel}
+        placeholder={notesPlaceholder}
+        multiline
+        value={orderNotes}
+        onChange={event => handleOrderNotesChange(event)}
+        height="218px"
+      />
     </fieldset>
   );
 };
