@@ -117,7 +117,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
       const citiesData = await (selectedDelivery === deliveryOptions[2]
         ? fetchCitiesUkr(selectedAreas.ref)
         : fetchCities(selectedAreas.ref));
-      console.log('citiesData', citiesData);
       setIsLoading(false);
 
       if (citiesData) {
@@ -138,7 +137,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
 
       if (warehouseData) {
         setIsLoading(false);
-        console.log(warehouseData);
         setWarehouse(warehouseData);
       }
     }

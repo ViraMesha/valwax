@@ -43,7 +43,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
   } = formControl;
 
   const onSubmit = (data: CheckoutFormValues) => {
-    console.log(data);
     const newOrder = buildOrderData(data, cartItems, totalPrice);
 
     console.log(newOrder);
