@@ -101,7 +101,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
         variant="primary"
         type="submit"
         className={styles.button}
-        onClick={() => console.log('click!')}
       >
 
         {buttonText}

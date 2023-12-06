@@ -3,20 +3,20 @@ import { CartProductI, CheckoutFormValues } from "@components/types";
 
 
 const buildArryaGoods = (array: CartProductI[]) => {
-  const arrayGoods = array.map(item => {
+  const arrayGoods = array.map( ({id, title, description, quantity, link} )=> {
     let orderGood;
 
-    switch (item.link) {
+    switch (link) {
       case '/create-your-own':
-        if (item.description && typeof item.description !== 'string') {
+        if (description && typeof description !== 'string') {
           orderGood = {
             typeOrder: 'myCandle',
-            aroma: item.description.aroma,
-            wax: item.description.wax,
-            waxColor: item.description.color,
-            wick: item.description.wick,
-            container: item.description.container,
-            quantity: item.quantity,
+            aroma: description.aroma,
+            wax: description.wax,
+            waxColor: description.color,
+            wick: description.wick,
+            container: description.container,
+            quantity: quantity,
           };
         }
         break;
@@ -24,19 +24,19 @@ const buildArryaGoods = (array: CartProductI[]) => {
       case '/boxes':
         orderGood = {
           typeOrder: 'box',
-          idBox: item.id,
-          description: item.description,
-          quantity: item.quantity,
-          // aroma: item.description.aroma,
+          idBox: id,
+          description: title,
+          quantity: quantity,
+          // aroma: description.aroma,
         };
         break;
 
       default:
         orderGood = {
           typeOrder: 'candle',
-          idCandle: item.id,
-          description: item.description,
-          quantity: item.quantity,
+          idCandle: id,
+          description: title,
+          quantity: quantity,
         };
         break;
     }

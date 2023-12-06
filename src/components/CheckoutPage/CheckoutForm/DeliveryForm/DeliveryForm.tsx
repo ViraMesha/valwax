@@ -3,7 +3,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
-import { AreaData, CheckoutFormValues, DeliveryFormProps, SelectOptions } from '@components/types';
+import {
+  AreaData,
+  CheckoutFormValues,
+  DeliveryFormProps,
+  SelectOptions,
+} from '@components/types';
 import debounce from 'lodash/debounce';
 
 import {
@@ -18,9 +23,10 @@ import RadioButtons from '../RadioButtons/RadioButtons';
 
 import styles from './DeliveryForm.module.scss';
 
+const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
+  const { setValue } = formControl;
 
-const DeliveryForm: React.FC<DeliveryFormProps> = ({
-  dict: {
+  const {
     delivery,
     deliveryOptions,
     paymentOptions,
@@ -32,16 +38,8 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     warehousePlaceholder,
     notesLabel,
     notesPlaceholder,
-  },
-  formControl: {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-    setError,
-    setValue,
-  }
+  } = dict;
 
-}) => {
   const [areas, setAreas] = useState<AreaData[]>([]);
   const [cities, setCities] = useState<AreaData[]>([]);
   const [warehouse, setWarehouse] = useState<AreaData[]>([]);
@@ -61,7 +59,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
   const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
 
-  const handleSelectPayment = ( value: string ) => {
+  const handleSelectPayment = (value: string) => {
     setValue('payment', value);
     setSelectedPayment(value);
   };
@@ -71,21 +69,21 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     setWarehouse([]);
     setSelectedCity(null);
     setSelectedWarehouse(null);
-    setValue('deliveryArea', value)
+    setValue('deliveryArea', value);
     setSelectedAreas(value);
   };
 
   const handleSelectCity = debounce(async (value: SelectOptions) => {
     setSelectedWarehouse(null);
     setWarehouse([]);
-    setValue('deliveryCity', value)
+    setValue('deliveryCity', value);
     setSelectedCity(value);
   }, 300);
 
   const handleSelectWarehouse = (value: SelectOptions) => {
     setSelectedWarehouse(null);
     setWarehouse([]);
-    setValue('postOfficeBranchNum', value)
+    setValue('postOfficeBranchNum', value);
     setSelectedWarehouse(value);
   };
 
@@ -94,7 +92,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   ) => {
     const newValue = event.target.value;
     setOrderNotes(newValue);
-    setValue('notes', newValue)
+    setValue('notes', newValue);
   };
 
   const fetchData = useCallback(async () => {
@@ -153,14 +151,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     }
 
     fetchDataWarehouse();
-
-  }, [
-    cities,
-    isAreaSelectOpen,
-    selectedAreas,
-    selectedCity,
-    selectedDelivery,
-  ]);
+  }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
 
   useEffect(() => {
     if (
