@@ -15,7 +15,6 @@ import DeliveryForm from './DeliveryForm/DeliveryForm';
 import styles from './CheckoutForm.module.scss';
 
 
-
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
   const {
     contactFormTitle,
@@ -25,6 +24,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
     phoneNumber,
     buttonText,
   } = dict;
+
 
   const { totalPrice, cartItems } = useCartContext();
 
