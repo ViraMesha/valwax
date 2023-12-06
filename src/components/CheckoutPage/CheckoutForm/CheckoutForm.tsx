@@ -46,6 +46,7 @@ interface CheckoutFormProps {
     buttonText: string;
     delivery: string;
     deliveryOptions: string[];
+    paymentOptions: string[];
     areaLabel: string;
     areaPlaceholder: string;
     cityLabel: string;
@@ -67,6 +68,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     buttonText,
     delivery,
     deliveryOptions,
+    paymentOptions,
     areaLabel,
     areaPlaceholder,
     cityLabel,
@@ -77,7 +79,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     notesPlaceholder,
   },
 }) => {
-
   // const [areas, setAreas] = useState<AreaData[]>([]);
   // const [cities, setCities] = useState<AreaData[]>([]);
   // const [warehouse, setWarehouse] = useState<AreaData[]>([]);
@@ -312,6 +313,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         {...{
           delivery,
           deliveryOptions,
+          paymentOptions,
           areaLabel,
           areaPlaceholder,
           cityLabel,

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 // import { PhoneInput } from 'react-international-phone';
 // import Button from '@components/components/Button/Button';
@@ -42,6 +42,7 @@ type DeliveryFormValues = {
 interface DeliveryFormProps {
   delivery: string;
   deliveryOptions: string[];
+  paymentOptions: string[];
   areaLabel: string;
   areaPlaceholder: string;
   cityLabel: string;
@@ -55,6 +56,7 @@ interface DeliveryFormProps {
 const DeliveryForm: React.FC<DeliveryFormProps> = ({
   delivery,
   deliveryOptions,
+  paymentOptions,
   areaLabel,
   areaPlaceholder,
   cityLabel,
@@ -80,8 +82,8 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [orderNotes, setOrderNotes] = useState('');
 
-  // const { selectedDelivery } = useDeliveryContext();
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
+  const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
 
   const {
     register,
@@ -129,7 +131,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     setOrderNotes(newValue);
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     const areasData = await (selectedDelivery === deliveryOptions[2]
       ? fetchAreasUkr()
@@ -140,8 +142,9 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
       setAreas(areasData);
       setIsAreaSelectOpen(false);
     }
-  };
+  }, [selectedDelivery, deliveryOptions]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataCity = async () => {
     if (selectedAreas && !selectedCity && cities.length === 0) {
       setIsLoading(true);
@@ -157,6 +160,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataWarehouse = async () => {
     if (selectedAreas && selectedCity && selectedDelivery) {
       setIsLoading(true);
@@ -176,28 +180,38 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   useEffect(() => {
-
     if (selectedAreas && !selectedCity && cities.length === 0) {
       fetchDataCity();
     }
 
     fetchDataWarehouse();
-  }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
+  }, [
+    cities,
+    fetchDataCity,
+    fetchDataWarehouse,
+    isAreaSelectOpen,
+    selectedAreas,
+    selectedCity,
+    selectedDelivery,
+  ]);
 
   useEffect(() => {
-    if ((selectedDelivery ===  deliveryOptions[2] && areas.length === 25) || (selectedDelivery !==  deliveryOptions[2] && areas.length === 26)) {
+    if (
+      (selectedDelivery === deliveryOptions[2] && areas.length === 25) ||
+      (selectedDelivery !== deliveryOptions[2] && areas.length === 26)
+    ) {
       fetchData();
-      setSelectedAreas(null)
-      setAreas([])
-      setSelectedCity(null)
-      setCities([])
+      setSelectedAreas(null);
+      setAreas([]);
+      setSelectedCity(null);
+      setCities([]);
     }
     setSelectedWarehouse(null);
     setWarehouse([]);
-  }, [selectedDelivery]);
+  }, [areas.length, deliveryOptions, fetchData, selectedDelivery]);
 
   const selectOptionsArea = areas.map(option =>
     selectedDelivery === deliveryOptions[2]
@@ -277,15 +291,20 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
           placeholder={warehousePlaceholder}
           isLoading={isLoading}
         />
-        <Input
-          label={notesLabel}
-          placeholder={notesPlaceholder}
-          multiline
-          value={orderNotes}
-          onChange={event => handleOrderNotesChange(event)}
-          height="218px"
-        />
       </div>
+      <RadioButtons
+        options={paymentOptions}
+        onChangeSelector={setSelectedPayment}
+        checkedSelector={selectedPayment}
+      />
+      <Input
+        label={notesLabel}
+        placeholder={notesPlaceholder}
+        multiline
+        value={orderNotes}
+        onChange={event => handleOrderNotesChange(event)}
+        height="218px"
+      />
     </fieldset>
   );
 };
