@@ -1,11 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
-import validationSchema from '@components/helpers/formValidationSchema';
 import { AreaData, SelectOptions } from '@components/types';
-import { yupResolver } from '@hookform/resolvers/yup';
 import debounce from 'lodash/debounce';
 
 // import { useDeliveryContext } from '../../../../../context/DeliveryContext';
