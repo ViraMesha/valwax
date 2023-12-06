@@ -143,6 +143,7 @@ export interface CheckoutPageDictionary {
     phoneNumber: string;
     delivery: string;
     deliveryOptions: string[];
+    paymentOptions: string[];
     areaLabel: string;
     areaPlaceholder: string;
     cityLabel: string;

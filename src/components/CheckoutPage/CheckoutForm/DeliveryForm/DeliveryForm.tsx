@@ -1,5 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
+
+import { useCallback, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+// import { PhoneInput } from 'react-international-phone';
+// import Button from '@components/components/Button/Button';
 import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
 import { AreaData, SelectOptions } from '@components/types';
@@ -43,6 +47,7 @@ interface DeliveryFormProps {
 
     delivery: string;
     deliveryOptions: string[];
+    paymentOptions: string[];
     areaLabel: string;
     areaPlaceholder: string;
     cityLabel: string;
@@ -59,6 +64,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   dict: {
     delivery,
     deliveryOptions,
+    paymentOptions,
     areaLabel,
     areaPlaceholder,
     cityLabel,
@@ -75,6 +81,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     setError,
     setValue,
   }
+
 }) => {
   const [areas, setAreas] = useState<AreaData[]>([]);
   const [cities, setCities] = useState<AreaData[]>([]);
@@ -93,6 +100,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   const [orderNotes, setOrderNotes] = useState('');
 
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
+  const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
 
 
   const handleSelectArea = (value: SelectOptions) => {
@@ -126,7 +134,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     setValue('notes', newValue)
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     const areasData = await (selectedDelivery === deliveryOptions[2]
       ? fetchAreasUkr()
@@ -137,8 +145,9 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
       setAreas(areasData);
       setIsAreaSelectOpen(false);
     }
-  };
+  }, [selectedDelivery, deliveryOptions]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataCity = async () => {
     if (selectedAreas && !selectedCity && cities.length === 0) {
       setIsLoading(true);
@@ -154,6 +163,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataWarehouse = async () => {
     if (selectedAreas && selectedCity && selectedDelivery) {
       setIsLoading(true);
@@ -173,7 +183,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   useEffect(() => {
     if (selectedAreas && !selectedCity && cities.length === 0) {
@@ -191,7 +201,13 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
       selectedWarehouse
     );
 
-  }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
+  }, [
+    cities,
+    isAreaSelectOpen,
+    selectedAreas,
+    selectedCity,
+    selectedDelivery,
+  ]);
 
   useEffect(() => {
     if (
@@ -206,7 +222,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     }
     setSelectedWarehouse(null);
     setWarehouse([]);
-  }, [selectedDelivery]);
+  }, [areas.length, deliveryOptions, fetchData, selectedDelivery]);
 
   const selectOptionsArea = areas.map(option =>
     selectedDelivery === deliveryOptions[2]
@@ -286,15 +302,20 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
           placeholder={warehousePlaceholder}
           isLoading={isLoading}
         />
-        <Input
-          label={notesLabel}
-          placeholder={notesPlaceholder}
-          multiline
-          value={orderNotes}
-          onChange={event => handleOrderNotesChange(event)}
-          height="218px"
-        />
       </div>
+      <RadioButtons
+        options={paymentOptions}
+        onChangeSelector={setSelectedPayment}
+        checkedSelector={selectedPayment}
+      />
+      <Input
+        label={notesLabel}
+        placeholder={notesPlaceholder}
+        multiline
+        value={orderNotes}
+        onChange={event => handleOrderNotesChange(event)}
+        height="218px"
+      />
     </fieldset>
   );
 };

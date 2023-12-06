@@ -15,6 +15,7 @@ import DeliveryForm from './DeliveryForm/DeliveryForm';
 import styles from './CheckoutForm.module.scss';
 
 
+
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
   const {
     contactFormTitle,
@@ -103,6 +104,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
         className={styles.button}
         onClick={() => console.log('click!')}
       >
+
         {buttonText}
       </Button>
     </form>
