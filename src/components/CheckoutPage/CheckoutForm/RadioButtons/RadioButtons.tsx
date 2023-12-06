@@ -7,7 +7,7 @@ import styles from './RadioButtons.module.scss';
 
 interface RadioButtonsProps {
   options: string[];
-  onChangeSelector: React.Dispatch<React.SetStateAction<string>>;
+  onChangeSelector: (v: string) => void;
   checkedSelector: string;
 }
 

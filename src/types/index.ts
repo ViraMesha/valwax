@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image';
+import { UseFormReturn } from 'react-hook-form';
 
 import { Locale } from '../../i18n-config';
 
@@ -241,9 +242,10 @@ export interface CheckoutFormValues {
   lastName: string;
   email: string;
   // delivery: string;
-  deliveryArea: { [key: string]: string };
-  deliveryCity: { [key: string]: string };
-  postOfficeBranchNum: { [key: string]: string };
+  deliveryArea: { ref?: string; value?: string; label?: string };
+  deliveryCity: { ref?: string; value?: string; label?: string };
+  postOfficeBranchNum: { ref?: string; value?: string; label?: string };
+  payment?: string;
 }
 
 export interface CheckoutFormProps {
@@ -256,6 +258,7 @@ export interface CheckoutFormProps {
     buttonText: string;
     delivery: string;
     deliveryOptions: string[];
+    paymentOptions: string[];
     areaLabel: string;
     areaPlaceholder: string;
     cityLabel: string;
@@ -265,4 +268,27 @@ export interface CheckoutFormProps {
     notesLabel: string;
     notesPlaceholder: string;
   };
+};
+
+export interface DeliveryFormProps {
+  dict: {
+    contactFormTitle: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    buttonText: string;
+    delivery: string;
+    deliveryOptions: string[];
+    paymentOptions: string[];
+    areaLabel: string;
+    areaPlaceholder: string;
+    cityLabel: string;
+    cityPlaceholder: string;
+    warehouseLabel: string;
+    warehousePlaceholder: string;
+    notesLabel: string;
+    notesPlaceholder: string;
+  };
+  formControl: UseFormReturn<CheckoutFormValues>;
 };

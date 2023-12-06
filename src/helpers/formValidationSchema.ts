@@ -27,6 +27,7 @@ const validationSchema = object().shape({
   // cashOnDelivery: bool().oneOf([true, false]),
   // cardPayment: bool().oneOf([true, false]),
   notes: string().max(1000),
+  payment: string(),
 });
 
 export default validationSchema;

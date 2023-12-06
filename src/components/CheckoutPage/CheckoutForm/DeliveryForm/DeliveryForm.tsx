@@ -1,15 +1,11 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-// import { PhoneInput } from 'react-international-phone';
-// import Button from '@components/components/Button/Button';
 import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
-import { AreaData, SelectOptions } from '@components/types';
+import { AreaData, CheckoutFormValues, DeliveryFormProps, SelectOptions } from '@components/types';
 import debounce from 'lodash/debounce';
 
-// import { useDeliveryContext } from '../../../../../context/DeliveryContext';
 import {
   fetchAreas,
   fetchAreasUkr,
@@ -22,43 +18,6 @@ import RadioButtons from '../RadioButtons/RadioButtons';
 
 import styles from './DeliveryForm.module.scss';
 
-type DeliveryFormValues = {
-  // cashOnDelivery?: boolean | undefined;
-  // cardPayment?: boolean | undefined;
-  // comment?: string | undefined;
-  phone: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  delivery: string;
-  deliveryArea: string;
-  deliveryCity: string;
-  postOfficeBranchNum: string;
-};
-
-interface DeliveryFormProps {
-  dict: {
-    contactFormTitle: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-    buttonText: string;
-
-    delivery: string;
-    deliveryOptions: string[];
-    paymentOptions: string[];
-    areaLabel: string;
-    areaPlaceholder: string;
-    cityLabel: string;
-    cityPlaceholder: string;
-    warehouseLabel: string;
-    warehousePlaceholder: string;
-    notesLabel: string;
-    notesPlaceholder: string;
-  };
-  formControl: any;
-}
 
 const DeliveryForm: React.FC<DeliveryFormProps> = ({
   dict: {
@@ -102,6 +61,10 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
   const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
 
+  const handleSelectPayment = ( value: string ) => {
+    setValue('payment', value);
+    setSelectedPayment(value);
+  };
 
   const handleSelectArea = (value: SelectOptions) => {
     setCities([]);
@@ -183,6 +146,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
 
   useEffect(() => {
     fetchData();
+    setValue('payment', selectedPayment);
   }, [fetchData]);
 
   useEffect(() => {
@@ -191,15 +155,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     }
 
     fetchDataWarehouse();
-    
-    console.log('useEffect' ,
-      'selectedAreas',
-      selectedAreas,
-      'selectedCity',
-      selectedCity,
-      'selectedWarehouse',
-      selectedWarehouse
-    );
 
   }, [
     cities,
@@ -305,7 +260,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
       </div>
       <RadioButtons
         options={paymentOptions}
-        onChangeSelector={setSelectedPayment}
+        onChangeSelector={handleSelectPayment}
         checkedSelector={selectedPayment}
       />
       <Input

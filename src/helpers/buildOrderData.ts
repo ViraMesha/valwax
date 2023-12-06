@@ -49,14 +49,17 @@ const buildArryaGoods = (array: CartProductI[]) => {
 
 
 export const buildOrderData = (dataForm: CheckoutFormValues, dataCartGoods: CartProductI[], totalPrice: number) => {
-  const {deliveryArea,
+  const { 
+    deliveryArea,
     deliveryCity,
     email,
     firstName,
     lastName,
     notes,
     phone,
-    postOfficeBranchNum} = dataForm;
+    postOfficeBranchNum,
+    payment,
+  } = dataForm;
 
   const arrayGoods = buildArryaGoods(dataCartGoods);
 
@@ -69,6 +72,7 @@ export const buildOrderData = (dataForm: CheckoutFormValues, dataCartGoods: Cart
       email,
       comment: notes,
       shippingAddress: `${deliveryArea.value} ${deliveryCity.value} ${postOfficeBranchNum.value}`,
+      payment,
     },
     goods: arrayGoods,
     totalPrice,
