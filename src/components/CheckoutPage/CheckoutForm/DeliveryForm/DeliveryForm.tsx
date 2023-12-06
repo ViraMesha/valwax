@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+
 import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
 import { AreaData, CheckoutFormValues, DeliveryFormProps, SelectOptions } from '@components/types';
@@ -145,6 +146,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   useEffect(() => {
     fetchData();
     setValue('payment', selectedPayment);
+
   }, [fetchData]);
 
   useEffect(() => {
