@@ -2,8 +2,7 @@ import Image from 'next/image';
 import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
 import { ConfiguratorSectionI } from '@components/types';
-
-import yourCandle from '../../../../public/images/create-your-own/Candle.jpg'
+import yourCandle from '@images/create-your-own/Candle.jpg'
 
 import Configurator from './Configurator/Configurator';
 

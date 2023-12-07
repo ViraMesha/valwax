@@ -1,4 +1,5 @@
 import { TbArrowRight } from 'react-icons/tb';
+import clsx from 'clsx';
 
 import styles from './Button.module.scss';
 
@@ -21,9 +22,9 @@ const Button: React.FC<Props> = ({
   isLoading,
   ...rest
 }) => {
-  const buttonClass = `${styles.button} ${styles[variant]} ${
-    hasIcon ? styles.container : ''
-  } ${className || ''} `;
+
+  const buttonClass = clsx( styles.button, styles[variant], hasIcon ? styles.container : '', className || '' );
+
 
   return (
     <button

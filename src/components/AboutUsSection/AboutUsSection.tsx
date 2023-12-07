@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Typography from '@components/components/Typography/Typography';
-import Image1 from 'public/images/aboutUs/Image1.jpg';
-import Image2 from 'public/images/aboutUs/Image2.jpg';
-import Image3 from 'public/images/aboutUs/Image3.jpg';
+import Image1 from '@images/aboutUs/Image1.jpg';
+import Image2 from '@images/aboutUs/Image2.jpg';
+import Image3 from '@images/aboutUs/Image3.jpg';
 
 import Container from '../Container/Container';
 import Section from '../Section/Section';
