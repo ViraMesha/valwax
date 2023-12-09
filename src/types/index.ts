@@ -292,3 +292,10 @@ export interface DeliveryFormProps {
   };
   formControl: UseFormReturn<CheckoutFormValues>;
 };
+
+export interface UseScrollbarProps {
+  root: React.RefObject<HTMLElement>;
+  children?: React.ReactNode;
+  maxHeight?: string;
+  primary?: boolean;
+};
