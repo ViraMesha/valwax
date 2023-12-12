@@ -297,5 +297,5 @@ export interface UseScrollbarProps {
   root: React.RefObject<HTMLElement>;
   children?: React.ReactNode;
   maxHeight?: string;
-  primary?: boolean;
+  primary?: string;
 };

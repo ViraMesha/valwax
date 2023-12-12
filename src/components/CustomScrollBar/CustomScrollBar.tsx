@@ -10,7 +10,7 @@ const CustomScrollBar = ({
   root,
   children,
   maxHeight,
-  primary = false,
+  primary = 'gray',
 }: UseScrollbarProps) => {
   useEffect(() => {
     let scrollbars: OverlayScrollbars | undefined;
@@ -18,9 +18,7 @@ const CustomScrollBar = ({
     if (root.current) {
       scrollbars = OverlayScrollbars(root.current, {
         scrollbars: {
-          theme: primary
-            ? 'custom-scrollbar-theme-primary'
-            : 'custom-scrollbar-theme-gray',
+          theme: `custom-scrollbar-theme-${primary}`,
         },
       });
     }

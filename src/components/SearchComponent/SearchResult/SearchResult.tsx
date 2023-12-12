@@ -20,7 +20,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ searchResults }) => {
 
   return (
     <div className={styles.customScrollbar}>
-      <CustomScrollBar root={SearchWrapper} maxHeight={maxResultHeight} primary>
+      <CustomScrollBar root={SearchWrapper} maxHeight={maxResultHeight} primary='primary-12'>
         <ul
           className={`${styles.searchList} ${
             searchResults.length >= 6 ? styles.large : ''

@@ -44,7 +44,7 @@ const Parameter: React.FC<ParameterI> = ({ dict, onChangeParam, parameter }) => 
         <IoIosArrowDown className={`${styles.icon} ${styles.iconDown}`} />
       </label>
       <div className={styles.wrapperList}>
-        <CustomScrollBar root={scrollContainerRef} primary>
+        <CustomScrollBar root={scrollContainerRef} primary='primary-24'>
           <ul className={styles.list}>
             {dict.options.map((option, index) => (
               <li key={option} className={styles.itemParam}>
