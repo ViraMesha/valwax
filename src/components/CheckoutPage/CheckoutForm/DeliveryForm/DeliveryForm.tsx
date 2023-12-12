@@ -1,17 +1,16 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-// import { PhoneInput } from 'react-international-phone';
-// import Button from '@components/components/Button/Button';
+
+import { useCallback, useEffect, useState } from 'react';
 import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
-import validationSchema from '@components/helpers/formValidationSchema';
-import { AreaData, SelectOptions } from '@components/types';
-import { yupResolver } from '@hookform/resolvers/yup';
-// import { PhoneNumberUtil } from 'google-libphonenumber';
+import {
+  AreaData,
+  CheckoutFormValues,
+  DeliveryFormProps,
+  SelectOptions,
+} from '@components/types';
 import debounce from 'lodash/debounce';
 
-// import { useDeliveryContext } from '../../../../../context/DeliveryContext';
 import {
   fetchAreas,
   fetchAreasUkr,
@@ -22,48 +21,25 @@ import {
 } from '../api';
 import RadioButtons from '../RadioButtons/RadioButtons';
 
-// import 'react-international-phone/style.css';
 import styles from './DeliveryForm.module.scss';
 
-type DeliveryFormValues = {
-  // cashOnDelivery?: boolean | undefined;
-  // cardPayment?: boolean | undefined;
-  // comment?: string | undefined;
-  phone: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  delivery: string;
-  deliveryArea: string;
-  deliveryCity: string;
-  postOfficeBranchNum: string;
-};
+const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
+  const { setValue } = formControl;
 
-interface DeliveryFormProps {
-  delivery: string;
-  deliveryOptions: string[];
-  areaLabel: string;
-  areaPlaceholder: string;
-  cityLabel: string;
-  cityPlaceholder: string;
-  warehouseLabel: string;
-  warehousePlaceholder: string;
-  notesLabel: string;
-  notesPlaceholder: string;
-}
+  const {
+    delivery,
+    deliveryOptions,
+    paymentOptions,
+    areaLabel,
+    areaPlaceholder,
+    cityLabel,
+    cityPlaceholder,
+    warehouseLabel,
+    warehousePlaceholder,
+    notesLabel,
+    notesPlaceholder,
+  } = dict;
 
-const DeliveryForm: React.FC<DeliveryFormProps> = ({
-  delivery,
-  deliveryOptions,
-  areaLabel,
-  areaPlaceholder,
-  cityLabel,
-  cityPlaceholder,
-  warehouseLabel,
-  warehousePlaceholder,
-  notesLabel,
-  notesPlaceholder,
-}) => {
   const [areas, setAreas] = useState<AreaData[]>([]);
   const [cities, setCities] = useState<AreaData[]>([]);
   const [warehouse, setWarehouse] = useState<AreaData[]>([]);
@@ -80,45 +56,34 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [orderNotes, setOrderNotes] = useState('');
 
-  // const { selectedDelivery } = useDeliveryContext();
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
+  const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-    setError,
-    setValue,
-  } = useForm<DeliveryFormValues>({
-    mode: 'onBlur',
-    defaultValues: {},
-    resolver: yupResolver(validationSchema),
-  });
-
-  // const onSubmit = (data: DeliveryFormValues) => {
-  //   data.phone = phone;
-  //   console.log(data);
-  // };
+  const handleSelectPayment = (value: string) => {
+    setValue('payment', value);
+    setSelectedPayment(value);
+  };
 
   const handleSelectArea = (value: SelectOptions) => {
     setCities([]);
     setWarehouse([]);
     setSelectedCity(null);
     setSelectedWarehouse(null);
+    setValue('deliveryArea', value);
     setSelectedAreas(value);
   };
 
   const handleSelectCity = debounce(async (value: SelectOptions) => {
     setSelectedWarehouse(null);
     setWarehouse([]);
-
+    setValue('deliveryCity', value);
     setSelectedCity(value);
   }, 300);
 
   const handleSelectWarehouse = (value: SelectOptions) => {
     setSelectedWarehouse(null);
     setWarehouse([]);
-
+    setValue('postOfficeBranchNum', value);
     setSelectedWarehouse(value);
   };
 
@@ -127,9 +92,10 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   ) => {
     const newValue = event.target.value;
     setOrderNotes(newValue);
+    setValue('notes', newValue);
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     const areasData = await (selectedDelivery === deliveryOptions[2]
       ? fetchAreasUkr()
@@ -140,15 +106,15 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
       setAreas(areasData);
       setIsAreaSelectOpen(false);
     }
-  };
+  }, [selectedDelivery, deliveryOptions]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataCity = async () => {
     if (selectedAreas && !selectedCity && cities.length === 0) {
       setIsLoading(true);
       const citiesData = await (selectedDelivery === deliveryOptions[2]
         ? fetchCitiesUkr(selectedAreas.ref)
         : fetchCities(selectedAreas.ref));
-      console.log('citiesData', citiesData);
       setIsLoading(false);
 
       if (citiesData) {
@@ -157,6 +123,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataWarehouse = async () => {
     if (selectedAreas && selectedCity && selectedDelivery) {
       setIsLoading(true);
@@ -168,7 +135,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
 
       if (warehouseData) {
         setIsLoading(false);
-        console.log(warehouseData);
         setWarehouse(warehouseData);
       }
     }
@@ -176,10 +142,11 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
 
   useEffect(() => {
     fetchData();
-  }, []);
+    setValue('payment', selectedPayment);
+
+  }, [fetchData]);
 
   useEffect(() => {
-
     if (selectedAreas && !selectedCity && cities.length === 0) {
       fetchDataCity();
     }
@@ -188,16 +155,19 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
   }, [cities, isAreaSelectOpen, selectedAreas, selectedCity, selectedDelivery]);
 
   useEffect(() => {
-    if ((selectedDelivery ===  deliveryOptions[2] && areas.length === 25) || (selectedDelivery !==  deliveryOptions[2] && areas.length === 26)) {
+    if (
+      (selectedDelivery === deliveryOptions[2] && areas.length === 25) ||
+      (selectedDelivery !== deliveryOptions[2] && areas.length === 26)
+    ) {
       fetchData();
-      setSelectedAreas(null)
-      setAreas([])
-      setSelectedCity(null)
-      setCities([])
+      setSelectedAreas(null);
+      setAreas([]);
+      setSelectedCity(null);
+      setCities([]);
     }
     setSelectedWarehouse(null);
     setWarehouse([]);
-  }, [selectedDelivery]);
+  }, [areas.length, deliveryOptions, fetchData, selectedDelivery]);
 
   const selectOptionsArea = areas.map(option =>
     selectedDelivery === deliveryOptions[2]
@@ -277,15 +247,20 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({
           placeholder={warehousePlaceholder}
           isLoading={isLoading}
         />
-        <Input
-          label={notesLabel}
-          placeholder={notesPlaceholder}
-          multiline
-          value={orderNotes}
-          onChange={event => handleOrderNotesChange(event)}
-          height="218px"
-        />
       </div>
+      <RadioButtons
+        options={paymentOptions}
+        onChangeSelector={handleSelectPayment}
+        checkedSelector={selectedPayment}
+      />
+      <Input
+        label={notesLabel}
+        placeholder={notesPlaceholder}
+        multiline
+        value={orderNotes}
+        onChange={event => handleOrderNotesChange(event)}
+        height="218px"
+      />
     </fieldset>
   );
 };

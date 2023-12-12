@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 import { ProductDetails } from '@components/types';
-import Image1 from 'public/images/aboutUs/Image1.jpg';
+import Image1 from '@images/aboutUs/Image1.jpg';
 
 import { useModalContext } from '../../../../context/ModalContext';
 

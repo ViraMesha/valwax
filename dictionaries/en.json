@@ -361,6 +361,10 @@
           "Nova Poshta (Parcel Locker)",
           "Ukrposhta"
         ],
+        "paymentOptions": [
+          "Cash on delivery - Delivery is made with payment upon receipt at 150 UAH. When using cash on delivery shipping method upon receipt, Nova Poshta additionally charges a commission for sending money back, 20 UAH + 2% of the order amount.",
+          "Payment by invoice"
+        ], 
         "areaLabel": "Choose a delivery area *",
         "areaPlaceholder": "Area",
         "cityLabel": "Choose your city *",
