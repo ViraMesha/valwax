@@ -4,8 +4,8 @@ import emailValidationSchema from '@components/helpers/emailValidationSchema';
 import { showToast } from '@components/helpers/showToast';
 import useStatusState from '@components/hooks/useStatusState';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { subscribeToNewsletter } from '@lib/api-services/subscribeToNewsletter';
 
-import { sendEmail } from '../../../lib/api-services/api';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 import Input from '../Input/Input';
@@ -35,9 +35,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
-    setError,
-    setValue,
+    formState: { errors },
     reset,
   } = useForm<FormValues>({
     mode: 'onBlur',
@@ -48,7 +46,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
   const onSubmit = async (data: FormValues) => {
     try {
       handleStatus('isLoading', true);
-      await sendEmail(data?.email);
+      await subscribeToNewsletter(data?.email);
       console.log(data);
       showToast('Your email was successfully sent!');
     } catch (error) {

@@ -322,13 +322,3 @@ export const fetchSearchResults = async (query: string | undefined) => {
     handleErrorWithMessage(error);
   }
 };
-
-export const sendEmail = async (email: string) => {
-  try {
-    await delayFn(1000);
-    throw new Error('Failed to fetch data');
-    console.log(`Email sent to ${email}`);
-  } catch (error: unknown) {
-    handleErrorWithMessage(error);
-  }
-};
