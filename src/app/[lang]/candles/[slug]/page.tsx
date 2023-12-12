@@ -1,5 +1,7 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlesPage from '@components/components/CandlesPage/CandlesPage';
+import { removeCandlesSuffix } from '@components/helpers/removeCandlesSuffix';
+import { fetchCandles } from '@lib/api-services/fetchCandles';
 
 import { Locale } from '../../../../../i18n-config';
 import { getCandles } from '../../../../../lib/api-services/api';
@@ -36,6 +38,11 @@ export default async function Page({
 
   const currentPage = convertStringToNumber(searchParams.page, 1);
   const perPage = convertStringToNumber(searchParams.perPage, 9);
+
+  const wax = removeCandlesSuffix(slug);
+  // TODO: Remove await
+  const candles = await fetchCandles(wax, currentPage, perPage);
+  console.log(candles);
 
   const promise = getCandles(currentPage, perPage);
 

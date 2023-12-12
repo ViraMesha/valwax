@@ -1,5 +1,4 @@
 import { delayFn } from '@components/helpers/delayFn';
-import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
 import { handleErrorWithMessage } from '@components/helpers/handleErrorWithMessage';
 
 import box1 from '../../public/images/boxes/boxes_section/box.jpg';
@@ -326,7 +325,6 @@ export const fetchSearchResults = async (query: string | undefined) => {
 export const sendEmail = async (email: string) => {
   try {
     await delayFn(1000);
-    throw new Error('Failed to fetch data');
     console.log(`Email sent to ${email}`);
   } catch (error: unknown) {
     handleErrorWithMessage(error);

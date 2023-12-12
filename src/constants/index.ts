@@ -1,4 +1,5 @@
 const INCREMENT = 'inc';
 const DECREMENT = 'dec';
+const BASE_URL = 'https://candle-store-dev-3fa070da19b6.herokuapp.com';
 
-export { DECREMENT, INCREMENT };
+export { BASE_URL,DECREMENT, INCREMENT };
