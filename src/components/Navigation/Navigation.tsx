@@ -99,7 +99,7 @@ const Navigation: React.FC<NavigationPropsI> = ({
                       <li key={index} className={styles.candlesItem}>
                         <Link
                           href={`/${lang}${navLinks[candlesItem]}` ?? ''}
-                          className={`candlesLink${navLinks[candlesItem]}`}
+                          className={styles.candlesLink}
                           onClick={onClick}
                         >
                           {candlesItem}
