@@ -47,9 +47,8 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
     try {
       handleStatus('isLoading', true);
       await subscribeToNewsletter(data?.email);
-      console.log(data);
       showToast('Your email was successfully sent!');
-    } catch (error) {
+    } catch (error: unknown) {
       handleStatus('hasError', true);
       console.log(error);
       showToast('Ooops😌 Something went wrong!', 'error');
