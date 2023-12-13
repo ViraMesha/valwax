@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const email = searchParams.get('email');
   try {
@@ -13,7 +13,6 @@ export async function GET(request: NextRequest) {
         },
       }
     );
-    console.log(res);
     return NextResponse.json({ message: 'The email was sent', success: true });
   } catch (error: unknown) {
     return NextResponse.json({ message: error, success: false });
