@@ -16,9 +16,13 @@ import styles from './Subscription.module.scss';
 
 interface SubscriptionI {
   dict: {
-    title: string;
-    text: string;
-    buttonText: string;
+    subscription: {
+      title: string;
+      text: string;
+      buttonText: string;
+    };
+    emailReq: string;
+    validEmail: string;
   };
 }
 
@@ -27,6 +31,11 @@ interface FormValues {
 }
 
 const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
+  const {
+    subscription: { title, text, buttonText },
+    emailReq,
+    validEmail,
+  } = dict;
   const { state, handleStatus } = useStatusState({
     isLoading: false,
     hasError: false,
@@ -40,7 +49,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
   } = useForm<FormValues>({
     mode: 'onBlur',
     defaultValues: {},
-    resolver: yupResolver(emailValidationSchema),
+    resolver: yupResolver(emailValidationSchema({ emailReq, validEmail })),
   });
 
   const onSubmit = async (data: FormValues) => {
@@ -66,14 +75,14 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
           color="var(--cl-gray-700)"
           className={styles.subscriptionTitle}
         >
-          {dict.title}
+          {title}
         </Typography>
         <Typography
           variant="bodyRegular"
           color="var(--cl-gray-700)"
           className={styles.subscriptionTypography}
         >
-          {dict.text}
+          {text}
         </Typography>
         <form
           className={styles.subscriptionWrapper}
@@ -93,7 +102,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
             disabled={!!errors?.email || state.isLoading}
             isLoading={state.isLoading}
           >
-            {dict.buttonText}
+            {buttonText}
           </Button>
         </form>
       </Container>

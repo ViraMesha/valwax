@@ -24,15 +24,24 @@ export default async function Home({
 }: {
   params: { lang: Locale };
 }) {
-  const { page } = await getDictionary(lang);
+  const {
+    page: {
+      home: { hero, about, quote, compass, subscription },
+      checkout: {
+        form: {
+          errorMessages: { emailReq, validEmail },
+        },
+      },
+    },
+  } = await getDictionary(lang);
   return (
     <>
-      <Hero dict={page.home.hero} />
-      <AboutUsSection dict={page.home.about} />
-      <Quote dict={page.home.quote} />
-      <Compass dict={page.home.compass} lang={lang} />
+      <Hero dict={hero} />
+      <AboutUsSection dict={about} />
+      <Quote dict={quote} />
+      <Compass dict={compass} lang={lang} />
       <Instagram />
-      <Subscription dict={page.home.subscription} />
+      <Subscription dict={{ subscription, emailReq, validEmail }} />
     </>
   );
 }
