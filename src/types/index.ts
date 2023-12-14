@@ -132,6 +132,15 @@ export interface ProductDescription {
   color: string;
 }
 
+export interface CheckoutFormValidation {
+  firstNameReq: string;
+  lastNameReq: string;
+  emailReq: string;
+  validEmail: string;
+  phoneReq: string;
+  validPhone: string;
+}
+
 export interface CheckoutPageDictionary {
   productList: {
     deleteButtonText: string;
@@ -156,6 +165,7 @@ export interface CheckoutPageDictionary {
     notesLabel: string;
     notesPlaceholder: string;
     buttonText: string;
+    errorMessages: CheckoutFormValidation;
   };
 }
 
@@ -268,6 +278,7 @@ export interface CheckoutFormProps {
     warehousePlaceholder: string;
     notesLabel: string;
     notesPlaceholder: string;
+    errorMessages: CheckoutFormValidation;
   };
 }
 
@@ -293,4 +304,3 @@ export interface DeliveryFormProps {
   };
   formControl: UseFormReturn<CheckoutFormValues>;
 }
-
