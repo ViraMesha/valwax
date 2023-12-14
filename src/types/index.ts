@@ -100,6 +100,8 @@ export interface ProductDetails {
   title: string;
   price: number;
   slug: string;
+  titleEn: string;
+  titleUa: string;
 }
 
 export interface AreaData {
@@ -184,14 +186,14 @@ export interface BoxI {
 }
 
 type FilterT = {
-    title: string;
-    subtitle: string;
-    up: string;
-    down: string;
-    cleanUp: string;
-    result: string;
-    category: { [key: string]: { title: string; option: string[] } };
-}
+  title: string;
+  subtitle: string;
+  up: string;
+  down: string;
+  cleanUp: string;
+  result: string;
+  category: { [key: string]: { title: string; option: string[] } };
+};
 
 export interface FilterI {
   dict: FilterT;
@@ -230,8 +232,7 @@ export interface TabsI {
     };
   };
   lang: Locale;
-};
-
+}
 
 export interface CheckoutFormValues {
   // cashOnDelivery?: boolean | undefined;
@@ -268,7 +269,7 @@ export interface CheckoutFormProps {
     notesLabel: string;
     notesPlaceholder: string;
   };
-};
+}
 
 export interface DeliveryFormProps {
   dict: {
@@ -291,4 +292,5 @@ export interface DeliveryFormProps {
     notesPlaceholder: string;
   };
   formControl: UseFormReturn<CheckoutFormValues>;
-};
+}
+

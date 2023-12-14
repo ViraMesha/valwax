@@ -48,8 +48,8 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
         searchQuery.toLowerCase().trim()
       );
       setIsLoading(false);
-      setSearchResults(results.boxesAndCandles);
-      setShowNoResults(results.boxesAndCandles.length === 0);
+      setSearchResults(results);
+      setShowNoResults(results.length === 0);
     } catch (error) {
       setIsLoading(false);
       console.error(error);
@@ -98,7 +98,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
         </Typography>
       )}
 
-      {!showNoResults && searchResults.length > 0 && (
+      {!showNoResults && searchResults?.length > 0 && (
         <div ref={resultWrapperRef} className={styles.resultWrapper}>
           <SearchResult searchResults={searchResults} />
         </div>

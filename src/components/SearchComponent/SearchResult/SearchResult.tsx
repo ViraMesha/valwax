@@ -1,3 +1,4 @@
+import { usePathname } from 'next/navigation';
 import React, { useRef } from 'react';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import { ProductDetails } from '@components/types';
@@ -11,14 +12,15 @@ export interface SearchResultProps {
   searchResults: ProductDetails[];
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({
-  searchResults
-}) => {
+const SearchResult: React.FC<SearchResultProps> = ({ searchResults }) => {
   const SearchWrapper = useRef<HTMLDivElement | null>(null);
+
+  const pathName = usePathname();
+  const lang = pathName.split('/')[1];
 
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1024;
-   const maxResultHeight = isLargeScreen ? "385px" : "240px";
+  const maxResultHeight = isLargeScreen ? '385px' : '240px';
 
   return (
     <div className={styles.customScrollbar}>
@@ -29,7 +31,16 @@ const SearchResult: React.FC<SearchResultProps> = ({
           }`}
         >
           {searchResults.map(result => (
-            <SearchItem key={result.id} result={result} />
+            <SearchItem
+              key={result.id}
+              result={{
+                id: result.id,
+                images: result.images,
+                title: lang === 'en' ? result.titleEn : result.titleUa,
+                price: result.price,
+                slug: result.slug,
+              }}
+            />
           ))}
         </ul>
       </CustomScrollBar>

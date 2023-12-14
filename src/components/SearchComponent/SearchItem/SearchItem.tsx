@@ -10,7 +10,7 @@ import { useModalContext } from '../../../../context/ModalContext';
 import styles from './SearchItem.module.scss';
 
 export interface SearchResultProps {
-  result: ProductDetails;
+  result: Omit<ProductDetails, 'titleEn' | 'titleUa'>;
 }
 
 const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
@@ -19,6 +19,7 @@ const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
   const handleItemClick = () => {
     toggleModal();
   };
+
   return (
     <li onClick={handleItemClick}>
       <Link href={`${result.slug}/${result.id}`} className={styles.searchLink}>
