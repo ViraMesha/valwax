@@ -6,9 +6,9 @@ import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollTo
 import { CartContextProvider } from '@context/CartContext';
 import { FilterProvider } from '@context/FilterContext';
 import { ModalProvider } from '@context/ModalContext';
+import { getDictionary } from '@lib/utils/dictionary';
 
 import { i18n, Locale } from '../../../i18n-config';
-import { getDictionary } from '../../../lib/utils/dictionary';
 import { proxima_nova } from '../fonts';
 
 import 'slick-carousel/slick/slick.css';

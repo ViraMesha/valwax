@@ -4,9 +4,9 @@ import Typography from '@components/components/Typography/Typography';
 import { showToast } from '@components/helpers/showToast';
 import { ProductDetails } from '@components/types';
 import { useModalContext } from '@context/ModalContext';
+import { fetchSearchResults } from '@lib/api-services/api';
 import debounce from 'lodash.debounce';
 
-import { fetchSearchResults } from '../../../../lib/api-services/api';
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
 

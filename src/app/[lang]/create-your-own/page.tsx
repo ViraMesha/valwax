@@ -1,9 +1,9 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import ConfiguratorSection from '@components/components/CreateYourOwn/ConfiguratorSection/ConfiguratorSection';
 import WelcomeSection from '@components/components/CreateYourOwn/WelcomeSection/WelcomeSection';
+import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../i18n-config';
-import { getDictionary } from '../../../../lib/utils/dictionary';
 
 export async function generateMetadata({
   params: { lang },

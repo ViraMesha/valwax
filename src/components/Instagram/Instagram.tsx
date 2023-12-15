@@ -1,18 +1,17 @@
 import Image from 'next/image';
+import { getInstData } from '@lib/api-services/apiInstagram';
 
-import { getInstData } from '../../../lib/api-services/apiInstagram';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
 
 import styles from './Instagram.module.scss';
 
-
-
-
 const Instagram = async () => {
   const feed = await getInstData();
-  const postsImages = feed.filter((item: {[key:string]: string}) => item.media_type === 'IMAGE')
+  const postsImages = feed.filter(
+    (item: { [key: string]: string }) => item.media_type === 'IMAGE'
+  );
   const posts = postsImages.slice(0, 4);
 
   return (
@@ -47,8 +46,8 @@ const Instagram = async () => {
                     (min-width: 768px) 230px,
                     (min-width: 667px) 238px,
                     156px"
-                    fill
-                    unoptimized
+                  fill
+                  unoptimized
                 />
               </li>
             ))}
@@ -60,4 +59,3 @@ const Instagram = async () => {
 };
 
 export default Instagram;
-

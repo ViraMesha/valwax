@@ -1,10 +1,10 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandleDetailsSection from '@components/components/CandleDetailsPage/CandleDetailsSection/CandleDetailsSection';
 import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
+import { getCandleDetails } from '@lib/api-services/api';
+import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../../../i18n-config';
-import { getCandleDetails } from '../../../../../../lib/api-services/api';
-import { getDictionary } from '../../../../../../lib/utils/dictionary';
 
 export async function generateMetadata({
   params: { lang, id },
