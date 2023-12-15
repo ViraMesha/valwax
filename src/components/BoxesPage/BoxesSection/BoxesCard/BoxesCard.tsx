@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
-import type { ButtonsTranslation, CartMessages } from '@components/types';
+import type { ButtonsTranslation } from '@components/types';
 
 import { BoxI } from '../boxesData';
 import BoxImgSlider from '../BoxImgSlider/BoxImgSlider';
