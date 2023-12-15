@@ -304,3 +304,14 @@ export interface DeliveryFormProps {
   };
   formControl: UseFormReturn<CheckoutFormValues>;
 }
+
+export interface ButtonsTranslation {
+  buyBtn: string;
+  reviewBtn: string;
+}
+
+export interface BoxesSectionProps {
+  dict: ButtonsTranslation;
+  boxes: Promise<BoxI[]>;
+  toastMessage: string;
+}

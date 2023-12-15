@@ -9,11 +9,13 @@ import styles from './BuyButtons.module.scss';
 interface BuyButtonsProps {
   product: CartProductI;
   buttonsDict: ButtonsDictI;
+  itemAdded: string;
 }
 
 const BuyButtons: React.FC<BuyButtonsProps> = ({
   product,
   buttonsDict: { buyNow, addToCart },
+  itemAdded,
 }) => {
   const { onAdd } = useCartActionsContext();
   const pathName = usePathname();
@@ -31,7 +33,7 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
         variant="secondary"
         className={styles.candleBuy}
         type="button"
-        onClick={() => onAdd(product, product.quantity)}
+        onClick={() => onAdd(product, product.quantity, itemAdded)}
       >
         {addToCart}
       </Button>

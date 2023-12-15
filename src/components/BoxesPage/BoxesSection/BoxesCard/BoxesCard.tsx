@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
+import type { ButtonsTranslation, CartMessages } from '@components/types';
 
 import { BoxI } from '../boxesData';
 import BoxImgSlider from '../BoxImgSlider/BoxImgSlider';
@@ -10,15 +11,14 @@ import styles from './BoxesCard.module.scss';
 
 type BoxesCardProps = {
   box: BoxI;
-  dict: {
-    buyBtn: string;
-    reviewBtn: string;
-  };
+  dict: ButtonsTranslation;
+  toastMessage: string;
 };
 
 const BoxesCard: React.FC<BoxesCardProps> = ({
   box,
   dict: { buyBtn, reviewBtn },
+  toastMessage,
 }) => {
   const { id, img, title, price, link, text } = box;
   return (
@@ -40,6 +40,7 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
           <BuyButton
             product={{ ...box, img: img[0], quantity: 0 }}
             buyBtn={buyBtn}
+            toastMessage={toastMessage}
           />
           <Link href={`${link}/${id}`}>{reviewBtn}</Link>
         </div>

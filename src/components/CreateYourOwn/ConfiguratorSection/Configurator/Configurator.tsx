@@ -60,7 +60,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   const handleBuyNowButtonClick = () => {
     const allParamNotEmpty = Object.values(paramCandle).every(v => v !== '');
     if (allParamNotEmpty) {
-      onAdd(product);
+      onAdd(product, 1, dictGeneral.messages.itemAdded);
       router.push(`/${lang}/checkout`);
       return;
     }

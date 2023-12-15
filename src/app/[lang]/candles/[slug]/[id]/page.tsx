@@ -29,7 +29,14 @@ export default async function Candle({
     slug: 'soy-candles' | 'coconut-candles' | 'palm-candles';
   };
 }) {
-  const { breadcrumbs, relatedProducts, general } = await getDictionary(lang);
+  const {
+    breadcrumbs,
+    relatedProducts: { title },
+    general: {
+      buttons,
+      messages: { itemAdded },
+    },
+  } = await getDictionary(lang);
   const product = await getCandleDetails(id);
 
   return (
@@ -47,11 +54,12 @@ export default async function Candle({
         ]}
         lang={lang}
       />
-      <CandleDetailsSection product={product} buttonsDict={general.buttons} />
-      <RelatedProducts
-        relatedProducts={product.similar}
-        title={relatedProducts.title}
+      <CandleDetailsSection
+        product={product}
+        buttonsDict={buttons}
+        itemAdded={itemAdded}
       />
+      <RelatedProducts relatedProducts={product.similar} title={title} />
     </>
   );
 }

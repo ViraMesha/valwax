@@ -20,8 +20,14 @@ export default async function Checkout({
 }: {
   params: { lang: Locale };
 }) {
-  const { breadcrumbs,  page: { checkout } } = await getDictionary(lang);
- 
+  const {
+    breadcrumbs,
+    page: { checkout },
+    general: {
+      messages: { itemDeleted },
+    },
+  } = await getDictionary(lang);
+
   return (
     <>
       <Breadcrumbs
@@ -33,7 +39,7 @@ export default async function Checkout({
         ]}
         lang={lang}
       />
-      <CheckoutPage dict={checkout} />
+      <CheckoutPage dict={checkout} itemDeleted={itemDeleted} />
     </>
   );
 }

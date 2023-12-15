@@ -21,8 +21,14 @@ const CreateYourOwn = async ({
 }: {
   params: { lang: Locale };
 }) => {
-  const { breadcrumbs, page, general } = await getDictionary(lang);
-  
+  const {
+    breadcrumbs,
+    page: {
+      createYourOwn: { welcome, configurator },
+    },
+    general,
+  } = await getDictionary(lang);
+
   return (
     <>
       <Breadcrumbs
@@ -34,11 +40,8 @@ const CreateYourOwn = async ({
         ]}
         lang={lang}
       />
-      <WelcomeSection dict={page.createYourOwn.welcome} />
-      <ConfiguratorSection
-        dict={page.createYourOwn.configurator}
-        dictGeneral={general}
-      />
+      <WelcomeSection dict={welcome} />
+      <ConfiguratorSection dict={configurator} dictGeneral={general} />
     </>
   );
 };

@@ -26,6 +26,7 @@ interface ProductCardProps {
   link: string;
   key: string;
   descriptionPropertyNames: ProductDescription;
+  itemDeleted: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -38,6 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   link,
   deleteButtonText,
   descriptionPropertyNames: propertyNames,
+  itemDeleted,
 }) => {
   const { onRemove } = useCartActionsContext();
   const isCustomCandle = link.includes('create-your-own');
@@ -125,7 +127,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             qty={quantity}
             isCartQuantity
           />
-          <button type="button" onClick={() => onRemove(id)}>
+          <button type="button" onClick={() => onRemove(id, itemDeleted)}>
             <Typography variant="bodyS" className={styles.delete}>
               {deleteButtonText}
             </Typography>

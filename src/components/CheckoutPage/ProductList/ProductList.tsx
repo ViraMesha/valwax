@@ -10,10 +10,12 @@ import styles from './ProductList.module.scss';
 
 interface ProductListProps {
   dict: ProductListDictionary;
+  itemDeleted: string;
 }
 
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
+  itemDeleted,
 }) => {
   const pathName = usePathname();
   const lang = pathName.split('/')[1];
@@ -34,6 +36,7 @@ const ProductList: React.FC<ProductListProps> = ({
                 {...product}
                 deleteButtonText={deleteButtonText}
                 descriptionPropertyNames={descriptionPropertyNames}
+                itemDeleted={itemDeleted}
               />
             ))}
           </ul>
