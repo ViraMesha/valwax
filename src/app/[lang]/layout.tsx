@@ -3,10 +3,10 @@ import { Slide, ToastContainer } from 'react-toastify';
 import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollToTopButton';
+import { CartContextProvider } from '@context/CartContext';
+import { FilterProvider } from '@context/FilterContext';
+import { ModalProvider } from '@context/ModalContext';
 
-import { CartContextProvider } from '../../../context/CartContext';
-import { FilterProvider } from '../../../context/FilterContext';
-import { ModalProvider } from '../../../context/ModalContext';
 import { i18n, Locale } from '../../../i18n-config';
 import { getDictionary } from '../../../lib/utils/dictionary';
 import { proxima_nova } from '../fonts';

@@ -1,8 +1,7 @@
 import { usePathname, useRouter } from 'next/navigation';
 import Button from '@components/components/Button/Button';
 import { ButtonsDictI, CartProductI } from '@components/types';
-
-import { useCartActionsContext } from '../../../../context/CartContext';
+import { useCartActionsContext } from '@context/CartContext';
 
 import styles from './BuyButtons.module.scss';
 

@@ -2,8 +2,8 @@
 import { redirect, usePathname } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
 import type { CartProductI, ProductListDictionary } from '@components/types';
+import { useCartContext } from '@context/CartContext';
 
-import { useCartContext } from '../../../../context/CartContext';
 import ProductCard from '../ProductCard/ProductCard';
 
 import styles from './ProductList.module.scss';

@@ -5,10 +5,10 @@ import Button from '@components/components/Button/Button';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 import { showToast } from '@components/helpers/showToast';
+import { useCartActionsContext } from '@context/CartContext';
 import candleImg from '@images/candles/img-1.jpg';
 import { nanoid } from 'nanoid';
 
-import { useCartActionsContext } from '../../../../../context/CartContext';
 import {
   ConfiguratorSectionI,
   CustomCandleDescription,

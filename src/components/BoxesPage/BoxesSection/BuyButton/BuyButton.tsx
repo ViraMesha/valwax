@@ -1,7 +1,6 @@
 'use client';
 import Button from '@components/components/Button/Button';
-
-import { useCartActionsContext } from '../../../../../context/CartContext';
+import { useCartActionsContext } from '@context/CartContext';
 
 interface BuyButtonProps {
   product: {

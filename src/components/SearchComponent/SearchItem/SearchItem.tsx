@@ -3,9 +3,8 @@ import Link from 'next/link';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 import { ProductDetails } from '@components/types';
+import { useModalContext } from '@context/ModalContext';
 import Image1 from '@images/aboutUs/Image1.jpg';
-
-import { useModalContext } from '../../../../context/ModalContext';
 
 import styles from './SearchItem.module.scss';
 

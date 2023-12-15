@@ -7,8 +7,7 @@ import type {
   CustomCandleDescription,
   ProductDescription,
 } from '@components/types';
-
-import { useCartActionsContext } from '../../../../context/CartContext';
+import { useCartActionsContext } from '@context/CartContext';
 
 import styles from './ProductCard.module.scss';
 
