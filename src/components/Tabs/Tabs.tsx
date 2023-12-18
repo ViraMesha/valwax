@@ -51,12 +51,15 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                       <li
                         key={item.link}
                         className={`${styles.item} ${
-                          isCurrent(item.link) ? styles.current : ''
+                          isCurrent(item.link) ? styles.currentItem : ''
                         }`}
                       >
                         <Link
                           href={`/${lang}${item.link}`}
-                          className={styles.link}
+                          className={`${styles.link} 
+                          ${isCurrent(item.link) ? styles.currentLink : ''}
+                            ${isTabsMenuOpen ? styles.activeLink : ''}
+                          `}
                           onClick={toggleTabsMenu}
                         >
                           <Typography
@@ -80,7 +83,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                       <li
                         key={item.link}
                         className={`${styles.item} ${
-                          isCurrent(item.link) ? styles.current : ''
+                          isCurrent(item.link) ? styles.currentItem : ''
                         }`}
                       >
                         <Link
@@ -108,7 +111,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                   <li
                     key={index}
                     className={`${styles.item} ${
-                      isCurrent(item.link) ? styles.current : ''
+                      isCurrent(item.link) ? styles.currentItem : ''
                     }`}
                   >
                     <Link href={`/${lang}${item.link}`} className={styles.link}>

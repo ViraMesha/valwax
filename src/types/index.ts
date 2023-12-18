@@ -313,3 +313,10 @@ export interface BoxesSectionProps {
   boxes: Promise<BoxI[]>;
   toastMessage: string;
 }
+
+export interface UseScrollbarProps {
+  root: React.RefObject<HTMLElement>;
+  children?: React.ReactNode;
+  maxHeight?: string;
+  primary?: string;
+}

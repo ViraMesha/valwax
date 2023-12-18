@@ -29,25 +29,22 @@
 }
 
 .candlesList {
-  width: 100%;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 24px 24px 0 24px;
+  padding: 16px 8px 0 8px;
 
   @include breakpoint('desktop-large') {
     position: absolute;
     top: 70%;
     left: 100px;
     background-color: var(--cl-white);
-    width: 160px;
     z-index: 1;
 
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    padding: 16px 24px 16px 16px;
+    padding: 16px 0 16px 0;
     gap: 0;
   }
 }
@@ -97,11 +94,6 @@
   gap: 8px;
 }
 
-.candlesLink {
-  @include breakpoint('desktop-large') {
-    padding: 8px 24px 8px 16px;
-  }
-}
 
 .activeLink::after {
   content: '';
@@ -125,11 +117,25 @@
 
   @include breakpoint('desktop-large') {
     border-bottom: 1px solid var(--cl-secondary-100);
-    padding: 8px 0;
+    // padding: 8px 0;
   }
 }
 
-.candlesItem:hover {
+.candlesLink {
+
+  width: 100%;
+  padding: 8px 16px;
+
+  @include breakpoint('tablet-large-and-up') {
+  };
+  @include breakpoint('desktop-large') {
+    width: 160px;
+  }
+
+}
+
+.candlesLink:hover {
+  border-radius: 8px;
   background-color: var(--cl-secondary-50);
 }
 
