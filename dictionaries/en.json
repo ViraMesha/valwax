@@ -443,7 +443,9 @@
     "messages": {
       "notAllParam": "Each candle parameter must be selected",
       "itemAdded": "The product was successfully added!",
-      "itemDeleted": "The product was successfully deleted!"
+      "itemDeleted": "The product was successfully deleted!",
+      "successSubscription": "You have successfully subscribed to our newsletter!",
+      "failedSubscription": "Ooops... Something went wrong!"
     }
   },
 

@@ -33,6 +33,9 @@ export default async function Home({
         },
       },
     },
+    general: {
+      messages: { successSubscription, failedSubscription },
+    },
   } = await getDictionary(lang);
   return (
     <>
@@ -41,7 +44,10 @@ export default async function Home({
       <Quote dict={quote} />
       <Compass dict={compass} lang={lang} />
       <Instagram />
-      <Subscription dict={{ subscription, emailReq, validEmail }} />
+      <Subscription
+        dict={{ subscription, emailReq, validEmail }}
+        toastDict={{ successSubscription, failedSubscription }}
+      />
     </>
   );
 }

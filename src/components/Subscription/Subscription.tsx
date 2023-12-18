@@ -24,18 +24,22 @@ interface SubscriptionI {
     emailReq: string;
     validEmail: string;
   };
+  toastDict: { successSubscription: string; failedSubscription: string };
 }
 
 interface FormValues {
   email: string;
 }
 
-const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
+const Subscription: React.FC<SubscriptionI> = ({ dict, toastDict }) => {
   const {
     subscription: { title, text, buttonText },
     emailReq,
     validEmail,
   } = dict;
+
+  const { successSubscription, failedSubscription } = toastDict;
+
   const { state, handleStatus } = useStatusState({
     isLoading: false,
     hasError: false,
@@ -56,11 +60,11 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
     try {
       handleStatus('isLoading', true);
       await subscribeToNewsletter(data?.email);
-      showToast('Your email was successfully sent!');
+      showToast(successSubscription);
     } catch (error: unknown) {
       handleStatus('hasError', true);
       console.log(error);
-      showToast('Ooops😌 Something went wrong!', 'error');
+      showToast(failedSubscription, 'error');
     } finally {
       handleStatus('isLoading', false);
       reset();
