@@ -24,7 +24,7 @@ interface SubscriptionI {
     emailReq: string;
     validEmail: string;
   };
-  toastDict: { successSubscription: string; failedSubscription: string };
+  toastDict: { successSubscription: string; failedRequest: string };
 }
 
 interface FormValues {
@@ -38,7 +38,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict, toastDict }) => {
     validEmail,
   } = dict;
 
-  const { successSubscription, failedSubscription } = toastDict;
+  const { successSubscription, failedRequest } = toastDict;
 
   const { state, handleStatus } = useStatusState({
     isLoading: false,
@@ -64,7 +64,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict, toastDict }) => {
     } catch (error: unknown) {
       handleStatus('hasError', true);
       console.log(error);
-      showToast(failedSubscription, 'error');
+      showToast(failedRequest, 'error');
     } finally {
       handleStatus('isLoading', false);
       reset();

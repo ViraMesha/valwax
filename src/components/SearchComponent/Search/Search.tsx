@@ -15,9 +15,10 @@ import styles from './Search.module.scss';
 interface SearchProps {
   onClose: () => void;
   dict: { noResults: string };
+  toastMessage: string;
 }
 
-const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
+const Search: React.FC<SearchProps> = ({ onClose, dict, toastMessage }) => {
   const { isModal } = useModalContext();
 
   const resultWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -38,8 +39,8 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
   };
 
   const handleSearch = debounce(async searchQuery => {
-    setSearchResults([]);
     if (searchQuery.trim().length < 3) {
+      setSearchResults([]);
       return;
     }
     try {
@@ -53,7 +54,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
     } catch (error) {
       setIsLoading(false);
       console.error(error);
-      showToast('Ooops😌 Something went wrong!', 'error');
+      showToast(toastMessage, 'error');
     }
   }, 500);
 

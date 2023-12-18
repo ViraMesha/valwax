@@ -24,9 +24,10 @@ interface HeaderProps {
   lang: Locale;
   dict: { noResults: string };
   navDict: NavDictI;
+  toastMessage: string;
 }
 
-const Header = ({ lang, dict, navDict }: HeaderProps) => {
+const Header = ({ lang, dict, navDict, toastMessage }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isModal, toggleModal, onBackdropClick } = useModalContext();
 
@@ -123,7 +124,11 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
         </div>
         {isModal && (
           <Modal onBackdropClick={onBackdropClick}>
-            <Search onClose={toggleModal} dict={dict} />
+            <Search
+              onClose={toggleModal}
+              dict={dict}
+              toastMessage={toastMessage}
+            />
           </Modal>
         )}
       </Container>

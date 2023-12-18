@@ -438,7 +438,7 @@
       "itemAdded": "Товар додано в кошик",
       "itemDeleted": "Товар успішно видалено!",
       "successSubscription": "Ви успішно підписалися на нашу розсилку!",
-      "failedSubscription": "Ой... Щось пішло не так!"
+      "failedRequest": "Ой... Щось пішло не так!"
     }
   },
 

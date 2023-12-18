@@ -33,7 +33,14 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  const { footer, search, navigation } = await getDictionary(params.lang);
+  const {
+    footer,
+    search,
+    navigation,
+    general: {
+      messages: { failedRequest },
+    },
+  } = await getDictionary(params.lang);
 
   return (
     <html lang={params.lang} className={proxima_nova.className}>
@@ -41,7 +48,12 @@ export default async function RootLayout({
         <CartContextProvider>
           <ModalProvider>
             <FilterProvider>
-              <Header lang={params.lang} dict={search} navDict={navigation} />
+              <Header
+                lang={params.lang}
+                dict={search}
+                navDict={navigation}
+                toastMessage={failedRequest}
+              />
               <main className={styles.main}>{children}</main>
               <Footer lang={params.lang} dict={footer} navDict={navigation} />
             </FilterProvider>
