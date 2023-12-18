@@ -100,8 +100,6 @@ export interface ProductDetails {
   title: string;
   price: number;
   slug: string;
-  titleEn: string;
-  titleUa: string;
 }
 
 export interface AreaData {

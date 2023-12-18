@@ -1,19 +1,22 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 import { ProductDetails } from '@components/types';
 import { useModalContext } from '@context/ModalContext';
-import Image1 from '@images/aboutUs/Image1.jpg';
 
 import styles from './SearchItem.module.scss';
 
 export interface SearchResultProps {
-  result: Omit<ProductDetails, 'titleEn' | 'titleUa'>;
+  result: ProductDetails;
 }
 
 const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
+  const { id, slug, images, title, price } = result;
   const { toggleModal } = useModalContext();
+  const pathName = usePathname();
+  const lang = pathName.split('/')[1];
 
   const handleItemClick = () => {
     toggleModal();
@@ -21,18 +24,18 @@ const SearchItem: React.FC<SearchResultProps> = ({ result }) => {
 
   return (
     <li onClick={handleItemClick}>
-      <Link href={`${result.slug}/${result.id}`} className={styles.searchLink}>
+      <Link href={`/${lang}${slug}/${id}`} className={styles.searchLink}>
         <div className={styles.searchWrapper}>
           <Image
-            src={Image1}
-            alt={result.title}
+            src={images[0]}
+            alt={title}
             width={30}
             height={32}
             className={styles.searchImage}
           />
-          <Typography variant="bodyS">{result.title}</Typography>
+          <Typography variant="bodyS">{title}</Typography>
         </div>
-        <Price price={result.price} variant="secondary" />
+        <Price price={price} variant="secondary" />
       </Link>
     </li>
   );

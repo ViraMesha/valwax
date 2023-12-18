@@ -38,8 +38,8 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
   };
 
   const handleSearch = debounce(async searchQuery => {
+    setSearchResults([]);
     if (searchQuery.trim().length < 3) {
-      setSearchResults([]);
       return;
     }
     try {

@@ -31,16 +31,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ searchResults }) => {
           }`}
         >
           {searchResults.map(result => (
-            <SearchItem
-              key={result.id}
-              result={{
-                id: result.id,
-                images: result.images,
-                title: lang === 'en' ? result.titleEn : result.titleUa,
-                price: result.price,
-                slug: result.slug,
-              }}
-            />
+            <SearchItem key={result.id} result={result} />
           ))}
         </ul>
       </CustomScrollBar>
