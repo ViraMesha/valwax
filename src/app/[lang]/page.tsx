@@ -3,9 +3,9 @@ import Hero from '@components/components/Hero/Hero';
 import Instagram from '@components/components/Instagram/Instagram';
 import Quote from '@components/components/Quote/Quote';
 import Subscription from '@components/components/Subscription/Subscription';
+import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../i18n-config';
-import { getDictionary } from '../../../lib/utils/dictionary';
 import Compass from '../../components/Compass/Compass';
 
 export async function generateMetadata({
@@ -24,15 +24,30 @@ export default async function Home({
 }: {
   params: { lang: Locale };
 }) {
-  const { page } = await getDictionary(lang);
+  const {
+    page: {
+      home: { hero, about, quote, compass, subscription },
+      checkout: {
+        form: {
+          errorMessages: { emailReq, validEmail },
+        },
+      },
+    },
+    general: {
+      messages: { successSubscription, failedRequest },
+    },
+  } = await getDictionary(lang);
   return (
     <>
-      <Hero dict={page.home.hero} />
-      <AboutUsSection dict={page.home.about} />
-      <Quote dict={page.home.quote} />
-      <Compass dict={page.home.compass} lang={lang} />
+      <Hero dict={hero} />
+      <AboutUsSection dict={about} />
+      <Quote dict={quote} />
+      <Compass dict={compass} lang={lang} />
       <Instagram />
-      <Subscription dict={page.home.subscription} />
+      <Subscription
+        dict={{ subscription, emailReq, validEmail }}
+        toastDict={{ successSubscription, failedRequest }}
+      />
     </>
   );
 }

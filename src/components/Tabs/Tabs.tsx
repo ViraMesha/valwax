@@ -7,9 +7,9 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { IoOptionsOutline } from 'react-icons/io5';
 import useModal from '@components/hooks/useModal';
 import { TabsI } from '@components/types';
+import { useFilterContext } from '@context/FilterContext';
 import { useWindowSize } from 'usehooks-ts';
 
-import { useFilterContext } from '../../../context/FilterContext';
 import Container from '../Container/Container';
 import Filter from '../Filter/Filter';
 import FilterTags from '../Filter/FilterTags/FilterTags';
@@ -20,7 +20,6 @@ import Typography from '../Typography/Typography';
 import { tabsData, tabsI } from './data';
 
 import styles from './Tabs.module.scss';
-
 
 const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   const [isTabsMenuOpen, setIsTabsMenuOpen] = useState(false);

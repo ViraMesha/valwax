@@ -16,12 +16,16 @@ interface CartContextI {
 }
 
 interface CartActionsContextProps {
-  onAdd: (product: CartProductI, quantity?: number) => void;
+  onAdd: (
+    product: CartProductI,
+    quantity?: number,
+    toastMessage?: string
+  ) => void;
   toggleCartItemQuantity: (
     id: string,
     value: typeof INCREMENT | typeof DECREMENT
   ) => void;
-  onRemove: (id: string) => void;
+  onRemove: (id: string, toastMessage?: string) => void;
 }
 
 const CartContext = createContext<CartContextI | null>(null);
@@ -46,7 +50,11 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
 
   // Define the onAdd function to add a product to the cart
   const onAdd = useCallback(
-    (product: CartProductI, quantity: number = 1) => {
+    (
+      product: CartProductI,
+      quantity: number = 1,
+      toastMessage = 'The product was added to the cart.'
+    ) => {
       // Check if the product is already in the cart
       const checkProductInCart = cartItems.find(
         (item: CartProductI) => item.id === product.id
@@ -77,14 +85,14 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
         product.quantity = quantity;
         setCartItems([...cartItems, { ...product }]);
       }
-      showToast(`${product.title} added to the cart.`);
+      showToast(`${toastMessage}`);
     },
     [cartItems, setCartItems, setTotalPrice, setTotalQuantities]
   );
 
   // Define the onRemove function to remove a product from the cart
   const onRemove = useCallback(
-    (id: string) => {
+    (id: string, toastMessage = 'The product was successfully deleted!') => {
       // Find the product to remove
       foundProductRef.current = cartItems.find(
         (item: CartProductI) => item.id === id
@@ -108,14 +116,14 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
         );
         setCartItems(newCartItems);
       }
-      showToast('The product was successfully deleted!');
+      showToast(`${toastMessage}`);
     },
     [cartItems, setCartItems, setTotalPrice, setTotalQuantities]
   );
 
   // Define the toggleCartItemQuantity function to increase or decrease the quantity of a cart item
   const toggleCartItemQuantity = useCallback(
-    (id: string, value: 'inc' | 'dec') => {
+    (id: string, value: typeof INCREMENT | typeof DECREMENT) => {
       // Find the product to update
       foundProductRef.current = cartItems.find(
         (item: CartProductI) => item.id === id
@@ -129,7 +137,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
       if (foundProductRef.current) {
         const newCartItems = [...cartItems];
 
-        if (value === 'inc') {
+        if (value === INCREMENT) {
           // Increase the quantity of the product
           newCartItems[indexRef.current].quantity =
             foundProductRef.current.quantity + 1;
@@ -146,7 +154,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
           setTotalQuantities(
             (prevTotalQuantities: number) => prevTotalQuantities + 1
           );
-        } else if (value === 'dec') {
+        } else if (value === DECREMENT) {
           // Decrease the quantity of the product if it's greater than 1
           if (foundProductRef.current.quantity > 1) {
             newCartItems[indexRef.current].quantity =

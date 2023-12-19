@@ -44,7 +44,7 @@ const ReusableSlider = forwardRef<ForwardedRefType, ReusableSliderProps>(
       afterChange,
       swipeToSlide,
       autoplay = false,
-      autoplaySpeed = 2000,
+      autoplaySpeed = 4000,
     },
     ref
   ) => {

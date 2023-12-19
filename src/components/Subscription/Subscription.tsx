@@ -4,8 +4,8 @@ import emailValidationSchema from '@components/helpers/emailValidationSchema';
 import { showToast } from '@components/helpers/showToast';
 import useStatusState from '@components/hooks/useStatusState';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { subscribeToNewsletter } from '@lib/api-services/subscribeToNewsletter';
 
-import { sendEmail } from '../../../lib/api-services/api';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 import Input from '../Input/Input';
@@ -16,17 +16,30 @@ import styles from './Subscription.module.scss';
 
 interface SubscriptionI {
   dict: {
-    title: string;
-    text: string;
-    buttonText: string;
+    subscription: {
+      title: string;
+      text: string;
+      buttonText: string;
+    };
+    emailReq: string;
+    validEmail: string;
   };
+  toastDict: { successSubscription: string; failedRequest: string };
 }
 
 interface FormValues {
   email: string;
 }
 
-const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
+const Subscription: React.FC<SubscriptionI> = ({ dict, toastDict }) => {
+  const {
+    subscription: { title, text, buttonText },
+    emailReq,
+    validEmail,
+  } = dict;
+
+  const { successSubscription, failedRequest } = toastDict;
+
   const { state, handleStatus } = useStatusState({
     isLoading: false,
     hasError: false,
@@ -35,26 +48,23 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
-    setError,
-    setValue,
+    formState: { errors },
     reset,
   } = useForm<FormValues>({
     mode: 'onBlur',
     defaultValues: {},
-    resolver: yupResolver(emailValidationSchema),
+    resolver: yupResolver(emailValidationSchema({ emailReq, validEmail })),
   });
 
   const onSubmit = async (data: FormValues) => {
     try {
       handleStatus('isLoading', true);
-      await sendEmail(data?.email);
-      console.log(data);
-      showToast('Your email was successfully sent!');
-    } catch (error) {
+      await subscribeToNewsletter(data?.email);
+      showToast(successSubscription);
+    } catch (error: unknown) {
       handleStatus('hasError', true);
       console.log(error);
-      showToast('Ooops😌 Something went wrong!', 'error');
+      showToast(failedRequest, 'error');
     } finally {
       handleStatus('isLoading', false);
       reset();
@@ -69,14 +79,14 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
           color="var(--cl-gray-700)"
           className={styles.subscriptionTitle}
         >
-          {dict.title}
+          {title}
         </Typography>
         <Typography
           variant="bodyRegular"
           color="var(--cl-gray-700)"
           className={styles.subscriptionTypography}
         >
-          {dict.text}
+          {text}
         </Typography>
         <form
           className={styles.subscriptionWrapper}
@@ -96,7 +106,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
             disabled={!!errors?.email || state.isLoading}
             isLoading={state.isLoading}
           >
-            {dict.buttonText}
+            {buttonText}
           </Button>
         </form>
       </Container>

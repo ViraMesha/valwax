@@ -1,6 +1,6 @@
 import Image from 'next/image';
+import { getInstData } from '@lib/api-services/apiInstagram';
 
-import { getInstData } from '../../../lib/api-services/apiInstagram';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';
