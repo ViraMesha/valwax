@@ -5,7 +5,6 @@ import { showToast } from '@components/helpers/showToast';
 import { ProductDetails } from '@components/types';
 import debounce from 'lodash.debounce';
 
-import { useModalContext } from '../../../../context/ModalContext';
 import { fetchSearchResults } from '../../../../lib/api-services/api';
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
@@ -13,12 +12,11 @@ import SearchResult from '../SearchResult/SearchResult';
 import styles from './Search.module.scss';
 
 interface SearchProps {
-  onClose: () => void;
+  closeModal?: () => void;
   dict: { noResults: string };
 }
 
-const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
-  const { isModal } = useModalContext();
+const Search: React.FC<SearchProps> = ({ closeModal, dict }) => {
 
   const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -57,7 +55,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
     }
   }, 500);
 
-  return isModal ? (
+  return  (
     <div
       className={`${styles.modalWrapper} ${isVisible ? styles.visible : ''}`}
     >
@@ -79,7 +77,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
           style={{ strokeWidth: '4px' }}
           className={styles.closeIcon}
           color="var(--cl-gray-700)"
-          onClick={onClose}
+          onClick={closeModal}
         />
         {isLoading && (
           <div className={styles.loaderWrapper}>
@@ -104,7 +102,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
         </div>
       )}
     </div>
-  ) : null;
+  ) ;
 };
 
 export default Search;

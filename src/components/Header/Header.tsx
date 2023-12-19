@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import type { NavDictI } from '@components/types';
+import { useModalContext } from '@context/ModalContext';
 import { useWindowSize } from 'usehooks-ts';
 
-import { useModalContext } from '../../../context/ModalContext';
 import { Locale } from '../../../i18n-config';
 import logo from '../../../public/images/icons/header-logo.svg';
 import sm_logo from '../../../public/images/icons/sm-logo.svg';
@@ -28,7 +28,7 @@ interface HeaderProps {
 
 const Header = ({ lang, dict, navDict }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isModal, toggleModal, onBackdropClick } = useModalContext();
+  const { isModal, toggleModal } = useModalContext();
 
   const { width } = useWindowSize();
   const isSmallScreen = width < 1230;
@@ -121,11 +121,9 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
             <LanguageMenu className={styles.mobileLangMenu} />
           </Container>
         </div>
-        {isModal && (
-          <Modal onBackdropClick={onBackdropClick}>
-            <Search onClose={toggleModal} dict={dict} />
+          <Modal active={isModal} setActive={toggleModal}>
+            <Search dict={dict} />
           </Modal>
-        )}
       </Container>
     </header>
   );

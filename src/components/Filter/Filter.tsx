@@ -10,7 +10,7 @@ import FilterCategoryBlock from './FilterCatBlock/FilterCategoryBlock';
 
 import styles from './Filter.module.scss';
 
-const Filter: React.FC<FilterI> = ({ dict, className, onModal }) => {
+const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1230;
 
@@ -69,7 +69,7 @@ const Filter: React.FC<FilterI> = ({ dict, className, onModal }) => {
           >
             <Typography>{dict.cleanUp}</Typography>
           </Button>
-          <Button variant="light" className={styles.button} onClick={onModal}>
+          <Button variant="light" className={styles.button} onClick={closeModal}>
             <Typography>{dict.result}</Typography>
           </Button>
         </div>

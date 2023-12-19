@@ -16,10 +16,19 @@
   justify-content: center;
   align-items: flex-start;
 
+  opacity: 0;
+  visibility: hidden;
+  transition: all .35s;
+
   @include breakpoint('desktop-large') {
     padding-top: 260px;
     padding-bottom: 348px;
   }
+}
+
+.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .modalBox {
