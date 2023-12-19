@@ -3,9 +3,10 @@ import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import Typography from '@components/components/Typography/Typography';
 import { showToast } from '@components/helpers/showToast';
 import { ProductDetails } from '@components/types';
+import { useModalContext } from '@context/ModalContext';
+import { fetchSearchResults } from '@lib/api-services/api';
 import debounce from 'lodash.debounce';
 
-import { fetchSearchResults } from '../../../../lib/api-services/api';
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
 
@@ -14,9 +15,10 @@ import styles from './Search.module.scss';
 interface SearchProps {
   closeModal?: () => void;
   dict: { noResults: string };
+  toastMessage: string;
 }
 
-const Search: React.FC<SearchProps> = ({ closeModal, dict }) => {
+const Search: React.FC<SearchProps> = ({ closeModal, dict, toastMessage }) => {
 
   const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -46,12 +48,12 @@ const Search: React.FC<SearchProps> = ({ closeModal, dict }) => {
         searchQuery.toLowerCase().trim()
       );
       setIsLoading(false);
-      setSearchResults(results.boxesAndCandles);
-      setShowNoResults(results.boxesAndCandles.length === 0);
+      setSearchResults(results);
+      setShowNoResults(results.length === 0);
     } catch (error) {
       setIsLoading(false);
       console.error(error);
-      showToast('Ooops😌 Something went wrong!', 'error');
+      showToast(toastMessage, 'error');
     }
   }, 500);
 
@@ -96,7 +98,7 @@ const Search: React.FC<SearchProps> = ({ closeModal, dict }) => {
         </Typography>
       )}
 
-      {!showNoResults && searchResults.length > 0 && (
+      {!showNoResults && searchResults?.length > 0 && (
         <div ref={resultWrapperRef} className={styles.resultWrapper}>
           <SearchResult searchResults={searchResults} />
         </div>

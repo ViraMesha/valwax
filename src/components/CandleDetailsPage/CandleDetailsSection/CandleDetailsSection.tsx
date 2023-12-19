@@ -11,11 +11,13 @@ import styles from './CandleDetailsSection.module.scss';
 interface CandleDetailsSectionI {
   product: CandleDetailsI;
   buttonsDict: ButtonsDictI;
+  itemAdded: string;
 }
 
 const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
   product,
   buttonsDict,
+  itemAdded,
 }) => {
   return (
     <Section id={styles.candle_details_section}>
@@ -26,6 +28,7 @@ const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
             product={product}
             id="candle_details"
             buttonsDict={buttonsDict}
+            itemAdded={itemAdded}
           />
         </div>
       </Container>

@@ -20,7 +20,6 @@ import { tabsData, tabsI } from './data';
 
 import styles from './Tabs.module.scss';
 
-
 const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   const [isTabsMenuOpen, setIsTabsMenuOpen] = useState(false);
   const pathname = usePathname();

@@ -130,6 +130,15 @@ export interface ProductDescription {
   color: string;
 }
 
+export interface CheckoutFormValidation {
+  firstNameReq: string;
+  lastNameReq: string;
+  emailReq: string;
+  validEmail: string;
+  phoneReq: string;
+  validPhone: string;
+}
+
 export interface CheckoutPageDictionary {
   productList: {
     deleteButtonText: string;
@@ -154,6 +163,7 @@ export interface CheckoutPageDictionary {
     notesLabel: string;
     notesPlaceholder: string;
     buttonText: string;
+    errorMessages: CheckoutFormValidation;
   };
 }
 
@@ -184,14 +194,14 @@ export interface BoxI {
 }
 
 type FilterT = {
-    title: string;
-    subtitle: string;
-    up: string;
-    down: string;
-    cleanUp: string;
-    result: string;
-    category: { [key: string]: { title: string; option: string[] } };
-}
+  title: string;
+  subtitle: string;
+  up: string;
+  down: string;
+  cleanUp: string;
+  result: string;
+  category: { [key: string]: { title: string; option: string[] } };
+};
 
 export interface FilterI {
   dict: FilterT;
@@ -230,8 +240,7 @@ export interface TabsI {
     };
   };
   lang: Locale;
-};
-
+}
 
 export interface CheckoutFormValues {
   // cashOnDelivery?: boolean | undefined;
@@ -267,8 +276,9 @@ export interface CheckoutFormProps {
     warehousePlaceholder: string;
     notesLabel: string;
     notesPlaceholder: string;
+    errorMessages: CheckoutFormValidation;
   };
-};
+}
 
 export interface DeliveryFormProps {
   dict: {
@@ -291,11 +301,22 @@ export interface DeliveryFormProps {
     notesPlaceholder: string;
   };
   formControl: UseFormReturn<CheckoutFormValues>;
-};
+}
+
+export interface ButtonsTranslation {
+  buyBtn: string;
+  reviewBtn: string;
+}
+
+export interface BoxesSectionProps {
+  dict: ButtonsTranslation;
+  boxes: Promise<BoxI[]>;
+  toastMessage: string;
+}
 
 export interface UseScrollbarProps {
   root: React.RefObject<HTMLElement>;
   children?: React.ReactNode;
   maxHeight?: string;
   primary?: string;
-};
+}

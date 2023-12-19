@@ -5,10 +5,10 @@ import Button from '@components/components/Button/Button';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 import { showToast } from '@components/helpers/showToast';
+import { useCartActionsContext } from '@context/CartContext';
 import candleImg from '@images/candles/img-1.jpg';
 import { nanoid } from 'nanoid';
 
-import { useCartActionsContext } from '../../../../../context/CartContext';
 import {
   ConfiguratorSectionI,
   CustomCandleDescription,
@@ -60,7 +60,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   const handleBuyNowButtonClick = () => {
     const allParamNotEmpty = Object.values(paramCandle).every(v => v !== '');
     if (allParamNotEmpty) {
-      onAdd(product);
+      onAdd(product, 1, dictGeneral.messages.itemAdded);
       router.push(`/${lang}/checkout`);
       return;
     }

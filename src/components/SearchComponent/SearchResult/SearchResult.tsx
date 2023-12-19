@@ -1,3 +1,4 @@
+import { usePathname } from 'next/navigation';
 import React, { useRef } from 'react';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import { ProductDetails } from '@components/types';
@@ -13,6 +14,9 @@ export interface SearchResultProps {
 
 const SearchResult: React.FC<SearchResultProps> = ({ searchResults }) => {
   const SearchWrapper = useRef<HTMLDivElement | null>(null);
+
+  const pathName = usePathname();
+  const lang = pathName.split('/')[1];
 
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1024;

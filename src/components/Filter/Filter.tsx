@@ -1,8 +1,8 @@
 'use client';
 import { FilterI } from '@components/types';
+import { useFilterContext } from '@context/FilterContext';
 import { useWindowSize } from 'usehooks-ts';
 
-import { useFilterContext } from '../../../context/FilterContext';
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 
@@ -14,7 +14,8 @@ const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1230;
 
-  const { configurationFilter, updateSortSetting, cleanFilter } = useFilterContext();
+  const { configurationFilter, updateSortSetting, cleanFilter } =
+    useFilterContext();
 
   return (
     <div className={`${styles.wrapper} ${className || ''}`}>

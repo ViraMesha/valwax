@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import type { NavDictI } from '@components/types';
 import { useModalContext } from '@context/ModalContext';
+import logo from '@images/icons/header-logo.svg';
+import sm_logo from '@images/icons/sm-logo.svg';
+
 import { useWindowSize } from 'usehooks-ts';
 
 import { Locale } from '../../../i18n-config';
-import logo from '../../../public/images/icons/header-logo.svg';
-import sm_logo from '../../../public/images/icons/sm-logo.svg';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
@@ -24,9 +25,10 @@ interface HeaderProps {
   lang: Locale;
   dict: { noResults: string };
   navDict: NavDictI;
+  toastMessage: string;
 }
 
-const Header = ({ lang, dict, navDict }: HeaderProps) => {
+const Header = ({ lang, dict, navDict, toastMessage }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isModal, toggleModal } = useModalContext();
 
@@ -122,7 +124,10 @@ const Header = ({ lang, dict, navDict }: HeaderProps) => {
           </Container>
         </div>
           <Modal active={isModal} setActive={toggleModal}>
-            <Search dict={dict} />
+            <Search 
+              dict={dict}
+              toastMessage={toastMessage}
+            />
           </Modal>
       </Container>
     </header>
