@@ -6,30 +6,30 @@ import { CandleI } from '../types';
 export const relatedProducts: CandleI[] = [
   {
     id: '1',
-    img: img1.src,
+    images: [img1.src],
     title: 'Осінь.',
     price: 370,
-    link: '/candles/soy-candles',
+    slug: '/candles/soy-candles',
   },
   {
     id: '2',
-    img: img2.src,
+    images: [img2.src],
     title: 'Імбир і спеції.',
     price: 355,
-    link: '/candles/soy-candles',
+    slug: '/candles/soy-candles',
   },
   {
     id: '3',
-    img: img3.src,
+    images: [img3.src],
     title: 'Кашемірова слива.',
     price: 355,
-    link: '/candles/soy-candles',
+    slug: '/candles/soy-candles',
   },
   {
     id: '4',
-    img: img1.src,
+    images: [img1.src],
     title: 'Осінь.',
     price: 370,
-    link: '/candles/soy-candles',
+    slug: '/candles/soy-candles',
   },
 ];

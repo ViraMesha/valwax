@@ -43,29 +43,31 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
           dots
           dotsStyles={styles.dots}
         >
-          {relatedProducts.map(({ id, link, img, title, price }: CandleI) => (
-            <div key={id} className={styles.card}>
-              <Link href={`${link}/${id}`}>
-                <div className={styles.img_container}>
-                  <Image
-                    src={img}
-                    fill
-                    priority
-                    alt={title}
-                    sizes="(min-width: 1230) 282px,
+          {relatedProducts.map(
+            ({ id, slug, images, title, price }: CandleI) => (
+              <div key={id} className={styles.card}>
+                <Link href={`${slug}/${id}`}>
+                  <div className={styles.img_container}>
+                    <Image
+                      src={images[0]}
+                      fill
+                      priority
+                      alt={title}
+                      sizes="(min-width: 1230) 282px,
                     (min-width: 1024) 312px,
                     (min-width: 768px) 224px,
                     (min-width: 667px) 300px,
                     154px"
-                  />
-                </div>
-                <Typography variant="bodyRegular" className={styles.title}>
-                  {title}
-                </Typography>
-              </Link>
-              <Price price={price} />
-            </div>
-          ))}
+                    />
+                  </div>
+                  <Typography variant="bodyRegular" className={styles.title}>
+                    {title}
+                  </Typography>
+                </Link>
+                <Price price={price} />
+              </div>
+            )
+          )}
         </ReusableSlider>
       </Container>
     </Section>

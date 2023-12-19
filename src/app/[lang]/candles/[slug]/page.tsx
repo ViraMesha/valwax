@@ -1,7 +1,6 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlesPage from '@components/components/CandlesPage/CandlesPage';
 import { removeCandlesSuffix } from '@components/helpers/removeCandlesSuffix';
-import { getCandles } from '@lib/api-services/api';
 import { fetchCandles } from '@lib/api-services/fetchCandles';
 import { getDictionary } from '@lib/utils/dictionary';
 
@@ -40,11 +39,9 @@ export default async function Page({
   const perPage = convertStringToNumber(searchParams.perPage, 9);
 
   const wax = removeCandlesSuffix(slug);
-  // TODO: Remove await
-  const candles = await fetchCandles(wax, currentPage, perPage);
-  console.log(candles);
+  const currentLang = lang === 'uk' ? 'UA' : 'EN';
 
-  const promise = getCandles(currentPage, perPage);
+  const promise = fetchCandles(currentLang, wax, currentPage, perPage);
 
   return (
     <>

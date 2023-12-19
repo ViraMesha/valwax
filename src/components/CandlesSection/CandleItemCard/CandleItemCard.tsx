@@ -9,15 +9,16 @@ import { CandleI } from '../../../types';
 
 import styles from './CandleItemCard.module.scss';
 
-const CandleItemCard: React.FC<CandleI> = ({ id, img, title, price }) => {
+const CandleItemCard: React.FC<CandleI> = ({ id, images, title, price }) => {
   const pathname = usePathname();
+  const lang = pathname.split('/')[1];
   const isCurrent = pathname.split('/')[3];
   return (
     <li className={styles.card}>
-      <Link href={`/candles/${isCurrent}/${id}`}>
+      <Link href={`/${lang}/candles/${isCurrent}/${id}`}>
         <div className={styles.img_container}>
           <Image
-            src={img}
+            src={images[0]}
             fill
             priority
             alt={title}
