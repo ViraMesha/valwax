@@ -1,10 +1,10 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandleDetailsSection from '@components/components/CandleDetailsPage/CandleDetailsSection/CandleDetailsSection';
 import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
+import { getCandleDetails } from '@lib/api-services/api';
+import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../../../i18n-config';
-import { getCandleDetails } from '../../../../../../lib/api-services/api';
-import { getDictionary } from '../../../../../../lib/utils/dictionary';
 
 export async function generateMetadata({
   params: { lang, id },
@@ -29,7 +29,14 @@ export default async function Candle({
     slug: 'soy-candles' | 'coconut-candles' | 'palm-candles';
   };
 }) {
-  const { breadcrumbs, relatedProducts, general } = await getDictionary(lang);
+  const {
+    breadcrumbs,
+    relatedProducts: { title },
+    general: {
+      buttons,
+      messages: { itemAdded },
+    },
+  } = await getDictionary(lang);
   const product = await getCandleDetails(id);
 
   return (
@@ -47,11 +54,12 @@ export default async function Candle({
         ]}
         lang={lang}
       />
-      <CandleDetailsSection product={product} buttonsDict={general.buttons} />
-      <RelatedProducts
-        relatedProducts={product.similar}
-        title={relatedProducts.title}
+      <CandleDetailsSection
+        product={product}
+        buttonsDict={buttons}
+        itemAdded={itemAdded}
       />
+      <RelatedProducts relatedProducts={product.similar} title={title} />
     </>
   );
 }

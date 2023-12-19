@@ -9,15 +9,17 @@ import styles from './CheckoutPage.module.scss';
 
 interface CheckoutPageProps {
   dict: CheckoutPageDictionary;
+  itemDeleted: string;
 }
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({
   dict: { productList, form },
+  itemDeleted,
 }) => {
   return (
     <Section>
       <Container className={styles.body}>
-        <ProductList dict={productList} />
+        <ProductList dict={productList} itemDeleted={itemDeleted} />
         <CheckoutForm dict={form} />
       </Container>
     </Section>

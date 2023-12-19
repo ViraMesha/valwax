@@ -158,10 +158,10 @@
         "methods": {
           "title": "Possible delivery options include:",
           "availableMethods": [
-          "- To the Nova Poshta branch",
-          "- To the Nova Poshta automated parcel locker",
-          "- To the Ukrposhta branch"
-        ]
+            "- To the Nova Poshta branch",
+            "- To the Nova Poshta automated parcel locker",
+            "- To the Ukrposhta branch"
+          ]
         },
         "paymentInfo": "Delivery payment is not included in the product's price and is paid by the recipient at the New Mail office, according to New Mail's tariffs, except for cases of online delivery payment."
       }
@@ -364,7 +364,7 @@
         "paymentOptions": [
           "Cash on delivery - Delivery is made with payment upon receipt at 150 UAH. When using cash on delivery shipping method upon receipt, Nova Poshta additionally charges a commission for sending money back, 20 UAH + 2% of the order amount.",
           "Payment by invoice"
-        ], 
+        ],
         "areaLabel": "Choose a delivery area *",
         "areaPlaceholder": "Area",
         "cityLabel": "Choose your city *",
@@ -373,7 +373,15 @@
         "warehousePlaceholder": "Branch or post office number",
         "notesLabel": "Notes to orders (optional)",
         "notesPlaceholder": "Notes on your order, such as special notes for delivery",
-        "buttonText": "Place an order"
+        "buttonText": "Place an order",
+        "errorMessages": {
+          "firstNameReq": "Enter your first name",
+          "lastNameReq": "Enter your last name",
+          "emailReq": "Enter your email",
+          "validEmail": "Enter a valid email",
+          "phoneReq": "Phone number is a required field",
+          "validPhone": "Enter a valid phone number"
+        }
       }
     },
     "successOrder": {
@@ -433,7 +441,11 @@
       "price": "Price:"
     },
     "messages": {
-      "notAllParam": "Each candle parameter must be selected"
+      "notAllParam": "Each candle parameter must be selected",
+      "itemAdded": "The product was successfully added!",
+      "itemDeleted": "The product was successfully deleted!",
+      "successSubscription": "You have successfully subscribed to our newsletter!",
+      "failedRequest": "Ooops... Something went wrong!"
     }
   },
 

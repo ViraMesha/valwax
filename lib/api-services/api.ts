@@ -311,21 +311,8 @@ export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
 export const fetchSearchResults = async (query: string | undefined) => {
   try {
     const response = await fetch(`/api/search?query=${query}`);
-    if (!response.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data');
-    }
     const data = await response.json();
     return data;
-  } catch (error: unknown) {
-    handleErrorWithMessage(error);
-  }
-};
-
-export const sendEmail = async (email: string) => {
-  try {
-    await delayFn(1000);
-    console.log(`Email sent to ${email}`);
   } catch (error: unknown) {
     handleErrorWithMessage(error);
   }

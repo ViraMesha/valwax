@@ -14,7 +14,6 @@ import DeliveryForm from './DeliveryForm/DeliveryForm';
 
 import styles from './CheckoutForm.module.scss';
 
-
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
   const {
     contactFormTitle,
@@ -23,15 +22,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
     email,
     phoneNumber,
     buttonText,
+    errorMessages,
   } = dict;
-
 
   const { totalPrice, cartItems } = useCartContext();
 
   const formControl = useForm<CheckoutFormValues>({
     mode: 'onBlur',
     defaultValues: {},
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(validationSchema(errorMessages)),
   });
 
   const {
@@ -97,12 +96,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
       </fieldset>
 
       <DeliveryForm dict={dict} formControl={formControl} />
-      <Button
-        variant="primary"
-        type="submit"
-        className={styles.button}
-      >
-
+      <Button variant="primary" type="submit" className={styles.button}>
         {buttonText}
       </Button>
     </form>

@@ -111,7 +111,7 @@ const feeds = [
 ];
 
 export const getInstData = async () => {
-  const url = `https://graph.instagram.com/me/media?&fields=id,caption,media_type,media_url&access_token=${ApiKey}`;
+  const url = `https://graph.instagram.com/me/media?&fields=id,caption,media_type,media_url,permalink&access_token=${ApiKey}`;
   try {
     const response = await fetch(url);
     const feeds = await response.json();
