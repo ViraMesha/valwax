@@ -1,6 +1,5 @@
 'use client';
-import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
 
@@ -11,31 +10,36 @@ interface PaginationProps {
 }
 
 const Pagination = ({ totalPages }: PaginationProps) => {
-  const pathName = usePathname();
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const page =
     typeof searchParams.get('page') === 'string'
       ? Number(searchParams.get('page'))
       : 1;
 
   const pageRange = Array.from(
-    { length: totalPages || 1 },
+    { length: totalPages ?? 1 },
     (_, index) => index + 1
   );
+
+  const handleClick = (pageNumber: number) => {
+    // TODO: Add  pageNumber > 1 &&
+    router.push(`?page=${pageNumber}`);
+  };
 
   return (
     <Section>
       <Container>
         <ul className={styles.dots}>
           {pageRange.map(pageNumber => (
-            <li
-              key={pageNumber}
-              className={`${page === pageNumber && styles.active}`}
-            >
-              <Link
-                href={`${pathName}?page=${pageNumber}`}
-                aria-label={`Go to page ${pageNumber}`}
-              />
+            <li key={pageNumber}>
+              <button
+                className={`${styles.button} ${
+                  page === pageNumber && styles.active
+                }`}
+                onClick={() => handleClick(pageNumber)}
+              ></button>
             </li>
           ))}
         </ul>
