@@ -24,8 +24,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   );
 
   const handleClick = (pageNumber: number) => {
-    // TODO: Add  pageNumber > 1 &&
-    router.push(`?page=${pageNumber}`);
+    router.push(`?page=${pageNumber}#candles-section`);
   };
 
   return (
