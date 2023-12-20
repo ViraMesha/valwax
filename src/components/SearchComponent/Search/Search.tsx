@@ -13,13 +13,12 @@ import SearchResult from '../SearchResult/SearchResult';
 import styles from './Search.module.scss';
 
 interface SearchProps {
-  onClose: () => void;
+  closeModal?: () => void;
   dict: { noResults: string };
   toastMessage: string;
 }
 
-const Search: React.FC<SearchProps> = ({ onClose, dict, toastMessage }) => {
-  const { isModal } = useModalContext();
+const Search: React.FC<SearchProps> = ({ closeModal, dict, toastMessage }) => {
 
   const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -58,7 +57,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict, toastMessage }) => {
     }
   }, 500);
 
-  return isModal ? (
+  return  (
     <div
       className={`${styles.modalWrapper} ${isVisible ? styles.visible : ''}`}
     >
@@ -80,7 +79,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict, toastMessage }) => {
           style={{ strokeWidth: '4px' }}
           className={styles.closeIcon}
           color="var(--cl-gray-700)"
-          onClick={onClose}
+          onClick={closeModal}
         />
         {isLoading && (
           <div className={styles.loaderWrapper}>
@@ -105,7 +104,7 @@ const Search: React.FC<SearchProps> = ({ onClose, dict, toastMessage }) => {
         </div>
       )}
     </div>
-  ) : null;
+  ) ;
 };
 
 export default Search;

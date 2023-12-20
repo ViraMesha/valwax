@@ -153,6 +153,10 @@
   padding-top: 160px;
   padding-bottom: 0px;
 
+  // opacity: 0;
+  // pointer-events: none;
+  // transition: opacity 0.3s ease-in-out;
+
   &::-webkit-scrollbar {
     width: 10px;
   }

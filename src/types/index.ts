@@ -206,7 +206,7 @@ type FilterT = {
 export interface FilterI {
   dict: FilterT;
   className?: string;
-  onModal?: () => void;
+  closeModal?: () => void;
 }
 
 export interface CandlesSectionI {
