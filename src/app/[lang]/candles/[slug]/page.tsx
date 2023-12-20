@@ -41,7 +41,7 @@ export default async function Page({
   const wax = removeCandlesSuffix(slug);
   const currentLang = lang === 'uk' ? 'UA' : 'EN';
 
-  const promise = fetchCandles(currentLang, wax, currentPage, perPage);
+  const promise = fetchCandles({currentLang, wax, currentPage, perPage});
 
   return (
     <>
