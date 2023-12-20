@@ -320,3 +320,5 @@ export interface UseScrollbarProps {
   maxHeight?: string;
   primary?: string;
 }
+
+export type ServerLocale = 'UA' | 'EN';
