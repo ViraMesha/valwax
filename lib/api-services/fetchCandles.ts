@@ -1,8 +1,8 @@
 import { BASE_URL } from '@components/constants';
-import { CandleApiResponse } from '@components/types';
+import type { CandleApiResponse, ServerLocale } from '@components/types';
 
 interface CandleFetchRequest {
-  currentLang: string;
+  currentLang: ServerLocale;
   wax: string;
   currentPage: number;
   perPage: number;
