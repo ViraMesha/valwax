@@ -17,17 +17,19 @@ const CandleItemCard: React.FC<CandleI> = ({ id, images, title, price }) => {
     <li className={styles.card}>
       <Link href={`/${lang}/candles/${isCurrent}/${id}`}>
         <div className={styles.img_container}>
-          <Image
-            src={images[0]}
-            fill
-            priority
-            alt={title}
-            sizes="(min-width: 1230) 282px,
+          {images && images.length > 0 && (
+            <Image
+              src={images[0]}
+              fill
+              priority
+              alt={title}
+              sizes="(min-width: 1230) 282px,
                     (min-width: 1024) 312px,
                     (min-width: 768px) 224px,
                     (min-width: 667px) 300px,
                     154px"
-          />
+            />
+          )}
         </div>
         <Typography variant="bodyRegular" className={styles.title}>
           {title}

@@ -23,8 +23,8 @@ const Pagination = ({ totalPages }: PaginationProps) => {
     (_, index) => index + 1
   );
 
-  const handleClick = (pageNumber: number) => {
-    router.push(`?page=${pageNumber}#candles-section`);
+  const handlePageClick = (pageNumber: number) => {
+    router.push(`?page=${pageNumber}&perPage=9#candles-section`);
   };
 
   return (
@@ -37,7 +37,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
                 className={`${styles.button} ${
                   page === pageNumber && styles.active
                 }`}
-                onClick={() => handleClick(pageNumber)}
+                onClick={() => handlePageClick(pageNumber)}
               ></button>
             </li>
           ))}
