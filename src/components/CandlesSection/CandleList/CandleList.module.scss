@@ -1,12 +1,13 @@
 @import '../../../scss/utilities/breakpoint-mixin.scss';
 
 .list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 19px;
   row-gap: 20px;
 
   @include breakpoint('only-mobile') {
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
   }
 

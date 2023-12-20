@@ -2,23 +2,6 @@
 
 .card {
   overflow: hidden;
-  flex-basis: 154px;
-
-  @include breakpoint('tablet-small') {
-    flex-basis: 300px;
-  }
-
-  @include breakpoint('tablet-large') {
-    flex-basis: 224px;
-  }
-
-  @include breakpoint('desktop') {
-    flex-basis: 312px;
-  }
-
-  @include breakpoint('desktop-large') {
-    flex-basis: 282px;
-  }
 }
 
 .img_container {
