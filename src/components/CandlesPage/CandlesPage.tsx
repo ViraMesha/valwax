@@ -1,3 +1,4 @@
+import { Await } from '@components/helpers/Await';
 import { CandleApiResponse } from '@components/types';
 
 import { Locale } from '../../../i18n-config';
@@ -37,7 +38,9 @@ const CandlesPage: React.FC<CandlesPageI> = ({
       <Tabs dict={dict} lang={lang} />
       <WaxDesc dict={dictWax?.waxDesc} className={styles.waxDescAboveCandles} />
       <CandlesSection dict={dict} candles={candles} />
-      <Pagination promise={candles} />
+      <Await promise={candles}>
+        {({ totalPages }) => <Pagination totalPages={totalPages} />}
+      </Await>
       <WaxDesc dict={dictWax?.waxDesc} className={styles.waxDescBelowCandles} />
     </>
   );
