@@ -13,12 +13,14 @@ interface DescriptionProps {
   product: BoxDetailsI | CandleDetailsI;
   id?: string;
   buttonsDict: ButtonsDictI;
+  itemAdded: string;
 }
 
 const Description: React.FC<DescriptionProps> = ({
   product,
   id,
   buttonsDict,
+  itemAdded,
 }) => {
   const { id: productId, images, title, description, price, slug } = product;
   const isCandlePage = id === 'candle_details';
@@ -86,6 +88,7 @@ const Description: React.FC<DescriptionProps> = ({
             quantity,
           }}
           buttonsDict={buttonsDict}
+          itemAdded={itemAdded}
         />
 
         {/* <div className={styles.candeleAccordion}>

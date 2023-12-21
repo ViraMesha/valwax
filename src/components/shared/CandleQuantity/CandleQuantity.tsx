@@ -1,9 +1,8 @@
 'use client';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import Typography from '@components/components/Typography/Typography';
-
-import { useCartActionsContext } from '../../../../context/CartContext';
+import { useCartActionsContext } from '@context/CartContext';
 
 import styles from './CandleQuantity.module.scss';
 

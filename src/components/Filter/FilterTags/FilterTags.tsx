@@ -2,8 +2,7 @@
 import { IoClose } from 'react-icons/io5';
 import Typography from '@components/components/Typography/Typography';
 import { FilterTagsI } from '@components/types';
-
-import { useFilterContext } from '../../../../context/FilterContext';
+import { useFilterContext } from '@context/FilterContext';
 
 import styles from './FilterTags.module.scss';
 

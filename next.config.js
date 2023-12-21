@@ -8,8 +8,12 @@ const nextConfig = {
         // port: '',
         // pathname: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'candle-store-backend-06135d73f38e.herokuapp.com',
+      },
     ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
