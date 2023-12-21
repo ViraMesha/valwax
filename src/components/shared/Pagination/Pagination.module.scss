@@ -7,21 +7,16 @@
   gap: 12px;
 }
 
-.dots > li {
+.button {
+  all: unset;
   width: 12px;
   height: 12px;
   border-radius: 2px;
   background-color: var(--cl-gray-100);
   position: relative;
-}
-
-.dots > li.active {
-  background-color: var(--cl-primary-500);
-}
-
-.dots a {
   cursor: pointer;
-  display: inline-block;
-  width: 100%;
-  height: 100%;
+}
+
+.button.active {
+  background-color: var(--cl-primary-500);
 }

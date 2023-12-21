@@ -17,10 +17,10 @@ export interface BoxDetailsI {
 
 export interface CandleI {
   id: string;
-  img: string;
+  images: string[];
   title: string;
   price: number;
-  link?: string;
+  slug: string;
 }
 
 export interface ComponentI {
@@ -217,11 +217,16 @@ export interface FilterI {
   closeModal?: () => void;
 }
 
+export interface CandleApiResponse {
+  candles: CandleI[];
+  totalPages: number;
+}
+
 export interface CandlesSectionI {
   dict: {
     filter: FilterT;
   };
-  candles: Promise<CandleI[]>;
+  candles: Promise<CandleApiResponse>;
 }
 
 export interface FilterTagsI {
@@ -338,3 +343,5 @@ export interface UseScrollbarProps {
   maxHeight?: string;
   primary?: string;
 }
+
+export type ServerLocale = 'UA' | 'EN';
