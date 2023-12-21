@@ -118,6 +118,14 @@ export interface SelectOptions {
   value: string;
   label: string;
 }
+
+export interface CityData {
+  Area: string;
+  AreaDescription: string;
+  Description: string;
+  CityID: string;
+  Ref: string;
+}
 export interface ButtonsDictI {
   buyNow: string;
   addToCart: string;
@@ -243,18 +251,28 @@ export interface TabsI {
 }
 
 export interface CheckoutFormValues {
-  // cashOnDelivery?: boolean | undefined;
-  // cardPayment?: boolean | undefined;
-  notes?: string | undefined;
-  phone: string;
   firstName: string;
   lastName: string;
   email: string;
-  // delivery: string;
-  deliveryArea: { ref?: string; value?: string; label?: string };
-  deliveryCity: { ref?: string; value?: string; label?: string };
-  postOfficeBranchNum: { ref?: string; value?: string; label?: string };
-  payment?: string;
+  phone: string;
+  delivery: string;
+  deliveryArea: {
+    ref?: string | undefined;
+    value?: string | undefined;
+    label?: string | undefined;
+  };
+  deliveryCity: {
+    ref?: string | undefined;
+    value?: string | undefined;
+    label?: string | undefined;
+  };
+  postOfficeBranchNum: {
+    ref?: string | undefined;
+    value?: string | undefined;
+    label?: string | undefined;
+  };
+  payment: string;
+  notes?: string | undefined;
 }
 
 export interface CheckoutFormProps {

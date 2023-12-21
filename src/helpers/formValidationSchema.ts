@@ -24,22 +24,14 @@ const validationSchema = (data: CheckoutFormValidation) => {
       .trim()
       .required(`${phoneReq}`)
       .matches(phoneRegex, `${validPhone}`),
-    // delivery: string()
-    //   .required('Необхідно вказати спосіб доставки')
-    //   .oneOf([
-    //     'nova-poshta(post-office)',
-    //     'nova-poshta(parcel-locker)',
-    //     'ukr-poshta',
-    //   ]),
-    deliveryArea: object().required('Необхідно вказати область доставки'),
-    deliveryCity: object().required('Необхідно вказати Ваше місто'),
-    postOfficeBranchNum: object().required(
-      'Необхідно вказати номер відділення'
-    ),
-    // cashOnDelivery: bool().oneOf([true, false]),
-    // cardPayment: bool().oneOf([true, false]),
-    notes: string().max(1000),
-    payment: string(),
+ delivery: string().trim().required('You need to specify the delivery method'),
+ deliveryArea: object().required('You need to specify the delivery region'),
+  deliveryCity: object().required('You need to specify your city'),
+postOfficeBranchNum: object().required(
+ 'You need to specify the branch number'
+),
+ payment: string().required('You need to specify the payment method.'),
+ notes: string().trim().max(1000),
   });
 };
 
