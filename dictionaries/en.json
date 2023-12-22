@@ -453,5 +453,19 @@
     "successOrder": {
       "description": "Unlock a seamless shopping experience at Valwax. Your order is in progress. Take action and explore more! Buy now with Valwax."
     }
+  },
+
+  "productDescription": {
+    "price": "Price:",
+    "quantity": "Quantity:",
+    "topNotes": "Top notes",
+    "baseNotes": "Base notes",
+    "volume": "Volume",
+    "containerVolume": "Container for ",
+    "matchsticks": "Matchsticks",
+    "wick": "Wick",
+    "wax": "Wax",
+    "color": "Color",
+    "aroma": "Aroma"
   }
 }

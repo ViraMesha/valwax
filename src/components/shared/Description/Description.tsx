@@ -15,6 +15,7 @@ interface DescriptionProps {
   id?: string;
   buttonsDict: ButtonsDictI;
   itemAdded: string;
+  productDescriptionDict: IProductDescriptionDict;
 }
 
 const Description: React.FC<DescriptionProps> = ({
@@ -22,6 +23,7 @@ const Description: React.FC<DescriptionProps> = ({
   id,
   buttonsDict,
   itemAdded,
+  productDescriptionDict,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const {
@@ -34,25 +36,39 @@ const Description: React.FC<DescriptionProps> = ({
     volume,
     aroma,
   } = product;
+
+  const {
+    price: priceDict,
+    quantity: quantityDict,
+    topNotes,
+    baseNotes,
+    volume: volumeDict,
+    containerVolume,
+    matchsticks: matchsticksDict,
+    wick: wickDict,
+    wax: waxDict,
+    color: colorDict,
+    aroma: aromaDict,
+  } = productDescriptionDict;
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
 
   const accordionsections = [
-    { title: 'Верхні ноти', content: 'Кедр, пекан' },
-    { title: 'Базові ноти', content: 'Кедр, пекан' },
-    { title: 'Об’єм', content: 'Кедр, пекан' },
+    { title: topNotes, content: 'Кедр, пекан' },
+    { title: baseNotes, content: 'Кедр, пекан' },
+    { title: volumeDict, content: 'Кедр, пекан' },
   ];
 
   const candlesAccordionContent = [
     {
-      title: 'Верхні ноти',
+      title: topNotes,
       content: !Array.isArray(aroma) ? joinAromaNotes(aroma.topNotes) : '',
     },
     {
-      title: 'Базові ноти',
+      title: baseNotes,
       content: !Array.isArray(aroma) ? joinAromaNotes(aroma.baseNotes) : '',
     },
-    { title: 'Об’єм', content: volume },
+    { title: volumeDict, content: volume },
   ];
 
   return (
@@ -76,7 +92,7 @@ const Description: React.FC<DescriptionProps> = ({
         )}
         <div className={styles.candeleCostWrapper}>
           <Typography variant="button" color="var(--cl-gray-500)">
-            Вартість:
+            {priceDict}
           </Typography>
           <div className={styles.candeleCost}>
             <Typography
@@ -90,7 +106,7 @@ const Description: React.FC<DescriptionProps> = ({
         </div>
         <div className={styles.candeleQuantity}>
           <Typography variant="button" color="var(--cl-gray-500)">
-            Кількість:
+            {quantityDict}
           </Typography>
           <CandleQuantity qty={quantity} setQuantity={setQuantity} />
         </div>

@@ -446,5 +446,19 @@
     "successOrder": {
       "description": "Відкрийте для себе безперешкодний досвід покупок у Valwax. Ваше замовлення обробляється. Дійте та дізнавайтеся більше! Купуйте зараз з Valwax."
     }
+  },
+
+  "productDescription": {
+    "price": "Вартість:",
+    "quantity": "Кількість:",
+    "topNotes": "Верхні ноти",
+    "baseNotes": "Базові ноти",
+    "volume": "Об’єм",
+    "containerVolume": "Тара на",
+    "matchsticks": "Сірники",
+    "wick": "Гніт",
+    "wax": "Віск",
+    "color": "Колір",
+    "aroma": "Аромат"
   }
 }

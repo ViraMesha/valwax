@@ -10,12 +10,14 @@ interface BoxDetailsPageI {
   product: BoxDetailsI;
   buttonsDict: ButtonsDictI;
   itemAdded: string;
+  productDescriptionDict: IProductDescriptionDict;
 }
 
 const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({
   product,
   buttonsDict,
   itemAdded,
+  productDescriptionDict,
 }) => {
   return (
     <>
@@ -28,6 +30,7 @@ const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({
               id="box_details"
               buttonsDict={buttonsDict}
               itemAdded={itemAdded}
+              productDescriptionDict={productDescriptionDict}
             />
           </div>
         </Container>

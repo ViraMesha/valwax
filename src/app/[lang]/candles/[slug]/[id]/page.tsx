@@ -39,6 +39,7 @@ export default async function Candle({
       buttons,
       messages: { itemAdded },
     },
+    productDescription,
   } = await getDictionary(lang);
 
   const currentLang = convertToServerLocale(lang);
@@ -65,6 +66,7 @@ export default async function Candle({
         product={candle}
         buttonsDict={buttons}
         itemAdded={itemAdded}
+        productDescriptionDict={productDescription}
       />
       <RelatedProducts relatedProducts={similarProducts} title={title} />
     </>

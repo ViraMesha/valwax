@@ -32,6 +32,7 @@ const BoxDetails = async ({
       buttons,
       messages: { itemAdded },
     },
+    productDescription,
   } = await getDictionary(lang);
   const product = await getBoxDetails(id);
 
@@ -58,6 +59,7 @@ const BoxDetails = async ({
         product={product}
         buttonsDict={buttons}
         itemAdded={itemAdded}
+        productDescriptionDict={productDescription}
       />
       {/* <RelatedProducts
         relatedProducts={product.similar}
