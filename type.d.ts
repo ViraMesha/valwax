@@ -13,3 +13,8 @@ interface IProductDescriptionDict {
   color: string;
   aroma: string;
 }
+
+interface ApiRequest {
+  id: string;
+  currentLang: 'UA' | 'EN';
+}
