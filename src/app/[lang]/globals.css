@@ -68,6 +68,10 @@ body {
   /* overflow-x: hidden; */
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 ul {
   padding: 0;
   margin: 0;
