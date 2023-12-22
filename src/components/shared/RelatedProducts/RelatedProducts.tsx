@@ -5,6 +5,7 @@ import Container from '@components/components/Container/Container';
 import ReusableSlider from '@components/components/ReusableSlider/ReusableSlider';
 import Section from '@components/components/Section/Section';
 import Typography from '@components/components/Typography/Typography';
+import useLangFromPathname from '@components/hooks/useLangFromPathname';
 import { useWindowSize } from 'usehooks-ts';
 
 import { CandleI } from '../../../types';
@@ -22,6 +23,7 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
   title,
 }) => {
   const { width } = useWindowSize();
+  const lang = useLangFromPathname();
 
   let slidesToShow = 2;
   if (width >= 768) {
@@ -46,7 +48,7 @@ const RelatedProducts: React.FC<RelatedProductsI> = ({
           {relatedProducts.map(
             ({ id, slug, images, title, price }: CandleI) => (
               <div key={id} className={styles.card}>
-                <Link href={`${slug}/${id}`}>
+                <Link href={`/${lang}${slug}/${id}`}>
                   <div className={styles.img_container}>
                     <Image
                       src={images[0]}

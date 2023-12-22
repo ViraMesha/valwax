@@ -3,6 +3,7 @@ import CandleDetailsSection from '@components/components/CandleDetailsPage/Candl
 import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
 import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { fetchCandleById } from '@lib/api-services/fetchCandleById';
+import { fetchSimilarProducts } from '@lib/api-services/fetchSimilarProducts';
 import { getDictionary } from '@lib/utils/dictionary';
 
 import type { Locale } from '../../../../../../i18n-config';
@@ -39,8 +40,11 @@ export default async function Candle({
       messages: { itemAdded },
     },
   } = await getDictionary(lang);
+
   const currentLang = convertToServerLocale(lang);
+
   const candle = await fetchCandleById({ id, currentLang });
+  const similarProducts = await fetchSimilarProducts({ id, currentLang });
 
   return (
     <>
@@ -62,7 +66,7 @@ export default async function Candle({
         buttonsDict={buttons}
         itemAdded={itemAdded}
       />
-      {/* <RelatedProducts relatedProducts={product.similar} title={title} /> */}
+      <RelatedProducts relatedProducts={similarProducts} title={title} />
     </>
   );
 }

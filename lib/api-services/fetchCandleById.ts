@@ -1,3 +1,6 @@
+import { BASE_URL } from '@components/constants';
+import { CandleDetailsI } from '@components/types';
+
 interface CandleFetchRequest {
   id: string;
   currentLang: 'UA' | 'EN';
@@ -6,16 +9,14 @@ interface CandleFetchRequest {
 export const fetchCandleById = async ({
   id,
   currentLang,
-}: CandleFetchRequest) => {
-  const response = await fetch(
-    `https://candle-store-backend-06135d73f38e.herokuapp.com/api/public/candles/${id}?lang=${currentLang}`
-  );
+}: CandleFetchRequest): Promise<CandleDetailsI> => {
+  const response = await fetch(`${BASE_URL}/candles/${id}?lang=${currentLang}`);
 
   // This will activate the closest `error.js` Error Boundary
   if (!response.ok) {
     throw new Error('Failed to fetch candles');
   }
 
-  const data = await response.json();
+  const data: CandleDetailsI = await response.json();
   return data;
 };
