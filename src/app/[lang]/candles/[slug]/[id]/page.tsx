@@ -1,10 +1,12 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandleDetailsSection from '@components/components/CandleDetailsPage/CandleDetailsSection/CandleDetailsSection';
 import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { getCandleDetails } from '@lib/api-services/api';
+import { fetchCandle } from '@lib/api-services/fetchCandle';
 import { getDictionary } from '@lib/utils/dictionary';
 
-import { Locale } from '../../../../../../i18n-config';
+import type { Locale } from '../../../../../../i18n-config';
 
 export async function generateMetadata({
   params: { lang, id },
@@ -14,6 +16,7 @@ export async function generateMetadata({
     id: string;
   };
 }) {
+  // TODO: Replace getCandleDetails
   const product = await getCandleDetails(id);
   return {
     title: `Valwax | ${product.title}`,
@@ -37,6 +40,9 @@ export default async function Candle({
       messages: { itemAdded },
     },
   } = await getDictionary(lang);
+  const currentLang = convertToServerLocale(lang);
+  // const candle = await fetchCandle({ id, currentLang });
+  // console.log(candle);
   const product = await getCandleDetails(id);
 
   return (

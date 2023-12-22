@@ -1,0 +1,1 @@
+type ServerLocale = 'UA' | 'EN';
