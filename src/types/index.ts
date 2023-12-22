@@ -145,6 +145,12 @@ export interface CheckoutFormValidation {
   validEmail: string;
   phoneReq: string;
   validPhone: string;
+  deliveryReq: string;
+  deliveryAreaReq: string;
+  deliveryCityReq: string;
+  postOfficeBranchNumReq: string;
+  paymentReq: string;
+  notesReq: string;
 }
 
 export interface CheckoutPageDictionary {

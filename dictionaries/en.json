@@ -380,7 +380,13 @@
           "emailReq": "Enter your email",
           "validEmail": "Enter a valid email",
           "phoneReq": "Phone number is a required field",
-          "validPhone": "Enter a valid phone number"
+          "validPhone": "Enter a valid phone number",
+          "deliveryReq": "You need to specify the delivery method",
+          "deliveryAreaReq": "You need to specify the delivery region",
+          "deliveryCityReq": "You need to specify your city",
+          "postOfficeBranchNumReq": "You need to specify the branch number",
+          "paymentReq": "You need to specify the payment method",
+          "notesReq": "Notes must not exceed 1000 characters"
         }
       }
     },

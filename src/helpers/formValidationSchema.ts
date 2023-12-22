@@ -12,26 +12,24 @@ const validationSchema = (data: CheckoutFormValidation) => {
     validEmail,
     phoneReq,
     validPhone,
+    deliveryReq,
+    deliveryAreaReq,
+    deliveryCityReq,
+    postOfficeBranchNumReq,
+    paymentReq,
+    notesReq,
   } = data;
   return object().shape({
-    firstName: string().trim().required(`${firstNameReq}`),
-    lastName: string().trim().required(`${lastNameReq}`),
-    email: string()
-      .trim()
-      .required(`${emailReq}`)
-      .matches(emailRegex, `${validEmail}`),
-    phone: string()
-      .trim()
-      .required(`${phoneReq}`)
-      .matches(phoneRegex, `${validPhone}`),
- delivery: string().trim().required('You need to specify the delivery method'),
- deliveryArea: object().required('You need to specify the delivery region'),
-  deliveryCity: object().required('You need to specify your city'),
-postOfficeBranchNum: object().required(
- 'You need to specify the branch number'
-),
- payment: string().required('You need to specify the payment method.'),
- notes: string().trim().max(1000),
+    firstName: string().trim().required(firstNameReq),
+    lastName: string().trim().required(lastNameReq),
+    email: string().trim().required(emailReq).matches(emailRegex, validEmail),
+    phone: string().trim().required(phoneReq).matches(phoneRegex, validPhone),
+    delivery: string().trim().required(deliveryReq),
+    deliveryArea: object().required(deliveryAreaReq),
+    deliveryCity: object().required(deliveryCityReq),
+    postOfficeBranchNum: object().required(postOfficeBranchNumReq),
+    payment: string().required(paymentReq),
+    notes: string().trim().max(1000, notesReq),
   });
 };
 
