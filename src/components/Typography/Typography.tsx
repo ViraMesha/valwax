@@ -1,5 +1,3 @@
-import React, { CSSProperties } from 'react';
-
 import styles from './Typography.module.scss';
 
 // Defining the HTML tag that the component will support
@@ -32,6 +30,7 @@ interface Props {
   color?: string;
   className?: string;
   children?: React.ReactNode;
+  title?: string;
 }
 
 // Create a functional component that take
@@ -45,6 +44,7 @@ const Typography: React.FC<Props> = ({
   color,
   children,
   className,
+  title,
   ...props
 }) => {
   // If the variant exists in variantsMapping, we use it.
@@ -56,7 +56,12 @@ const Typography: React.FC<Props> = ({
   } ${className || ''}`;
 
   return (
-    <Component className={textClassName} {...props} style={{ color }}>
+    <Component
+      className={textClassName}
+      {...props}
+      style={{ color }}
+      title={title}
+    >
       {children}
     </Component>
   );

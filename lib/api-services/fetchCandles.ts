@@ -1,5 +1,5 @@
 import { BASE_URL } from '@components/constants';
-import type { CandleApiResponse, ServerLocale } from '@components/types';
+import type { CandleApiResponse } from '@components/types';
 
 interface CandlesFetchRequest {
   currentLang: ServerLocale;

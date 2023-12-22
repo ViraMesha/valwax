@@ -5,11 +5,7 @@ import box1 from '../../public/images/boxes/boxes_section/box.jpg';
 import box2 from '../../public/images/boxes/boxes_section/box2.jpg';
 import box3 from '../../public/images/boxes/boxes_section/boxes3.jpg';
 import box4 from '../../public/images/boxes/boxes_section/boxes4.jpg';
-import candle1 from '../../public/images/candles/img-1.jpg';
-import candle2 from '../../public/images/candles/img-2.jpg';
-import candle3 from '../../public/images/candles/img-3.jpg';
-import { relatedProducts } from '../../src/helpers/relatedProducts';
-import { BoxDetailsI, BoxI, CandleDetailsI } from '../../src/types';
+import { BoxDetailsI, BoxI } from '../../src/types';
 
 export const getBoxes = async (): Promise<BoxI[]> => {
   const price = 355;
@@ -75,6 +71,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
       images: [box1.src, box2.src, box3.src],
       title: 'Бокс - Мінімал',
       price: 355,
+      name: 'Мінімал',
       aroma: [
         'Чиста бавовна',
         'Кориця і ваніль',
@@ -92,7 +89,6 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
       ],
       description:
         'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
-      similar: relatedProducts,
       slug: '/boxes',
       volume: '',
     };
@@ -103,7 +99,6 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
   }
 };
 
-// export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
 //   try {
 //     await delayFn(1000);
 
