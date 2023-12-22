@@ -13,6 +13,7 @@ export interface BoxDetailsI {
   description: string;
   similar: CandleI[];
   slug: string;
+  volume: string;
 }
 
 export interface CandleI {
@@ -28,6 +29,12 @@ export interface ComponentI {
   content: string;
 }
 
+export interface IAroma {
+  name: string;
+  topNotes: string[];
+  baseNotes: string[];
+}
+
 export interface CandleDetailsI {
   id: string;
   images: string[];
@@ -37,6 +44,9 @@ export interface CandleDetailsI {
   components: ComponentI[];
   similar: CandleI[];
   slug: string;
+  name: string;
+  aroma: IAroma;
+  volume: string;
 }
 
 export type CustomCandleDescription = {

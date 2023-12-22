@@ -2,8 +2,7 @@ import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandleDetailsSection from '@components/components/CandleDetailsPage/CandleDetailsSection/CandleDetailsSection';
 import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
 import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
-import { getCandleDetails } from '@lib/api-services/api';
-import { fetchCandle } from '@lib/api-services/fetchCandle';
+import { fetchCandleById } from '@lib/api-services/fetchCandleById';
 import { getDictionary } from '@lib/utils/dictionary';
 
 import type { Locale } from '../../../../../../i18n-config';
@@ -16,10 +15,10 @@ export async function generateMetadata({
     id: string;
   };
 }) {
-  // TODO: Replace getCandleDetails
-  const product = await getCandleDetails(id);
+  const currentLang = convertToServerLocale(lang);
+  const candle = await fetchCandleById({ id, currentLang });
   return {
-    title: `Valwax | ${product.title}`,
+    title: `Valwax | ${candle.name}`,
   };
 }
 
@@ -41,9 +40,7 @@ export default async function Candle({
     },
   } = await getDictionary(lang);
   const currentLang = convertToServerLocale(lang);
-  // const candle = await fetchCandle({ id, currentLang });
-  // console.log(candle);
-  const product = await getCandleDetails(id);
+  const candle = await fetchCandleById({ id, currentLang });
 
   return (
     <>
@@ -54,18 +51,18 @@ export default async function Candle({
             path: `/candles/${slug}`,
           },
           {
-            label: product.title,
-            path: `/candles/${slug}/${product.id}`,
+            label: candle.name,
+            path: `/candles/${slug}/${candle.id}`,
           },
         ]}
         lang={lang}
       />
       <CandleDetailsSection
-        product={product}
+        product={candle}
         buttonsDict={buttons}
         itemAdded={itemAdded}
       />
-      <RelatedProducts relatedProducts={product.similar} title={title} />
+      {/* <RelatedProducts relatedProducts={product.similar} title={title} /> */}
     </>
   );
 }

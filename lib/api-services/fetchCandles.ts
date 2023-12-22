@@ -1,7 +1,7 @@
 import { BASE_URL } from '@components/constants';
 import type { CandleApiResponse, ServerLocale } from '@components/types';
 
-interface CandleFetchRequest {
+interface CandlesFetchRequest {
   currentLang: ServerLocale;
   wax: string;
   currentPage: number;
@@ -13,7 +13,7 @@ export const fetchCandles = async ({
   wax,
   currentPage,
   perPage = 9,
-}: CandleFetchRequest): Promise<CandleApiResponse> => {
+}: CandlesFetchRequest): Promise<CandleApiResponse> => {
   const response = await fetch(
     `${BASE_URL}/candles?lang=${currentLang}&wax=${wax}&page=${
       currentPage > 1 ? currentPage - 1 : 0

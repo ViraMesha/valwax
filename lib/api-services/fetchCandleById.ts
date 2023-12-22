@@ -3,7 +3,10 @@ interface CandleFetchRequest {
   currentLang: 'UA' | 'EN';
 }
 
-export const fetchCandle = async ({ id, currentLang }: CandleFetchRequest) => {
+export const fetchCandleById = async ({
+  id,
+  currentLang,
+}: CandleFetchRequest) => {
   const response = await fetch(
     `https://candle-store-backend-06135d73f38e.herokuapp.com/api/public/candles/${id}?lang=${currentLang}`
   );

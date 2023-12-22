@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
+import { joinAromaNotes } from '@components/helpers/joinAromaNotes';
 import { BoxDetailsI, ButtonsDictI, CandleDetailsI } from '@components/types';
 
 import AccordionSection from '../AccordionSection/AccordionSection';
@@ -22,15 +23,36 @@ const Description: React.FC<DescriptionProps> = ({
   buttonsDict,
   itemAdded,
 }) => {
-  const { id: productId, images, title, description, price, slug } = product;
+  const [quantity, setQuantity] = useState(1);
+  const {
+    id: productId,
+    images,
+    title,
+    description,
+    price,
+    slug,
+    volume,
+    aroma,
+  } = product;
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
-  const [quantity, setQuantity] = useState(1);
 
   const accordionsections = [
     { title: 'Верхні ноти', content: 'Кедр, пекан' },
     { title: 'Базові ноти', content: 'Кедр, пекан' },
     { title: 'Об’єм', content: 'Кедр, пекан' },
+  ];
+
+  const candlesAccordionContent = [
+    {
+      title: 'Верхні ноти',
+      content: !Array.isArray(aroma) ? joinAromaNotes(aroma.topNotes) : '',
+    },
+    {
+      title: 'Базові ноти',
+      content: !Array.isArray(aroma) ? joinAromaNotes(aroma.baseNotes) : '',
+    },
+    { title: 'Об’єм', content: volume },
   ];
 
   return (
@@ -41,7 +63,7 @@ const Description: React.FC<DescriptionProps> = ({
           color="var(--cl-primary-800)"
           className={styles.candleTitle}
         >
-          Ароматична свічка Paradise
+          {title}
         </Typography>
         {isCandlePage && (
           <Typography
@@ -49,7 +71,7 @@ const Description: React.FC<DescriptionProps> = ({
             color="var(--cl-gray-500)"
             className={styles.candleDescription}
           >
-            Свічка з соєвого воску з ароматом опалого листя.
+            {description}
           </Typography>
         )}
         <div className={styles.candeleCostWrapper}>
@@ -61,7 +83,7 @@ const Description: React.FC<DescriptionProps> = ({
               variant="subheadingMobile"
               color="var(--cl-primary-500)"
             >
-              550
+              {price}
             </Typography>
             <span className={styles.costSymbol}>&#8372;</span>
           </div>
@@ -104,7 +126,7 @@ const Description: React.FC<DescriptionProps> = ({
         {/* Ця частина кода тимчасова, замість цієї що вище закоментована */}
         {isCandlePage && (
           <div className={styles.candeleAccordion}>
-            {accordionsections.map((component, index) => (
+            {candlesAccordionContent.map((component, index) => (
               <AccordionSection
                 key={index}
                 title={component.title}

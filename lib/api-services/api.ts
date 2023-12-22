@@ -94,6 +94,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
         'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
       similar: relatedProducts,
       slug: '/boxes',
+      volume: '',
     };
 
     return fakeBoxDetails;
@@ -102,30 +103,30 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
   }
 };
 
-export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
-  try {
-    await delayFn(1000);
+// export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
+//   try {
+//     await delayFn(1000);
 
-    const fakeCandleDetails: CandleDetailsI = {
-      id: '123',
-      images: [candle1.src, candle2.src, candle3.src, candle1.src],
-      title: 'Ароматична свічка Paradise',
-      description: 'Свічка з соєвого воску з ароматом опалого листя.',
-      price: 355,
-      components: [
-        { title: 'Верхні ноти', content: 'Кедр, пекан' },
-        { title: 'Базові ноти', content: 'Кедр, пекан' },
-        { title: 'Об’єм', content: 'Кедр, пекан' },
-      ],
-      similar: relatedProducts,
-      slug: '/candles/soy-candles',
-    };
+//     const fakeCandleDetails: CandleDetailsI = {
+//       id: '123',
+//       images: [candle1.src, candle2.src, candle3.src, candle1.src],
+//       title: 'Ароматична свічка Paradise',
+//       description: 'Свічка з соєвого воску з ароматом опалого листя.',
+//       price: 355,
+//       components: [
+//         { title: 'Верхні ноти', content: 'Кедр, пекан' },
+//         { title: 'Базові ноти', content: 'Кедр, пекан' },
+//         { title: 'Об’єм', content: 'Кедр, пекан' },
+//       ],
+//       similar: relatedProducts,
+//       slug: '/candles/soy-candles',
+//     };
 
-    return fakeCandleDetails;
-  } catch (error) {
-    throw error;
-  }
-};
+//     return fakeCandleDetails;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export const fetchSearchResults = async (query: string | undefined) => {
   try {
