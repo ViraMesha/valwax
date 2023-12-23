@@ -7,25 +7,24 @@ export interface BoxDetailsI {
   id: string;
   images: string[];
   title: string;
+  name: string;
   price: number;
   aroma: string[];
   components: ComponentI[];
   description: string;
-  similar: CandleI[];
   slug: string;
-}
-
-export interface CandleI {
-  id: string;
-  images: string[];
-  title: string;
-  price: number;
-  slug: string;
+  volume: string;
 }
 
 export interface ComponentI {
   title: string;
   content: string;
+}
+
+export interface IAroma {
+  name: string;
+  topNotes: string[];
+  baseNotes: string[];
 }
 
 export interface CandleDetailsI {
@@ -34,9 +33,10 @@ export interface CandleDetailsI {
   title: string;
   description: string;
   price: number;
-  components: ComponentI[];
-  similar: CandleI[];
   slug: string;
+  name: string;
+  aroma: IAroma;
+  volume: string;
 }
 
 export type CustomCandleDescription = {
@@ -145,6 +145,12 @@ export interface CheckoutFormValidation {
   validEmail: string;
   phoneReq: string;
   validPhone: string;
+  deliveryReq: string;
+  deliveryAreaReq: string;
+  deliveryCityReq: string;
+  postOfficeBranchNumReq: string;
+  paymentReq: string;
+  notesReq: string;
 }
 
 export interface CheckoutPageDictionary {
@@ -218,7 +224,7 @@ export interface FilterI {
 }
 
 export interface CandleApiResponse {
-  candles: CandleI[];
+  candles: CandleDetailsI[];
   totalPages: number;
 }
 
@@ -343,5 +349,3 @@ export interface UseScrollbarProps {
   maxHeight?: string;
   primary?: string;
 }
-
-export type ServerLocale = 'UA' | 'EN';

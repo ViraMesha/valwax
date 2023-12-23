@@ -3,22 +3,21 @@ import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Description from '../shared/Description/Description';
 import ProductImgGallery from '../shared/ProductImgGallery/ProductImgGallery';
-import RelatedProducts from '../shared/RelatedProducts/RelatedProducts';
 
 import styles from './BoxDetailsPage.module.scss';
 
 interface BoxDetailsPageI {
   product: BoxDetailsI;
-  dict: { title: string };
   buttonsDict: ButtonsDictI;
   itemAdded: string;
+  productDescriptionDict: IProductDescriptionDict;
 }
 
 const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({
   product,
-  dict,
   buttonsDict,
   itemAdded,
+  productDescriptionDict,
 }) => {
   return (
     <>
@@ -31,11 +30,11 @@ const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({
               id="box_details"
               buttonsDict={buttonsDict}
               itemAdded={itemAdded}
+              productDescriptionDict={productDescriptionDict}
             />
           </div>
         </Container>
       </Section>
-      <RelatedProducts relatedProducts={product.similar} title={dict.title} />
     </>
   );
 };

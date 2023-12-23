@@ -4,6 +4,7 @@ import { getBoxDetails } from '@lib/api-services/api';
 import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../../i18n-config';
+// import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
 
 export async function generateMetadata({
   params: { lang, id },
@@ -31,6 +32,7 @@ const BoxDetails = async ({
       buttons,
       messages: { itemAdded },
     },
+    productDescription,
   } = await getDictionary(lang);
   const product = await getBoxDetails(id);
 
@@ -55,10 +57,14 @@ const BoxDetails = async ({
       />
       <BoxDetailsPage
         product={product}
-        dict={relatedProducts}
         buttonsDict={buttons}
         itemAdded={itemAdded}
+        productDescriptionDict={productDescription}
       />
+      {/* <RelatedProducts
+        relatedProducts={product.similar}
+        title={relatedProducts.title}
+      /> */}
     </>
   );
 };
