@@ -25,9 +25,52 @@ const validationSchema = (data: CheckoutFormValidation) => {
     email: string().trim().required(emailReq).matches(emailRegex, validEmail),
     phone: string().trim().required(phoneReq).matches(phoneRegex, validPhone),
     delivery: string().trim().required(deliveryReq),
-    deliveryArea: object().required(deliveryAreaReq),
-    deliveryCity: object().required(deliveryCityReq),
-    postOfficeBranchNum: object().required(postOfficeBranchNumReq),
+    deliveryArea: object({
+      label: string().required(deliveryAreaReq),
+      ref: string().required(deliveryAreaReq),
+      value: string().required(deliveryAreaReq),
+    }).test({
+      test: (value: any) => {
+        return (
+          value &&
+          value.label !== undefined &&
+          value.ref !== undefined &&
+          value.value !== undefined
+        );
+      },
+      message: deliveryAreaReq,
+    }),
+    deliveryCity: object({
+      label: string().required(),
+      ref: string().required(),
+      value: string().required(),
+    })
+    .test({
+      test: (value: any) => {
+        return (
+          value &&
+          value.label !== undefined &&
+          value.ref !== undefined &&
+          value.value !== undefined
+        );
+      },
+      message: deliveryCityReq,
+    }),
+    postOfficeBranchNum: object({
+      label: string().required(),
+      ref: string().required(),
+      value: string().required(),
+    }).test({
+      test: (value: any) => {
+        return (
+          value &&
+          value.label !== undefined &&
+          value.ref !== undefined &&
+          value.value !== undefined
+        );
+      },
+      message: postOfficeBranchNumReq,
+    }),
     payment: string().required(paymentReq),
     notes: string().trim().max(1000, notesReq),
   });

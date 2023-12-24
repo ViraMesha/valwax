@@ -53,10 +53,14 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
         transition: 'borderColor var(--animat)',
         boxShadow: 'none',
         '&:hover': {
-          borderColor: 'var(--cl-secondary-700)',
+          borderColor: error
+            ? 'var(--cl-error-500)'
+            : 'var(--cl-secondary-700)',
         },
         '&:focus': {
-          borderColor: 'var(--cl-secondary-700)',
+          borderColor: error
+            ? 'var(--cl-error-500)'
+            : 'var(--cl-secondary-700)',
         },
       }),
       indicatorSeparator: (styles: any) => ({
