@@ -1,11 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { StaticImageData } from 'next/image';
 import { useRef, useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import Typography from '@components/components/Typography/Typography';
 import { OptionEventI, ParameterI } from '@components/types';
+import { useParamsCandleContext } from '@context/ParamCandleContext';
 
 import styles from './Parameter.module.scss';
 
@@ -13,10 +15,12 @@ const Parameter: React.FC<ParameterI> = ({ dict, onChangeParam, parameter }) => 
 
   const [param, setParam] = useState('');
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const {toggleParamCandle} = useParamsCandleContext();
 
-  const handelParamChange = (event: OptionEventI) => {
+  const handelParamChange = (event: OptionEventI, image: StaticImageData | null, color: string | null) => {
     setParam(event.target.value);
-    onChangeParam(parameter, event.target.value)
+    toggleParamCandle(parameter, event.target.value, image, color);
+    onChangeParam(parameter, event.target.value);
   };
 
   return (
@@ -54,7 +58,7 @@ const Parameter: React.FC<ParameterI> = ({ dict, onChangeParam, parameter }) => 
                     name={dict.title}
                     className={`${styles.visuallyHidden} ${styles.input}`}
                     value={option}
-                    onChange={handelParamChange}
+                    onChange={(e) => handelParamChange(e, dict.images ? dict.images[index] : null, dict.colors ? dict.colors[index] : null)}
                     id={option}
                   />
                   {dict.images && (
