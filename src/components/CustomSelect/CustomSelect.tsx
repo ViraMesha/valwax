@@ -119,7 +119,7 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
           onMenuOpen={onMenuOpen}
           isLoading={isLoading}
           components={{ MenuList }}
-          // menuIsOpen={true}
+          menuIsOpen={true}
         />
         {error && <p className={styles.error}>{errorMessage}</p>}
       </div>

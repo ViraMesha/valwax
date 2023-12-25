@@ -242,7 +242,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
         {...formControl.register('delivery')}
         onChangeSelector={handleSelectDelivery}
         checkedSelector={selectedDelivery}
-        
       />
       <div className={styles.contactInfo__wrapper}>
         <CustomSelect
@@ -281,7 +280,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
           required
           {...formControl.register('postOfficeBranchNum')}
           onChange={value => {
-            handleSelectWarehouse(value);            
+            handleSelectWarehouse(value);
           }}
           options={selectOptionsWarehouse}
           label={`${warehouseLabel} *`}
