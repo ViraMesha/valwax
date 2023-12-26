@@ -166,7 +166,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   useEffect(() => {
     fetchData();
     formControl.setValue('payment', selectedPayment);
-    // setValue('payment', selectedPayment);
   }, [fetchData]);
 
   useEffect(() => {
