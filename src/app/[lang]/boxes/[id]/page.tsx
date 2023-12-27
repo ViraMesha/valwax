@@ -1,10 +1,12 @@
 import BoxDetailsPage from '@components/components/BoxDetailsPage/BoxDetailsPage';
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
+import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { getBoxDetails } from '@lib/api-services/api';
+import { fetchSimilarProducts } from '@lib/api-services/fetchSimilarProducts';
 import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../../i18n-config';
-// import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
 
 export async function generateMetadata({
   params: { lang, id },
@@ -35,6 +37,8 @@ const BoxDetails = async ({
     productDescription,
   } = await getDictionary(lang);
   const product = await getBoxDetails(id);
+  const currentLang = convertToServerLocale(lang);
+  const similarProducts = await fetchSimilarProducts({ id, currentLang });
 
   const regex = /(?:Бокс - |Box - )(.*)/;
   const match = product.title.match(regex);
@@ -61,10 +65,10 @@ const BoxDetails = async ({
         itemAdded={itemAdded}
         productDescriptionDict={productDescription}
       />
-      {/* <RelatedProducts
-        relatedProducts={product.similar}
+      <RelatedProducts
+        relatedProducts={similarProducts}
         title={relatedProducts.title}
-      /> */}
+      />
     </>
   );
 };
