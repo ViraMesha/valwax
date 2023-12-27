@@ -5,7 +5,6 @@ import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
 import {
   AreaData,
-  CheckoutFormValues,
   DeliveryFormProps,
   SelectOptions,
 } from '@components/types';
@@ -24,7 +23,11 @@ import RadioButtons from '../RadioButtons/RadioButtons';
 import styles from './DeliveryForm.module.scss';
 
 const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
-  const { setValue } = formControl;
+ const {
+   register,
+   formState: { errors },
+   setValue,
+ } = formControl;
 
   const {
     delivery,
@@ -53,12 +56,21 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
 
   const [isAreaSelectOpen, setIsAreaSelectOpen] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(false);
+   const [isLoading, setIsLoading] = useState({
+     area: false,
+     city: false,
+     warehouse: false,
+   });
   const [orderNotes, setOrderNotes] = useState('');
 
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
   const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
 
+  const handleSelectDelivery = (value: string) => {
+    setValue('delivery', value);
+    setSelectedDelivery(value);
+  };
+  
   const handleSelectPayment = (value: string) => {
     setValue('payment', value);
     setSelectedPayment(value);
@@ -81,8 +93,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   }, 300);
 
   const handleSelectWarehouse = (value: SelectOptions) => {
-    setSelectedWarehouse(null);
-    setWarehouse([]);
     setValue('postOfficeBranchNum', value);
     setSelectedWarehouse(value);
   };
@@ -96,11 +106,11 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   };
 
   const fetchData = useCallback(async () => {
-    setIsLoading(true);
+    setIsLoading({ ...isLoading, area: true });
     const areasData = await (selectedDelivery === deliveryOptions[2]
       ? fetchAreasUkr()
       : fetchAreas());
-    setIsLoading(false);
+     setIsLoading({ ...isLoading, area: false });
 
     if (areasData) {
       setAreas(areasData);
@@ -111,11 +121,11 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataCity = async () => {
     if (selectedAreas && !selectedCity && cities.length === 0) {
-      setIsLoading(true);
+       setIsLoading({ ...isLoading, city: true });
       const citiesData = await (selectedDelivery === deliveryOptions[2]
         ? fetchCitiesUkr(selectedAreas.ref)
-        : fetchCities(selectedAreas.ref));
-      setIsLoading(false);
+        : fetchCities(selectedAreas.label));
+      setIsLoading({ ...isLoading, city: false });
 
       if (citiesData) {
         setCities(citiesData);
@@ -126,7 +136,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataWarehouse = async () => {
     if (selectedAreas && selectedCity && selectedDelivery) {
-      setIsLoading(true);
+       setIsLoading({ ...isLoading, warehouse: true });
       setWarehouse([]);
 
       const warehouseData = await (selectedDelivery === deliveryOptions[2]
@@ -134,7 +144,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
         : fetchWarehouses(selectedDelivery, selectedCity.value));
 
       if (warehouseData) {
-        setIsLoading(false);
+         setIsLoading({ ...isLoading, warehouse: false });
         setWarehouse(warehouseData);
       }
     }
@@ -216,50 +226,79 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
       <legend className={styles.group__title}>{delivery}</legend>
       <RadioButtons
         options={deliveryOptions}
-        onChangeSelector={setSelectedDelivery}
+        {...formControl.register('delivery')}
+        onChangeSelector={handleSelectDelivery}
         checkedSelector={selectedDelivery}
       />
       <div className={styles.contactInfo__wrapper}>
         <CustomSelect
           value={selectedAreas}
+          required
           onMenuOpen={() => {
             setIsAreaSelectOpen(true);
           }}
-          onChange={value => handleSelectArea(value)}
+          {...formControl.register('deliveryArea')}
+          onChange={value => {
+            handleSelectArea(value);
+            formControl.setValue('deliveryArea', value);
+            formControl.trigger('deliveryArea');
+          }}
           options={selectOptionsArea}
-          label={areaLabel}
+          label={`${areaLabel} *`}
           placeholder={areaPlaceholder}
-          isLoading={isLoading}
+          isLoading={isLoading.area}
+          errorMessage={errors?.deliveryArea?.message}
+          error={errors.deliveryArea}
         />
         <CustomSelect
           value={selectedCity}
-          onChange={value => handleSelectCity(value)}
+          required
+          {...formControl.register('deliveryCity')}
+          onChange={value => {
+            handleSelectCity(value);
+            formControl.setValue('deliveryCity', value);
+            formControl.trigger('deliveryCity');
+          }}
           options={selectOptionsCity}
-          label={cityLabel}
+          label={`${cityLabel} *`}
           placeholder={cityPlaceholder}
-          isLoading={isLoading}
+          isLoading={isLoading.city}
+          errorMessage={errors.deliveryCity?.message}
+          error={errors.deliveryCity}
         />
         <CustomSelect
           value={selectedWarehouse}
-          onChange={value => handleSelectWarehouse(value)}
+          required
+          {...formControl.register('postOfficeBranchNum')}
+          onChange={value => {
+            handleSelectWarehouse(value);
+            formControl.setValue('postOfficeBranchNum', value);
+            formControl.trigger('postOfficeBranchNum');
+          }}
           options={selectOptionsWarehouse}
-          label={warehouseLabel}
+          label={`${warehouseLabel} *`}
           placeholder={warehousePlaceholder}
-          isLoading={isLoading}
+          isLoading={isLoading.warehouse}
+          errorMessage={errors.postOfficeBranchNum?.message}
+          error={errors.postOfficeBranchNum}
         />
       </div>
       <RadioButtons
         options={paymentOptions}
+        {...formControl.register('payment')}
         onChangeSelector={handleSelectPayment}
         checkedSelector={selectedPayment}
       />
       <Input
         label={notesLabel}
+        {...formControl.register('notes')}
         placeholder={notesPlaceholder}
         multiline
         value={orderNotes}
         onChange={event => handleOrderNotesChange(event)}
         height="218px"
+        errorMessage={errors?.notes?.message}
+        error={errors?.notes}
       />
     </fieldset>
   );

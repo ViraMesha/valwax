@@ -7,7 +7,6 @@ import type { NavDictI } from '@components/types';
 import { useModalContext } from '@context/ModalContext';
 import logo from '@images/icons/header-logo.svg';
 import sm_logo from '@images/icons/sm-logo.svg';
-
 import { useWindowSize } from 'usehooks-ts';
 
 import { Locale } from '../../../i18n-config';

@@ -1,197 +1,11 @@
 import { delayFn } from '@components/helpers/delayFn';
-import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
 import { handleErrorWithMessage } from '@components/helpers/handleErrorWithMessage';
 
 import box1 from '../../public/images/boxes/boxes_section/box.jpg';
 import box2 from '../../public/images/boxes/boxes_section/box2.jpg';
 import box3 from '../../public/images/boxes/boxes_section/boxes3.jpg';
 import box4 from '../../public/images/boxes/boxes_section/boxes4.jpg';
-import candle1 from '../../public/images/candles/img-1.jpg';
-import candle2 from '../../public/images/candles/img-2.jpg';
-import candle3 from '../../public/images/candles/img-3.jpg';
-import { relatedProducts } from '../../src/helpers/relatedProducts';
-import { BoxDetailsI, BoxI, CandleDetailsI, CandleI } from '../../src/types';
-
-export const getCandles = async (
-  currentPage = 1,
-  perPage = 9
-): Promise<CandleI[]> => {
-  try {
-    await delayFn(1000);
-
-    const fakeCandles: CandleI[] = [
-      {
-        id: '1',
-        img: candle1.src,
-        title: 'Осінь.',
-        price: 370,
-      },
-      {
-        id: '2',
-        img: candle2.src,
-        title: 'Імбир і спеції.',
-        price: 355,
-      },
-      {
-        id: '3',
-        img: candle3.src,
-        title: 'Кашемірова слива.',
-        price: 355,
-      },
-      {
-        id: '4',
-        img: candle1.src,
-        title: 'Осінь.',
-        price: 370,
-      },
-      {
-        id: '5',
-        img: candle2.src,
-        title: 'Імбир і спеції.',
-        price: 355,
-      },
-      {
-        id: '6',
-        img: candle3.src,
-        title: 'Кашемірова слива.',
-        price: 355,
-      },
-      {
-        id: '7',
-        img: candle1.src,
-        title: 'Осінь.',
-        price: 370,
-      },
-      {
-        id: '8',
-        img: candle2.src,
-        title: 'Імбир і спеції.',
-        price: 355,
-      },
-      {
-        id: '9',
-        img: candle3.src,
-        title: 'Кашемірова слива.',
-        price: 355,
-      },
-      {
-        id: '10',
-        img: candle1.src,
-        title: 'Осінь.',
-        price: 370,
-      },
-      {
-        id: '11',
-        img: candle2.src,
-        title: 'Імбир і спеції.',
-        price: 355,
-      },
-      {
-        id: '12',
-        img: candle3.src,
-        title: 'Кашемірова слива.',
-        price: 355,
-      },
-      {
-        id: '13',
-        img: candle1.src,
-        title: 'Осінь.',
-        price: 370,
-      },
-      {
-        id: '14',
-        img: candle2.src,
-        title: 'Імбир і спеції.',
-        price: 355,
-      },
-      {
-        id: '15',
-        img: candle3.src,
-        title: 'Кашемірова слива.',
-        price: 355,
-      },
-      {
-        id: '16',
-        img: candle1.src,
-        title: 'Осінь.',
-        price: 370,
-      },
-      {
-        id: '17',
-        img: candle2.src,
-        title: 'Імбир і спеції.',
-        price: 355,
-      },
-      {
-        id: '18',
-        img: candle3.src,
-        title: 'Кашемірова слива.',
-        price: 355,
-      },
-      {
-        id: '19',
-        img: candle1.src,
-        title: 'Осінь.',
-        price: 370,
-      },
-      {
-        id: '20',
-        img: candle2.src,
-        title: 'Імбир і спеції.',
-        price: 355,
-      },
-      {
-        id: '21',
-        img: candle3.src,
-        title: 'Кашемірова слива.',
-        price: 355,
-      },
-      {
-        id: '22',
-        img: candle1.src,
-        title: 'Осінь.',
-        price: 370,
-      },
-      {
-        id: '23',
-        img: candle2.src,
-        title: 'Імбир і спеції.',
-        price: 355,
-      },
-      {
-        id: '24',
-        img: candle3.src,
-        title: 'Кашемірова слива.',
-        price: 355,
-      },
-      {
-        id: '25',
-        img: candle1.src,
-        title: 'Осінь.',
-        price: 370,
-      },
-      {
-        id: '26',
-        img: candle2.src,
-        title: 'Імбир і спеції.',
-        price: 355,
-      },
-      {
-        id: '27',
-        img: candle3.src,
-        title: 'Кашемірова слива.',
-        price: 355,
-      },
-    ];
-
-    const start = (currentPage - 1) * perPage;
-    const end = start + perPage;
-
-    return fakeCandles.slice(start, end);
-  } catch (error) {
-    throw error;
-  }
-};
+import { BoxDetailsI, BoxI } from '../../src/types';
 
 export const getBoxes = async (): Promise<BoxI[]> => {
   const price = 355;
@@ -257,6 +71,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
       images: [box1.src, box2.src, box3.src],
       title: 'Бокс - Мінімал',
       price: 355,
+      name: 'Мінімал',
       aroma: [
         'Чиста бавовна',
         'Кориця і ваніль',
@@ -274,8 +89,8 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
       ],
       description:
         'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
-      similar: relatedProducts,
       slug: '/boxes',
+      volume: '',
     };
 
     return fakeBoxDetails;
@@ -284,30 +99,29 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
   }
 };
 
-export const getCandleDetails = async (id: string): Promise<CandleDetailsI> => {
-  try {
-    await delayFn(1000);
+//   try {
+//     await delayFn(1000);
 
-    const fakeCandleDetails: CandleDetailsI = {
-      id: '123',
-      images: [candle1.src, candle2.src, candle3.src, candle1.src],
-      title: 'Ароматична свічка Paradise',
-      description: 'Свічка з соєвого воску з ароматом опалого листя.',
-      price: 355,
-      components: [
-        { title: 'Верхні ноти', content: 'Кедр, пекан' },
-        { title: 'Базові ноти', content: 'Кедр, пекан' },
-        { title: 'Об’єм', content: 'Кедр, пекан' },
-      ],
-      similar: relatedProducts,
-      slug: '/candles/soy-candles',
-    };
+//     const fakeCandleDetails: CandleDetailsI = {
+//       id: '123',
+//       images: [candle1.src, candle2.src, candle3.src, candle1.src],
+//       title: 'Ароматична свічка Paradise',
+//       description: 'Свічка з соєвого воску з ароматом опалого листя.',
+//       price: 355,
+//       components: [
+//         { title: 'Верхні ноти', content: 'Кедр, пекан' },
+//         { title: 'Базові ноти', content: 'Кедр, пекан' },
+//         { title: 'Об’єм', content: 'Кедр, пекан' },
+//       ],
+//       similar: relatedProducts,
+//       slug: '/candles/soy-candles',
+//     };
 
-    return fakeCandleDetails;
-  } catch (error) {
-    throw error;
-  }
-};
+//     return fakeCandleDetails;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export const fetchSearchResults = async (query: string | undefined) => {
   try {

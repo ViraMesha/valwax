@@ -1,10 +1,12 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandleDetailsSection from '@components/components/CandleDetailsPage/CandleDetailsSection/CandleDetailsSection';
 import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
-import { getCandleDetails } from '@lib/api-services/api';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
+import { fetchCandleById } from '@lib/api-services/fetchCandleById';
+import { fetchSimilarCandles } from '@lib/api-services/fetchSimilarCandles';
 import { getDictionary } from '@lib/utils/dictionary';
 
-import { Locale } from '../../../../../../i18n-config';
+import type { Locale } from '../../../../../../i18n-config';
 
 export async function generateMetadata({
   params: { lang, id },
@@ -14,9 +16,10 @@ export async function generateMetadata({
     id: string;
   };
 }) {
-  const product = await getCandleDetails(id);
+  const currentLang = convertToServerLocale(lang);
+  const candle = await fetchCandleById({ id, currentLang });
   return {
-    title: `Valwax | ${product.title}`,
+    title: `Valwax | ${candle.name}`,
   };
 }
 
@@ -36,8 +39,13 @@ export default async function Candle({
       buttons,
       messages: { itemAdded },
     },
+    productDescription,
   } = await getDictionary(lang);
-  const product = await getCandleDetails(id);
+
+  const currentLang = convertToServerLocale(lang);
+
+  const candle = await fetchCandleById({ id, currentLang });
+  const similarProducts = await fetchSimilarCandles({ id, currentLang });
 
   return (
     <>
@@ -48,18 +56,19 @@ export default async function Candle({
             path: `/candles/${slug}`,
           },
           {
-            label: product.title,
-            path: `/candles/${slug}/${product.id}`,
+            label: candle.name,
+            path: `/candles/${slug}/${candle.id}`,
           },
         ]}
         lang={lang}
       />
       <CandleDetailsSection
-        product={product}
+        product={candle}
         buttonsDict={buttons}
         itemAdded={itemAdded}
+        productDescriptionDict={productDescription}
       />
-      <RelatedProducts relatedProducts={product.similar} title={title} />
+      <RelatedProducts relatedProducts={similarProducts} title={title} />
     </>
   );
 }

@@ -12,34 +12,24 @@ const validationSchema = (data: CheckoutFormValidation) => {
     validEmail,
     phoneReq,
     validPhone,
+    deliveryReq,
+    deliveryAreaReq,
+    deliveryCityReq,
+    postOfficeBranchNumReq,
+    paymentReq,
+    notesReq,
   } = data;
   return object().shape({
-    firstName: string().trim().required(`${firstNameReq}`),
-    lastName: string().trim().required(`${lastNameReq}`),
-    email: string()
-      .trim()
-      .required(`${emailReq}`)
-      .matches(emailRegex, `${validEmail}`),
-    phone: string()
-      .trim()
-      .required(`${phoneReq}`)
-      .matches(phoneRegex, `${validPhone}`),
-    // delivery: string()
-    //   .required('Необхідно вказати спосіб доставки')
-    //   .oneOf([
-    //     'nova-poshta(post-office)',
-    //     'nova-poshta(parcel-locker)',
-    //     'ukr-poshta',
-    //   ]),
-    deliveryArea: object().required('Необхідно вказати область доставки'),
-    deliveryCity: object().required('Необхідно вказати Ваше місто'),
-    postOfficeBranchNum: object().required(
-      'Необхідно вказати номер відділення'
-    ),
-    // cashOnDelivery: bool().oneOf([true, false]),
-    // cardPayment: bool().oneOf([true, false]),
-    notes: string().max(1000),
-    payment: string(),
+    firstName: string().trim().required(firstNameReq),
+    lastName: string().trim().required(lastNameReq),
+    email: string().trim().required(emailReq).matches(emailRegex, validEmail),
+    phone: string().trim().required(phoneReq).matches(phoneRegex, validPhone),
+    delivery: string().trim().required(deliveryReq),
+    deliveryArea: object().required(deliveryAreaReq),
+    deliveryCity: object().required(deliveryCityReq),
+    postOfficeBranchNum: object().required(postOfficeBranchNumReq),
+    payment: string().required(paymentReq),
+    notes: string().trim().max(1000, notesReq),
   });
 };
 

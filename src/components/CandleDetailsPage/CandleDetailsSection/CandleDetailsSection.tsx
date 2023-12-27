@@ -12,12 +12,14 @@ interface CandleDetailsSectionI {
   product: CandleDetailsI;
   buttonsDict: ButtonsDictI;
   itemAdded: string;
+  productDescriptionDict: IProductDescriptionDict;
 }
 
 const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
   product,
   buttonsDict,
   itemAdded,
+  productDescriptionDict,
 }) => {
   return (
     <Section id={styles.candle_details_section}>
@@ -29,6 +31,7 @@ const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
             id="candle_details"
             buttonsDict={buttonsDict}
             itemAdded={itemAdded}
+            productDescriptionDict={productDescriptionDict}
           />
         </div>
       </Container>

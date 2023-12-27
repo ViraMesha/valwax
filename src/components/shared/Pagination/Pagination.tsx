@@ -1,32 +1,44 @@
 'use client';
-import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
 
 import styles from './Pagination.module.scss';
 
-const Pagination = () => {
-  const pathName = usePathname();
+interface PaginationProps {
+  totalPages: number;
+}
+
+const Pagination = ({ totalPages }: PaginationProps) => {
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const page =
     typeof searchParams.get('page') === 'string'
       ? Number(searchParams.get('page'))
       : 1;
 
-  // TODO: Change length
-  const pageRange = Array.from({ length: 3 }, (_, index) => index + 1);
+  const pageRange = Array.from(
+    { length: totalPages ?? 1 },
+    (_, index) => index + 1
+  );
+
+  const handlePageClick = (pageNumber: number) => {
+    router.push(`?page=${pageNumber}&perPage=9#candles-section`);
+  };
 
   return (
     <Section>
       <Container>
         <ul className={styles.dots}>
           {pageRange.map(pageNumber => (
-            <li
-              key={pageNumber}
-              className={`${page === pageNumber && styles.active}`}
-            >
-              <Link href={`${pathName}?page=${pageNumber}`} />
+            <li key={pageNumber}>
+              <button
+                className={`${styles.button} ${
+                  page === pageNumber && styles.active
+                }`}
+                onClick={() => handlePageClick(pageNumber)}
+              ></button>
             </li>
           ))}
         </ul>

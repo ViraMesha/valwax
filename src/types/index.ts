@@ -7,25 +7,24 @@ export interface BoxDetailsI {
   id: string;
   images: string[];
   title: string;
+  name: string;
   price: number;
   aroma: string[];
   components: ComponentI[];
   description: string;
-  similar: CandleI[];
   slug: string;
-}
-
-export interface CandleI {
-  id: string;
-  img: string;
-  title: string;
-  price: number;
-  link?: string;
+  volume: string;
 }
 
 export interface ComponentI {
   title: string;
   content: string;
+}
+
+export interface IAroma {
+  name: string;
+  topNotes: string[];
+  baseNotes: string[];
 }
 
 export interface CandleDetailsI {
@@ -34,9 +33,10 @@ export interface CandleDetailsI {
   title: string;
   description: string;
   price: number;
-  components: ComponentI[];
-  similar: CandleI[];
   slug: string;
+  name: string;
+  aroma: IAroma;
+  volume: string;
 }
 
 export type CustomCandleDescription = {
@@ -118,6 +118,14 @@ export interface SelectOptions {
   value: string;
   label: string;
 }
+
+export interface CityData {
+  Area: string;
+  AreaDescription: string;
+  Description: string;
+  CityID: string;
+  Ref: string;
+}
 export interface ButtonsDictI {
   buyNow: string;
   addToCart: string;
@@ -137,6 +145,12 @@ export interface CheckoutFormValidation {
   validEmail: string;
   phoneReq: string;
   validPhone: string;
+  deliveryReq: string;
+  deliveryAreaReq: string;
+  deliveryCityReq: string;
+  postOfficeBranchNumReq: string;
+  paymentReq: string;
+  notesReq: string;
 }
 
 export interface CheckoutPageDictionary {
@@ -209,11 +223,16 @@ export interface FilterI {
   closeModal?: () => void;
 }
 
+export interface CandleApiResponse {
+  candles: CandleDetailsI[];
+  totalPages: number;
+}
+
 export interface CandlesSectionI {
   dict: {
     filter: FilterT;
   };
-  candles: Promise<CandleI[]>;
+  candles: Promise<CandleApiResponse>;
 }
 
 export interface FilterTagsI {
@@ -243,18 +262,28 @@ export interface TabsI {
 }
 
 export interface CheckoutFormValues {
-  // cashOnDelivery?: boolean | undefined;
-  // cardPayment?: boolean | undefined;
-  notes?: string | undefined;
-  phone: string;
   firstName: string;
   lastName: string;
   email: string;
-  // delivery: string;
-  deliveryArea: { ref?: string; value?: string; label?: string };
-  deliveryCity: { ref?: string; value?: string; label?: string };
-  postOfficeBranchNum: { ref?: string; value?: string; label?: string };
-  payment?: string;
+  phone: string;
+  delivery: string;
+  deliveryArea: {
+    ref?: string | undefined;
+    value?: string | undefined;
+    label?: string | undefined;
+  };
+  deliveryCity: {
+    ref?: string | undefined;
+    value?: string | undefined;
+    label?: string | undefined;
+  };
+  postOfficeBranchNum: {
+    ref?: string | undefined;
+    value?: string | undefined;
+    label?: string | undefined;
+  };
+  payment: string;
+  notes?: string | undefined;
 }
 
 export interface CheckoutFormProps {
