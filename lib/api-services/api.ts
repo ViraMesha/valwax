@@ -91,6 +91,7 @@ export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
         'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
       slug: '/boxes',
       volume: '',
+      text: 'some text',
     };
 
     return fakeBoxDetails;

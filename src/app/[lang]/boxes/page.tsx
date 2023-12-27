@@ -2,6 +2,7 @@ import BoxesInfo from '@components/components/BoxesPage/BoxesInfo/BoxesInfo';
 import BoxesPageHeader from '@components/components/BoxesPage/BoxesPageHeader/BoxesPageHeader';
 import BoxesSection from '@components/components/BoxesPage/BoxesSection/BoxesSection';
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { getBoxes } from '@lib/api-services/api';
 import { fetchBoxes } from '@lib/api-services/fetchBoxes';
 import { getDictionary } from '@lib/utils/dictionary';
@@ -29,9 +30,8 @@ const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
       messages: { itemAdded },
     },
   } = await getDictionary(lang);
-  const boxes = await fetchBoxes('UA');
-  console.log(boxes);
-  const promise = getBoxes();
+  const currentLang = convertToServerLocale(lang);
+  const promise = fetchBoxes(currentLang);
 
   return (
     <>

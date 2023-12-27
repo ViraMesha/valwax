@@ -14,6 +14,7 @@ export interface BoxDetailsI {
   description: string;
   slug: string;
   volume: string;
+  text: string;
 }
 
 export interface ComponentI {
@@ -339,7 +340,7 @@ export interface ButtonsTranslation {
 
 export interface BoxesSectionProps {
   dict: ButtonsTranslation;
-  boxes: Promise<BoxI[]>;
+  boxes: Promise<BoxDetailsI[]>;
   toastMessage: string;
 }
 
