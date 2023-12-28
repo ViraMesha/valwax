@@ -1,7 +1,9 @@
 @import '../../../scss/utilities/breakpoint-mixin.scss';
 
 .candleWrapper {
-  background-color: white;
+  @include breakpoint('desktop') {
+    max-width: 356px;
+  }
 }
 
 .candleTitle {

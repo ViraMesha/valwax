@@ -32,11 +32,19 @@ const Parameter: React.FC<ParameterI> = ({
       />
       <label className={styles.wrapper} htmlFor={parameter}>
         {shouldHaveNumber ? (
-          <Typography variant="subheadingMobile" color="var(--cl-primary-800)">
+          <Typography
+            variant="subheadingMobile"
+            color="var(--cl-primary-800)"
+            className={styles.number}
+          >
             {dict.number}
           </Typography>
         ) : null}
-        <Typography variant="subheadingMobile" color="var(--cl-primary-900)">
+        <Typography
+          variant="subheadingMobile"
+          color="var(--cl-primary-900)"
+          className={styles.title}
+        >
           {dict.title}
         </Typography>
         <Typography

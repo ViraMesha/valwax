@@ -1,6 +1,5 @@
 @import '../../../../../scss/utilities/breakpoint-mixin.scss';
 
-
 .item {
   padding: 24px 16px;
   border: 1px solid var(--cl-primary-200);
@@ -21,7 +20,7 @@
   padding: 2px 2px 12px 2px;
   // margin: -2px;
   text-align: center;
-  
+
   @include breakpoint('desktop-large') {
     max-height: 510px;
     gap: 24px;
@@ -34,8 +33,6 @@
 }
 
 .itemParam {
-
-
   @include breakpoint('all-devices-without-desktop') {
     // max-width: 74px;
   }
@@ -52,14 +49,14 @@
 .wrapper {
   display: flex;
   cursor: pointer;
-  
-  :first-child {
+
+  & .number {
     margin-right: 4px;
   }
 
-  :nth-child(2) {
+  & .title {
     margin-right: 8px;
-    
+
     @include breakpoint('desktop-large') {
       margin-right: 16px;
     }
@@ -87,7 +84,7 @@
     width: 80px;
     height: 80px;
   }
-  
+
   @include breakpoint('desktop') {
     width: 80px;
     height: 80px;
@@ -104,7 +101,7 @@
   border: 1px solid var(--cl-gray-100);
 }
 
-.image{
+.image {
   width: 60px;
   max-width: none;
   height: 60px;
@@ -116,7 +113,7 @@
     width: 80px;
     height: 80px;
   }
-  
+
   @include breakpoint('desktop') {
     width: 80px;
     height: 80px;
@@ -129,7 +126,7 @@
   }
 }
 
-.input:checked ~ .box{
+.input:checked ~ .box {
   border: 2px solid var(--cl-primary-500);
   border-radius: 20px;
 }
@@ -152,16 +149,15 @@
   display: none;
 }
 
-.input:checked ~ .image{
+.input:checked ~ .image {
   border: 2px solid var(--cl-primary-500);
   border-radius: 20px;
-  transform: scale(1.033)
+  transform: scale(1.033);
 }
 
 .txt {
   font-weight: 400;
 }
-
 
 .visuallyHidden {
   position: absolute;
