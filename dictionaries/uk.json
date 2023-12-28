@@ -455,16 +455,18 @@
   },
 
   "productDescription": {
-    "price": "Вартість:",
-    "quantity": "Кількість:",
+    "price": "Вартість",
+    "quantity": "Кількість",
     "topNotes": "Верхні ноти",
     "baseNotes": "Базові ноти",
     "volume": "Об’єм",
     "containerVolume": "Тара на",
+    "volumeLabel": "мл",
     "matchsticks": "Сірники",
     "wick": "Гніт",
     "wax": "Віск",
     "color": "Колір",
-    "aroma": "Аромат"
+    "aroma": "Аромат",
+    "aromaToChoose": "Оберіть аромат"
   }
 }

@@ -62,43 +62,43 @@ export const getBoxes = async (): Promise<BoxI[]> => {
   }
 };
 
-export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
-  try {
-    await delayFn(1000);
+// export const getBoxDetails = async (id: string): Promise<BoxDetailsI> => {
+//   try {
+//     await delayFn(1000);
 
-    const fakeBoxDetails: BoxDetailsI = {
-      id: '234',
-      images: [box1.src, box2.src, box3.src],
-      title: 'Бокс - Мінімал',
-      price: 355,
-      name: 'Мінімал',
-      aroma: [
-        'Чиста бавовна',
-        'Кориця і ваніль',
-        'Свіжа кава',
-        'Гарбуз зі спеціями',
-        'Пелюстки троянд',
-        'Сухий джин',
-        'Грейпфрут і м’ята',
-        'Свіжа кава',
-      ],
-      components: [
-        { title: 'Верхні ноти', content: 'Кедр, пекан' },
-        { title: 'Базові ноти', content: 'Кедр, пекан' },
-        { title: 'Об’єм', content: 'Кедр, пекан' },
-      ],
-      description:
-        'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
-      slug: '/boxes',
-      volume: '',
-      text: 'some text',
-    };
+//     const fakeBoxDetails: BoxDetailsI = {
+//       id: '234',
+//       images: [box1.src, box2.src, box3.src],
+//       title: 'Бокс - Мінімал',
+//       price: 355,
+//       name: 'Мінімал',
+//       aroma: [
+//         'Чиста бавовна',
+//         'Кориця і ваніль',
+//         'Свіжа кава',
+//         'Гарбуз зі спеціями',
+//         'Пелюстки троянд',
+//         'Сухий джин',
+//         'Грейпфрут і м’ята',
+//         'Свіжа кава',
+//       ],
+//       components: [
+//         { title: 'Верхні ноти', content: 'Кедр, пекан' },
+//         { title: 'Базові ноти', content: 'Кедр, пекан' },
+//         { title: 'Об’єм', content: 'Кедр, пекан' },
+//       ],
+//       description:
+//         'Бокс "Стандарт" - це ваша можливість підняти свій рівень у світі свічкового мистецтва та вразити всіх красою та ароматом свічки.',
+//       slug: '/boxes',
+//       volume: '',
+//       text: 'some text',
+//     };
 
-    return fakeBoxDetails;
-  } catch (error) {
-    throw error;
-  }
-};
+//     return fakeBoxDetails;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 //   try {
 //     await delayFn(1000);

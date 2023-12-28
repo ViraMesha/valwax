@@ -2,7 +2,7 @@ import BoxDetailsPage from '@components/components/BoxDetailsPage/BoxDetailsPage
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
 import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
-import { getBoxDetails } from '@lib/api-services/api';
+import { fetchBoxById } from '@lib/api-services/fetchBoxById';
 import { fetchSimilarProducts } from '@lib/api-services/fetchSimilarProducts';
 import { getDictionary } from '@lib/utils/dictionary';
 
@@ -16,9 +16,12 @@ export async function generateMetadata({
     id: string;
   };
 }) {
-  const product = await getBoxDetails(id);
+  const currentLang = convertToServerLocale(lang);
+
+  const box = await fetchBoxById({ id, currentLang });
+
   return {
-    title: `Valwax | ${product.title}`,
+    title: `Valwax | ${box.title}`,
   };
 }
 
@@ -36,13 +39,11 @@ const BoxDetails = async ({
     },
     productDescription,
   } = await getDictionary(lang);
-  const product = await getBoxDetails(id);
-  const currentLang = convertToServerLocale(lang);
-  const similarProducts = await fetchSimilarProducts({ id, currentLang });
 
-  const regex = /(?:Бокс - |Box - )(.*)/;
-  const match = product.title.match(regex);
-  const subTitle = match ? match[1] : product.title;
+  const currentLang = convertToServerLocale(lang);
+
+  const box = await fetchBoxById({ id, currentLang });
+  const similarProducts = await fetchSimilarProducts({ id, currentLang });
 
   return (
     <>
@@ -53,14 +54,14 @@ const BoxDetails = async ({
             path: '/boxes',
           },
           {
-            label: subTitle,
-            path: `/boxes/${product.id}`,
+            label: box.name,
+            path: `/boxes/${box.id}`,
           },
         ]}
         lang={lang}
       />
       <BoxDetailsPage
-        product={product}
+        product={box}
         buttonsDict={buttons}
         itemAdded={itemAdded}
         productDescriptionDict={productDescription}

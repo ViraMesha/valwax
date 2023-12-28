@@ -3,18 +3,26 @@ import { UseFormReturn } from 'react-hook-form';
 
 import { Locale } from '../../i18n-config';
 
+export interface IBoxKit {
+  container: string;
+  wax: string;
+  wick: string;
+  aromaToChoose: string;
+  matchsticks: string;
+}
+
 export interface BoxDetailsI {
   id: string;
   images: string[];
   title: string;
   name: string;
   price: number;
-  aroma: string[];
   components: ComponentI[];
   description: string;
   slug: string;
   volume: string;
   text: string;
+  kit: IBoxKit;
 }
 
 export interface ComponentI {
