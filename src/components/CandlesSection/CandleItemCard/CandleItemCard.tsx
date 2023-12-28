@@ -1,35 +1,48 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
+import useLangFromPathname from '@components/hooks/useLangFromPathname';
 
-import { CandleI } from '../../../types';
+import type { CandleDetailsI } from '../../../types';
 
 import styles from './CandleItemCard.module.scss';
 
-const CandleItemCard: React.FC<CandleI> = ({ id, img, title, price }) => {
-  const pathname = usePathname();
-  const isCurrent = pathname.split('/')[3];
+const CandleItemCard: React.FC<CandleDetailsI> = ({
+  id,
+  images,
+  title,
+  price,
+  slug,
+  name,
+}) => {
+  const lang = useLangFromPathname();
+
   return (
     <li className={styles.card}>
-      <Link href={`/candles/${isCurrent}/${id}`}>
+      <Link href={`/${lang}${slug}/${id}`}>
         <div className={styles.img_container}>
-          <Image
-            src={img}
-            fill
-            priority
-            alt={title}
-            sizes="(min-width: 1230) 282px,
+          {images && images.length > 0 && (
+            <Image
+              src={images[0]}
+              fill
+              priority
+              alt={title}
+              sizes="(min-width: 1230) 282px,
                     (min-width: 1024) 312px,
                     (min-width: 768px) 224px,
                     (min-width: 667px) 300px,
                     154px"
-          />
+            />
+          )}
         </div>
-        <Typography variant="bodyRegular" className={styles.title}>
-          {title}
+        <Typography
+          variant="bodyRegular"
+          className={styles.title}
+          title={title}
+        >
+          {name}
         </Typography>
       </Link>
       <Price price={price} />

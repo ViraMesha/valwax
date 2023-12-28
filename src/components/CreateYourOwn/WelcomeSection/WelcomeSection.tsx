@@ -1,4 +1,6 @@
 'use client';
+
+import { useState } from 'react';
 import { avenir } from '@components/app/fonts';
 import Button from '@components/components/Button/Button';
 import Container from '@components/components/Container/Container';
@@ -6,7 +8,6 @@ import InstructionModal from '@components/components/CreateYourOwn/InstructionMo
 import Modal from '@components/components/Modal/Modal';
 import Section from '@components/components/Section/Section';
 import Typography from '@components/components/Typography/Typography';
-import useModal from '@components/hooks/useModal';
 
 import styles from './WelcomeSection.module.scss';
 
@@ -20,11 +21,7 @@ interface WelcomeSectionI {
 }
 
 const WelcomeSection: React.FC<WelcomeSectionI> = ({ dict }) => {
-  const { isModal, toggleModal, onBackdropClick } = useModal();
-
-  const handleCloseModal = () => {
-    toggleModal();
-  };
+  const [isModal, toggleModal] = useState(false);
 
   return (
     <Section className={styles.welcome_section}>
@@ -50,20 +47,14 @@ const WelcomeSection: React.FC<WelcomeSectionI> = ({ dict }) => {
             type="button"
             variant="secondary"
             className={styles.welcome_button}
-            onClick={toggleModal}
+            onClick={() => toggleModal(true)}
           >
             {dict.buttonText}
           </Button>
         </div>
-
-        {isModal && (
-          <Modal onBackdropClick={onBackdropClick}>
-            <InstructionModal
-              dict={dict.instruction}
-              onClose={handleCloseModal}
-            />
-          </Modal>
-        )}
+        <Modal active={isModal} setActive={toggleModal}>
+          <InstructionModal dict={dict.instruction} />
+        </Modal>
       </Container>
     </Section>
   );

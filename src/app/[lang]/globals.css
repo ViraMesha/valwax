@@ -68,6 +68,10 @@ body {
   /* overflow-x: hidden; */
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -133,14 +137,14 @@ input:-webkit-autofill:active {
 .loader {
   display: block;
   position: relative;
-  height: 20px;
+  height: 16px;
   width: 140px;
-  background-image: linear-gradient(var(--cl-gray-100) 20px, transparent 0),
-    linear-gradient(var(--cl-gray-100) 20px, transparent 0),
-    linear-gradient(var(--cl-gray-100) 20px, transparent 0),
-    linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+  background-image: linear-gradient(var(--cl-gray-100) 16px, transparent 0),
+    linear-gradient(var(--cl-gray-100) 16px, transparent 0),
+    linear-gradient(var(--cl-gray-100) 16px, transparent 0),
+    linear-gradient(var(--cl-gray-100) 16px, transparent 0);
   background-repeat: no-repeat;
-  background-size: 20px auto;
+  background-size: 16px auto;
   background-position:
     0 0,
     40px 0,
@@ -151,33 +155,33 @@ input:-webkit-autofill:active {
 
 @keyframes pgfill {
   0% {
-    background-image: linear-gradient(var(--cl-gray-100) 20px, transparent 0),
-      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
-      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
-      linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+    background-image: linear-gradient(var(--cl-gray-100) 16px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 16px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 16px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 16px, transparent 0);
   }
   25% {
-    background-image: linear-gradient(var(--cl-primary-500) 20px, transparent 0),
-      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
-      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
-      linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+    background-image: linear-gradient(var(--cl-primary-500) 16px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 16px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 16px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 16px, transparent 0);
   }
   50% {
-    background-image: linear-gradient(var(--cl-primary-500) 20px, transparent 0),
-      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
-      linear-gradient(var(--cl-gray-100) 20px, transparent 0),
-      linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+    background-image: linear-gradient(var(--cl-primary-500) 16px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 16px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 16px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 16px, transparent 0);
   }
   75% {
-    background-image: linear-gradient(var(--cl-primary-500) 20px, transparent 0),
-      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
-      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
-      linear-gradient(var(--cl-gray-100) 20px, transparent 0);
+    background-image: linear-gradient(var(--cl-primary-500) 16px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 16px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 16px, transparent 0),
+      linear-gradient(var(--cl-gray-100) 16px, transparent 0);
   }
   100% {
-    background-image: linear-gradient(var(--cl-primary-500) 20px, transparent 0),
-      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
-      linear-gradient(var(--cl-primary-500) 20px, transparent 0),
-      linear-gradient(var(--cl-primary-500) 20px, transparent 0);
+    background-image: linear-gradient(var(--cl-primary-500) 16px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 16px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 16px, transparent 0),
+      linear-gradient(var(--cl-primary-500) 16px, transparent 0);
   }
 }

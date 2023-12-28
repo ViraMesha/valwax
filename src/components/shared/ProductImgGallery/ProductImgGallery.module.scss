@@ -56,10 +56,10 @@ $large-tab-image_height: 550px;
 
 .product_detail_images__progress_bar {
   border-radius: 4px;
-  outline: 1px solid var(--cl-primary-600);
+  background-color: var(--cl-primary-100);
   margin: 0 16px;
   height: 430px;
-  width: 12px;
+  width: 8px;
 
   @include breakpoint('only-mobile-and-tablet') {
     display: none;
@@ -73,7 +73,7 @@ $large-tab-image_height: 550px;
 .product_detail_images__progress_bar_progress {
   border-radius: 4px;
   background-color: var(--cl-primary-600);
-  width: 12px;
+  width: 8px;
   transition: height var(--animat);
 }
 
