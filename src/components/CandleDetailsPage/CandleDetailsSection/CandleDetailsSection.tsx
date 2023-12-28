@@ -17,7 +17,6 @@ interface CandleDetailsSectionI {
   buttonsDict: ButtonsDictI;
   itemAdded: string;
   productDescriptionDict: IProductDescriptionDict;
-  configuratorDict: configuratorSectionI;
 }
 
 const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
@@ -25,7 +24,6 @@ const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
   buttonsDict,
   itemAdded,
   productDescriptionDict,
-  configuratorDict,
 }) => {
   return (
     <Section id={styles.candle_details_section}>
@@ -38,7 +36,6 @@ const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
             buttonsDict={buttonsDict}
             itemAdded={itemAdded}
             productDescriptionDict={productDescriptionDict}
-            configuratorDict={configuratorDict}
           />
         </div>
       </Container>

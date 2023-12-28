@@ -23,7 +23,7 @@ interface DescriptionProps {
   buttonsDict: ButtonsDictI;
   itemAdded: string;
   productDescriptionDict: IProductDescriptionDict;
-  configuratorDict: configuratorSectionI;
+  configuratorDict?: configuratorSectionI;
 }
 
 const Description: React.FC<DescriptionProps> = ({
@@ -61,7 +61,9 @@ const Description: React.FC<DescriptionProps> = ({
     volumeLabel: volumeLabelDict,
   } = productDescriptionDict;
 
-  const { aroma } = configuratorData(configuratorDict);
+  const { aroma } = configuratorDict
+    ? configuratorData(configuratorDict)
+    : { aroma: { number: '', title: '', options: [] } };
 
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
