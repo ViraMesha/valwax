@@ -1,18 +1,15 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
 import Button from '@components/components/Button/Button';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
+import { useCandleParam } from '@components/helpers';
 import { showToast } from '@components/helpers/showToast';
 import { useCartActionsContext } from '@context/CartContext';
 import candleImg from '@images/candles/img-1.jpg';
 import { nanoid } from 'nanoid';
 
-import {
-  ConfiguratorSectionI,
-  CustomCandleDescription,
-} from '../../../../types/index';
+import { ConfiguratorSectionI } from '../../../../types/index';
 
 import Parameter from './Parameter/Parameter';
 import { configuratorData } from './configuratorData';
@@ -27,16 +24,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
 }) => {
   const { container, wax, aroma, wick, color } = configuratorData(dict);
 
-  const initParamCandle = {
-    container: '',
-    wax: '',
-    aroma: '',
-    wick: '',
-    color: '',
-  };
-
-  const [paramCandle, setParamCandle] =
-    useState<CustomCandleDescription>(initParamCandle);
+  const { paramCandle, handleChangeCandleParam } = useCandleParam();
 
   const { onAdd } = useCartActionsContext();
   const pathName = usePathname();
@@ -51,10 +39,6 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
     price,
     link: '/create-your-own',
     quantity: 1,
-  };
-
-  const handleChangeCandleParam = (key: string, param: string) => {
-    setParamCandle({ ...paramCandle, [key]: param });
   };
 
   const handleBuyNowButtonClick = () => {

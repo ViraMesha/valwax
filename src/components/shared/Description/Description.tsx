@@ -4,13 +4,12 @@ import { configuratorData } from '@components/components/CreateYourOwn/Configura
 import Parameter from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/Parameter/Parameter';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
-import { joinAromaNotes } from '@components/helpers/joinAromaNotes';
+import { joinAromaNotes, useCandleParam } from '@components/helpers/index';
 import {
   BoxDetailsI,
   ButtonsDictI,
   CandleDetailsI,
   configuratorSectionI,
-  CustomCandleDescription,
 } from '@components/types';
 
 import AccordionSection from '../AccordionSection/AccordionSection';
@@ -18,17 +17,9 @@ import BuyButtons from '../BuyButtons/BuyButtons';
 
 import styles from './Description.module.scss';
 
-const initParamCandle = {
-  container: '',
-  wax: '',
-  aroma: '',
-  wick: '',
-  color: '',
-};
-
 interface DescriptionProps {
   product: BoxDetailsI | CandleDetailsI;
-  id?: string;
+  id: string;
   buttonsDict: ButtonsDictI;
   itemAdded: string;
   productDescriptionDict: IProductDescriptionDict;
@@ -44,8 +35,7 @@ const Description: React.FC<DescriptionProps> = ({
   configuratorDict,
 }) => {
   const [quantity, setQuantity] = useState(1);
-  const [paramCandle, setParamCandle] =
-    useState<CustomCandleDescription>(initParamCandle);
+  const { paramCandle, handleChangeCandleParam } = useCandleParam();
 
   const {
     id: productId,
@@ -67,9 +57,7 @@ const Description: React.FC<DescriptionProps> = ({
     matchsticks: matchsticksDict,
     wick: wickDict,
     wax: waxDict,
-    color: colorDict,
     aroma: aromaDict,
-    aromaToChoose: aromaToChooseDict,
     volumeLabel: volumeLabelDict,
   } = productDescriptionDict;
 
@@ -116,10 +104,6 @@ const Description: React.FC<DescriptionProps> = ({
           },
         ].filter(Boolean) as { title: string; content: string }[])
       : [];
-
-  const handleChangeCandleParam = (key: string, param: string) => {
-    setParamCandle({ ...paramCandle, [key]: param });
-  };
 
   return (
     <div className={styles.candleSectionWrapper}>
