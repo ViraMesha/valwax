@@ -69,7 +69,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
 
   return (
     <div className={styles.wrapper}>
-      <ul className={styles.list}>
+      <ol className={styles.list}>
         <Parameter
           dict={container}
           onChangeParam={handleChangeCandleParam}
@@ -96,7 +96,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
           onChangeParam={handleChangeCandleParam}
           parameter="color"
         />
-      </ul>
+      </ol>
       <div className={styles.wrapperPrice}>
         <Typography
           variant="bodyRegular"

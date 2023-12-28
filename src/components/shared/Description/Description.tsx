@@ -1,14 +1,30 @@
 'use client';
 import { useState } from 'react';
+import { configuratorData } from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/configuratorData';
+import Parameter from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/Parameter/Parameter';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
 import { joinAromaNotes } from '@components/helpers/joinAromaNotes';
-import { BoxDetailsI, ButtonsDictI, CandleDetailsI } from '@components/types';
+import {
+  BoxDetailsI,
+  ButtonsDictI,
+  CandleDetailsI,
+  configuratorSectionI,
+  CustomCandleDescription,
+} from '@components/types';
 
 import AccordionSection from '../AccordionSection/AccordionSection';
 import BuyButtons from '../BuyButtons/BuyButtons';
 
 import styles from './Description.module.scss';
+
+const initParamCandle = {
+  container: '',
+  wax: '',
+  aroma: '',
+  wick: '',
+  color: '',
+};
 
 interface DescriptionProps {
   product: BoxDetailsI | CandleDetailsI;
@@ -16,6 +32,7 @@ interface DescriptionProps {
   buttonsDict: ButtonsDictI;
   itemAdded: string;
   productDescriptionDict: IProductDescriptionDict;
+  configuratorDict: configuratorSectionI;
 }
 
 const Description: React.FC<DescriptionProps> = ({
@@ -24,8 +41,12 @@ const Description: React.FC<DescriptionProps> = ({
   buttonsDict,
   itemAdded,
   productDescriptionDict,
+  configuratorDict,
 }) => {
   const [quantity, setQuantity] = useState(1);
+  const [paramCandle, setParamCandle] =
+    useState<CustomCandleDescription>(initParamCandle);
+
   const {
     id: productId,
     images,
@@ -51,6 +72,8 @@ const Description: React.FC<DescriptionProps> = ({
     aromaToChoose: aromaToChooseDict,
     volumeLabel: volumeLabelDict,
   } = productDescriptionDict;
+
+  const { aroma } = configuratorData(configuratorDict);
 
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
@@ -94,6 +117,10 @@ const Description: React.FC<DescriptionProps> = ({
         ].filter(Boolean) as { title: string; content: string }[])
       : [];
 
+  const handleChangeCandleParam = (key: string, param: string) => {
+    setParamCandle({ ...paramCandle, [key]: param });
+  };
+
   return (
     <div className={styles.candleSectionWrapper}>
       <div className={styles.candleWrapper}>
@@ -132,10 +159,13 @@ const Description: React.FC<DescriptionProps> = ({
           <CandleQuantity qty={quantity} setQuantity={setQuantity} />
         </div>
         {isBoxPage && (
-          <div>
-            <Typography variant="button" color="var(--cl-gray-500)">
-              {aromaToChooseDict}:
-            </Typography>
+          <div className={styles.aromaAccordion}>
+            <Parameter
+              dict={aroma}
+              onChangeParam={handleChangeCandleParam}
+              parameter="aroma"
+              shouldHaveNumber={false}
+            />
           </div>
         )}
         <BuyButtons

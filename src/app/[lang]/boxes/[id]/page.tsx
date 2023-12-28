@@ -38,6 +38,9 @@ const BoxDetails = async ({
       messages: { itemAdded },
     },
     productDescription,
+    page: {
+      createYourOwn: { configurator },
+    },
   } = await getDictionary(lang);
 
   const currentLang = convertToServerLocale(lang);
@@ -65,6 +68,7 @@ const BoxDetails = async ({
         buttonsDict={buttons}
         itemAdded={itemAdded}
         productDescriptionDict={productDescription}
+        configuratorDict={configurator}
       />
       <RelatedProducts
         relatedProducts={similarProducts}

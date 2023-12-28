@@ -97,6 +97,7 @@ export interface ParameterI {
   dict: parameterI;
   onChangeParam: (v: string, p: string) => void;
   parameter: string;
+  shouldHaveNumber?: boolean;
 }
 
 export interface OptionEventI {
