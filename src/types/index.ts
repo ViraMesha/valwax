@@ -268,19 +268,19 @@ export interface CheckoutFormValues {
   phone: string;
   delivery: string;
   deliveryArea: {
-    ref?: string | undefined;
-    value?: string | undefined;
-    label?: string | undefined;
+    ref: string;
+    value: string;
+    label: string;
   };
   deliveryCity: {
-    ref?: string | undefined;
-    value?: string | undefined;
-    label?: string | undefined;
+    ref: string;
+    value: string;
+    label: string;
   };
   postOfficeBranchNum: {
-    ref?: string | undefined;
-    value?: string | undefined;
-    label?: string | undefined;
+    ref: string;
+    value: string;
+    label: string;
   };
   payment: string;
   notes?: string | undefined;

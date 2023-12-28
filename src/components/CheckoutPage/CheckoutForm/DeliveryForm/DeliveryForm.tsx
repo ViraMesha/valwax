@@ -3,11 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import CustomSelect from '@components/components/CustomSelect/CustomSelect';
 import Input from '@components/components/Input/Input';
-import {
-  AreaData,
-  DeliveryFormProps,
-  SelectOptions,
-} from '@components/types';
+import { AreaData, DeliveryFormProps, SelectOptions } from '@components/types';
 import debounce from 'lodash/debounce';
 
 import {
@@ -23,11 +19,12 @@ import RadioButtons from '../RadioButtons/RadioButtons';
 import styles from './DeliveryForm.module.scss';
 
 const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
- const {
-   register,
-   formState: { errors },
-   setValue,
- } = formControl;
+  const {
+    register,
+    formState: { errors },
+    setValue,
+    trigger,
+  } = formControl;
 
   const {
     delivery,
@@ -56,11 +53,11 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
 
   const [isAreaSelectOpen, setIsAreaSelectOpen] = useState(false);
 
-   const [isLoading, setIsLoading] = useState({
-     area: false,
-     city: false,
-     warehouse: false,
-   });
+  const [isLoading, setIsLoading] = useState({
+    area: false,
+    city: false,
+    warehouse: false,
+  });
   const [orderNotes, setOrderNotes] = useState('');
 
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
@@ -68,11 +65,20 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
 
   const handleSelectDelivery = (value: string) => {
     setValue('delivery', value);
+    trigger('delivery');
     setSelectedDelivery(value);
+    setSelectedWarehouse(null);
+    setWarehouse([]);
+    setValue('postOfficeBranchNum', {
+      ref: '',
+      value: '',
+      label: '',
+    });
   };
-  
+
   const handleSelectPayment = (value: string) => {
     setValue('payment', value);
+    trigger('payment');
     setSelectedPayment(value);
   };
 
@@ -80,8 +86,14 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
     setCities([]);
     setWarehouse([]);
     setSelectedCity(null);
+    setValue('deliveryCity', {
+      ref: '',
+      value: '',
+      label: '',
+    });
     setSelectedWarehouse(null);
     setValue('deliveryArea', value);
+    trigger('deliveryArea');
     setSelectedAreas(value);
   };
 
@@ -89,11 +101,13 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
     setSelectedWarehouse(null);
     setWarehouse([]);
     setValue('deliveryCity', value);
+    trigger('deliveryCity');
     setSelectedCity(value);
   }, 300);
 
   const handleSelectWarehouse = (value: SelectOptions) => {
     setValue('postOfficeBranchNum', value);
+    trigger('postOfficeBranchNum');
     setSelectedWarehouse(value);
   };
 
@@ -110,7 +124,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
     const areasData = await (selectedDelivery === deliveryOptions[2]
       ? fetchAreasUkr()
       : fetchAreas());
-     setIsLoading({ ...isLoading, area: false });
+    setIsLoading({ ...isLoading, area: false });
 
     if (areasData) {
       setAreas(areasData);
@@ -121,7 +135,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataCity = async () => {
     if (selectedAreas && !selectedCity && cities.length === 0) {
-       setIsLoading({ ...isLoading, city: true });
+      setIsLoading({ ...isLoading, city: true });
       const citiesData = await (selectedDelivery === deliveryOptions[2]
         ? fetchCitiesUkr(selectedAreas.ref)
         : fetchCities(selectedAreas.label));
@@ -136,7 +150,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchDataWarehouse = async () => {
     if (selectedAreas && selectedCity && selectedDelivery) {
-       setIsLoading({ ...isLoading, warehouse: true });
+      setIsLoading({ ...isLoading, warehouse: true });
       setWarehouse([]);
 
       const warehouseData = await (selectedDelivery === deliveryOptions[2]
@@ -144,7 +158,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
         : fetchWarehouses(selectedDelivery, selectedCity.value));
 
       if (warehouseData) {
-         setIsLoading({ ...isLoading, warehouse: false });
+        setIsLoading({ ...isLoading, warehouse: false });
         setWarehouse(warehouseData);
       }
     }
@@ -153,7 +167,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   useEffect(() => {
     fetchData();
     setValue('payment', selectedPayment);
-
   }, [fetchData]);
 
   useEffect(() => {
@@ -226,7 +239,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
       <legend className={styles.group__title}>{delivery}</legend>
       <RadioButtons
         options={deliveryOptions}
-        {...formControl.register('delivery')}
+        {...register('delivery')}
         onChangeSelector={handleSelectDelivery}
         checkedSelector={selectedDelivery}
       />
@@ -237,11 +250,9 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
           onMenuOpen={() => {
             setIsAreaSelectOpen(true);
           }}
-          {...formControl.register('deliveryArea')}
+          {...register('deliveryArea')}
           onChange={value => {
             handleSelectArea(value);
-            formControl.setValue('deliveryArea', value);
-            formControl.trigger('deliveryArea');
           }}
           options={selectOptionsArea}
           label={`${areaLabel} *`}
@@ -253,11 +264,9 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
         <CustomSelect
           value={selectedCity}
           required
-          {...formControl.register('deliveryCity')}
+          {...register('deliveryCity')}
           onChange={value => {
             handleSelectCity(value);
-            formControl.setValue('deliveryCity', value);
-            formControl.trigger('deliveryCity');
           }}
           options={selectOptionsCity}
           label={`${cityLabel} *`}
@@ -269,11 +278,9 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
         <CustomSelect
           value={selectedWarehouse}
           required
-          {...formControl.register('postOfficeBranchNum')}
+          {...register('postOfficeBranchNum')}
           onChange={value => {
             handleSelectWarehouse(value);
-            formControl.setValue('postOfficeBranchNum', value);
-            formControl.trigger('postOfficeBranchNum');
           }}
           options={selectOptionsWarehouse}
           label={`${warehouseLabel} *`}
@@ -285,13 +292,13 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
       </div>
       <RadioButtons
         options={paymentOptions}
-        {...formControl.register('payment')}
+        {...register('payment')}
         onChangeSelector={handleSelectPayment}
         checkedSelector={selectedPayment}
       />
       <Input
         label={notesLabel}
-        {...formControl.register('notes')}
+        {...register('notes')}
         placeholder={notesPlaceholder}
         multiline
         value={orderNotes}
