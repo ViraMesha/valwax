@@ -2,7 +2,11 @@ import React from 'react';
 import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
 import ProductImgGallery from '@components/components/shared/ProductImgGallery/ProductImgGallery';
-import { ButtonsDictI, CandleDetailsI } from '@components/types';
+import {
+  ButtonsDictI,
+  CandleDetailsI,
+  configuratorSectionI,
+} from '@components/types';
 
 import Description from '../../shared/Description/Description';
 
@@ -13,6 +17,7 @@ interface CandleDetailsSectionI {
   buttonsDict: ButtonsDictI;
   itemAdded: string;
   productDescriptionDict: IProductDescriptionDict;
+  configuratorDict: configuratorSectionI;
 }
 
 const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
@@ -20,6 +25,7 @@ const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
   buttonsDict,
   itemAdded,
   productDescriptionDict,
+  configuratorDict,
 }) => {
   return (
     <Section id={styles.candle_details_section}>
@@ -32,6 +38,7 @@ const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
             buttonsDict={buttonsDict}
             itemAdded={itemAdded}
             productDescriptionDict={productDescriptionDict}
+            configuratorDict={configuratorDict}
           />
         </div>
       </Container>
