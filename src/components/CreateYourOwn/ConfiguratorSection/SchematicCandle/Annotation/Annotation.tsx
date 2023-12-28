@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useParamsCandleContext } from '@context/ParamCandleContext';
-import notSelectedImage from '@images/create-your-own/Candle.jpg';
+import notSelectedImage from '@images/create-your-own/question-mark.jpg';
 
 import styles from './Annotation.module.scss';
 
@@ -21,7 +21,7 @@ const Annotation: React.FC<AnnotationI> = ({ param, top, left }) => {
 
   return (
     <div className={styles.param} style={{ top: top, left: left }}>
-      {isParamColor ? (
+      {isParamColor && configurationParamsCandle.color.color !== 'inherit' ? (
         <div className={styles.paramImage} style={{ backgroundColor: selectedColor === null ? 'red' :  selectedColor}}>
         </div>
       ) : (
