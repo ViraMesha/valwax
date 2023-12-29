@@ -3,17 +3,26 @@ import { UseFormReturn } from 'react-hook-form';
 
 import { Locale } from '../../i18n-config';
 
+export interface IBoxKit {
+  container: string;
+  wax: string;
+  wick: string;
+  aromaToChoose: string;
+  matchsticks: string;
+}
+
 export interface BoxDetailsI {
   id: string;
   images: string[];
   title: string;
   name: string;
   price: number;
-  aroma: string[];
   components: ComponentI[];
   description: string;
   slug: string;
   volume: string;
+  text: string;
+  kit: IBoxKit;
 }
 
 export interface ComponentI {
@@ -88,6 +97,7 @@ export interface ParameterI {
   dict: parameterI;
   onChangeParam: (v: string, p: string) => void;
   parameter: string;
+  shouldHaveNumber?: boolean;
 }
 
 export interface OptionEventI {
@@ -339,7 +349,7 @@ export interface ButtonsTranslation {
 
 export interface BoxesSectionProps {
   dict: ButtonsTranslation;
-  boxes: Promise<BoxI[]>;
+  boxes: Promise<BoxDetailsI[]>;
   toastMessage: string;
 }
 
@@ -349,3 +359,5 @@ export interface UseScrollbarProps {
   maxHeight?: string;
   primary?: string;
 }
+
+export type ServerLocale = 'UA' | 'EN';

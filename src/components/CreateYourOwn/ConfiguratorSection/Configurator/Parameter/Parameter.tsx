@@ -9,28 +9,42 @@ import { OptionEventI, ParameterI } from '@components/types';
 
 import styles from './Parameter.module.scss';
 
-const Parameter: React.FC<ParameterI> = ({ dict, onChangeParam, parameter }) => {
-
+const Parameter: React.FC<ParameterI> = ({
+  dict,
+  onChangeParam,
+  parameter,
+  shouldHaveNumber = true,
+}) => {
   const [param, setParam] = useState('');
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handelParamChange = (event: OptionEventI) => {
     setParam(event.target.value);
-    onChangeParam(parameter, event.target.value)
+    onChangeParam(parameter, event.target.value);
   };
 
   return (
-    <div className={styles.item}>
+    <li className={styles.item}>
       <input
         id={parameter}
         type="checkbox"
         className={`${styles.visuallyHidden} ${styles.slider}`}
       />
       <label className={styles.wrapper} htmlFor={parameter}>
-        <Typography variant="subheadingMobile" color="var(--cl-primary-800)">
-          {dict.number}
-        </Typography>
-        <Typography variant="subheadingMobile" color="var(--cl-primary-900)">
+        {shouldHaveNumber ? (
+          <Typography
+            variant="subheadingMobile"
+            color="var(--cl-primary-800)"
+            className={styles.number}
+          >
+            {dict.number}
+          </Typography>
+        ) : null}
+        <Typography
+          variant="subheadingMobile"
+          color="var(--cl-primary-900)"
+          className={styles.title}
+        >
           {dict.title}
         </Typography>
         <Typography
@@ -44,7 +58,7 @@ const Parameter: React.FC<ParameterI> = ({ dict, onChangeParam, parameter }) => 
         <IoIosArrowDown className={`${styles.icon} ${styles.iconDown}`} />
       </label>
       <div className={styles.wrapperList}>
-        <CustomScrollBar root={scrollContainerRef} primary='primary-24'>
+        <CustomScrollBar root={scrollContainerRef} primary="primary-24">
           <ul className={styles.list}>
             {dict.options.map((option, index) => (
               <li key={option} className={styles.itemParam}>
@@ -86,7 +100,7 @@ const Parameter: React.FC<ParameterI> = ({ dict, onChangeParam, parameter }) => 
           </ul>
         </CustomScrollBar>
       </div>
-    </div>
+    </li>
   );
 };
 

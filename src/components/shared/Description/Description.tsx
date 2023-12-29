@@ -1,9 +1,16 @@
 'use client';
 import { useState } from 'react';
+import { configuratorData } from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/configuratorData';
+import Parameter from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/Parameter/Parameter';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
-import { joinAromaNotes } from '@components/helpers/joinAromaNotes';
-import { BoxDetailsI, ButtonsDictI, CandleDetailsI } from '@components/types';
+import { joinAromaNotes, useCandleParam } from '@components/helpers/index';
+import {
+  BoxDetailsI,
+  ButtonsDictI,
+  CandleDetailsI,
+  configuratorSectionI,
+} from '@components/types';
 
 import AccordionSection from '../AccordionSection/AccordionSection';
 import BuyButtons from '../BuyButtons/BuyButtons';
@@ -12,10 +19,11 @@ import styles from './Description.module.scss';
 
 interface DescriptionProps {
   product: BoxDetailsI | CandleDetailsI;
-  id?: string;
+  id: string;
   buttonsDict: ButtonsDictI;
   itemAdded: string;
   productDescriptionDict: IProductDescriptionDict;
+  configuratorDict?: configuratorSectionI;
 }
 
 const Description: React.FC<DescriptionProps> = ({
@@ -24,8 +32,11 @@ const Description: React.FC<DescriptionProps> = ({
   buttonsDict,
   itemAdded,
   productDescriptionDict,
+  configuratorDict,
 }) => {
   const [quantity, setQuantity] = useState(1);
+  const { paramCandle, handleChangeCandleParam } = useCandleParam();
+
   const {
     id: productId,
     images,
@@ -34,7 +45,6 @@ const Description: React.FC<DescriptionProps> = ({
     price,
     slug,
     volume,
-    aroma,
   } = product;
 
   const {
@@ -43,33 +53,59 @@ const Description: React.FC<DescriptionProps> = ({
     topNotes,
     baseNotes,
     volume: volumeDict,
-    containerVolume,
+    containerVolume: containerVolumeDict,
     matchsticks: matchsticksDict,
     wick: wickDict,
     wax: waxDict,
-    color: colorDict,
     aroma: aromaDict,
+    volumeLabel: volumeLabelDict,
   } = productDescriptionDict;
+
+  const { aroma } = configuratorDict
+    ? configuratorData(configuratorDict)
+    : { aroma: { number: '', title: '', options: [] } };
+
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
 
-  const accordionsections = [
-    { title: topNotes, content: 'Кедр, пекан' },
-    { title: baseNotes, content: 'Кедр, пекан' },
-    { title: volumeDict, content: 'Кедр, пекан' },
-  ];
-
-  const candlesAccordionContent = [
+  const candleAccordionContent = [
     {
       title: topNotes,
-      content: !Array.isArray(aroma) ? joinAromaNotes(aroma.topNotes) : '',
+      content: 'aroma' in product ? joinAromaNotes(product.aroma.topNotes) : '',
     },
     {
       title: baseNotes,
-      content: !Array.isArray(aroma) ? joinAromaNotes(aroma.baseNotes) : '',
+      content:
+        'aroma' in product ? joinAromaNotes(product.aroma.baseNotes) : '',
     },
     { title: volumeDict, content: volume },
   ];
+
+  const boxAccordionContent =
+    'kit' in product
+      ? ([
+          {
+            title: `${containerVolumeDict} ${volume} ${volumeLabelDict}`,
+            content: product.kit.container,
+          },
+          product.kit.matchsticks !== null && {
+            title: matchsticksDict,
+            content: product.kit.matchsticks,
+          },
+          {
+            title: wickDict,
+            content: product.kit.wick,
+          },
+          {
+            title: waxDict,
+            content: product.kit.wax,
+          },
+          {
+            title: aromaDict,
+            content: product.kit.aromaToChoose,
+          },
+        ].filter(Boolean) as { title: string; content: string }[])
+      : [];
 
   return (
     <div className={styles.candleSectionWrapper}>
@@ -81,18 +117,16 @@ const Description: React.FC<DescriptionProps> = ({
         >
           {title}
         </Typography>
-        {isCandlePage && (
-          <Typography
-            variant="bodyRegular"
-            color="var(--cl-gray-500)"
-            className={styles.candleDescription}
-          >
-            {description}
-          </Typography>
-        )}
+        <Typography
+          variant="bodyRegular"
+          color="var(--cl-gray-500)"
+          className={styles.candleDescription}
+        >
+          {description}
+        </Typography>
         <div className={styles.candeleCostWrapper}>
           <Typography variant="button" color="var(--cl-gray-500)">
-            {priceDict}
+            {priceDict}:
           </Typography>
           <div className={styles.candeleCost}>
             <Typography
@@ -106,15 +140,18 @@ const Description: React.FC<DescriptionProps> = ({
         </div>
         <div className={styles.candeleQuantity}>
           <Typography variant="button" color="var(--cl-gray-500)">
-            {quantityDict}
+            {quantityDict}:
           </Typography>
           <CandleQuantity qty={quantity} setQuantity={setQuantity} />
         </div>
         {isBoxPage && (
-          <div>
-            <Typography variant="button" color="var(--cl-gray-500)">
-              Оберіть аромат
-            </Typography>
+          <div className={styles.aromaAccordion}>
+            <Parameter
+              dict={aroma}
+              onChangeParam={handleChangeCandleParam}
+              parameter="aroma"
+              shouldHaveNumber={false}
+            />
           </div>
         )}
         <BuyButtons
@@ -129,20 +166,9 @@ const Description: React.FC<DescriptionProps> = ({
           itemAdded={itemAdded}
         />
 
-        {/* <div className={styles.candeleAccordion}>
-           {product.components.map((component, index) => (
-            <AccordionSection
-              key={index}
-              title={component.title}
-              content={component.content}
-            />
-          ))}
-        </div> */}
-
-        {/* Ця частина кода тимчасова, замість цієї що вище закоментована */}
         {isCandlePage && (
-          <div className={styles.candeleAccordion}>
-            {candlesAccordionContent.map((component, index) => (
+          <div className={styles.candleAccordion}>
+            {candleAccordionContent.map((component, index) => (
               <AccordionSection
                 key={index}
                 title={component.title}
@@ -153,8 +179,8 @@ const Description: React.FC<DescriptionProps> = ({
         )}
 
         {isBoxPage && (
-          <div className={styles.candeleAccordion}>
-            {accordionsections.map((component, index) => (
+          <div className={styles.candleAccordion}>
+            {boxAccordionContent.map((component, index) => (
               <AccordionSection
                 key={index}
                 title={component.title}
