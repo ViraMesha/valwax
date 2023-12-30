@@ -12,6 +12,8 @@ interface IProductDescriptionDict {
   wax: string;
   color: string;
   aroma: string;
+  aromaToChoose: string;
+  volumeLabel: string;
 }
 
 interface ApiRequest {

@@ -2,7 +2,8 @@ import BoxesInfo from '@components/components/BoxesPage/BoxesInfo/BoxesInfo';
 import BoxesPageHeader from '@components/components/BoxesPage/BoxesPageHeader/BoxesPageHeader';
 import BoxesSection from '@components/components/BoxesPage/BoxesSection/BoxesSection';
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
-import { getBoxes } from '@lib/api-services/api';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
+import { fetchBoxes } from '@lib/api-services/fetchBoxes';
 import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../i18n-config';
@@ -28,7 +29,8 @@ const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
       messages: { itemAdded },
     },
   } = await getDictionary(lang);
-  const promise = getBoxes();
+  const currentLang = convertToServerLocale(lang);
+  const promise = fetchBoxes(currentLang);
 
   return (
     <>

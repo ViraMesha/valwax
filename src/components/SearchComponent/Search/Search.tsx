@@ -3,8 +3,7 @@ import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import Typography from '@components/components/Typography/Typography';
 import { showToast } from '@components/helpers/showToast';
 import { ProductDetails } from '@components/types';
-import { useModalContext } from '@context/ModalContext';
-import { fetchSearchResults } from '@lib/api-services/api';
+import { fetchSearchResults } from '@lib/api-services/fetchSearchResults';
 import debounce from 'lodash.debounce';
 
 import Input from '../../Input/Input';
@@ -19,7 +18,6 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ closeModal, dict, toastMessage }) => {
-
   const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -57,7 +55,7 @@ const Search: React.FC<SearchProps> = ({ closeModal, dict, toastMessage }) => {
     }
   }, 500);
 
-  return  (
+  return (
     <div
       className={`${styles.modalWrapper} ${isVisible ? styles.visible : ''}`}
     >
@@ -104,7 +102,7 @@ const Search: React.FC<SearchProps> = ({ closeModal, dict, toastMessage }) => {
         </div>
       )}
     </div>
-  ) ;
+  );
 };
 
 export default Search;
