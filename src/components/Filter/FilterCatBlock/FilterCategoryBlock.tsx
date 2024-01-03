@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { BsCheck } from 'react-icons/bs';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import Typography from '@components/components/Typography/Typography';
@@ -13,15 +13,17 @@ type FilterCategoryBlockI = {
     option: string[];
   };
   className?: string;
+  handleSelectedFilterItems: (name: string, value: string) => void;
 };
 
 const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
   dict,
   className,
+  handleSelectedFilterItems,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const { toggleFilterParam, isSelected } = useFilterContext();
+  const { isSelected } = useFilterContext();
 
   return (
     <div className={`${styles.wrapper} ${className}`}>
@@ -34,7 +36,7 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
             {dict.option.map((item: string, index: number) => (
               <li
                 key={index}
-                onClick={() => toggleFilterParam(item)}
+                onClick={() => handleSelectedFilterItems(dict.title, item)}
                 className={`${styles.checkbox} ${
                   isSelected(item) ? styles.checked : ''
                 }`}

@@ -21,9 +21,11 @@ const ProductList: React.FC<ProductListProps> = ({
   const lang = useLangFromPathname();
   const { totalPrice, cartItems } = useCartContext();
 
-  if (!cartItems.length) {
-    redirect(`/${lang}`);
-  }
+  setTimeout(() => {
+    if (!cartItems.length) {
+      redirect(`/${lang}`);
+    }
+  }, 500);
 
   return (
     <div>

@@ -20,3 +20,8 @@ interface ApiRequest {
   id: string;
   currentLang: 'UA' | 'EN';
 }
+
+interface IFilterItem {
+  name: string;
+  values: string[];
+}
