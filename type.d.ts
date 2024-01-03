@@ -46,7 +46,18 @@ interface ConfigurationParamsCandleI {
 
 interface ParamsCandleContextI {
   configurationParamsCandle: ConfigurationParamsCandleI;
-  toggleParamCandle: (p: string, n: string, i: StaticImageData | null, c: string | null, idx: number) => void;
+}
+
+interface toggleParamCandleArguments {
+  param: string,
+  nameOption: string,
+  imageOption: StaticImageData | null,
+  colorOption: string | null,
+  indexOption: number
+}
+
+interface ParamsCandleActionContextI {
+  toggleParamCandle: (args: toggleParamCandleArguments) => void;
   cleanParamsCandle: () => void;
 }
 

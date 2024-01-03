@@ -6,7 +6,7 @@ import Typography from '@components/components/Typography/Typography';
 import { useCandleParam } from '@components/helpers';
 import { showToast } from '@components/helpers/showToast';
 import { useCartActionsContext } from '@context/CartContext';
-import { useParamsCandleContext } from '@context/ParamCandleContext';
+import { useParamsCandleActionContext } from '@context/ParamCandleContext';
 import candleImg from '@images/candles/img-1.jpg';
 import { nanoid } from 'nanoid';
 
@@ -28,7 +28,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   const { paramCandle, handleChangeCandleParam } = useCandleParam();
 
   const { onAdd } = useCartActionsContext();
-  const { cleanParamsCandle } = useParamsCandleContext();
+  const { cleanParamsCandle } = useParamsCandleActionContext();
   const pathName = usePathname();
   const router = useRouter();
   const lang = pathName.split('/')[1];

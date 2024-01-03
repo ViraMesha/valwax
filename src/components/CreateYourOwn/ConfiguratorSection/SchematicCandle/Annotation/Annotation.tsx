@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect } from 'react';
-import { useParamsCandleContext } from '@context/ParamCandleContext';
+import { useParamsCandleActionContext, useParamsCandleContext } from '@context/ParamCandleContext';
 import notSelectedImage from '@images/create-your-own/question-mark.jpg';
 
 import styles from './Annotation.module.scss';
@@ -14,7 +14,8 @@ interface AnnotationI {
 }
 
 const Annotation: React.FC<AnnotationI> = ({ param, top, left }) => {
-  const { configurationParamsCandle, cleanParamsCandle } = useParamsCandleContext();
+  const { configurationParamsCandle } = useParamsCandleContext();
+  const {  cleanParamsCandle } = useParamsCandleActionContext();
 
   const isParamColor = param === 'color';
   const srcImage = isParamColor || configurationParamsCandle[param]?.image === null ? notSelectedImage : configurationParamsCandle[param]?.image;

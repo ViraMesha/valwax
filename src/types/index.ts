@@ -103,8 +103,16 @@ export interface ParameterI {
   shouldHaveNumber?: boolean;
 }
 
+
 export interface OptionEventI {
   target: { value: string };
+}
+
+export interface handelParamChangeArguments {
+  event: OptionEventI;
+  image: StaticImageData | null;
+  color: string | null;
+  index: number;
 }
 
 export interface ProductDetails {

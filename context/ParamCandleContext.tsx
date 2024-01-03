@@ -7,6 +7,10 @@ const ParamsCandleContext = createContext<ParamsCandleContextI | undefined>(
   undefined
 );
 
+const ParamsCandleActionContext = createContext<
+  ParamsCandleActionContextI | undefined
+>(undefined);
+
 export const ParamsCandleProvider = ({
   children,
 }: ParamsCandleContextProps) => {
@@ -21,15 +25,17 @@ export const ParamsCandleProvider = ({
   const [configurationParamsCandle, setConfigurationParamsCandle] =
     useState<ConfigurationParamsCandleI>(initConfigurationParamsCandle);
 
-  const toggleParamCandle = (
-    param: string,
-    name: string,
-    image: StaticImageData | null,
-    color: string | null,
-    index: number,
-  ) => {
+  const toggleParamCandle = ({
+    param,
+    nameOption,
+    imageOption,
+    colorOption,
+    indexOption,
+  }: toggleParamCandleArguments) => {
     setConfigurationParamsCandle(prevConfigurationParamCandle => {
-      const updatedParamCandle = color ? { name, color, index } : { name, image, index };
+      const updatedParamCandle = colorOption
+        ? { nameOption, colorOption, indexOption }
+        : { nameOption, imageOption, indexOption };
       return {
         ...prevConfigurationParamCandle,
         [param]: updatedParamCandle,
@@ -40,17 +46,17 @@ export const ParamsCandleProvider = ({
   const cleanParamsCandle = () => {
     setConfigurationParamsCandle(initConfigurationParamsCandle);
   };
-  
 
   return (
-    <ParamsCandleContext.Provider
-      value={{
-        configurationParamsCandle,
-        toggleParamCandle,
-        cleanParamsCandle,
-      }}
-    >
-      {children}
+    <ParamsCandleContext.Provider value={{ configurationParamsCandle }}>
+      <ParamsCandleActionContext.Provider
+        value={{
+          toggleParamCandle,
+          cleanParamsCandle,
+        }}
+      >
+        {children}
+      </ParamsCandleActionContext.Provider>
     </ParamsCandleContext.Provider>
   );
 };
@@ -60,6 +66,15 @@ export const useParamsCandleContext = () => {
   if (!context)
     throw new Error(
       'useParamsCandleContext must be used within a ParamsCandleProvider'
+    );
+  return context;
+};
+
+export const useParamsCandleActionContext = () => {
+  const context = useContext(ParamsCandleActionContext);
+  if (!context)
+    throw new Error(
+      'useParamsCandleActionContext must be used within a ParamsCandleActionProvider'
     );
   return context;
 };
