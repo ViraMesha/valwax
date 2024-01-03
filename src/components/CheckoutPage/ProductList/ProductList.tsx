@@ -1,7 +1,5 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
-import useLangFromPathname from '@components/hooks/useLangFromPathname';
 import type { CartProductI, ProductListDictionary } from '@components/types';
 import { useCartContext } from '@context/CartContext';
 
@@ -18,15 +16,7 @@ const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
   itemDeleted,
 }) => {
-  const lang = useLangFromPathname();
   const { totalPrice, cartItems } = useCartContext();
-  const router = useRouter();
-
-  setTimeout(() => {
-    if (cartItems.length === 0) {
-      router.push(`/${lang}`);
-    }
-  }, 5000);
 
   return (
     <div>

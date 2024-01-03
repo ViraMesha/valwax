@@ -1,0 +1,1 @@
+export { useLangFromPathname } from './useLangFromPathname';

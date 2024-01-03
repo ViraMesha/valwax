@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
-import useLangFromPathname from '@components/hooks/useLangFromPathname';
+import { useLangFromPathname } from '@components/hooks';
 
 import type { CandleDetailsI } from '../../../types';
 
