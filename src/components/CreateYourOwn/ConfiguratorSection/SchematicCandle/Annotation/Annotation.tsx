@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useEffect } from 'react';
 import { useParamsCandleContext } from '@context/ParamCandleContext';
 import notSelectedImage from '@images/create-your-own/question-mark.jpg';
 
@@ -13,11 +14,15 @@ interface AnnotationI {
 }
 
 const Annotation: React.FC<AnnotationI> = ({ param, top, left }) => {
-  const { configurationParamsCandle } = useParamsCandleContext();
+  const { configurationParamsCandle, cleanParamsCandle } = useParamsCandleContext();
 
   const isParamColor = param === 'color';
   const srcImage = isParamColor || configurationParamsCandle[param]?.image === null ? notSelectedImage : configurationParamsCandle[param]?.image;
   const selectedColor = isParamColor ? configurationParamsCandle.color.color : 'red'
+
+  useEffect(() => {
+    cleanParamsCandle()
+  }, [])
 
   return (
     <div className={styles.param} style={{ top: top, left: left }}>

@@ -40,6 +40,7 @@ export const ParamsCandleProvider = ({
   const cleanParamsCandle = () => {
     setConfigurationParamsCandle(initConfigurationParamsCandle);
   };
+  
 
   return (
     <ParamsCandleContext.Provider
