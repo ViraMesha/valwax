@@ -1,5 +1,5 @@
 'use client';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
 import useLangFromPathname from '@components/hooks/useLangFromPathname';
 import type { CartProductI, ProductListDictionary } from '@components/types';
@@ -20,12 +20,13 @@ const ProductList: React.FC<ProductListProps> = ({
 }) => {
   const lang = useLangFromPathname();
   const { totalPrice, cartItems } = useCartContext();
+  const router = useRouter();
 
   setTimeout(() => {
-    if (!cartItems.length) {
-      redirect(`/${lang}`);
+    if (cartItems.length === 0) {
+      router.push(`/${lang}`);
     }
-  }, 500);
+  }, 5000);
 
   return (
     <div>
