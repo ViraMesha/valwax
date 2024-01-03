@@ -148,6 +148,7 @@ const Description: React.FC<DescriptionProps> = ({
           <div className={styles.aromaAccordion}>
             <Parameter
               dict={aroma}
+              currentParam={paramCandle['aroma']}
               onChangeParam={handleChangeCandleParam}
               parameter="aroma"
               shouldHaveNumber={false}

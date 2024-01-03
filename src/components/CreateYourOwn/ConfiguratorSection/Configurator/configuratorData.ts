@@ -58,3 +58,15 @@ export const configuratorData = ({container, wax, aroma, wick, color}: configura
     }
   )
 };
+
+export const paramData = ({container, wax, aroma, wick, color}: configuratorSectionI ) => {
+  return(
+    {
+      'container': container.options,
+      'wax': wax.options,
+      'aroma': aroma.options,
+      'wick': wick.options,
+      'color': color.options
+    }
+  )
+};

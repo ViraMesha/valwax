@@ -9,7 +9,7 @@ export const useCandleParam = () => {
     useInitParamCandle()
   );
 
-  const handleChangeCandleParam = (key: string, param: string) => {
+  const handleChangeCandleParam = (key: string, param: number) => {
     setParamCandle({ ...paramCandle, [key]: param });
   };
 

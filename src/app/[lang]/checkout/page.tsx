@@ -22,7 +22,7 @@ export default async function Checkout({
 }) {
   const {
     breadcrumbs,
-    page: { checkout },
+    page: { checkout, createYourOwn: { configurator }},
     general: {
       messages: { itemDeleted },
     },
@@ -39,7 +39,7 @@ export default async function Checkout({
         ]}
         lang={lang}
       />
-      <CheckoutPage dict={checkout} itemDeleted={itemDeleted} />
+      <CheckoutPage dict={checkout} dictParam={configurator} itemDeleted={itemDeleted} />
     </>
   );
 }

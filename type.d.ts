@@ -32,6 +32,7 @@ interface ApiRequest {
 interface ParamCandleI {
   name: string,
   image: StaticImageData | null,
+  index: number | null,
 }
 
 interface ConfigurationParamsCandleI {
@@ -39,13 +40,13 @@ interface ConfigurationParamsCandleI {
   wax: ParamCandleI,
   aroma: ParamCandleI,
   wick: ParamCandleI,
-  color: { name: string, color:  null | string,
+  color: { name: string, color:  null | string, index: null | number,
   },
 }
 
 interface ParamsCandleContextI {
   configurationParamsCandle: ConfigurationParamsCandleI;
-  toggleParamCandle: (p: string, n: string, i: StaticImageData | null, c: string | null) => void;
+  toggleParamCandle: (p: string, n: string, i: StaticImageData | null, c: string | null, idx: number) => void;
   cleanParamsCandle: () => void;
 }
 

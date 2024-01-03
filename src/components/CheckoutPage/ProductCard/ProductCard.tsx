@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { paramData } from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/configuratorData';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 import type {
+  configuratorSectionI,
   CustomCandleDescription,
   ProductDescription,
 } from '@components/types';
@@ -12,7 +14,6 @@ import { useCartActionsContext } from '@context/CartContext';
 import styles from './ProductCard.module.scss';
 
 type TProperty = keyof CustomCandleDescription;
-type TPropertyWithoutContainer = Exclude<TProperty, 'container'>;
 
 interface ProductCardProps {
   deleteButtonText: string;
@@ -26,6 +27,7 @@ interface ProductCardProps {
   key: string;
   descriptionPropertyNames: ProductDescription;
   itemDeleted: string;
+  dictParam: configuratorSectionI;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -39,9 +41,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   deleteButtonText,
   descriptionPropertyNames: propertyNames,
   itemDeleted,
+  dictParam,
 }) => {
   const { onRemove } = useCartActionsContext();
   const isCustomCandle = link.includes('create-your-own');
+  const paramsObject = paramData(dictParam);
 
   // Extract the keys of the description object
   const descriptionKeys =
@@ -89,28 +93,24 @@ const ProductCard: React.FC<ProductCardProps> = ({
               >
                 {/*  Loop through the keys of the description object */}
                 {descriptionKeys.map((property, i) => {
-                  if (property !== 'container') {
-                    return (
-                      <span key={property}>
-                        {/* Display the property name using propertyNames dictionary */}
-                        {propertyNames[property as TPropertyWithoutContainer]} -{' '}
-                        <span className={styles.pinkText}>
-                          {/* Display the property value with pink text color */}
-                          {description[property as TProperty]}
-                        </span>
-                        {/* Add a period if it's the last property, or a comma if not */}
-                        {i === descriptionKeys.length - 1 ? (
-                          <span>.</span>
-                        ) : (
-                          <span>, </span>
-                        )}
-                      </span>
-                    );
-                  }
                   return (
-                    <span key={property} className={styles.pinkText}>
-                      {/* Display the property value with pink text color */}
-                      {description[property as TProperty]},{' '}
+                    <span key={property}>
+                      {/* Display the property name using propertyNames dictionary */}
+                      {propertyNames[property as TProperty]} -{' '}
+                      <span className={styles.pinkText}>
+                        {/* Display the property value with pink text color */}
+                        {
+                          paramsObject[property as TProperty][
+                            description[property as TProperty] as number
+                          ]
+                        }
+                      </span>
+                      {/* Add a period if it's the last property, or a comma if not */}
+                      {i === descriptionKeys.length - 1 ? (
+                        <span>.</span>
+                      ) : (
+                        <span>, </span>
+                      )}
                     </span>
                   );
                 })}

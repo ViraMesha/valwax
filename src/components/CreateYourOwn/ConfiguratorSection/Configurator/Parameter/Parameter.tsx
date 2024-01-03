@@ -13,18 +13,17 @@ import styles from './Parameter.module.scss';
 
 const Parameter: React.FC<ParameterI> = ({
   dict,
+  currentParam,
   onChangeParam,
   parameter,
   shouldHaveNumber = true,
 }) => {
-  const [param, setParam] = useState('');
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const {toggleParamCandle} = useParamsCandleContext();
 
-  const handelParamChange = (event: OptionEventI, image: StaticImageData | null, color: string | null) => {
-    setParam(event.target.value);
-    toggleParamCandle(parameter, event.target.value, image, color);
-    onChangeParam(parameter, event.target.value);
+  const handelParamChange = (event: OptionEventI, image: StaticImageData | null, color: string | null, index: number) => {
+    toggleParamCandle(parameter, event.target.value, image, color, index);
+    onChangeParam(parameter, index);
   };
 
   return (
@@ -51,13 +50,16 @@ const Parameter: React.FC<ParameterI> = ({
         >
           {dict.title}
         </Typography>
-        <Typography
+        {
+          typeof currentParam === 'number' &&
+          <Typography
           variant="subheadingMobile"
           color="var(--cl-primary-500)"
           className={styles.txt}
         >
-          {param}
+          {dict.options[currentParam]}
         </Typography>
+        }
         <IoIosArrowUp className={`${styles.icon} ${styles.iconUp}`} />
         <IoIosArrowDown className={`${styles.icon} ${styles.iconDown}`} />
       </label>
@@ -72,7 +74,7 @@ const Parameter: React.FC<ParameterI> = ({
                     name={dict.title}
                     className={`${styles.visuallyHidden} ${styles.input}`}
                     value={option}
-                    onChange={(e) => handelParamChange(e, dict.images ? dict.images[index] : null, dict.colors ? dict.colors[index] : null)}
+                    onChange={(e) => handelParamChange(e, dict.images ? dict.images[index] : null, dict.colors ? dict.colors[index] : null, index)}
                     id={option}
                   />
                   {dict.images && (

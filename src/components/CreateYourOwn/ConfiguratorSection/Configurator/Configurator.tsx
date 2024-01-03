@@ -36,8 +36,9 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   const product = {
     id: nanoid(),
     img: candleImg.src,
-    title: 'A custom candle',
+    title: dictGeneral.titles.сustomCandle,
     description: paramCandle,
+    configuration: paramCandle,
     price,
     link: '/create-your-own',
     quantity: 1,
@@ -59,27 +60,31 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
       <ol className={styles.list}>
         <Parameter
           dict={container}
+          currentParam={paramCandle['container']}
           onChangeParam={handleChangeCandleParam}
           parameter="container"
         />
-        {/* <Parameter dict={capacity}/> */}
         <Parameter
           dict={wax}
+          currentParam={paramCandle['wax']}
           onChangeParam={handleChangeCandleParam}
           parameter="wax"
         />
         <Parameter
           dict={aroma}
+          currentParam={paramCandle['aroma']}
           onChangeParam={handleChangeCandleParam}
           parameter="aroma"
         />
         <Parameter
           dict={wick}
+          currentParam={paramCandle['wick']}
           onChangeParam={handleChangeCandleParam}
           parameter="wick"
         />
         <Parameter
           dict={color}
+          currentParam={paramCandle['color']}
           onChangeParam={handleChangeCandleParam}
           parameter="color"
         />
