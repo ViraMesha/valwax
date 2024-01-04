@@ -9,7 +9,6 @@
   gap: 16px;
 
   @include breakpoint('desktop-large') {
-    padding: 32px 24px;
     gap: 24px;
   }
 }
@@ -18,7 +17,6 @@
   display: flex;
   gap: 16px;
   padding: 2px 2px 12px 2px;
-  // margin: -2px;
   text-align: center;
 
   @include breakpoint('desktop-large') {
@@ -34,7 +32,6 @@
 
 .itemParam {
   @include breakpoint('all-devices-without-desktop') {
-    // max-width: 74px;
   }
 
   @include breakpoint('desktop-large') {

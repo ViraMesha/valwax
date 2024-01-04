@@ -1,23 +1,7 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
-type ConfigurationFilterI = {
-  sortSetting: string;
-  filterParams: string[];
-};
-
-type FilterContextI = {
-  configurationFilter: ConfigurationFilterI;
-  toggleFilterParam: (p: string) => void;
-  updateSortSetting: (p: string) => void;
-  cleanFilter: () => void;
-  isSelected: (i: string) => boolean;
-};
-
-type FilterContextProps = {
-  children: React.ReactNode;
-};
 
 const FilterContext = createContext<FilterContextI | undefined>(undefined);
 

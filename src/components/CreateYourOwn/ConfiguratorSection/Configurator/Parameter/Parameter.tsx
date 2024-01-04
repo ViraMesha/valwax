@@ -1,26 +1,40 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import Typography from '@components/components/Typography/Typography';
-import { OptionEventI, ParameterI } from '@components/types';
+import  type { handelParamChangeArguments, ParameterI } from '@components/types';
+import { useParamsCandleActionContext } from '@context/ParamCandleContext';
 
 import styles from './Parameter.module.scss';
 
 const Parameter: React.FC<ParameterI> = ({
   dict,
+  currentParam,
   onChangeParam,
   parameter,
   shouldHaveNumber = true,
 }) => {
-  const [param, setParam] = useState('');
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const { toggleParamCandle } = useParamsCandleActionContext();
 
-  const handelParamChange = (event: OptionEventI) => {
-    setParam(event.target.value);
-    onChangeParam(parameter, event.target.value);
+  const handelParamChange = ({
+    event,
+    image,
+    color,
+    index,
+  }: handelParamChangeArguments) => {
+    const updateParamObject = {
+      param: parameter,
+      nameOption: event.target.value,
+      imageOption: image,
+      colorOption: color,
+      indexOption: index,
+    };
+    toggleParamCandle(updateParamObject);
+    onChangeParam(parameter, index);
   };
 
   return (
@@ -47,13 +61,15 @@ const Parameter: React.FC<ParameterI> = ({
         >
           {dict.title}
         </Typography>
-        <Typography
-          variant="subheadingMobile"
-          color="var(--cl-primary-500)"
-          className={styles.txt}
-        >
-          {param}
-        </Typography>
+        {typeof currentParam === 'number' && (
+          <Typography
+            variant="subheadingMobile"
+            color="var(--cl-primary-500)"
+            className={styles.txt}
+          >
+            {dict.options[currentParam]}
+          </Typography>
+        )}
         <IoIosArrowUp className={`${styles.icon} ${styles.iconUp}`} />
         <IoIosArrowDown className={`${styles.icon} ${styles.iconDown}`} />
       </label>
@@ -68,7 +84,14 @@ const Parameter: React.FC<ParameterI> = ({
                     name={dict.title}
                     className={`${styles.visuallyHidden} ${styles.input}`}
                     value={option}
-                    onChange={handelParamChange}
+                    onChange={e =>
+                      handelParamChange({
+                        event: e,
+                        image: dict.images ? dict.images[index] : null,
+                        color: dict.colors ? dict.colors[index] : null,
+                        index,
+                      })
+                    }
                     id={option}
                   />
                   {dict.images && (

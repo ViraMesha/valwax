@@ -1,0 +1,69 @@
+@import '../../../../../scss/utilities/breakpoint-mixin.scss';
+
+.param {
+  position: absolute;
+  transform: translate(-50%, -50%);
+
+  // top: 90px;
+  // left: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  border: 2px var(--cl-primary-500) solid;
+  border-radius: 50%;
+
+  width: 60px;
+  height: 60px;
+
+  @include breakpoint('tablet-small') {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include breakpoint('tablet-large') {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include breakpoint('desktop') {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include breakpoint('desktop-large') {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.paramImage {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+
+  @include breakpoint('tablet-small') {
+    width: 70px;
+    height: 70px;
+  }
+
+  @include breakpoint('tablet-large') {
+    width: 70px;
+    height: 70px;
+  }
+
+  @include breakpoint('desktop') {
+    width: 70px;
+    height: 70px;
+  }
+
+  @include breakpoint('desktop-large') {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+// .paramColor {
+
+// }
