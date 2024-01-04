@@ -3,17 +3,27 @@ import { UseFormReturn } from 'react-hook-form';
 
 import { Locale } from '../../i18n-config';
 
+export interface IBoxKit {
+  container: string;
+  wax: string;
+  wick: string;
+  aromaToChoose: string;
+  matchsticks: string;
+}
+
 export interface BoxDetailsI {
   id: string;
   images: string[];
   title: string;
   name: string;
   price: number;
-  aroma: string[];
   components: ComponentI[];
   description: string;
+  configuration?: CustomCandleDescription;
   slug: string;
   volume: string;
+  text: string;
+  kit: IBoxKit;
 }
 
 export interface ComponentI {
@@ -40,11 +50,11 @@ export interface CandleDetailsI {
 }
 
 export type CustomCandleDescription = {
-  container: string;
-  wax: string;
-  aroma: string;
-  wick: string;
-  color: string;
+  container: string | number;
+  wax: string | number;
+  aroma: string | number;
+  wick: string | number;
+  color: string | number;
 };
 
 export interface CartProductI {
@@ -52,6 +62,7 @@ export interface CartProductI {
   img: string;
   title: string;
   description?: string | CustomCandleDescription;
+  configuration?: CustomCandleDescription;
   price: number;
   quantity: number;
   link: string;
@@ -86,12 +97,22 @@ export interface ConfiguratorSectionI {
 
 export interface ParameterI {
   dict: parameterI;
-  onChangeParam: (v: string, p: string) => void;
+  currentParam: string | number;
+  onChangeParam: (v: string, p: number) => void;
   parameter: string;
+  shouldHaveNumber?: boolean;
 }
+
 
 export interface OptionEventI {
   target: { value: string };
+}
+
+export interface handelParamChangeArguments {
+  event: OptionEventI;
+  image: StaticImageData | null;
+  color: string | null;
+  index: number;
 }
 
 export interface ProductDetails {
@@ -132,6 +153,7 @@ export interface ButtonsDictI {
 }
 
 export interface ProductDescription {
+  container: string;
   wax: string;
   aroma: string;
   wick: string;
@@ -339,7 +361,7 @@ export interface ButtonsTranslation {
 
 export interface BoxesSectionProps {
   dict: ButtonsTranslation;
-  boxes: Promise<BoxI[]>;
+  boxes: Promise<BoxDetailsI[]>;
   toastMessage: string;
 }
 
@@ -349,3 +371,5 @@ export interface UseScrollbarProps {
   maxHeight?: string;
   primary?: string;
 }
+
+export type ServerLocale = 'UA' | 'EN';

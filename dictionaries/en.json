@@ -343,6 +343,7 @@
         "deleteButtonText": "Delete",
         "totalText": "Total",
         "descriptionPropertyNames": {
+          "container": "Container",
           "wax": "Wax",
           "aroma": "Aroma",
           "wick": "Wick",
@@ -444,7 +445,8 @@
       "addToCart": "Add to cart"
     },
     "titles": {
-      "price": "Price:"
+      "price": "Price:",
+      "сustomCandle": "Customizable candle"
     },
     "messages": {
       "notAllParam": "Each candle parameter must be selected",
@@ -462,16 +464,18 @@
   },
 
   "productDescription": {
-    "price": "Price:",
-    "quantity": "Quantity:",
+    "price": "Price",
+    "quantity": "Quantity",
     "topNotes": "Top notes",
     "baseNotes": "Base notes",
     "volume": "Volume",
     "containerVolume": "Container for ",
+    "volumeLabel": "ml",
     "matchsticks": "Matchsticks",
     "wick": "Wick",
     "wax": "Wax",
     "color": "Color",
-    "aroma": "Aroma"
+    "aroma": "Aroma",
+    "aromaToChoose": "Choose a flavor"
   }
 }

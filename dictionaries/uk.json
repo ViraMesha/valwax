@@ -337,6 +337,7 @@
         "deleteButtonText": "Видалити",
         "totalText": "Разом",
         "descriptionPropertyNames": {
+          "container": "Тара",
           "wax": "Віск",
           "aroma": "Аромат",
           "wick": "Гніт",
@@ -437,7 +438,8 @@
       "addToCart": "До кошика"
     },
     "titles": {
-      "price": "Вартість:"
+      "price": "Вартість:",
+      "сustomCandle": "Кастомна свічка"
     },
     "messages": {
       "notAllParam": "Кожен параметр свічки повинен бути обраний",
@@ -455,16 +457,18 @@
   },
 
   "productDescription": {
-    "price": "Вартість:",
-    "quantity": "Кількість:",
+    "price": "Вартість",
+    "quantity": "Кількість",
     "topNotes": "Верхні ноти",
     "baseNotes": "Базові ноти",
     "volume": "Об’єм",
     "containerVolume": "Тара на",
+    "volumeLabel": "мл",
     "matchsticks": "Сірники",
     "wick": "Гніт",
     "wax": "Віск",
     "color": "Колір",
-    "aroma": "Аромат"
+    "aroma": "Аромат",
+    "aromaToChoose": "Оберіть аромат"
   }
 }
