@@ -1,13 +1,12 @@
 @import '../../scss/utilities/breakpoint-mixin.scss';
 
-.section {
-
+#section {
   padding-bottom: 30px;
 
   @include breakpoint('mobile-large-and-up') {
     padding-bottom: 50px;
   }
-  
+
   @include breakpoint('desktop-large') {
     padding-bottom: 56px;
   }
@@ -31,13 +30,11 @@
   @include breakpoint('only-mobile-small') {
     padding-bottom: 40px;
   }
-
 }
 
 .list {
   text-transform: uppercase;
   display: flex;
-
 
   @include breakpoint('only-mobile-small') {
     position: absolute;
@@ -47,21 +44,20 @@
     flex-direction: column;
     border: 1px solid var(--cl-primary-100);
     border-radius: 20px;
+    // text-align: left;
+    // padding: 0 38px 0 38px;
   }
-
 }
 
 .item {
-
   border: 1px solid var(--cl-primary-100);
   border-radius: 20px;
-  text-align: center;
+  // text-align: center;
   height: 40px;
-
 
   @include breakpoint('only-mobile-small') {
     flex-direction: column;
-    border: none
+    border: none;
   }
 
   @include breakpoint('tablet-small') {
@@ -90,10 +86,29 @@
   justify-content: center;
   gap: 16px;
   cursor: pointer;
+  
+  @include breakpoint('only-mobile-small') {
+    width: 156px;
+    padding: 0 38px 0 38px;
+    justify-content: start;
+  }
 }
 
-.current {
+.currentLink {
+  @include breakpoint('only-mobile-small') {
+    padding: 0;
+    justify-content: center;
+  }
+}
 
+.activeLink{
+  @include breakpoint('only-mobile-small') {
+    padding: 0 38px 0 38px;
+    justify-content: start;
+  }
+}
+
+.currentItem {
   @include breakpoint('mobile-large-and-up') {
     background-color: var(--cl-primary-50);
     border: none;
@@ -101,7 +116,6 @@
 }
 
 .title {
-
   @include breakpoint('desktop-large') {
     font-size: 22px;
   }
@@ -118,6 +132,14 @@
   justify-content: center;
   gap: 8px;
   width: 156px;
+  cursor: pointer;
+
+  & > svg {
+    // fill: var(--cl-black);
+    color: var(--cl-gray-500);
+    height: 20px;
+    width: 20px;
+  }
 
   @include breakpoint('only-mobile-small') {
     position: absolute;
@@ -130,6 +152,10 @@
   overflow: auto;
   padding-top: 160px;
   padding-bottom: 0px;
+
+  // opacity: 0;
+  // pointer-events: none;
+  // transition: opacity 0.3s ease-in-out;
 
   &::-webkit-scrollbar {
     width: 10px;

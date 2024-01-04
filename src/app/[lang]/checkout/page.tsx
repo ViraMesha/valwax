@@ -1,8 +1,8 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CheckoutPage from '@components/components/CheckoutPage/CheckoutPage';
+import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../i18n-config';
-import { getDictionary } from '../../../../lib/utils/dictionary';
 
 export async function generateMetadata({
   params: { lang },
@@ -20,10 +20,14 @@ export default async function Checkout({
 }: {
   params: { lang: Locale };
 }) {
-  const { breadcrumbs } = await getDictionary(lang);
   const {
-    page: { checkout },
+    breadcrumbs,
+    page: { checkout, createYourOwn: { configurator }},
+    general: {
+      messages: { itemDeleted },
+    },
   } = await getDictionary(lang);
+
   return (
     <>
       <Breadcrumbs
@@ -35,7 +39,7 @@ export default async function Checkout({
         ]}
         lang={lang}
       />
-      <CheckoutPage dict={checkout} />
+      <CheckoutPage dict={checkout} dictParam={configurator} itemDeleted={itemDeleted} />
     </>
   );
 }

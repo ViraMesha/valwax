@@ -1,9 +1,12 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlesPage from '@components/components/CandlesPage/CandlesPage';
+import { removeCandlesSuffix } from '@components/helpers/removeCandlesSuffix';
+import { fetchCandles } from '@lib/api-services/fetchCandles';
+import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../../i18n-config';
-import { getCandles } from '../../../../../lib/api-services/api';
-import { getDictionary } from '../../../../../lib/utils/dictionary';
+
+import { convertStringToNumber } from './../../../../helpers/convertStringToNumber';
 
 export async function generateMetadata({
   params: { slug, lang },
@@ -14,6 +17,7 @@ export async function generateMetadata({
   };
 }) {
   const { breadcrumbs } = await getDictionary(lang);
+
   return {
     title: `Valwax | ${breadcrumbs[slug]}`,
   };
@@ -21,15 +25,23 @@ export async function generateMetadata({
 
 export default async function Page({
   params: { slug, lang },
+  searchParams,
 }: {
   params: {
     slug: 'soy-candles' | 'coconut-candles' | 'palm-candles';
     lang: Locale;
   };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const { breadcrumbs } = await getDictionary(lang);
-  const { page } = await getDictionary(lang);
-  const candles = getCandles();
+  const { breadcrumbs, page } = await getDictionary(lang);
+
+  const currentPage = convertStringToNumber(searchParams.page, 1);
+  const perPage = convertStringToNumber(searchParams.perPage, 9);
+
+  const wax = removeCandlesSuffix(slug);
+  const currentLang = lang === 'uk' ? 'UA' : 'EN';
+
+  const promise = fetchCandles({ currentLang, wax, currentPage, perPage });
 
   return (
     <>
@@ -42,12 +54,11 @@ export default async function Page({
         ]}
         lang={lang}
       />
-      {/* <Tabs dict={page.candles.tabs} lang={lang} /> */}
       <CandlesPage
         dictWax={page.candles[slug]}
         dict={page.candles}
         lang={lang}
-        candles={candles}
+        candles={promise}
       />
     </>
   );

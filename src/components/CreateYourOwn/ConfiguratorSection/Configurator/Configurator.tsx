@@ -1,11 +1,17 @@
+'use client';
+import { usePathname, useRouter } from 'next/navigation';
+import Button from '@components/components/Button/Button';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
+import { useCandleParam } from '@components/helpers';
+import { showToast } from '@components/helpers/showToast';
+import { useCartActionsContext } from '@context/CartContext';
+import { useParamsCandleActionContext } from '@context/ParamCandleContext';
+import candleImg from '@images/candles/img-1.jpg';
 import { nanoid } from 'nanoid';
 
-import candleImg from '../../../../../public/images/candles/img-1.jpg';
 import { ConfiguratorSectionI } from '../../../../types/index';
 
-import ConfiguratorBuyNowBtn from './ConfiguratorBuyNowBtn/ConfiguratorBuyNowBtn';
 import Parameter from './Parameter/Parameter';
 import { configuratorData } from './configuratorData';
 
@@ -19,16 +25,70 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
 }) => {
   const { container, wax, aroma, wick, color } = configuratorData(dict);
 
+  const { paramCandle, handleChangeCandleParam } = useCandleParam();
+
+  const { onAdd } = useCartActionsContext();
+  const { cleanParamsCandle } = useParamsCandleActionContext();
+  const pathName = usePathname();
+  const router = useRouter();
+  const lang = pathName.split('/')[1];
+
+  const product = {
+    id: nanoid(),
+    img: candleImg.src,
+    title: dictGeneral.titles.сustomCandle,
+    description: paramCandle,
+    configuration: paramCandle,
+    price,
+    link: '/create-your-own',
+    quantity: 1,
+  };
+
+  const handleBuyNowButtonClick = () => {
+    const allParamNotEmpty = Object.values(paramCandle).every(v => v !== '');
+    if (allParamNotEmpty) {
+      onAdd(product, 1, dictGeneral.messages.itemAdded);
+      cleanParamsCandle()
+      router.push(`/${lang}/checkout`);
+      return;
+    }
+    showToast(dictGeneral.messages.notAllParam, 'warning');
+  };
+
   return (
     <div className={styles.wrapper}>
-      <ul className={styles.list}>
-        <Parameter dict={container} />
-        {/* <Parameter dict={capacity}/> */}
-        <Parameter dict={wax} />
-        <Parameter dict={aroma} />
-        <Parameter dict={wick} />
-        <Parameter dict={color} />
-      </ul>
+      <ol className={styles.list}>
+        <Parameter
+          dict={container}
+          currentParam={paramCandle['container']}
+          onChangeParam={handleChangeCandleParam}
+          parameter="container"
+        />
+        <Parameter
+          dict={wax}
+          currentParam={paramCandle['wax']}
+          onChangeParam={handleChangeCandleParam}
+          parameter="wax"
+        />
+        <Parameter
+          dict={aroma}
+          currentParam={paramCandle['aroma']}
+          onChangeParam={handleChangeCandleParam}
+          parameter="aroma"
+        />
+        <Parameter
+          dict={wick}
+          currentParam={paramCandle['wick']}
+          onChangeParam={handleChangeCandleParam}
+          parameter="wick"
+        />
+        <Parameter
+          dict={color}
+          currentParam={paramCandle['color']}
+          onChangeParam={handleChangeCandleParam}
+          parameter="color"
+        />
+      </ol>
       <div className={styles.wrapperPrice}>
         <Typography
           variant="bodyRegular"
@@ -39,25 +99,9 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
         </Typography>
         <Price price={price} />
       </div>
-      <ConfiguratorBuyNowBtn
-        product={{
-          id: nanoid(),
-          img: candleImg.src,
-          title: 'A custom candle',
-          description: {
-            container: 'Тара 1',
-            wax: 'Соєвий',
-            aroma: 'Чиста Бавовна',
-            wick: 'Один',
-            color: 'Жовтий',
-          },
-          price,
-          link: '/create-your-own',
-          quantity: 1,
-        }}
-      >
+      <Button variant="primary" onClick={handleBuyNowButtonClick}>
         {dictGeneral.buttons.buyNow}
-      </ConfiguratorBuyNowBtn>
+      </Button>
     </div>
   );
 };

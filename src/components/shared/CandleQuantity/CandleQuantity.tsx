@@ -1,9 +1,8 @@
 'use client';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import Typography from '@components/components/Typography/Typography';
-
-import { useStateActionsContext } from '../../../../context/StateContext';
+import { useCartActionsContext } from '@context/CartContext';
 
 import styles from './CandleQuantity.module.scss';
 
@@ -22,7 +21,7 @@ const CandleQuantity: React.FC<CandleQuantityProps> = ({
   qty,
   setQuantity,
 }) => {
-  const { toggleCartItemQuantity } = useStateActionsContext();
+  const { toggleCartItemQuantity } = useCartActionsContext();
 
   const handleIncrement = () => {
     setQuantity && qty && setQuantity(qty + 1);

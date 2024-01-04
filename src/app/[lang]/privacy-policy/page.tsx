@@ -1,8 +1,8 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import PrivacyPolicyInfo from '@components/components/PrivacyPolicyInfo/PrivacyPolicyInfo';
+import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../i18n-config';
-import { getDictionary } from '../../../../lib/utils/dictionary';
 
 export async function generateMetadata({
   params: { lang },
@@ -20,8 +20,8 @@ const PrivacyPolicy = async ({
 }: {
   params: { lang: Locale };
 }) => {
-  const { breadcrumbs } = await getDictionary(lang);
-  const { page } = await getDictionary(lang);
+  const { breadcrumbs, page } = await getDictionary(lang);
+
   return (
     <>
       <Breadcrumbs

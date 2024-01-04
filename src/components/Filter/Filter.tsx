@@ -1,4 +1,6 @@
-'use client'
+'use client';
+import { FilterI } from '@components/types';
+import { useFilterContext } from '@context/FilterContext';
 import { useWindowSize } from 'usehooks-ts';
 
 import Button from '../Button/Button';
@@ -8,22 +10,12 @@ import FilterCategoryBlock from './FilterCatBlock/FilterCategoryBlock';
 
 import styles from './Filter.module.scss';
 
-interface FilterI {
-  dict: {
-    title: string;
-    subtitle: string;
-    up: string;
-    down: string;
-    cleanUp: string;
-    result: string;
-    category: any;
-  };
-  className?: string;
-}
-
-const Filter: React.FC<FilterI> = ({ dict, className }) => {
+const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1230;
+
+  const { configurationFilter, updateSortSetting, cleanFilter } =
+    useFilterContext();
 
   return (
     <div className={`${styles.wrapper} ${className || ''}`}>
@@ -35,10 +27,24 @@ const Filter: React.FC<FilterI> = ({ dict, className }) => {
           <Typography variant="bodyRegular" className={styles.subtitle}>
             {dict.subtitle}
           </Typography>
-          <button className={styles.btn}>
+          <button
+            className={`${styles.btn} ${
+              configurationFilter.sortSetting === dict.up
+                ? styles.btnActive
+                : ''
+            }`}
+            onClick={() => updateSortSetting(dict.up)}
+          >
             <Typography variant="bodyRegular">{dict.up}</Typography>
           </button>
-          <button className={styles.btn}>
+          <button
+            className={`${styles.btn} ${
+              configurationFilter.sortSetting === dict.down
+                ? styles.btnActive
+                : ''
+            }`}
+            onClick={() => updateSortSetting(dict.down)}
+          >
             <Typography variant="bodyRegular">{dict.down}</Typography>
           </button>
         </div>
@@ -57,10 +63,14 @@ const Filter: React.FC<FilterI> = ({ dict, className }) => {
       </div>
       {!isLargeScreen && (
         <div className={styles.wrapperBtn}>
-          <Button variant="dark" className={styles.button}>
+          <Button
+            variant="dark"
+            className={styles.button}
+            onClick={cleanFilter}
+          >
             <Typography>{dict.cleanUp}</Typography>
           </Button>
-          <Button variant="light" className={styles.button}>
+          <Button variant="light" className={styles.button} onClick={closeModal}>
             <Typography>{dict.result}</Typography>
           </Button>
         </div>

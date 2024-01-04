@@ -1,31 +1,31 @@
 import Link from 'next/link';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
+import type { BoxDetailsI, ButtonsTranslation } from '@components/types';
 
-import { BoxI } from '../boxesData';
 import BoxImgSlider from '../BoxImgSlider/BoxImgSlider';
 import BuyButton from '../BuyButton/BuyButton';
 
 import styles from './BoxesCard.module.scss';
 
 type BoxesCardProps = {
-  box: BoxI;
-  dict: {
-    buyBtn: string;
-    reviewBtn: string;
-  };
+  box: BoxDetailsI;
+  dict: ButtonsTranslation;
+  toastMessage: string;
 };
 
 const BoxesCard: React.FC<BoxesCardProps> = ({
-  box: { id, img, title, price, link, text, description },
+  box,
   dict: { buyBtn, reviewBtn },
+  toastMessage,
 }) => {
+  const { id, images, title, price, slug, text } = box;
   return (
     <li className={styles.card}>
-      <BoxImgSlider img={img} />
+      <BoxImgSlider img={images} />
       <div>
         <div className={styles.content}>
-          <Link href={`${link}/${id}`}>
+          <Link href={`${slug}/${id}`}>
             <Typography variant="subheadingBold" className={styles.title}>
               {title}
             </Typography>
@@ -37,18 +37,11 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
         <Price priceStyle={styles.price} price={price} />
         <div className={styles.button__container}>
           <BuyButton
-            product={{
-              id,
-              img: img[0],
-              title,
-              price,
-              link,
-              description,
-              quantity: 0,
-            }}
+            product={{ ...box, img: images[0], quantity: 0, link: slug }}
             buyBtn={buyBtn}
+            toastMessage={toastMessage}
           />
-          <Link href={`${link}/${id}`}>{reviewBtn}</Link>
+          <Link href={`${slug}/${id}`}>{reviewBtn}</Link>
         </div>
       </div>
     </li>

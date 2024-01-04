@@ -77,11 +77,11 @@
   }
 }
 
-.input:checked ~ .typography {
+.checked > .typography {
   color: var(--cl-gray-500);
 }
 
-.input:checked ~ .check {
+.checked > .check {
   fill: var(--cl-success-500);
 }
 

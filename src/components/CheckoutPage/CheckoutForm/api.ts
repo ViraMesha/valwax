@@ -1,6 +1,6 @@
-import { AreaData } from '@components/types';
+import { AreaData, CityData } from '@components/types';
 
-const ApiKeyNP = process.env.NOVAPOSHTA_KEY
+const ApiKeyNP = process.env.NOVAPOSHTA_KEY;
 
 export const fetchAreas = async () => {
   try {
@@ -30,46 +30,33 @@ export const fetchAreas = async () => {
   }
 };
 
-export const fetchCities = async (Ref: string) => {
+export const fetchCities = async (Label: string) => {
   try {
-    let allCities: AreaData[] = [];
-    let page = 1;
+    const response = await fetch('https://api.novaposhta.ua/v2.0/json/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        apiKey: ApiKeyNP,
+        modelName: 'Address',
+        calledMethod: 'getCities',
+      }),
+    });
 
-    while (true) {
-      const response = await fetch('https://api.novaposhta.ua/v2.0/json/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          apiKey: ApiKeyNP,
-          modelName: 'Address',
-          calledMethod: 'getSettlements',
-          methodProperties: {
-            AreaRef: Ref,
-            // FindByString: SelectedCity,
-            Page: String(page),
-          },
-        }),
-      });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data.data);
 
-      if (response.ok) {
-        const data = await response.json();
-        allCities = allCities.concat(data.data);
-
-        if (data.data.length === 0) {
-          break;
-        }
-
-        page++;
-      } else {
-        console.error('Помилка завантаження даних з API');
-        return null;
-      }
+      const filteredCities = data.data.filter(
+        (city: CityData) => city.AreaDescription === Label
+      );
+      console.log('filteredCities', filteredCities);
+      return filteredCities;
+    } else {
+      console.error('Помилка завантаження даних з API');
+      return null;
     }
-
-    console.log('allCities', allCities);
-    return allCities;
   } catch (error) {
     console.error('Помилка завантаження даних з API', error);
     return null;
@@ -143,7 +130,6 @@ export const fetchWarehouses = async (
   return allWarehouses;
 };
 
-
 export const fetchAreasUkr = async () => {
   try {
     const response = await fetch(`/api/checkout/areas`, {
@@ -163,7 +149,6 @@ export const fetchAreasUkr = async () => {
     return null;
   }
 };
-
 
 export const fetchCitiesUkr = async (RegionId: string) => {
   try {
@@ -186,7 +171,7 @@ export const fetchCitiesUkr = async (RegionId: string) => {
 };
 
 export const fetchWarehousesUkr = async (CityId: string) => {
-  console.log('CityId', CityId)
+  console.log('CityId', CityId);
   try {
     const response = await fetch(`/api/checkout/warehouses?city_id=${CityId}`, {
       method: 'GET',

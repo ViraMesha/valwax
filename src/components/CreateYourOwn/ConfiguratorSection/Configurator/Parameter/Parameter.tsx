@@ -1,49 +1,80 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import Typography from '@components/components/Typography/Typography';
-import { OptionEventI, ParameterI } from '@components/types';
+import  type { handelParamChangeArguments, ParameterI } from '@components/types';
+import { useParamsCandleActionContext } from '@context/ParamCandleContext';
 
 import styles from './Parameter.module.scss';
 
-const Parameter: React.FC<ParameterI> = ({ dict }) => {
-  const [param, setParam] = useState('');
-
+const Parameter: React.FC<ParameterI> = ({
+  dict,
+  currentParam,
+  onChangeParam,
+  parameter,
+  shouldHaveNumber = true,
+}) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const { toggleParamCandle } = useParamsCandleActionContext();
 
-  const handelParamChange = (event: OptionEventI) => {
-    setParam(event.target.value);
+  const handelParamChange = ({
+    event,
+    image,
+    color,
+    index,
+  }: handelParamChangeArguments) => {
+    const updateParamObject = {
+      param: parameter,
+      nameOption: event.target.value,
+      imageOption: image,
+      colorOption: color,
+      indexOption: index,
+    };
+    toggleParamCandle(updateParamObject);
+    onChangeParam(parameter, index);
   };
 
   return (
-    <div className={styles.item}>
+    <li className={styles.item}>
       <input
-        id={dict.title}
+        id={parameter}
         type="checkbox"
         className={`${styles.visuallyHidden} ${styles.slider}`}
       />
-      <label className={styles.wrapper} htmlFor={dict.title}>
-        <Typography variant="subheadingMobile" color="var(--cl-primary-800)">
-          {dict.number}
-        </Typography>
-        <Typography variant="subheadingMobile" color="var(--cl-primary-900)">
-          {dict.title}
-        </Typography>
+      <label className={styles.wrapper} htmlFor={parameter}>
+        {shouldHaveNumber ? (
+          <Typography
+            variant="subheadingMobile"
+            color="var(--cl-primary-800)"
+            className={styles.number}
+          >
+            {dict.number}
+          </Typography>
+        ) : null}
         <Typography
           variant="subheadingMobile"
-          color="var(--cl-primary-500)"
-          className={styles.txt}
+          color="var(--cl-primary-900)"
+          className={styles.title}
         >
-          {param}
+          {dict.title}
         </Typography>
+        {typeof currentParam === 'number' && (
+          <Typography
+            variant="subheadingMobile"
+            color="var(--cl-primary-500)"
+            className={styles.txt}
+          >
+            {dict.options[currentParam]}
+          </Typography>
+        )}
         <IoIosArrowUp className={`${styles.icon} ${styles.iconUp}`} />
         <IoIosArrowDown className={`${styles.icon} ${styles.iconDown}`} />
       </label>
       <div className={styles.wrapperList}>
-        <CustomScrollBar root={scrollContainerRef}>
+        <CustomScrollBar root={scrollContainerRef} primary="primary-24">
           <ul className={styles.list}>
             {dict.options.map((option, index) => (
               <li key={option} className={styles.itemParam}>
@@ -53,7 +84,14 @@ const Parameter: React.FC<ParameterI> = ({ dict }) => {
                     name={dict.title}
                     className={`${styles.visuallyHidden} ${styles.input}`}
                     value={option}
-                    onChange={handelParamChange}
+                    onChange={e =>
+                      handelParamChange({
+                        event: e,
+                        image: dict.images ? dict.images[index] : null,
+                        color: dict.colors ? dict.colors[index] : null,
+                        index,
+                      })
+                    }
                     id={option}
                   />
                   {dict.images && (
@@ -85,7 +123,7 @@ const Parameter: React.FC<ParameterI> = ({ dict }) => {
           </ul>
         </CustomScrollBar>
       </div>
-    </div>
+    </li>
   );
 };
 

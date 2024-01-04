@@ -1,8 +1,16 @@
 'use client';
 import { useState } from 'react';
+import { configuratorData } from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/configuratorData';
+import Parameter from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/Parameter/Parameter';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
-import { BoxDetailsI, ButtonsDictI, CandleDetailsI } from '@components/types';
+import { joinAromaNotes, useCandleParam } from '@components/helpers/index';
+import {
+  BoxDetailsI,
+  ButtonsDictI,
+  CandleDetailsI,
+  configuratorSectionI,
+} from '@components/types';
 
 import AccordionSection from '../AccordionSection/AccordionSection';
 import BuyButtons from '../BuyButtons/BuyButtons';
@@ -11,24 +19,93 @@ import styles from './Description.module.scss';
 
 interface DescriptionProps {
   product: BoxDetailsI | CandleDetailsI;
-  id?: string;
+  id: string;
   buttonsDict: ButtonsDictI;
+  itemAdded: string;
+  productDescriptionDict: IProductDescriptionDict;
+  configuratorDict?: configuratorSectionI;
 }
 
 const Description: React.FC<DescriptionProps> = ({
-  product: { id: productId, images, title, description, price, slug },
+  product,
   id,
   buttonsDict,
+  itemAdded,
+  productDescriptionDict,
+  configuratorDict,
 }) => {
+  const [quantity, setQuantity] = useState(1);
+  const { paramCandle, handleChangeCandleParam } = useCandleParam();
+
+  const {
+    id: productId,
+    images,
+    title,
+    description,
+    price,
+    slug,
+    volume,
+  } = product;
+
+  const {
+    price: priceDict,
+    quantity: quantityDict,
+    topNotes,
+    baseNotes,
+    volume: volumeDict,
+    containerVolume: containerVolumeDict,
+    matchsticks: matchsticksDict,
+    wick: wickDict,
+    wax: waxDict,
+    aroma: aromaDict,
+    volumeLabel: volumeLabelDict,
+  } = productDescriptionDict;
+
+  const { aroma } = configuratorDict
+    ? configuratorData(configuratorDict)
+    : { aroma: { number: '', title: '', options: [] } };
+
   const isCandlePage = id === 'candle_details';
   const isBoxPage = id === 'box_details';
-  const [quantity, setQuantity] = useState(1);
 
-  const accordionsections = [
-    { title: 'Верхні ноти', content: 'Кедр, пекан' },
-    { title: 'Базові ноти', content: 'Кедр, пекан' },
-    { title: 'Об’єм', content: 'Кедр, пекан' },
+  const candleAccordionContent = [
+    {
+      title: topNotes,
+      content: 'aroma' in product ? joinAromaNotes(product.aroma.topNotes) : '',
+    },
+    {
+      title: baseNotes,
+      content:
+        'aroma' in product ? joinAromaNotes(product.aroma.baseNotes) : '',
+    },
+    { title: volumeDict, content: volume },
   ];
+
+  const boxAccordionContent =
+    'kit' in product
+      ? ([
+          {
+            title: `${containerVolumeDict} ${volume} ${volumeLabelDict}`,
+            content: product.kit.container,
+          },
+          product.kit.matchsticks !== null && {
+            title: matchsticksDict,
+            content: product.kit.matchsticks,
+          },
+          {
+            title: wickDict,
+            content: product.kit.wick,
+          },
+          {
+            title: waxDict,
+            content: product.kit.wax,
+          },
+          {
+            title: aromaDict,
+            content: product.kit.aromaToChoose,
+          },
+        ].filter(Boolean) as { title: string; content: string }[])
+      : [];
 
   return (
     <div className={styles.candleSectionWrapper}>
@@ -38,71 +115,61 @@ const Description: React.FC<DescriptionProps> = ({
           color="var(--cl-primary-800)"
           className={styles.candleTitle}
         >
-          Ароматична свічка Paradise
+          {title}
         </Typography>
-        {isCandlePage && (
-          <Typography
-            variant="bodyRegular"
-            color="var(--cl-gray-500)"
-            className={styles.candleDescription}
-          >
-            Свічка з соєвого воску з ароматом опалого листя.
-          </Typography>
-        )}
+        <Typography
+          variant="bodyRegular"
+          color="var(--cl-gray-500)"
+          className={styles.candleDescription}
+        >
+          {description}
+        </Typography>
         <div className={styles.candeleCostWrapper}>
           <Typography variant="button" color="var(--cl-gray-500)">
-            Вартість:
+            {priceDict}:
           </Typography>
           <div className={styles.candeleCost}>
             <Typography
               variant="subheadingMobile"
               color="var(--cl-primary-500)"
             >
-              550
+              {price}
             </Typography>
             <span className={styles.costSymbol}>&#8372;</span>
           </div>
         </div>
         <div className={styles.candeleQuantity}>
           <Typography variant="button" color="var(--cl-gray-500)">
-            Кількість:
+            {quantityDict}:
           </Typography>
           <CandleQuantity qty={quantity} setQuantity={setQuantity} />
         </div>
         {isBoxPage && (
-          <div>
-            <Typography variant="button" color="var(--cl-gray-500)">
-              Оберіть аромат
-            </Typography>
+          <div className={styles.aromaAccordion}>
+            <Parameter
+              dict={aroma}
+              currentParam={paramCandle['aroma']}
+              onChangeParam={handleChangeCandleParam}
+              parameter="aroma"
+              shouldHaveNumber={false}
+            />
           </div>
         )}
         <BuyButtons
           product={{
+            ...product,
             id: productId,
             img: images[0],
-            title,
-            description,
-            price,
             link: slug,
             quantity,
           }}
           buttonsDict={buttonsDict}
+          itemAdded={itemAdded}
         />
 
-        {/* <div className={styles.candeleAccordion}>
-           {product.components.map((component, index) => (
-            <AccordionSection
-              key={index}
-              title={component.title}
-              content={component.content}
-            />
-          ))}
-        </div> */}
-
-        {/* Ця частина кода тимчасова, замість цієї що вище закоментована */}
         {isCandlePage && (
-          <div className={styles.candeleAccordion}>
-            {accordionsections.map((component, index) => (
+          <div className={styles.candleAccordion}>
+            {candleAccordionContent.map((component, index) => (
               <AccordionSection
                 key={index}
                 title={component.title}
@@ -113,8 +180,8 @@ const Description: React.FC<DescriptionProps> = ({
         )}
 
         {isBoxPage && (
-          <div className={styles.candeleAccordion}>
-            {accordionsections.map((component, index) => (
+          <div className={styles.candleAccordion}>
+            {boxAccordionContent.map((component, index) => (
               <AccordionSection
                 key={index}
                 title={component.title}

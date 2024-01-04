@@ -5,10 +5,10 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoOptionsOutline } from 'react-icons/io5';
-import useModal from '@components/hooks/useModal';
+import { TabsI } from '@components/types';
+import { useFilterContext } from '@context/FilterContext';
 import { useWindowSize } from 'usehooks-ts';
 
-import { Locale } from '../../../i18n-config';
 import Container from '../Container/Container';
 import Filter from '../Filter/Filter';
 import FilterTags from '../Filter/FilterTags/FilterTags';
@@ -20,26 +20,6 @@ import { tabsData, tabsI } from './data';
 
 import styles from './Tabs.module.scss';
 
-interface TabsI {
-  dict: {
-    tabs: {
-      fullTitle: string[];
-      abbreviatedTitle: string[];
-    };
-    filter: {
-      title: string;
-      subtitle: string;
-      up: string;
-      down: string;
-      cleanUp: string;
-      result: string;
-      category: any;
-      cleanFilter: string;
-    };
-  };
-  lang: Locale;
-}
-
 const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   const [isTabsMenuOpen, setIsTabsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -48,14 +28,19 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
     link === `/candles/${pathname.split('/')[3]}`;
   const isSmallScreen = width < 1230;
   const isMobScreen = width < 667;
-  const { isModal, toggleModal, onBackdropClick } = useModal();
+  const [ isModal, toggleModal ]  = useState(false);
 
-  const toggleTabsMenu = () => {
+
+  const { configurationFilter } = useFilterContext();
+
+  const numberSelectedFilters = configurationFilter.filterParams.length;
+
+  const toggleTabsMenu = () => {    
     setIsTabsMenuOpen(!isTabsMenuOpen);
   };
 
   return (
-    <Section className={styles.section}>
+    <Section id={styles.section}>
       <Container className={styles.container}>
         <div className={styles.wrapper}>
           <ul className={styles.list}>
@@ -66,12 +51,15 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                       <li
                         key={item.link}
                         className={`${styles.item} ${
-                          isCurrent(item.link) ? styles.current : ''
+                          isCurrent(item.link) ? styles.currentItem : ''
                         }`}
                       >
                         <Link
                           href={`/${lang}${item.link}`}
-                          className={styles.link}
+                          className={`${styles.link} 
+                          ${isCurrent(item.link) ? styles.currentLink : ''}
+                            ${isTabsMenuOpen ? styles.activeLink : ''}
+                          `}
                           onClick={toggleTabsMenu}
                         >
                           <Typography
@@ -95,7 +83,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                       <li
                         key={item.link}
                         className={`${styles.item} ${
-                          isCurrent(item.link) ? styles.current : ''
+                          isCurrent(item.link) ? styles.currentItem : ''
                         }`}
                       >
                         <Link
@@ -123,7 +111,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                   <li
                     key={index}
                     className={`${styles.item} ${
-                      isCurrent(item.link) ? styles.current : ''
+                      isCurrent(item.link) ? styles.currentItem : ''
                     }`}
                   >
                     <Link href={`/${lang}${item.link}`} className={styles.link}>
@@ -143,9 +131,9 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                 ))}
           </ul>
           {isSmallScreen && (
-            <button className={styles.btn} onClick={toggleModal}>
+            <button className={styles.btn} onClick={() => (toggleModal(true))}>
               <Typography variant="bodyRegular" color={'var(--cl-primary-200)'}>
-                +7
+                {!!numberSelectedFilters && `+ ${numberSelectedFilters}`}
               </Typography>
               <IoOptionsOutline />
               <Typography variant="bodyRegular" color={'var(--cl-gray-500)'}>
@@ -154,11 +142,11 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
             </button>
           )}
         </div>
-        {isModal && (
-          <Modal onBackdropClick={onBackdropClick} className={styles.backdrop}>
-            <Filter dict={dict.filter} />
+        {/* {isModal && ( */}
+          <Modal  className={styles.backdrop} active={isModal} setActive={toggleModal}>
+            <Filter dict={dict.filter}  />
           </Modal>
-        )}
+        {/* )} */}
         {isSmallScreen && <FilterTags dict={dict.filter} />}
       </Container>
     </Section>

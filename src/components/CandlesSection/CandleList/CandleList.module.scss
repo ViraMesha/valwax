@@ -1,13 +1,15 @@
 @import '../../../scss/utilities/breakpoint-mixin.scss';
 
 .list {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  align-self: flex-start;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 19px;
   row-gap: 20px;
 
   @include breakpoint('only-mobile') {
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @include breakpoint('tablet-large') {

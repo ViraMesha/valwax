@@ -2,10 +2,11 @@ import BoxesInfo from '@components/components/BoxesPage/BoxesInfo/BoxesInfo';
 import BoxesPageHeader from '@components/components/BoxesPage/BoxesPageHeader/BoxesPageHeader';
 import BoxesSection from '@components/components/BoxesPage/BoxesSection/BoxesSection';
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
+import { fetchBoxes } from '@lib/api-services/fetchBoxes';
+import { getDictionary } from '@lib/utils/dictionary';
 
 import { Locale } from '../../../../i18n-config';
-import { getBoxes } from '../../../../lib/api-services/api';
-import { getDictionary } from '../../../../lib/utils/dictionary';
 
 export async function generateMetadata({
   params: { lang },
@@ -19,9 +20,18 @@ export async function generateMetadata({
 }
 
 const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
-  const { breadcrumbs } = await getDictionary(lang);
-  const { page } = await getDictionary(lang);
-  const boxes = getBoxes();
+  const {
+    breadcrumbs,
+    page: {
+      boxes: { header, section, info },
+    },
+    general: {
+      messages: { itemAdded },
+    },
+  } = await getDictionary(lang);
+  const currentLang = convertToServerLocale(lang);
+  const promise = fetchBoxes(currentLang);
+
   return (
     <>
       <Breadcrumbs
@@ -33,9 +43,9 @@ const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
         ]}
         lang={lang}
       />
-      <BoxesPageHeader dict={page.boxes.header} />
-      <BoxesSection dict={page.boxes.section} boxes={boxes} />
-      <BoxesInfo dict={page.boxes.info} />
+      <BoxesPageHeader dict={header} />
+      <BoxesSection dict={section} toastMessage={itemAdded} boxes={promise} />
+      <BoxesInfo dict={info} />
     </>
   );
 };

@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
-import { ToastContainer } from 'react-toastify';
+import { Slide, ToastContainer } from 'react-toastify';
 import Footer from '@components/components/Footer/Footer';
 import Header from '@components/components/Header/Header';
 import ScrollToTopButton from '@components/components/ScrollToTopButton/ScrollToTopButton';
+import { CartContextProvider } from '@context/CartContext';
+import { FilterProvider } from '@context/FilterContext';
+import { ModalProvider } from '@context/ModalContext';
+import { ParamsCandleProvider } from '@context/ParamCandleContext';
+import { getDictionary } from '@lib/utils/dictionary';
 
-import { ModalProvider } from '../../../context/ModalContext';
-import { StateContext } from '../../../context/StateContext';
 import { i18n, Locale } from '../../../i18n-config';
-import { getDictionary } from '../../../lib/utils/dictionary';
 import { proxima_nova } from '../fonts';
 
 import 'slick-carousel/slick/slick.css';
@@ -32,27 +34,43 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  const { footer } = await getDictionary(params.lang);
-  const { search } = await getDictionary(params.lang);
-  const { navigation } = await getDictionary(params.lang);
+  const {
+    footer,
+    search,
+    navigation,
+    general: {
+      messages: { failedRequest },
+    },
+  } = await getDictionary(params.lang);
+
   return (
     <html lang={params.lang} className={proxima_nova.className}>
       <body>
-        <StateContext>
-            <ModalProvider>
-            <Header lang={params.lang} dict={search} navDict={navigation} />
-            <main className={styles.main}>{children}</main>
-            <Footer lang={params.lang} dict={footer} navDict={navigation} />
-            </ModalProvider>
-        </StateContext>
+        <CartContextProvider>
+          <ModalProvider>
+            <FilterProvider>
+              <ParamsCandleProvider>
+                <Header
+                  lang={params.lang}
+                  dict={search}
+                  navDict={navigation}
+                  toastMessage={failedRequest}
+                />
+                <main className={styles.main}>{children}</main>
+                <Footer lang={params.lang} dict={footer} navDict={navigation} />
+              </ParamsCandleProvider>
+            </FilterProvider>
+          </ModalProvider>
+        </CartContextProvider>
         <ScrollToTopButton />
         <ToastContainer
-          position="top-right"
-          autoClose={5000}
+          position="top-center"
+          autoClose={2000}
           hideProgressBar={false}
           closeOnClick={true}
           pauseOnHover={true}
           draggable={true}
+          transition={Slide}
         />
       </body>
     </html>

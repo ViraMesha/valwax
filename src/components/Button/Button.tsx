@@ -1,4 +1,5 @@
 import { TbArrowRight } from 'react-icons/tb';
+import clsx from 'clsx';
 
 import styles from './Button.module.scss';
 
@@ -8,6 +9,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'primary' | 'secondary' | 'tertiary' | 'dark' | 'light';
   hasIcon?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  isLoading?: boolean;
 }
 
 const Button: React.FC<Props> = ({
@@ -17,11 +19,12 @@ const Button: React.FC<Props> = ({
   variant = 'primary',
   hasIcon,
   className,
+  isLoading,
   ...rest
 }) => {
-  const buttonClass = `${styles.button} ${styles[variant]} ${
-    hasIcon ? styles.container : ''
-  } ${className || ''} `;
+
+  const buttonClass = clsx( styles.button, styles[variant], hasIcon ? styles.container : '', className || '' );
+
 
   return (
     <button
@@ -30,7 +33,11 @@ const Button: React.FC<Props> = ({
       {...rest}
       className={buttonClass}
     >
-      <span>{children}</span>
+      {isLoading ? (
+        <span className={styles.loader}></span>
+      ) : (
+        <span>{children}</span>
+      )}
       {hasIcon && <TbArrowRight className={styles.icon} />}
     </button>
   );

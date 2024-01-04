@@ -15,6 +15,10 @@
 
   outline: none;
 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   @include breakpoint('mobile-small') {
     padding: 12px 20px;
     font-size: 16px;
@@ -161,4 +165,35 @@
 .light:disabled {
   color: var(--cl-gray-50);
   cursor: not-allowed;
+}
+
+/*
+  |==============================
+  | Loading
+  |==============================
+*/
+
+.loader {
+  width: 27.8px;
+  height: 27.8px;
+  border: 5px solid var(--cl-gray-50);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+
+  @include breakpoint('mobile-small') {
+    width: 24.64px;
+    height: 24.64px;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

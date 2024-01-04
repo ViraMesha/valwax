@@ -1,21 +1,20 @@
 import { configuratorSectionI } from '@components/types'
-
-import cinnamonVanilla from '../../../../../public/images/create-your-own/Cinnamon-Vanilla.jpg'
-import coconut from '../../../../../public/images/create-your-own/Coconut.jpg'
-import dryGin from '../../../../../public/images/create-your-own/Dry-Gin.jpg'
-import freshCoffee from '../../../../../public/images/create-your-own/Fresh-Coffee.jpg'
-import grapefruitMint from '../../../../../public/images/create-your-own/Grapefruit-Mint.jpg'
-import hexagon from '../../../../../public/images/create-your-own/Hexagon.jpg'
-import palm from '../../../../../public/images/create-your-own/Palm.jpg'
-import pumpkinSpice from '../../../../../public/images/create-your-own/Pumpkin-Spice.jpg'
-import pureCotton from '../../../../../public/images/create-your-own/Pure-Cotton.jpg'
-import shuttle from '../../../../../public/images/create-your-own/Shuttle.jpg'
-import soy from '../../../../../public/images/create-your-own/Soy.jpg'
-import one from '../../../../../public/images/create-your-own/wick-1.jpg'
-import two from '../../../../../public/images/create-your-own/wick-2.jpg'
-import three from '../../../../../public/images/create-your-own/wick-3.jpg'
-import four from '../../../../../public/images/create-your-own/wick-4.jpg'
-import yinYang from '../../../../../public/images/create-your-own/Yin-Yang.jpg'
+import cinnamonVanilla from '@images/create-your-own/Cinnamon-Vanilla.jpg'
+import coconut from '@images/create-your-own/Coconut.jpg'
+import dryGin from '@images/create-your-own/Dry-Gin.jpg'
+import freshCoffee from '@images/create-your-own/Fresh-Coffee.jpg'
+import grapefruitMint from '@images/create-your-own/Grapefruit-Mint.jpg'
+import hexagon from '@images/create-your-own/Hexagon.jpg'
+import palm from '@images/create-your-own/Palm.jpg'
+import pumpkinSpice from '@images/create-your-own/Pumpkin-Spice.jpg'
+import pureCotton from '@images/create-your-own/Pure-Cotton.jpg'
+import shuttle from '@images/create-your-own/Shuttle.jpg'
+import soy from '@images/create-your-own/Soy.jpg'
+import one from '@images/create-your-own/wick-1.jpg'
+import two from '@images/create-your-own/wick-2.jpg'
+import three from '@images/create-your-own/wick-3.jpg'
+import four from '@images/create-your-own/wick-4.jpg'
+import yinYang from '@images/create-your-own/Yin-Yang.jpg'
 
 
 export const configuratorData = ({container, wax, aroma, wick, color}: configuratorSectionI) => {
@@ -60,22 +59,14 @@ export const configuratorData = ({container, wax, aroma, wick, color}: configura
   )
 };
 
-//
-
-// capacity: {
-//   number: capacity.number,
-//   title: capacity.title,
-//   options: capacity.options,
-// },
-
-// "capacity": {
-//   "number": "2.",
-//   "title": "Select container volume",
-//   "options": ["30 ml", "50 ml", "100 ml", "150 ml", "200 ml"]
-// },
-
-// "capacity": {
-//   "number": "2.",
-//   "title": "Оберіть об’єм тари",
-//   "options": ["30 мл", "50 мл", "100 мл", "150 мл", "200 мл"]
-// },
+export const paramData = ({container, wax, aroma, wick, color}: configuratorSectionI ) => {
+  return(
+    {
+      'container': container.options,
+      'wax': wax.options,
+      'aroma': aroma.options,
+      'wick': wick.options,
+      'color': color.options
+    }
+  )
+};

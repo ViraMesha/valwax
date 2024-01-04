@@ -1,5 +1,11 @@
 @import '../../../scss/utilities/breakpoint-mixin.scss';
 
+.link {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .quantity {
   position: absolute;
   top: 50%;

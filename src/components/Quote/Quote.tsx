@@ -19,7 +19,7 @@ const Quote: React.FC<QuoteI> = ({ dict }) => {
   return (
     <Section>
       <Container>
-        <div className={styles.textContainer}>
+        <blockquote className={styles.textContainer}>
           <Typography
             variant="subheding4"
             color="var(--cl-secondary-900)"
@@ -27,7 +27,7 @@ const Quote: React.FC<QuoteI> = ({ dict }) => {
           >
             "{dict.text}"
           </Typography>
-        </div>
+        </blockquote>
         <div className={styles.imageContainer}>
           <Image
             src={image}

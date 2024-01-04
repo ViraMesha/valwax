@@ -17,7 +17,7 @@ interface WaxDescI {
 
 const WaxDesc: React.FC<WaxDescI> = ({ dict, className }) => {
   return (
-    <Section className={`${styles.section} ${className || ''}`}>
+    <Section id={styles.section} className={`${className || ''}`}>
       <Container>
         <div className={styles.body}>
           <Image

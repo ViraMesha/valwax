@@ -6,13 +6,13 @@ import Typography from '../../Typography/Typography';
 import styles from './InstructionModal.module.scss';
 
 interface InstructionModalProps {
-  dict:  string[];
-  onClose: () => void;
+  dict: string[];
+  closeModal?: () => void;
 }
 
 const InstructionModal: React.FC<InstructionModalProps> = ({
   dict,
-  onClose,
+  closeModal,
 }) => {
   return (
     <div className={styles.instructionWrapper}>
@@ -20,7 +20,7 @@ const InstructionModal: React.FC<InstructionModalProps> = ({
         style={{ strokeWidth: '4px' }}
         className={styles.closeIcon}
         color="var(--cl-gray-700)"
-        onClick={onClose}
+        onClick={closeModal}
       />
       {dict.map((text, index) => (
         <Typography

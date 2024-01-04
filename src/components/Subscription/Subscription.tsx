@@ -1,3 +1,11 @@
+'use client';
+import { useForm } from 'react-hook-form';
+import emailValidationSchema from '@components/helpers/emailValidationSchema';
+import { showToast } from '@components/helpers/showToast';
+import useStatusState from '@components/hooks/useStatusState';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { subscribeToNewsletter } from '@lib/api-services/subscribeToNewsletter';
+
 import Button from '../Button/Button';
 import Container from '../Container/Container';
 import Input from '../Input/Input';
@@ -8,13 +16,61 @@ import styles from './Subscription.module.scss';
 
 interface SubscriptionI {
   dict: {
-    title: string;
-    text: string;
-    buttonText: string;
+    subscription: {
+      title: string;
+      text: string;
+      buttonText: string;
+    };
+    emailReq: string;
+    validEmail: string;
   };
+  toastDict: { successSubscription: string; failedRequest: string };
 }
 
-const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
+interface FormValues {
+  email: string;
+}
+
+const Subscription: React.FC<SubscriptionI> = ({ dict, toastDict }) => {
+  const {
+    subscription: { title, text, buttonText },
+    emailReq,
+    validEmail,
+  } = dict;
+
+  const { successSubscription, failedRequest } = toastDict;
+
+  const { state, handleStatus } = useStatusState({
+    isLoading: false,
+    hasError: false,
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormValues>({
+    mode: 'onBlur',
+    defaultValues: {},
+    resolver: yupResolver(emailValidationSchema({ emailReq, validEmail })),
+  });
+
+  const onSubmit = async (data: FormValues) => {
+    try {
+      handleStatus('isLoading', true);
+      await subscribeToNewsletter(data?.email);
+      showToast(successSubscription);
+    } catch (error: unknown) {
+      handleStatus('hasError', true);
+      console.log(error);
+      showToast(failedRequest, 'error');
+    } finally {
+      handleStatus('isLoading', false);
+      reset();
+    }
+  };
+
   return (
     <Section className={styles.subscription}>
       <Container>
@@ -23,21 +79,36 @@ const Subscription: React.FC<SubscriptionI> = ({ dict }) => {
           color="var(--cl-gray-700)"
           className={styles.subscriptionTitle}
         >
-          {dict.title}
+          {title}
         </Typography>
         <Typography
           variant="bodyRegular"
           color="var(--cl-gray-700)"
           className={styles.subscriptionTypography}
         >
-          {dict.text}
+          {text}
         </Typography>
-        <div className={styles.subscriptionWrapper}>
-          <Input placeholder="Email" className={styles.subscriptionInput} />
-          <Button variant="primary" className={styles.subscriptionButton}>
-            {dict.buttonText}
+        <form
+          className={styles.subscriptionWrapper}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <Input
+            type="email"
+            placeholder="Email"
+            className={styles.subscriptionInput}
+            errorMessage={errors.email?.message}
+            error={errors.email}
+            {...register('email')}
+          />
+          <Button
+            variant="primary"
+            className={styles.subscriptionButton}
+            disabled={!!errors?.email || state.isLoading}
+            isLoading={state.isLoading}
+          >
+            {buttonText}
           </Button>
-        </div>
+        </form>
       </Container>
     </Section>
   );

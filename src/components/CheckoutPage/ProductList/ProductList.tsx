@@ -1,20 +1,31 @@
 'use client';
+import { redirect } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
-import type { CartProductI, ProductListDictionary } from '@components/types';
+import useLangFromPathname from '@components/hooks/useLangFromPathname';
+import type { CartProductI, configuratorSectionI,ProductListDictionary } from '@components/types';
+import { useCartContext } from '@context/CartContext';
 
-import { useStateContext } from '../../../../context/StateContext';
 import ProductCard from '../ProductCard/ProductCard';
 
 import styles from './ProductList.module.scss';
 
 interface ProductListProps {
   dict: ProductListDictionary;
+  dictParam: configuratorSectionI;
+  itemDeleted: string;
 }
 
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
+  dictParam,
+  itemDeleted,
 }) => {
-  const { totalPrice, cartItems } = useStateContext();
+  const lang = useLangFromPathname();
+  const { totalPrice, cartItems } = useCartContext();
+
+  if (!cartItems.length) {
+    redirect(`/${lang}`);
+  }
 
   return (
     <div>
@@ -27,6 +38,8 @@ const ProductList: React.FC<ProductListProps> = ({
                 {...product}
                 deleteButtonText={deleteButtonText}
                 descriptionPropertyNames={descriptionPropertyNames}
+                itemDeleted={itemDeleted}
+                dictParam={dictParam}
               />
             ))}
           </ul>

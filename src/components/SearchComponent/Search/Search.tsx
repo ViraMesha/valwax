@@ -1,49 +1,61 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import Typography from '@components/components/Typography/Typography';
+import { showToast } from '@components/helpers/showToast';
 import { ProductDetails } from '@components/types';
-import { useWindowSize } from 'usehooks-ts';
+import { fetchSearchResults } from '@lib/api-services/fetchSearchResults';
 import debounce from 'lodash.debounce';
 
-import { useModalContext } from '../../../../context/ModalContext';
 import Input from '../../Input/Input';
 import SearchResult from '../SearchResult/SearchResult';
-
-import mockSearchResults from './mockSearchResults';
 
 import styles from './Search.module.scss';
 
 interface SearchProps {
-  onClose: () => void;
+  closeModal?: () => void;
   dict: { noResults: string };
+  toastMessage: string;
 }
 
-const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
-  const { isModal } = useModalContext();
-
+const Search: React.FC<SearchProps> = ({ closeModal, dict, toastMessage }) => {
   const resultWrapperRef = useRef<HTMLDivElement | null>(null);
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<ProductDetails[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [showNoResults, setShowNoResults] = useState(false);
-
-  const { width } = useWindowSize();
-  const isLargeScreen = width >= 1024;
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const handleSearch = debounce(() => {
-    const filteredResults = mockSearchResults.filter(result =>
-      result.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setSearchResults(filteredResults);
-    setShowNoResults(filteredResults.length === 0);
+  const handleChange = (value: string) => {
+    setSearchQuery(value);
+    handleSearch(value);
+  };
+
+  const handleSearch = debounce(async searchQuery => {
+    if (searchQuery.trim().length < 3) {
+      setSearchResults([]);
+      return;
+    }
+    try {
+      setIsLoading(true);
+      const results = await fetchSearchResults(
+        searchQuery.toLowerCase().trim()
+      );
+      setIsLoading(false);
+      setSearchResults(results);
+      setShowNoResults(results.length === 0);
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+      showToast(toastMessage, 'error');
+    }
   }, 500);
 
-  return isModal ? (
+  return (
     <div
       className={`${styles.modalWrapper} ${isVisible ? styles.visible : ''}`}
     >
@@ -58,18 +70,20 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
           type="text"
           placeholder="Пошук"
           value={searchQuery}
-          onChange={e => {
-            setSearchQuery(e.target.value);
-            handleSearch();
-          }}
+          onChange={e => handleChange(e.target.value)}
           className={styles.searchInput}
         />
         <AiOutlineClose
           style={{ strokeWidth: '4px' }}
           className={styles.closeIcon}
           color="var(--cl-gray-700)"
-          onClick={onClose}
+          onClick={closeModal}
         />
+        {isLoading && (
+          <div className={styles.loaderWrapper}>
+            <span className={styles.loader}></span>
+          </div>
+        )}
       </div>
 
       {showNoResults && (
@@ -82,13 +96,13 @@ const Search: React.FC<SearchProps> = ({ onClose, dict }) => {
         </Typography>
       )}
 
-      {!showNoResults && searchResults.length > 0 && (
+      {!showNoResults && searchResults?.length > 0 && (
         <div ref={resultWrapperRef} className={styles.resultWrapper}>
           <SearchResult searchResults={searchResults} />
         </div>
       )}
     </div>
-  ) : null;
+  );
 };
 
 export default Search;

@@ -1,22 +1,25 @@
-import { BoxDetailsI, ButtonsDictI } from '../../types';
+import { BoxDetailsI, ButtonsDictI, configuratorSectionI } from '../../types';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Description from '../shared/Description/Description';
 import ProductImgGallery from '../shared/ProductImgGallery/ProductImgGallery';
-import RelatedProducts from '../shared/RelatedProducts/RelatedProducts';
 
 import styles from './BoxDetailsPage.module.scss';
 
 interface BoxDetailsPageI {
   product: BoxDetailsI;
-  dict: { title: string };
   buttonsDict: ButtonsDictI;
+  itemAdded: string;
+  productDescriptionDict: IProductDescriptionDict;
+  configuratorDict: configuratorSectionI;
 }
 
 const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({
   product,
-  dict,
   buttonsDict,
+  itemAdded,
+  productDescriptionDict,
+  configuratorDict,
 }) => {
   return (
     <>
@@ -28,11 +31,13 @@ const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({
               product={product}
               id="box_details"
               buttonsDict={buttonsDict}
+              itemAdded={itemAdded}
+              productDescriptionDict={productDescriptionDict}
+              configuratorDict={configuratorDict}
             />
           </div>
         </Container>
       </Section>
-      <RelatedProducts relatedProducts={product.similar} title={dict.title} />
     </>
   );
 };
