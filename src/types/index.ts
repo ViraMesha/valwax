@@ -224,7 +224,7 @@ type FilterT = {
   down: string;
   cleanUp: string;
   result: string;
-  category: { [key: string]: { title: string; option: string[] } };
+  category: { [key: string]: { title: string; option: string[];  volumeLabel?: string  } };
 };
 
 export interface FilterI {

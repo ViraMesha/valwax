@@ -117,15 +117,8 @@
           },
           "container": {
             "title": "Container",
-            "option": [
-              "30 ml",
-              "50 ml",
-              "100 ml",
-              "150 ml",
-              "200 ml",
-              "250 ml",
-              "300 ml"
-            ]
+            "option": ["30", "50", "100", "150", "200", "250", "300"],
+            "volumeLabel": "ml"
           }
         }
       }

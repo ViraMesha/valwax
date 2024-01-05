@@ -11,6 +11,7 @@ type FilterCategoryBlockI = {
   dict: {
     title: string;
     option: string[];
+    volumeLabel?: string;
   };
   className?: string;
   handleSelectedFilterItems: (name: string, value: string) => void;
@@ -52,7 +53,7 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
                   className={styles.typography}
                   color="--cl-gray-200"
                 >
-                  {item}
+                  {item} {dict.volumeLabel && dict.volumeLabel}
                 </Typography>
               </li>
             ))}

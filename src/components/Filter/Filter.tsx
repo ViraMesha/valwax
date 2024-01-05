@@ -1,10 +1,7 @@
 'use client';
-import { useState } from 'react';
-import {
-  extractVolumeValue,
-  toLowerCase,
-  updateItemValues,
-} from '@components/helpers';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { toLowerCase, updateItemValues } from '@components/helpers';
 import { FilterI } from '@components/types';
 import { useFilterContext } from '@context/FilterContext';
 import { useWindowSize } from 'usehooks-ts';
@@ -17,8 +14,35 @@ import FilterCategoryBlock from './FilterCatBlock/FilterCategoryBlock';
 import styles from './Filter.module.scss';
 
 const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
+  const searchParams = useSearchParams();
+  const page = searchParams.get('page');
+  const searchParamsValues = searchParams.entries();
+  const params = [];
+
+  //@ts-ignore
+  for (let entry of searchParamsValues) {
+    params.push(entry);
+  }
+
+  const filteredParams = params
+    .filter(([key]) => key !== 'page' && key !== 'perPage')
+    .reduce((result, [key, value]) => {
+      const existingItem = result.find(
+        (item: IFilterItem) => item.name === key
+      );
+      if (existingItem) {
+        existingItem.values.push(value);
+      } else {
+        result.push({ name: key, values: [value] });
+      }
+      return result;
+    }, []);
+
+  const router = useRouter();
+
   const { width } = useWindowSize();
   const isLargeScreen = width >= 1230;
+
   const [selectedFilterItems, setSelectedFilterItems] = useState<
     IFilterItem[] | []
   >([]);
@@ -44,11 +68,6 @@ const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
             return updateItemValues({
               item,
               value,
-              extractedVolumeValue: extractVolumeValue({
-                name,
-                value,
-                categoryTitle: dict.category.container.title,
-              }),
             });
           }
           return item;
@@ -58,52 +77,27 @@ const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
           ...prevItems,
           {
             name: toLowerCase(name),
-            values: [
-              extractVolumeValue({
-                name,
-                value,
-                categoryTitle: dict.category.container.title,
-              }) || value,
-            ],
+            values: [value],
           },
         ];
       }
     });
   };
 
-  // const buildQueryString = () => {
-  //   const queryParams = selectedFilterItems
-  //     .map((item) =>
-  //       item.values.map((value) => `${item.name}=${encodeURIComponent(value)}`)
-  //     )
-  //     .flat();
-  // const otherParams = [
-  //   `lang=${encodeURIComponent(currentLang)}`,
-  //   `wax=${encodeURIComponent(wax)}`,
-  //   `page=${currentPage > 1 ? currentPage - 1 : 0}`,
-  //   `size=${encodeURIComponent(perPage)}`,
-  // ];
+  useEffect(() => {
+    const queryParams = selectedFilterItems
+      .map(item => item.values.map(value => `${item.name}=${value}`))
+      .flat()
+      .join('&');
 
-  // // Combine all parameters
-  // const queryString = [...otherParams, ...queryParams].join('&');
+    if (!page && selectedFilterItems.length > 0) {
+      router.push(`?${queryParams}#candles-section`);
+    }
 
-  // return `${BASE_URL}/candles?${queryString}`;
-  //};
-
-  //   // Example usage:
-  // const fetchCandles = () => {
-  //   const url = buildQueryString();
-
-  //   // Perform your fetch request using the constructed URL
-  //   fetch(url)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       // Process the fetched data
-  //     })
-  //     .catch((error) => {
-  //       // Handle errors
-  //     });
-  // };
+    if (page && selectedFilterItems.length > 0) {
+      router.push(`?page=${page}&perPage=9&${queryParams}#candles-section`);
+    }
+  }, [page, router, selectedFilterItems]);
 
   return (
     <div className={`${styles.wrapper} ${className || ''}`}>

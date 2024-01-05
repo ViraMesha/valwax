@@ -14,6 +14,7 @@ interface CandlesPageI {
     waxDesc: {
       title: string;
       text: string;
+      volumeLabel?: string;
     };
   };
   dict: {
