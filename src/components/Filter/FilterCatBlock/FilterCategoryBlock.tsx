@@ -1,8 +1,10 @@
 'use client';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { BsCheck } from 'react-icons/bs';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import Typography from '@components/components/Typography/Typography';
+import { useFilterSearchParams } from '@components/hooks';
 import { useFilterContext } from '@context/FilterContext';
 
 import styles from './FilterCategoryBlock.module.scss';
@@ -14,17 +16,20 @@ type FilterCategoryBlockI = {
     volumeLabel?: string;
   };
   className?: string;
-  handleSelectedFilterItems: (name: string, value: string) => void;
+  category: string;
 };
 
 const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
   dict,
   className,
-  handleSelectedFilterItems,
+  category,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const { filterValues, toggleFilter } = useFilterSearchParams();
 
-  const { isSelected } = useFilterContext();
+  const isSelected = (item: string) => {
+    return filterValues.includes(item);
+  };
 
   return (
     <div className={`${styles.wrapper} ${className}`}>
@@ -37,13 +42,10 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
             {dict.option.map((item: string, index: number) => (
               <li
                 key={index}
-                onClick={() => handleSelectedFilterItems(dict.title, item)}
+                onClick={() => toggleFilter(item, category)}
                 className={`${styles.checkbox} ${
                   isSelected(item) ? styles.checked : ''
                 }`}
-                // className={`${styles.checkbox} ${
-                //   filterVar.indexOf(item) !== -1 && styles.checked
-                // }`}
               >
                 <div className={styles.check}>
                   <BsCheck />

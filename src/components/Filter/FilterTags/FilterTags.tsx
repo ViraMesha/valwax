@@ -1,29 +1,29 @@
 'use client';
 import { IoClose } from 'react-icons/io5';
 import Typography from '@components/components/Typography/Typography';
+import { useFilterSearchParams } from '@components/hooks';
 import { FilterTagsI } from '@components/types';
-import { useFilterContext } from '@context/FilterContext';
 
 import styles from './FilterTags.module.scss';
 
 const FilterTags: React.FC<FilterTagsI> = ({ dict }) => {
-  const { configurationFilter, toggleFilterParam, cleanFilter } =
-    useFilterContext();
+  const { toggleFilter, allFilterParams, cleanFilter, filterValues } =
+    useFilterSearchParams();
 
-  const isFilterApplied = configurationFilter.filterParams.length !== 0;
+  const isFilterApplied = allFilterParams?.length !== 0;
 
   return (
     <>
       <div className={styles.wrapper}>
         <ul className={styles.list}>
-          {configurationFilter.filterParams.map(item => (
+          {filterValues.map(item => (
             <li key={item} className={styles.item}>
               <Typography variant="bodyS2" className={styles.txt}>
                 {item}
               </Typography>
               <IoClose
                 className={styles.icon}
-                onClick={() => toggleFilterParam(item)}
+                onClick={() => toggleFilter(item)}
               />
             </li>
           ))}

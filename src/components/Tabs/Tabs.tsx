@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoOptionsOutline } from 'react-icons/io5';
+import { useFilterSearchParams } from '@components/hooks';
 import { TabsI } from '@components/types';
-import { useFilterContext } from '@context/FilterContext';
 import { useWindowSize } from 'usehooks-ts';
 
 import Container from '../Container/Container';
@@ -28,14 +28,13 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
     link === `/candles/${pathname.split('/')[3]}`;
   const isSmallScreen = width < 1230;
   const isMobScreen = width < 667;
-  const [ isModal, toggleModal ]  = useState(false);
+  const [isModal, toggleModal] = useState(false);
 
+  const { allFilterParams } = useFilterSearchParams();
 
-  const { configurationFilter } = useFilterContext();
+  const numberSelectedFilters = allFilterParams?.length ?? 0;
 
-  const numberSelectedFilters = configurationFilter.filterParams.length;
-
-  const toggleTabsMenu = () => {    
+  const toggleTabsMenu = () => {
     setIsTabsMenuOpen(!isTabsMenuOpen);
   };
 
@@ -131,7 +130,7 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
                 ))}
           </ul>
           {isSmallScreen && (
-            <button className={styles.btn} onClick={() => (toggleModal(true))}>
+            <button className={styles.btn} onClick={() => toggleModal(true)}>
               <Typography variant="bodyRegular" color={'var(--cl-primary-200)'}>
                 {!!numberSelectedFilters && `+ ${numberSelectedFilters}`}
               </Typography>
@@ -142,10 +141,13 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
             </button>
           )}
         </div>
-        {/* {isModal && ( */}
-          <Modal  className={styles.backdrop} active={isModal} setActive={toggleModal}>
-            <Filter dict={dict.filter}  />
-          </Modal>
+        <Modal
+          className={styles.backdrop}
+          active={isModal}
+          setActive={toggleModal}
+        >
+          <Filter dict={dict.filter} />
+        </Modal>
         {/* )} */}
         {isSmallScreen && <FilterTags dict={dict.filter} />}
       </Container>
