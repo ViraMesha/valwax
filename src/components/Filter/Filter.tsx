@@ -20,7 +20,7 @@ const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
   const handleFilterResults = () => {
     closeModal && closeModal();
     if (filterQuery && !hasFetchQuery) {
-      router.push(`?${filterQuery}&fetch=true`, { scroll: false });
+      router.push(`?${filterQuery}&fetch=true#candles-section`);
     }
   };
 
