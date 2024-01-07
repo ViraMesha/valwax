@@ -50,7 +50,7 @@ export const fetchCandles = async ({
     `${BASE_URL}/candles?lang=${currentLang}&wax=${wax}&page=${
       currentPage > 1 ? currentPage - 1 : 0
     }&size=${perPage}${buildQueryParams()}`,
-    { next: { revalidate: 86400 } }
+    { next: { revalidate: 3600 } }
   );
 
   // This will activate the closest `error.js` Error Boundary
