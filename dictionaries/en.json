@@ -57,7 +57,7 @@
         "subtitle": "Price",
         "up": "From lower to higher",
         "down": "From higher to lower",
-        "cleanUp": "Clean up",
+        "cleanUp": "Clear",
         "result": "Result",
         "cleanFilter": "Clean the filter",
         "category": {
@@ -110,7 +110,6 @@
               "Blue",
               "White",
               "Brown",
-              "Angry",
               "Pink",
               "Milk (wax color)"
             ]

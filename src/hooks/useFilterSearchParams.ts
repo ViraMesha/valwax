@@ -1,6 +1,10 @@
 'use client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { getFilterQuery, getParamsArray } from '@components/helpers';
+import {
+  generateFilteredQueryString,
+  getFilterQuery,
+  getParamsArray,
+} from '@components/helpers';
 
 export const useFilterSearchParams = () => {
   const searchParams = useSearchParams();
@@ -12,84 +16,75 @@ export const useFilterSearchParams = () => {
   const hasFetchQuery = searchParams.get('fetch');
 
   const allFilterParams = params.filter(
-    ([key]) => key !== 'page' && key !== 'perPage' && key !== 'fetch'
+    ([key]) => key !== 'page' && key !== 'perPage'
   );
-
   const filterParamsWithoutSort = params.filter(([key]) => key !== 'sort');
 
   const filterValues = allFilterParams.map(([_, value]) => value);
 
   const filterQuery = getFilterQuery(params);
   const filterQueryWithoutSort = getFilterQuery(filterParamsWithoutSort);
+  const queryParams = getFilterQuery(allFilterParams);
+
+  const redirectTo = (query: string, options?: { scroll: boolean }) => {
+    router.push(`${pathname}${query}`, options);
+  };
 
   const cleanFilter = () => {
-    if (page) {
-      router.replace(`${pathname}?page=${page}&perPage=9`, { scroll: false });
-      return;
-    }
-    router.replace(pathname, { scroll: false });
+    const baseQuery = page ? `?page=${page}&perPage=9` : '';
+    redirectTo(`${baseQuery}`, { scroll: false });
   };
 
   const toggleFilter = (value: string, category?: string) => {
+    const newQuery = generateFilteredQueryString(params, value);
+
     if (!page) {
       if (filterQuery && !filterValues.includes(value) && category) {
-        router.push(`?${filterQuery}&${category}=${value}`, { scroll: false });
+        redirectTo(`?${filterQuery}&${category}=${value}`, { scroll: false });
         return;
       }
 
       if (!filterQuery && category && !filterValues.includes(value)) {
-        router.push(`?${category}=${value}`, { scroll: false });
+        redirectTo(`?${category}=${value}`, { scroll: false });
         return;
       }
 
       if (filterQuery) {
-        const newQuery = params
-          .filter(([_, val]) => val !== value)
-          .map(([key, value]) => `${key}=${value}`)
-          .flat()
-          .join('&');
-        router.push(`?${newQuery}`, { scroll: false });
+        redirectTo(`?${newQuery}`, { scroll: false });
         return;
       }
     }
 
     if (filterQuery && !filterValues.includes(value) && category) {
-      router.push(`?${filterQuery}&${category}=${value}`, { scroll: false });
+      redirectTo(`?${filterQuery}&${category}=${value}`, { scroll: false });
       return;
     }
 
     if (!filterQuery && category && !filterValues.includes(value)) {
-      router.push(`?${category}=${value}`, {
+      redirectTo(`?${category}=${value}`, {
         scroll: false,
       });
       return;
     }
 
     if (filterQuery) {
-      const newQuery = params
-        .filter(([_, val]) => val !== value)
-        .map(([key, value]) => `${key}=${value}`)
-        .flat()
-        .join('&');
-      router.push(`?${newQuery}`, { scroll: false });
+      redirectTo(`?${newQuery}`, { scroll: false });
     }
   };
 
   const updateSortSetting = (value: 'price' | 'price,desc') => {
-    if (value === sortSetting) {
-      if (filterQuery !== `sort=${value}`) {
-        router.replace(`${pathname}?${filterQuery}`, { scroll: false });
-      } else {
-        router.replace(`${pathname}`, { scroll: false });
-      }
-    } else {
-      const baseQuery = filterQueryWithoutSort
-        ? `${filterQueryWithoutSort}&`
-        : '';
-      router.replace(`${pathname}?${baseQuery}sort=${value}`, {
-        scroll: false,
-      });
-    }
+    const baseQuery = filterQueryWithoutSort
+      ? `${filterQueryWithoutSort}&`
+      : '';
+
+    const newQuery =
+      value === sortSetting
+        ? filterQuery && filterQuery.includes('sort')
+          ? filterQuery.replace(/&?sort=[^&]*/, '')
+          : ''
+        : `${baseQuery}sort=${value}`;
+
+    redirectTo(`?${newQuery}`, { scroll: false });
   };
 
   return {
@@ -102,5 +97,6 @@ export const useFilterSearchParams = () => {
     hasFetchQuery,
     updateSortSetting,
     sortSetting,
+    queryParams,
   };
 };

@@ -13,7 +13,7 @@ interface PaginationProps {
 const Pagination = ({ totalPages }: PaginationProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { filterQuery } = useFilterSearchParams();
+  const { queryParams } = useFilterSearchParams();
 
   const page =
     typeof searchParams.get('page') === 'string'
@@ -26,7 +26,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   );
 
   const handlePageClick = (pageNumber: number) => {
-    router.push(`?page=${pageNumber}&perPage=9&${filterQuery}#candles-section`);
+    router.push(`?page=${pageNumber}&perPage=9&${queryParams}#candles-section`);
   };
 
   return (
