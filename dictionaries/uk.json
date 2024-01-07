@@ -330,6 +330,7 @@
         "deleteButtonText": "Видалити",
         "totalText": "Разом",
         "descriptionPropertyNames": {
+          "container": "Тара",
           "wax": "Віск",
           "aroma": "Аромат",
           "wick": "Гніт",
@@ -430,7 +431,8 @@
       "addToCart": "До кошика"
     },
     "titles": {
-      "price": "Вартість:"
+      "price": "Вартість:",
+      "сustomCandle": "Кастомна свічка"
     },
     "messages": {
       "notAllParam": "Кожен параметр свічки повинен бути обраний",

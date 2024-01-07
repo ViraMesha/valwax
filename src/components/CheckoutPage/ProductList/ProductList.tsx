@@ -1,6 +1,10 @@
 'use client';
 import Typography from '@components/components/Typography/Typography';
-import type { CartProductI, ProductListDictionary } from '@components/types';
+import type {
+  CartProductI,
+  configuratorSectionI,
+  ProductListDictionary,
+} from '@components/types';
 import { useCartContext } from '@context/CartContext';
 
 import ProductCard from '../ProductCard/ProductCard';
@@ -9,11 +13,13 @@ import styles from './ProductList.module.scss';
 
 interface ProductListProps {
   dict: ProductListDictionary;
+  dictParam: configuratorSectionI;
   itemDeleted: string;
 }
 
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
+  dictParam,
   itemDeleted,
 }) => {
   const { totalPrice, cartItems } = useCartContext();
@@ -30,6 +36,7 @@ const ProductList: React.FC<ProductListProps> = ({
                 deleteButtonText={deleteButtonText}
                 descriptionPropertyNames={descriptionPropertyNames}
                 itemDeleted={itemDeleted}
+                dictParam={dictParam}
               />
             ))}
           </ul>

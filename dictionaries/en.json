@@ -336,6 +336,7 @@
         "deleteButtonText": "Delete",
         "totalText": "Total",
         "descriptionPropertyNames": {
+          "container": "Container",
           "wax": "Wax",
           "aroma": "Aroma",
           "wick": "Wick",
@@ -437,7 +438,8 @@
       "addToCart": "Add to cart"
     },
     "titles": {
-      "price": "Price:"
+      "price": "Price:",
+      "сustomCandle": "Customizable candle"
     },
     "messages": {
       "notAllParam": "Each candle parameter must be selected",

@@ -19,6 +19,7 @@ export interface BoxDetailsI {
   price: number;
   components: ComponentI[];
   description: string;
+  configuration?: CustomCandleDescription;
   slug: string;
   volume: string;
   text: string;
@@ -49,11 +50,11 @@ export interface CandleDetailsI {
 }
 
 export type CustomCandleDescription = {
-  container: string;
-  wax: string;
-  aroma: string;
-  wick: string;
-  color: string;
+  container: string | number;
+  wax: string | number;
+  aroma: string | number;
+  wick: string | number;
+  color: string | number;
 };
 
 export interface CartProductI {
@@ -61,6 +62,7 @@ export interface CartProductI {
   img: string;
   title: string;
   description?: string | CustomCandleDescription;
+  configuration?: CustomCandleDescription;
   price: number;
   quantity: number;
   link: string;
@@ -95,13 +97,22 @@ export interface ConfiguratorSectionI {
 
 export interface ParameterI {
   dict: parameterI;
-  onChangeParam: (v: string, p: string) => void;
+  currentParam: string | number;
+  onChangeParam: (v: string, p: number) => void;
   parameter: string;
   shouldHaveNumber?: boolean;
 }
 
+
 export interface OptionEventI {
   target: { value: string };
+}
+
+export interface handelParamChangeArguments {
+  event: OptionEventI;
+  image: StaticImageData | null;
+  color: string | null;
+  index: number;
 }
 
 export interface ProductDetails {
@@ -142,6 +153,7 @@ export interface ButtonsDictI {
 }
 
 export interface ProductDescription {
+  container: string;
   wax: string;
   aroma: string;
   wick: string;
