@@ -51,6 +51,10 @@ export default async function Page({
     ? buildFilterQuery('waxColor.value', searchParams.color)
     : '';
 
+    const sortQuery = searchParams.sort
+    ? buildFilterQuery('sort', searchParams.sort)
+    : '';
+
   const hasFetchQuery = searchParams.fetch;
 
   const wax = removeCandlesSuffix(slug);
@@ -67,6 +71,7 @@ export default async function Page({
         volume: volumeQuery,
         containerColor: containerColorQuery,
         waxColor: waxColorQuery,
+        sort: sortQuery
       });
 
   return (

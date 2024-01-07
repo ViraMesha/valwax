@@ -7,6 +7,7 @@ export const useFilterSearchParams = () => {
   const pathname = usePathname();
   const router = useRouter();
   const page = searchParams.get('page');
+  const sortSetting = searchParams.get('sort');
   const params: [string, string][] = getParamsArray(searchParams.entries());
   const hasFetchQuery = searchParams.get('fetch');
 
@@ -14,11 +15,12 @@ export const useFilterSearchParams = () => {
     ([key]) => key !== 'page' && key !== 'perPage' && key !== 'fetch'
   );
 
-  const filterParamsWithoutFetch = params.filter(([key]) => key !== 'fetch');
+  const filterParamsWithoutSort = params.filter(([key]) => key !== 'sort');
 
   const filterValues = allFilterParams.map(([_, value]) => value);
 
   const filterQuery = getFilterQuery(params);
+  const filterQueryWithoutSort = getFilterQuery(filterParamsWithoutSort);
 
   const cleanFilter = () => {
     if (page) {
@@ -73,6 +75,23 @@ export const useFilterSearchParams = () => {
     }
   };
 
+  const updateSortSetting = (value: 'price' | 'price,desc') => {
+    if (value === sortSetting) {
+      if (filterQuery !== `sort=${value}`) {
+        router.replace(`${pathname}?${filterQuery}`, { scroll: false });
+      } else {
+        router.replace(`${pathname}`, { scroll: false });
+      }
+    } else {
+      const baseQuery = filterQueryWithoutSort
+        ? `${filterQueryWithoutSort}&`
+        : '';
+      router.replace(`${pathname}?${baseQuery}sort=${value}`, {
+        scroll: false,
+      });
+    }
+  };
+
   return {
     page,
     allFilterParams,
@@ -81,5 +100,7 @@ export const useFilterSearchParams = () => {
     filterQuery,
     toggleFilter,
     hasFetchQuery,
+    updateSortSetting,
+    sortSetting,
   };
 };

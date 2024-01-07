@@ -78,7 +78,7 @@ const Description: React.FC<DescriptionProps> = ({
       content:
         'aroma' in product ? joinAromaNotes(product.aroma.baseNotes) : '',
     },
-    { title: volumeDict, content: volume },
+    { title: volumeDict, content: `${volume} ${volumeLabelDict}` },
   ];
 
   const boxAccordionContent =

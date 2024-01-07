@@ -13,9 +13,13 @@ import styles from './Filter.module.scss';
 
 const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
   const router = useRouter();
-  const { cleanFilter, filterQuery, hasFetchQuery } = useFilterSearchParams();
-
-  const { configurationFilter, updateSortSetting } = useFilterContext();
+  const {
+    cleanFilter,
+    filterQuery,
+    hasFetchQuery,
+    updateSortSetting,
+    sortSetting,
+  } = useFilterSearchParams();
 
   const handleFilterResults = () => {
     closeModal && closeModal();
@@ -36,21 +40,17 @@ const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
           </Typography>
           <button
             className={`${styles.btn} ${
-              configurationFilter.sortSetting === dict.up
-                ? styles.btnActive
-                : ''
+              sortSetting === 'price' ? styles.btnActive : ''
             }`}
-            onClick={() => updateSortSetting(dict.up)}
+            onClick={() => updateSortSetting('price')}
           >
             <Typography variant="bodyRegular">{dict.up}</Typography>
           </button>
           <button
             className={`${styles.btn} ${
-              configurationFilter.sortSetting === dict.down
-                ? styles.btnActive
-                : ''
+              sortSetting === 'price,desc' ? styles.btnActive : ''
             }`}
-            onClick={() => updateSortSetting(dict.down)}
+            onClick={() => updateSortSetting('price,desc')}
           >
             <Typography variant="bodyRegular">{dict.down}</Typography>
           </button>

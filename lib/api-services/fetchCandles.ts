@@ -10,6 +10,7 @@ interface CandlesFetchRequest {
   volume?: string;
   waxColor?: string;
   containerColor?: string;
+  sort?: string;
 }
 
 export const fetchCandles = async ({
@@ -21,6 +22,7 @@ export const fetchCandles = async ({
   volume,
   waxColor,
   containerColor,
+  sort,
 }: CandlesFetchRequest): Promise<CandleApiResponse> => {
   const buildQueryParams = () => {
     let query = '';
@@ -35,6 +37,10 @@ export const fetchCandles = async ({
     }
     if (containerColor) {
       query += '&' + containerColor;
+    }
+
+    if (sort) {
+      query += '&' + sort;
     }
     return query;
   };
