@@ -38,6 +38,24 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
   ) => {
     const SelectWrapper = useRef<HTMLDivElement | null>(null);
     const [selectedValue, setSelectedValue] = useState(value);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filterOptions = () => {
+      if (!searchTerm) {
+        return options;
+      }
+
+      const filteredOptions = options.filter(
+        option =>
+          option.label?.toLowerCase().startsWith(searchTerm.toLowerCase())
+      );
+
+      return filteredOptions;
+    };
+
+    const handleInputChange = (inputValue: string) => {
+      setSearchTerm(inputValue);
+    };
 
     const colourStyles = {
       control: (styles: any) => ({
@@ -113,11 +131,12 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
             setSelectedValue(newValue);
             onChange(newValue);
           }}
-          options={options}
+          options={filterOptions()}
           placeholder={placeholder}
           styles={colourStyles}
           onMenuOpen={onMenuOpen}
           isLoading={isLoading}
+          onInputChange={handleInputChange}
           components={{ MenuList }}
           // menuIsOpen={true}
         />
