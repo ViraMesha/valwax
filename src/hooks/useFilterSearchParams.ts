@@ -8,10 +8,13 @@ export const useFilterSearchParams = () => {
   const router = useRouter();
   const page = searchParams.get('page');
   const params: [string, string][] = getParamsArray(searchParams.entries());
+  const hasFetchQuery = searchParams.get('fetch');
 
   const allFilterParams = params.filter(
-    ([key]) => key !== 'page' && key !== 'perPage'
+    ([key]) => key !== 'page' && key !== 'perPage' && key !== 'fetch'
   );
+
+  const filterParamsWithoutFetch = params.filter(([key]) => key !== 'fetch');
 
   const filterValues = allFilterParams.map(([_, value]) => value);
 
@@ -77,5 +80,6 @@ export const useFilterSearchParams = () => {
     filterValues,
     filterQuery,
     toggleFilter,
+    hasFetchQuery,
   };
 };

@@ -1,8 +1,8 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { useFilterSearchParams } from '@components/hooks';
 import { FilterI } from '@components/types';
 import { useFilterContext } from '@context/FilterContext';
-import { useWindowSize } from 'usehooks-ts';
 
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
@@ -12,12 +12,17 @@ import FilterCategoryBlock from './FilterCatBlock/FilterCategoryBlock';
 import styles from './Filter.module.scss';
 
 const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
-  const { width } = useWindowSize();
-  const isLargeScreen = width >= 1230;
-
-  const { cleanFilter } = useFilterSearchParams();
+  const router = useRouter();
+  const { cleanFilter, filterQuery, hasFetchQuery } = useFilterSearchParams();
 
   const { configurationFilter, updateSortSetting } = useFilterContext();
+
+  const handleFilterResults = () => {
+    closeModal && closeModal();
+    if (filterQuery && !hasFetchQuery) {
+      router.push(`?${filterQuery}&fetch=true`, { scroll: false });
+    }
+  };
 
   return (
     <div className={`${styles.wrapper} ${className || ''}`}>
@@ -70,7 +75,11 @@ const Filter: React.FC<FilterI> = ({ dict, className, closeModal }) => {
         <Button variant="dark" className={styles.button} onClick={cleanFilter}>
           <Typography>{dict.cleanUp}</Typography>
         </Button>
-        <Button variant="light" className={styles.button} onClick={closeModal}>
+        <Button
+          variant="light"
+          className={styles.button}
+          onClick={handleFilterResults}
+        >
           <Typography>{dict.result}</Typography>
         </Button>
       </div>

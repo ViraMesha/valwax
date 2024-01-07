@@ -1,3 +1,4 @@
+export { buildFilterQuery } from './buildFilterQuery';
 export { extractVolumeValue } from './extractVolumeValue';
 export { getFilterQuery } from './getFilterQuery';
 export { getParamsArray } from './getParamsArray';
