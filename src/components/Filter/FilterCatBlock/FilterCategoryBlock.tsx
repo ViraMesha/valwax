@@ -1,11 +1,9 @@
 'use client';
-import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { BsCheck } from 'react-icons/bs';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import Typography from '@components/components/Typography/Typography';
 import { useFilterSearchParams } from '@components/hooks';
-import { useFilterContext } from '@context/FilterContext';
 
 import styles from './FilterCategoryBlock.module.scss';
 

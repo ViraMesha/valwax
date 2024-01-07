@@ -2,7 +2,6 @@
 import { useRouter } from 'next/navigation';
 import { useFilterSearchParams } from '@components/hooks';
 import { FilterI } from '@components/types';
-import { useFilterContext } from '@context/FilterContext';
 
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
