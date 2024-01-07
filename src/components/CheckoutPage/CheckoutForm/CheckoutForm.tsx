@@ -14,7 +14,7 @@ import DeliveryForm from './DeliveryForm/DeliveryForm';
 
 import styles from './CheckoutForm.module.scss';
 
-const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
+const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict, dictParam }) => {
   const {
     contactFormTitle,
     firstName,
@@ -42,7 +42,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
   } = formControl;
 
   const onSubmit = (data: CheckoutFormValues) => {
-    const newOrder = buildOrderData(data, cartItems, totalPrice);
+    const newOrder = buildOrderData(data, cartItems, totalPrice, dictParam);
 
     console.log(newOrder);
     sendOrder(newOrder);

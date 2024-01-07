@@ -22,7 +22,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
     <Section>
       <Container className={styles.body}>
         <ProductList dict={productList} dictParam={dictParam} itemDeleted={itemDeleted} />
-        <CheckoutForm dict={form} />
+        <CheckoutForm dict={form} dictParam={dictParam}/>
       </Container>
     </Section>
   );

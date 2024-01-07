@@ -329,6 +329,7 @@ export interface CheckoutFormProps {
     notesPlaceholder: string;
     errorMessages: CheckoutFormValidation;
   };
+  dictParam: configuratorSectionI;
 }
 
 export interface DeliveryFormProps {
