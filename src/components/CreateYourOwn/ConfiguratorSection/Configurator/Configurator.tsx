@@ -3,10 +3,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import Button from '@components/components/Button/Button';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
-import { useCandleParam } from '@components/helpers';
 import { showToast } from '@components/helpers/showToast';
 import { useCartActionsContext } from '@context/CartContext';
 import { useParamsCandleActionContext } from '@context/ParamCandleContext';
+import { useCandleParam } from '@hooks/index';
 import candleImg from '@images/candles/img-1.jpg';
 import { nanoid } from 'nanoid';
 
@@ -48,7 +48,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
     const allParamNotEmpty = Object.values(paramCandle).every(v => v !== '');
     if (allParamNotEmpty) {
       onAdd(product, 1, dictGeneral.messages.itemAdded);
-      cleanParamsCandle()
+      cleanParamsCandle();
       router.push(`/${lang}/checkout`);
       return;
     }

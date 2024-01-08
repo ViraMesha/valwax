@@ -5,7 +5,7 @@ import Container from '@components/components/Container/Container';
 import ReusableSlider from '@components/components/ReusableSlider/ReusableSlider';
 import Section from '@components/components/Section/Section';
 import Typography from '@components/components/Typography/Typography';
-import useLangFromPathname from '@components/hooks/useLangFromPathname';
+import { useLangFromPathname } from '@components/hooks';
 import { useWindowSize } from 'usehooks-ts';
 
 import type { BoxDetailsI, CandleDetailsI } from '../../../types';

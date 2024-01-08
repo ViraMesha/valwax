@@ -2,6 +2,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
+import { useFilterSearchParams } from '@components/hooks';
 
 import styles from './Pagination.module.scss';
 
@@ -12,6 +13,7 @@ interface PaginationProps {
 const Pagination = ({ totalPages }: PaginationProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { queryParams } = useFilterSearchParams();
 
   const page =
     typeof searchParams.get('page') === 'string'
@@ -24,7 +26,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   );
 
   const handlePageClick = (pageNumber: number) => {
-    router.push(`?page=${pageNumber}&perPage=9#candles-section`);
+    router.push(`?page=${pageNumber}&perPage=9&${queryParams}#candles-section`);
   };
 
   return (

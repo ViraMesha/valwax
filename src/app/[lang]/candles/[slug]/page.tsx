@@ -1,5 +1,6 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlesPage from '@components/components/CandlesPage/CandlesPage';
+import { buildFilterQuery } from '@components/helpers';
 import { removeCandlesSuffix } from '@components/helpers/removeCandlesSuffix';
 import { fetchCandles } from '@lib/api-services/fetchCandles';
 import { getDictionary } from '@lib/utils/dictionary';
@@ -37,11 +38,41 @@ export default async function Page({
 
   const currentPage = convertStringToNumber(searchParams.page, 1);
   const perPage = convertStringToNumber(searchParams.perPage, 9);
+  const aromaQuery = searchParams.aroma
+    ? buildFilterQuery('aroma.notes.value', searchParams.aroma)
+    : '';
+  const volumeQuery = searchParams.volume
+    ? buildFilterQuery('volume', searchParams.volume)
+    : '';
+  const containerColorQuery = searchParams.color
+    ? buildFilterQuery('containerColor.value', searchParams.color)
+    : '';
+  const waxColorQuery = searchParams.color
+    ? buildFilterQuery('waxColor.value', searchParams.color)
+    : '';
+
+    const sortQuery = searchParams.sort
+    ? buildFilterQuery('sort', searchParams.sort)
+    : '';
+
+  const hasFetchQuery = searchParams.fetch;
 
   const wax = removeCandlesSuffix(slug);
   const currentLang = lang === 'uk' ? 'UA' : 'EN';
 
-  const promise = fetchCandles({ currentLang, wax, currentPage, perPage });
+  const promise = !hasFetchQuery
+    ? fetchCandles({ currentLang, wax, currentPage, perPage })
+    : fetchCandles({
+        currentLang,
+        wax,
+        currentPage,
+        perPage,
+        aroma: aromaQuery,
+        volume: volumeQuery,
+        containerColor: containerColorQuery,
+        waxColor: waxColorQuery,
+        sort: sortQuery
+      });
 
   return (
     <>

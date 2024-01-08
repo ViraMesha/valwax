@@ -1,8 +1,10 @@
 'use client';
-import { redirect } from 'next/navigation';
 import Typography from '@components/components/Typography/Typography';
-import useLangFromPathname from '@components/hooks/useLangFromPathname';
-import type { CartProductI, configuratorSectionI,ProductListDictionary } from '@components/types';
+import type {
+  CartProductI,
+  configuratorSectionI,
+  ProductListDictionary,
+} from '@components/types';
 import { useCartContext } from '@context/CartContext';
 
 import ProductCard from '../ProductCard/ProductCard';
@@ -20,12 +22,7 @@ const ProductList: React.FC<ProductListProps> = ({
   dictParam,
   itemDeleted,
 }) => {
-  const lang = useLangFromPathname();
   const { totalPrice, cartItems } = useCartContext();
-
-  if (!cartItems.length) {
-    redirect(`/${lang}`);
-  }
 
   return (
     <div>

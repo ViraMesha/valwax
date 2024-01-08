@@ -1,15 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { paramData } from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/configuratorData';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
+import { useLangFromPathname } from '@components/hooks';
 import type {
   configuratorSectionI,
   CustomCandleDescription,
   ProductDescription,
 } from '@components/types';
-import { useCartActionsContext } from '@context/CartContext';
+import { useCartActionsContext, useCartContext } from '@context/CartContext';
 
 import styles from './ProductCard.module.scss';
 
@@ -44,12 +46,22 @@ const ProductCard: React.FC<ProductCardProps> = ({
   dictParam,
 }) => {
   const { onRemove } = useCartActionsContext();
+  const { cartItems } = useCartContext();
+  const router = useRouter();
+  const lang = useLangFromPathname();
   const isCustomCandle = link.includes('create-your-own');
   const paramsObject = paramData(dictParam);
 
   // Extract the keys of the description object
   const descriptionKeys =
     description && typeof description === 'object' && Object.keys(description);
+
+  const handleRemoveCartItem = (id: string) => {
+    onRemove(id, itemDeleted);
+    if (cartItems.length === 1) {
+      router.push(`/${lang}`);
+    }
+  };
 
   return (
     <li className={styles.card}>
@@ -126,7 +138,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             qty={quantity}
             isCartQuantity
           />
-          <button type="button" onClick={() => onRemove(id, itemDeleted)}>
+          <button type="button" onClick={() => handleRemoveCartItem(id)}>
             <Typography variant="bodyS" className={styles.delete}>
               {deleteButtonText}
             </Typography>

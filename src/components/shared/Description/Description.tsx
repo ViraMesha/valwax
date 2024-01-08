@@ -4,7 +4,8 @@ import { configuratorData } from '@components/components/CreateYourOwn/Configura
 import Parameter from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/Parameter/Parameter';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
-import { joinAromaNotes, useCandleParam } from '@components/helpers/index';
+import { joinAromaNotes } from '@components/helpers/index';
+import { useCandleParam } from '@components/hooks';
 import {
   BoxDetailsI,
   ButtonsDictI,
@@ -78,7 +79,7 @@ const Description: React.FC<DescriptionProps> = ({
       content:
         'aroma' in product ? joinAromaNotes(product.aroma.baseNotes) : '',
     },
-    { title: volumeDict, content: volume },
+    { title: volumeDict, content: `${volume} ${volumeLabelDict}` },
   ];
 
   const boxAccordionContent =
