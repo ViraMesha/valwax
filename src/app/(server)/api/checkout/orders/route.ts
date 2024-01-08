@@ -21,8 +21,7 @@ export async function POST(request: NextRequest) {
     
     return NextResponse.json({message: 'The order has been sent', success: true})
   } catch (error: any) {
-    console.log('error route', error)
-    return NextResponse.json({message: error.message, success: false})
+    return NextResponse.json({message: error.message, success: false});
   }
-}
+};
 

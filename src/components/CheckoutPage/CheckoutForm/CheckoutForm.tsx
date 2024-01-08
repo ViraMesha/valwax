@@ -5,6 +5,8 @@ import Button from '@components/components/Button/Button';
 import Input from '@components/components/Input/Input';
 import { buildOrderData } from '@components/helpers/buildOrderData';
 import validationSchema from '@components/helpers/formValidationSchema';
+import { showToast } from '@components/helpers/showToast';
+import useStatusState from '@components/hooks/useStatusState';
 import { CheckoutFormProps, CheckoutFormValues } from '@components/types';
 import { useCartContext } from '@context/CartContext';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -14,7 +16,11 @@ import DeliveryForm from './DeliveryForm/DeliveryForm';
 
 import styles from './CheckoutForm.module.scss';
 
-const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict, dictParam }) => {
+const CheckoutForm: React.FC<CheckoutFormProps> = ({
+  dict,
+  dictParam,
+  toastDict: { failedRequest, orderIsPlaced },
+}) => {
   const {
     contactFormTitle,
     firstName,
@@ -41,11 +47,27 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict, dictParam }) => {
     setValue,
   } = formControl;
 
-  const onSubmit = (data: CheckoutFormValues) => {
+  const { state, handleStatus } = useStatusState({
+    isLoading: false,
+    hasError: false,
+  });
+
+  const onSubmit = async (data: CheckoutFormValues) => {
     const newOrder = buildOrderData(data, cartItems, totalPrice, dictParam);
 
     console.log(newOrder);
-    sendOrder(newOrder);
+
+    try {
+      handleStatus('isLoading', true);
+      await sendOrder(newOrder);
+      showToast(orderIsPlaced);
+    } catch (e) {
+      handleStatus('hasError', true);
+      console.log(e);
+      showToast(failedRequest, 'error');
+    } finally {
+      handleStatus('isLoading', false);
+    }
   };
 
   return (
@@ -96,7 +118,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict, dictParam }) => {
       </fieldset>
 
       <DeliveryForm dict={dict} formControl={formControl} />
-      <Button variant="primary" type="submit" className={styles.button}>
+      <Button
+        variant="primary"
+        type="submit"
+        className={styles.button}
+        disabled={!!errors?.email || state.isLoading}
+        isLoading={state.isLoading}
+      >
         {buttonText}
       </Button>
     </form>
