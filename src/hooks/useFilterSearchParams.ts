@@ -16,11 +16,13 @@ export const useFilterSearchParams = () => {
   const hasFetchQuery = searchParams.get('fetch');
 
   const allFilterParams = params.filter(
-    ([key]) => key !== 'page' && key !== 'perPage' && key !== 'fetch'
+    ([key]) => key !== 'page' && key !== 'perPage'
   );
   const filterParamsWithoutSort = params.filter(([key]) => key !== 'sort');
 
-  const filterValues = allFilterParams.map(([_, value]) => value);
+  const filterValues = allFilterParams
+    .filter(([key]) => key !== 'sort' && key !== 'fetch')
+    .map(([_, value]) => value);
 
   const filterQuery = getFilterQuery(params);
   const filterQueryWithoutSort = getFilterQuery(filterParamsWithoutSort);
@@ -37,23 +39,6 @@ export const useFilterSearchParams = () => {
 
   const toggleFilter = (value: string, category?: string) => {
     const newQuery = generateFilteredQueryString(params, value);
-
-    if (!page) {
-      if (filterQuery && !filterValues.includes(value) && category) {
-        redirectTo(`?${filterQuery}&${category}=${value}`, { scroll: false });
-        return;
-      }
-
-      if (!filterQuery && category && !filterValues.includes(value)) {
-        redirectTo(`?${category}=${value}`, { scroll: false });
-        return;
-      }
-
-      if (filterQuery) {
-        redirectTo(`?${newQuery}`, { scroll: false });
-        return;
-      }
-    }
 
     if (filterQuery && !filterValues.includes(value) && category) {
       redirectTo(`?${filterQuery}&${category}=${value}`, { scroll: false });
