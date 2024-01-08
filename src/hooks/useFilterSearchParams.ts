@@ -16,7 +16,7 @@ export const useFilterSearchParams = () => {
   const hasFetchQuery = searchParams.get('fetch');
 
   const allFilterParams = params.filter(
-    ([key]) => key !== 'page' && key !== 'perPage'
+    ([key]) => key !== 'page' && key !== 'perPage' && key !== 'fetch'
   );
   const filterParamsWithoutSort = params.filter(([key]) => key !== 'sort');
 
