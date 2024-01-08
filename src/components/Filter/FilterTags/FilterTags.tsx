@@ -7,10 +7,9 @@ import { FilterTagsI } from '@components/types';
 import styles from './FilterTags.module.scss';
 
 const FilterTags: React.FC<FilterTagsI> = ({ dict }) => {
-  const { toggleFilter, allFilterParams, cleanFilter, filterValues } =
-    useFilterSearchParams();
+  const { toggleFilter, cleanFilter, filterValues } = useFilterSearchParams();
 
-  const isFilterApplied = allFilterParams?.length !== 0;
+  const isFilterApplied = filterValues?.length !== 0;
 
   return (
     <>

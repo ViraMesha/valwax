@@ -30,9 +30,9 @@ const Tabs: React.FC<TabsI> = ({ dict, lang }) => {
   const isMobScreen = width < 667;
   const [isModal, toggleModal] = useState(false);
 
-  const { allFilterParams } = useFilterSearchParams();
+  const { filterValues } = useFilterSearchParams();
 
-  const numberSelectedFilters = allFilterParams?.length ?? 0;
+  const numberSelectedFilters = filterValues?.length ?? 0;
 
   const toggleTabsMenu = () => {
     setIsTabsMenuOpen(!isTabsMenuOpen);
