@@ -10,7 +10,7 @@ import useStatusState from '@components/hooks/useStatusState';
 import { CheckoutFormProps, CheckoutFormValues } from '@components/types';
 import { useCartContext } from '@context/CartContext';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { sendOrder } from '@lib/api-services/apiOrder';
+import { sendOrder } from '@lib/api-services/fetchOrder';
 
 import DeliveryForm from './DeliveryForm/DeliveryForm';
 
@@ -55,7 +55,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const onSubmit = async (data: CheckoutFormValues) => {
     const newOrder = buildOrderData(data, cartItems, totalPrice, dictParam);
 
-    console.log(newOrder);
 
     try {
       handleStatus('isLoading', true);

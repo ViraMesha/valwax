@@ -8,9 +8,8 @@ export const sendOrder = async (order: {}) => {
       },
       body: JSON.stringify(order),
     });
-    const data = await response.json();
 
-    if (!response.ok || !data.success) {
+    if (response.status !== 200 ) {
       throw new Error('Failed to fetch data');
     };
 };

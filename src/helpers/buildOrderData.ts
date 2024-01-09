@@ -11,7 +11,7 @@ interface OrderGood {
   name: string;
 }
 
-interface OrderCustomCendle {
+interface OrderCustomCandle {
   aroma: string;
   wax: string;
   color: string;
@@ -24,12 +24,12 @@ interface OrderCustomCendle {
 
 interface GoodsObject {
   items: OrderGood[];
-  customCandles: OrderCustomCendle[];
+  customCandles: OrderCustomCandle[];
 }
 
 const buildArryaGoods = (array: CartProductI[],   dictParam: configuratorSectionI):GoodsObject => {
   const items:OrderGood[] = [];
-  const customCandles:OrderCustomCendle[] = [];
+  const customCandles:OrderCustomCandle[] = [];
 
   array.forEach( ({id, title, configuration, price, quantity, link} )=> {
     let orderGood;
@@ -60,9 +60,9 @@ const buildArryaGoods = (array: CartProductI[],   dictParam: configuratorSection
       case '/boxes':
         orderGood = {
           category: 'box',
-          id: id,
+          id,
           description: title,
-          quantity: quantity,
+          quantity,
           name: title,
           price,
           // aroma: description.aroma,
@@ -73,9 +73,9 @@ const buildArryaGoods = (array: CartProductI[],   dictParam: configuratorSection
       default:
         orderGood = {
           category: 'candle',
-          id: id,
+          id,
           description: title,
-          quantity: quantity,
+          quantity,
           name: title,
           price,
         };
@@ -115,7 +115,7 @@ export const buildOrderData = (dataForm: CheckoutFormValues, dataCartGoods: Cart
       comment: notes,
       payment,
     },
-    items: items,
+    items,
     customCandles: customCandles,
     total: totalPrice,
     payed: false,
