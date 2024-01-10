@@ -84,25 +84,22 @@ const Footer: React.FC<FooterI> = ({ lang, dict, navDict }) => {
         </div>
 
         <div className={styles.copyright}>
-          <Link href="/privacy-policy">
+          <Link href="/privacy-policy" className={styles.copyrightLink}>
             <Typography variant="bodyRegular" className={styles.hoverableText}>
               {dict.privacyPolicy}
             </Typography>
             <div className={styles.copyWrapper}>
               <Typography
                 variant="bodyRegular"
-                className={styles.hoverableText}
               >
                 {dict.copyright}
               </Typography>
               <div className={styles.copyrightValwax}>
                 <AiOutlineCopyrightCircle
-                  className={styles.copyrightIcon}
                   style={{ width: 16, height: 16 }}
                 ></AiOutlineCopyrightCircle>
                 <Typography
                   variant="bodyRegular"
-                  className={styles.hoverableText}
                 >
                   2023 Valwax
                 </Typography>
