@@ -21,7 +21,16 @@ interface ProductListProps {
   itemDeleted: string;
 }
 
-type IProducts = CandleDetailsI | BoxDetailsI;
+interface ICartBox extends BoxDetailsI {
+  aroma: number;
+  quantity: number;
+};
+
+interface ICartCandle extends CandleDetailsI {
+  quantity: number;
+};
+
+type IProducts = ICartCandle | ICartBox;
 
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
@@ -44,8 +53,13 @@ const ProductList: React.FC<ProductListProps> = ({
           ids: cartProducts.candlesIds,
         });
 
+        const modifiedCandles = cartProducts.candles?.map(({ id, quantity }) => {
+          const candleData = data.find(item => item.id === id)!;
+          return { ...candleData, quantity };
+        });
+
         if (active) {
-          setProducts(prevProducts => [...prevProducts, ...data]);
+          setProducts(prevProducts => [...prevProducts, ...modifiedCandles]);
         }
       }
     };
@@ -56,9 +70,14 @@ const ProductList: React.FC<ProductListProps> = ({
           lang: currentLang,
           ids: cartProducts.boxesIds,
         });
-        console.log(data);
+        const modifiedBoxes = cartProducts?.boxes.map(
+          ({ id, quantity, aroma }) => {
+            const boxData = data.find(item => item.id === id)!;
+            return { ...boxData, quantity, aroma };
+          }
+        );
         if (active) {
-          setProducts(prevProducts => [...prevProducts, ...data]);
+          setProducts(prevProducts => [...prevProducts, ...modifiedBoxes]);
         }
       }
     };
@@ -69,7 +88,13 @@ const ProductList: React.FC<ProductListProps> = ({
     return () => {
       active = false;
     };
-  }, [cartProducts.boxesIds, cartProducts.candlesIds, currentLang]);
+  }, [
+    cartProducts.boxes,
+    cartProducts.boxesIds,
+    cartProducts.candles,
+    cartProducts.candlesIds,
+    currentLang,
+  ]);
 
   console.log(products);
 

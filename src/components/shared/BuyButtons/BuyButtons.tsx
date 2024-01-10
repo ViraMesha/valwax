@@ -33,12 +33,14 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
       addCandleToCart({
         id: product.id,
         toastMessage: toastMessages.itemAdded,
+        quantity: product.quantity,
       });
     } else if (isBox && typeof product.aroma === 'number') {
       addBoxToCart({
         id: product.id,
         toastMessage: toastMessages.itemAdded,
         aroma: product.aroma,
+        quantity: product.quantity,
       });
     } else {
       showToast(toastMessages.aromaNeeded, 'warning');
@@ -47,7 +49,24 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
 
   const handleBuyNowButtonClick = () => {
     onAdd(product, product.quantity);
-    router.push(`/${lang}/checkout`);
+    if (!isBox) {
+      addCandleToCart({
+        id: product.id,
+        toastMessage: toastMessages.itemAdded,
+        quantity: product.quantity,
+      });
+      router.push(`/${lang}/checkout`);
+    } else if (isBox && typeof product.aroma === 'number') {
+      addBoxToCart({
+        id: product.id,
+        toastMessage: toastMessages.itemAdded,
+        aroma: product.aroma,
+        quantity: product.quantity,
+      });
+      router.push(`/${lang}/checkout`);
+    } else {
+      showToast(toastMessages.aromaNeeded, 'warning');
+    }
   };
 
   return (

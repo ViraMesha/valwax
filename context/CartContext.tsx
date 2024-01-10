@@ -8,18 +8,21 @@ import { CartProductI } from '@components/types';
 interface IAddCandleToCartParams {
   id: string;
   toastMessage: string;
+  quantity?: number;
 }
 
 interface IAddBoxToCartParams {
   id: string;
   toastMessage: string;
   aroma: number;
+  quantity?: number;
 }
 
 interface ICartProducts {
   candlesIds: string[];
   boxesIds: string[];
   boxes: { id: string; aroma: number; quantity: number }[];
+  candles: { id: string; quantity: number }[];
 }
 
 interface CartContextProps {
@@ -44,8 +47,17 @@ interface CartActionsContextProps {
     value: typeof INCREMENT | typeof DECREMENT
   ) => void;
   onRemove: (id: string, toastMessage?: string) => void;
-  addCandleToCart: ({ id, toastMessage }: IAddCandleToCartParams) => void;
-  addBoxToCart: ({ id, toastMessage, aroma }: IAddBoxToCartParams) => void;
+  addCandleToCart: ({
+    id,
+    toastMessage,
+    quantity,
+  }: IAddCandleToCartParams) => void;
+  addBoxToCart: ({
+    id,
+    toastMessage,
+    aroma,
+    quantity,
+  }: IAddBoxToCartParams) => void;
 }
 
 const CartContext = createContext<CartContextI | null>(null);
@@ -58,6 +70,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
       candlesIds: [],
       boxesIds: [],
       boxes: [],
+      candles: [],
     }
   );
 
@@ -83,11 +96,32 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
   const indexRef = useRef<number | null>(null);
 
   const addCandleToCart = useCallback(
-    ({ id, toastMessage }: IAddCandleToCartParams) => {
-      setCartProducts(prevItems => ({
-        ...prevItems,
-        candlesIds: [...prevItems.candlesIds, id],
-      }));
+    ({ id, toastMessage, quantity = 1 }: IAddCandleToCartParams) => {
+      setCartProducts(prevItems => {
+        const isCandleInCart = prevItems.candles?.find(
+          candle => candle.id === id
+        );
+        const updatedItems = isCandleInCart
+          ? {
+              ...prevItems,
+              candlesIds: [...prevItems.candlesIds, id],
+              candles: prevItems.candles.map(candle => {
+                if (candle.id === id) {
+                  return {
+                    ...candle,
+                    quantity: candle.quantity + quantity,
+                  };
+                }
+                return candle;
+              }),
+            }
+          : {
+              ...prevItems,
+              candlesIds: [...prevItems.candlesIds, id],
+              candles: [...prevItems?.candles, { id, quantity }],
+            };
+        return updatedItems;
+      });
 
       showToast(`${toastMessage}`);
     },
@@ -95,8 +129,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
   );
 
   const addBoxToCart = useCallback(
-    ({ id, toastMessage, aroma }: IAddBoxToCartParams) => {
-      // boxes: { id: string; aroma: string; quantity: number }[];
+    ({ id, toastMessage, aroma, quantity = 1 }: IAddBoxToCartParams) => {
       setCartProducts(prevItems => {
         const isBoxInCart = prevItems.boxes.find(
           boxes => boxes.id === id && boxes.aroma === aroma
@@ -109,7 +142,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
                 if (box.id === id && box.aroma === aroma) {
                   return {
                     ...box,
-                    quantity: box.quantity + 1,
+                    quantity: box.quantity + quantity,
                   };
                 }
                 return box;
@@ -118,7 +151,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
           : {
               ...prevItems,
               boxesIds: [...prevItems.boxesIds, id],
-              boxes: [...prevItems.boxes, { id, aroma, quantity: 1 }],
+              boxes: [...prevItems.boxes, { id, aroma, quantity }],
             };
         return updatedItems;
       });
