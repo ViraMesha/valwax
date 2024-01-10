@@ -40,6 +40,7 @@ interface CartContextI {
   totalPrice: number;
   totalQuantities: number;
   cartProducts: ICartProducts;
+  totalCartProducts: number;
 }
 
 interface CartActionsContextProps {
@@ -97,8 +98,8 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
 
   const totalCartProducts =
     cartProducts.candlesIds?.length +
-    cartProducts.boxesIds?.length +
-    cartProducts.customCandles.length;
+      cartProducts.boxesIds?.length +
+      cartProducts.customCandles.length ?? 0;
 
   // Create a reference to store a found product
   const foundProductRef = useRef<CartProductI | undefined>();
@@ -320,8 +321,9 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
       totalPrice,
       totalQuantities,
       cartProducts,
+      totalCartProducts,
     }),
-    [cartItems, totalPrice, totalQuantities, cartProducts]
+    [cartItems, totalPrice, totalQuantities, cartProducts, totalCartProducts]
   );
 
   return (
