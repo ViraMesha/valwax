@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Typography from '@components/components/Typography/Typography';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { useLangFromPathname } from '@components/hooks';
 import type {
   CartProductI,
@@ -24,11 +25,11 @@ interface ProductListProps {
 interface ICartBox extends BoxDetailsI {
   aroma: number;
   quantity: number;
-};
+}
 
 interface ICartCandle extends CandleDetailsI {
   quantity: number;
-};
+}
 
 type IProducts = ICartCandle | ICartBox;
 
@@ -41,7 +42,7 @@ const ProductList: React.FC<ProductListProps> = ({
   const { totalPrice, cartItems, cartProducts } = useCartContext();
   const lang = useLangFromPathname();
 
-  const currentLang = lang === 'uk' ? 'UA' : 'EN';
+  const currentLang = convertToServerLocale(lang);
 
   useEffect(() => {
     let active = true;
@@ -53,10 +54,12 @@ const ProductList: React.FC<ProductListProps> = ({
           ids: cartProducts.candlesIds,
         });
 
-        const modifiedCandles = cartProducts.candles?.map(({ id, quantity }) => {
-          const candleData = data.find(item => item.id === id)!;
-          return { ...candleData, quantity };
-        });
+        const modifiedCandles = cartProducts.candles?.map(
+          ({ id, quantity }) => {
+            const candleData = data.find(item => item.id === id)!;
+            return { ...candleData, quantity };
+          }
+        );
 
         if (active) {
           setProducts(prevProducts => [...prevProducts, ...modifiedCandles]);
@@ -95,8 +98,6 @@ const ProductList: React.FC<ProductListProps> = ({
     cartProducts.candlesIds,
     currentLang,
   ]);
-
-  console.log(products);
 
   return (
     <div>
