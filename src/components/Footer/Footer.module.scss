@@ -47,6 +47,14 @@
   display: flex;
   align-items: center;
   gap: 12px;
+
+  color: var(--cl-gray-700);
+  transition: color var(--animat);
+
+  &:hover {
+    color: var(--cl-primary-500);
+    transition: color var(--animat);
+  }
 }
 
 .addressTypography {
@@ -71,7 +79,7 @@
   transition: color var(--animat);
 
   &:hover {
-    color: var(--cl-primary-600);
+    color: var(--cl-primary-500);
     transition: color var(--animat);
   }
 }

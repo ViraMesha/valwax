@@ -56,7 +56,6 @@ const Footer: React.FC<FooterI> = ({ lang, dict, navDict }) => {
                     <PiPhoneThin style={{ width: 24, height: 24 }} />
                     <Typography
                       variant="bodyRegular"
-                      color="var(--cl-gray-700)"
                       className={styles.addressTypography}
                     >
                       {PHONE_NUMBER}
@@ -71,7 +70,6 @@ const Footer: React.FC<FooterI> = ({ lang, dict, navDict }) => {
                     <CiMail style={{ width: 24, height: 24 }} />
                     <Typography
                       variant="bodyRegular"
-                      color="var(--cl-gray-700)"
                       className={styles.addressTypography}
                     >
                       {EMAIL_ADDRESS}
@@ -89,20 +87,12 @@ const Footer: React.FC<FooterI> = ({ lang, dict, navDict }) => {
               {dict.privacyPolicy}
             </Typography>
             <div className={styles.copyWrapper}>
-              <Typography
-                variant="bodyRegular"
-              >
-                {dict.copyright}
-              </Typography>
+              <Typography variant="bodyRegular">{dict.copyright}</Typography>
               <div className={styles.copyrightValwax}>
                 <AiOutlineCopyrightCircle
                   style={{ width: 16, height: 16 }}
                 ></AiOutlineCopyrightCircle>
-                <Typography
-                  variant="bodyRegular"
-                >
-                  2023 Valwax
-                </Typography>
+                <Typography variant="bodyRegular">2023 Valwax</Typography>
               </div>
             </div>
           </Link>
