@@ -84,12 +84,6 @@ export type configuratorSectionI = {
   color: parameterI;
 };
 
-export type generalI = {
-  buttons: { [key: string]: string };
-  titles: { [key: string]: string };
-  messages: { [key: string]: string };
-};
-
 export interface ConfiguratorSectionI {
   dict: configuratorSectionI;
   dictGeneral: generalI;
@@ -102,7 +96,6 @@ export interface ParameterI {
   parameter: string;
   shouldHaveNumber?: boolean;
 }
-
 
 export interface OptionEventI {
   target: { value: string };
@@ -236,18 +229,15 @@ type FilterT = {
   down: string;
   cleanUp: string;
   result: string;
-  category: { [key: string]: { title: string; option: string[];  volumeLabel?: string  } };
+  category: {
+    [key: string]: { title: string; option: string[]; volumeLabel?: string };
+  };
 };
 
 export interface FilterI {
   dict: FilterT;
   className?: string;
   closeModal?: () => void;
-}
-
-export interface CandleApiResponse {
-  candles: CandleDetailsI[];
-  totalPages: number;
 }
 
 export interface CandlesSectionI {

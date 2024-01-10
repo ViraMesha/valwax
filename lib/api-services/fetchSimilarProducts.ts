@@ -6,12 +6,12 @@ export const fetchSimilarProducts = async ({
   currentLang,
 }: ApiRequest): Promise<CandleDetailsI[] | BoxDetailsI[]> => {
   const response = await fetch(
-    `${BASE_URL}/similar-products?id=${id}&lang=${currentLang}`
+    `${BASE_URL}/related-products?id=${id}&lang=${currentLang}`
   );
 
   // This will activate the closest `error.js` Error Boundary
   if (!response.ok) {
-    throw new Error('Failed to fetch similar products');
+    throw new Error('Failed to fetch related products');
   }
 
   const data = await response.json();

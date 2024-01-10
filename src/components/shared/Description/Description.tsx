@@ -22,7 +22,7 @@ interface DescriptionProps {
   product: BoxDetailsI | CandleDetailsI;
   id: string;
   buttonsDict: ButtonsDictI;
-  itemAdded: string;
+  toastMessages: IToastMessages;
   productDescriptionDict: IProductDescriptionDict;
   configuratorDict?: configuratorSectionI;
 }
@@ -31,7 +31,7 @@ const Description: React.FC<DescriptionProps> = ({
   product,
   id,
   buttonsDict,
-  itemAdded,
+  toastMessages,
   productDescriptionDict,
   configuratorDict,
 }) => {
@@ -89,7 +89,7 @@ const Description: React.FC<DescriptionProps> = ({
             title: `${containerVolumeDict} ${volume} ${volumeLabelDict}`,
             content: product.kit.container,
           },
-          product.kit.matchsticks !== null && {
+          product.kit.matchsticks && {
             title: matchsticksDict,
             content: product.kit.matchsticks,
           },
@@ -163,9 +163,10 @@ const Description: React.FC<DescriptionProps> = ({
             img: images[0],
             link: slug,
             quantity,
+            aroma: paramCandle.aroma,
           }}
           buttonsDict={buttonsDict}
-          itemAdded={itemAdded}
+          toastMessages={toastMessages}
         />
 
         {isCandlePage && (

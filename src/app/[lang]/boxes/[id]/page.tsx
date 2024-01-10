@@ -33,10 +33,7 @@ const BoxDetails = async ({
   const {
     breadcrumbs,
     relatedProducts,
-    general: {
-      buttons,
-      messages: { itemAdded },
-    },
+    general: { buttons, messages },
     productDescription,
     page: {
       createYourOwn: { configurator },
@@ -66,7 +63,7 @@ const BoxDetails = async ({
       <BoxDetailsPage
         product={box}
         buttonsDict={buttons}
-        itemAdded={itemAdded}
+        toastMessages={messages}
         productDescriptionDict={productDescription}
         configuratorDict={configurator}
       />

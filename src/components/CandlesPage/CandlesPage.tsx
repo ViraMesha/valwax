@@ -1,5 +1,4 @@
 import { Await } from '@components/helpers/Await';
-import { CandleApiResponse } from '@components/types';
 
 import { Locale } from '../../../i18n-config';
 import CandlesSection from '../CandlesSection/CandlesSection';

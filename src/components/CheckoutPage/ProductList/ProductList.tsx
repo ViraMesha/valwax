@@ -1,11 +1,15 @@
 'use client';
+import { useEffect, useState } from 'react';
 import Typography from '@components/components/Typography/Typography';
+import { useLangFromPathname } from '@components/hooks';
 import type {
   CartProductI,
   configuratorSectionI,
   ProductListDictionary,
 } from '@components/types';
 import { useCartContext } from '@context/CartContext';
+import { fetchCartBoxes } from '@lib/api-services/fetchCartBoxes';
+import { fetchCartCandles } from '@lib/api-services/fetchCartCandles';
 
 import ProductCard from '../ProductCard/ProductCard';
 
@@ -17,12 +21,57 @@ interface ProductListProps {
   itemDeleted: string;
 }
 
+type IProducts = CandleDetailsI | BoxDetailsI;
+
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
   dictParam,
   itemDeleted,
 }) => {
-  const { totalPrice, cartItems } = useCartContext();
+  const [products, setProducts] = useState<IProducts[] | []>([]);
+  const { totalPrice, cartItems, cartProducts } = useCartContext();
+  const lang = useLangFromPathname();
+
+  const currentLang = lang === 'uk' ? 'UA' : 'EN';
+
+  useEffect(() => {
+    let active = true;
+
+    const getCandles = async () => {
+      if (cartProducts.candlesIds.length > 0) {
+        const data = await fetchCartCandles({
+          lang: currentLang,
+          ids: cartProducts.candlesIds,
+        });
+
+        if (active) {
+          setProducts(prevProducts => [...prevProducts, ...data]);
+        }
+      }
+    };
+
+    const getBoxes = async () => {
+      if (cartProducts.boxesIds.length > 0) {
+        const data = await fetchCartBoxes({
+          lang: currentLang,
+          ids: cartProducts.boxesIds,
+        });
+        console.log(data);
+        if (active) {
+          setProducts(prevProducts => [...prevProducts, ...data]);
+        }
+      }
+    };
+
+    getCandles();
+    getBoxes();
+
+    return () => {
+      active = false;
+    };
+  }, [cartProducts.boxesIds, cartProducts.candlesIds, currentLang]);
+
+  console.log(products);
 
   return (
     <div>

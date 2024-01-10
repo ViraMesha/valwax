@@ -1,25 +1,49 @@
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Button from '@components/components/Button/Button';
+import { showToast } from '@components/helpers/showToast';
+import { useLangFromPathname } from '@components/hooks';
 import { ButtonsDictI, CartProductI } from '@components/types';
 import { useCartActionsContext } from '@context/CartContext';
 
 import styles from './BuyButtons.module.scss';
 
+interface IProduct extends CartProductI {
+  aroma?: string | number;
+}
+
 interface BuyButtonsProps {
-  product: CartProductI;
+  product: IProduct;
   buttonsDict: ButtonsDictI;
-  itemAdded: string;
+  toastMessages: IToastMessages;
 }
 
 const BuyButtons: React.FC<BuyButtonsProps> = ({
   product,
   buttonsDict: { buyNow, addToCart },
-  itemAdded,
+  toastMessages,
 }) => {
-  const { onAdd } = useCartActionsContext();
-  const pathName = usePathname();
+  const { onAdd, addCandleToCart, addBoxToCart } = useCartActionsContext();
   const router = useRouter();
-  const lang = pathName.split('/')[1];
+  const lang = useLangFromPathname();
+  const isBox = product.link === '/boxes';
+
+  const handleBuyButton = () => {
+    onAdd(product, product.quantity, toastMessages.itemAdded);
+    if (!isBox) {
+      addCandleToCart({
+        id: product.id,
+        toastMessage: toastMessages.itemAdded,
+      });
+    } else if (isBox && typeof product.aroma === 'number') {
+      addBoxToCart({
+        id: product.id,
+        toastMessage: toastMessages.itemAdded,
+        aroma: product.aroma,
+      });
+    } else {
+      showToast(toastMessages.aromaNeeded, 'warning');
+    }
+  };
 
   const handleBuyNowButtonClick = () => {
     onAdd(product, product.quantity);
@@ -32,7 +56,7 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
         variant="secondary"
         className={styles.candleBuy}
         type="button"
-        onClick={() => onAdd(product, product.quantity, itemAdded)}
+        onClick={handleBuyButton}
       >
         {addToCart}
       </Button>

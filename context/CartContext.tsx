@@ -5,6 +5,23 @@ import { showToast } from '@components/helpers/showToast';
 import { useLocalStorage } from '@components/hooks/useLocalStorage';
 import { CartProductI } from '@components/types';
 
+interface IAddCandleToCartParams {
+  id: string;
+  toastMessage: string;
+}
+
+interface IAddBoxToCartParams {
+  id: string;
+  toastMessage: string;
+  aroma: number;
+}
+
+interface ICartProducts {
+  candlesIds: string[];
+  boxesIds: string[];
+  boxes: { id: string; aroma: number; quantity: number }[];
+}
+
 interface CartContextProps {
   children: React.ReactNode;
 }
@@ -13,6 +30,7 @@ interface CartContextI {
   cartItems: CartProductI[];
   totalPrice: number;
   totalQuantities: number;
+  cartProducts: ICartProducts;
 }
 
 interface CartActionsContextProps {
@@ -26,12 +44,23 @@ interface CartActionsContextProps {
     value: typeof INCREMENT | typeof DECREMENT
   ) => void;
   onRemove: (id: string, toastMessage?: string) => void;
+  addCandleToCart: ({ id, toastMessage }: IAddCandleToCartParams) => void;
+  addBoxToCart: ({ id, toastMessage, aroma }: IAddBoxToCartParams) => void;
 }
 
 const CartContext = createContext<CartContextI | null>(null);
 const CartActionsContext = createContext<CartActionsContextProps | null>(null);
 
 export const CartContextProvider = ({ children }: CartContextProps) => {
+  const [cartProducts, setCartProducts] = useLocalStorage<ICartProducts>(
+    'cartProducts',
+    {
+      candlesIds: [],
+      boxesIds: [],
+      boxes: [],
+    }
+  );
+
   const [cartItems, setCartItems] = useLocalStorage<CartProductI[] | []>(
     'cartItems',
     []
@@ -42,11 +71,62 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
     0
   );
 
+  const totalCartProducts =
+    cartProducts.candlesIds?.length +
+    cartProducts.boxesIds?.length +
+    cartItems.length;
+
   // Create a reference to store a found product
   const foundProductRef = useRef<CartProductI | undefined>();
 
   // Create a reference to store the index (initially null)
   const indexRef = useRef<number | null>(null);
+
+  const addCandleToCart = useCallback(
+    ({ id, toastMessage }: IAddCandleToCartParams) => {
+      setCartProducts(prevItems => ({
+        ...prevItems,
+        candlesIds: [...prevItems.candlesIds, id],
+      }));
+
+      showToast(`${toastMessage}`);
+    },
+    [setCartProducts]
+  );
+
+  const addBoxToCart = useCallback(
+    ({ id, toastMessage, aroma }: IAddBoxToCartParams) => {
+      // boxes: { id: string; aroma: string; quantity: number }[];
+      setCartProducts(prevItems => {
+        const isBoxInCart = prevItems.boxes.find(
+          boxes => boxes.id === id && boxes.aroma === aroma
+        );
+        const updatedItems = isBoxInCart
+          ? {
+              ...prevItems,
+              boxesIds: [...prevItems.boxesIds, id],
+              boxes: prevItems.boxes.map(box => {
+                if (box.id === id && box.aroma === aroma) {
+                  return {
+                    ...box,
+                    quantity: box.quantity + 1,
+                  };
+                }
+                return box;
+              }),
+            }
+          : {
+              ...prevItems,
+              boxesIds: [...prevItems.boxesIds, id],
+              boxes: [...prevItems.boxes, { id, aroma, quantity: 1 }],
+            };
+        return updatedItems;
+      });
+
+      showToast(`${toastMessage}`);
+    },
+    [setCartProducts]
+  );
 
   // Define the onAdd function to add a product to the cart
   const onAdd = useCallback(
@@ -184,14 +264,21 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
       cartItems,
       totalPrice,
       totalQuantities,
+      cartProducts,
     }),
-    [cartItems, totalPrice, totalQuantities]
+    [cartItems, totalPrice, totalQuantities, cartProducts]
   );
 
   return (
     <CartContext.Provider value={contextValue}>
       <CartActionsContext.Provider
-        value={{ onAdd, toggleCartItemQuantity, onRemove }}
+        value={{
+          onAdd,
+          toggleCartItemQuantity,
+          onRemove,
+          addCandleToCart,
+          addBoxToCart,
+        }}
       >
         {children}
       </CartActionsContext.Provider>

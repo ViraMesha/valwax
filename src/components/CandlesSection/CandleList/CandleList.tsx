@@ -1,4 +1,4 @@
-import type { CandleApiResponse, CandleDetailsI } from '../../../types';
+import type { CandleDetailsI } from '../../../types';
 import CandleItemCard from '../CandleItemCard/CandleItemCard';
 
 import styles from './CandleList.module.scss';
