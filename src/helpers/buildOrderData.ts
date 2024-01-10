@@ -27,11 +27,11 @@ interface GoodsObject {
   customCandles: OrderCustomCandle[];
 }
 
-const buildArryaGoods = (array: CartProductI[],   dictParam: configuratorSectionI):GoodsObject => {
+const buildArryaGoods = (arrayProductCards: CartProductI[],   dictParam: configuratorSectionI):GoodsObject => {
   const items:OrderGood[] = [];
   const customCandles:OrderCustomCandle[] = [];
 
-  array.forEach( ({id, title, configuration, price, quantity, link} )=> {
+  arrayProductCards.map( ({id, title, configuration, price, quantity, link} )=> {
     let orderGood;
     const descriptionName = paramData(dictParam);
     
