@@ -18,11 +18,17 @@ interface IAddBoxToCartParams {
   quantity?: number;
 }
 
+interface IAddCustomCandleToCartParams {
+  customCandle: CartProductI;
+  toastMessage: string;
+}
+
 interface ICartProducts {
   candlesIds: string[];
   boxesIds: string[];
   boxes: { id: string; aroma: number; quantity: number }[];
   candles: { id: string; quantity: number }[];
+  customCandles: CartProductI[];
 }
 
 interface CartContextProps {
@@ -58,6 +64,10 @@ interface CartActionsContextProps {
     aroma,
     quantity,
   }: IAddBoxToCartParams) => void;
+  addCustomCandleToCart: ({
+    customCandle,
+    toastMessage,
+  }: IAddCustomCandleToCartParams) => void;
 }
 
 const CartContext = createContext<CartContextI | null>(null);
@@ -71,6 +81,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
       boxesIds: [],
       boxes: [],
       candles: [],
+      customCandles: [],
     }
   );
 
@@ -87,7 +98,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
   const totalCartProducts =
     cartProducts.candlesIds?.length +
     cartProducts.boxesIds?.length +
-    cartItems.length;
+    cartProducts.customCandles.length;
 
   // Create a reference to store a found product
   const foundProductRef = useRef<CartProductI | undefined>();
@@ -156,6 +167,17 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
         return updatedItems;
       });
 
+      showToast(`${toastMessage}`);
+    },
+    [setCartProducts]
+  );
+
+  const addCustomCandleToCart = useCallback(
+    ({ customCandle, toastMessage }: IAddCustomCandleToCartParams) => {
+      setCartProducts(prevItems => ({
+        ...prevItems,
+        customCandles: [...prevItems.customCandles, customCandle],
+      }));
       showToast(`${toastMessage}`);
     },
     [setCartProducts]
@@ -311,6 +333,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
           onRemove,
           addCandleToCart,
           addBoxToCart,
+          addCustomCandleToCart,
         }}
       >
         {children}
