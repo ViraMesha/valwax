@@ -1,54 +1,95 @@
-import { CartProductI, CheckoutFormValues } from "@components/types";
-// import { nanoid } from "nanoid";
+import { paramData } from "@components/components/CreateYourOwn/ConfiguratorSection/Configurator/configuratorData";
+import { CartProductI, CheckoutFormValues, configuratorSectionI } from "@components/types";
 
+interface OrderGood {
+  category: string;
+  aroma?: string;
+  quantity: number;
+  description: string;
+  id: string;
+  price:number;
+  name: string;
+}
 
-const buildArryaGoods = (array: CartProductI[]) => {
-  const arrayGoods = array.map( ({id, title, description, quantity, link} )=> {
+interface OrderCustomCandle {
+  aroma: string;
+  wax: string;
+  color: string;
+  wicks: number;
+  container: string;
+  quantity: number;
+  price: number;
+  total: number;
+}
+
+interface GoodsObject {
+  items: OrderGood[];
+  customCandles: OrderCustomCandle[];
+}
+
+const buildArryaGoods = (arrayProductCards: CartProductI[],   dictParam: configuratorSectionI):GoodsObject => {
+  const items:OrderGood[] = [];
+  const customCandles:OrderCustomCandle[] = [];
+
+  arrayProductCards.map( ({id, title, configuration, price, quantity, link} )=> {
     let orderGood;
-
+    const descriptionName = paramData(dictParam);
+    
     switch (link) {
       case '/create-your-own':
-        if (description && typeof description !== 'string') {
+        if (configuration 
+            && typeof configuration.aroma === 'number' 
+            && typeof configuration.wax === 'number'
+            && typeof configuration.color === 'number'
+            && typeof configuration.wick === 'number'
+            && typeof configuration.container === 'number') {
           orderGood = {
-            typeOrder: 'myCandle',
-            aroma: description.aroma,
-            wax: description.wax,
-            waxColor: description.color,
-            wick: description.wick,
-            container: description.container,
-            quantity: quantity,
+            aroma: descriptionName.aroma[configuration.aroma],
+            wax: descriptionName.wax[configuration.wax],
+            color: descriptionName.color[configuration.color],
+            wicks: configuration.wick + 1,
+            container: descriptionName.container[configuration.container],
+            quantity,
+            price,
+            total: quantity * price,
           };
+          customCandles.push(orderGood);
         }
         break;
 
       case '/boxes':
         orderGood = {
-          typeOrder: 'box',
-          idBox: id,
+          category: 'box',
+          id,
           description: title,
-          quantity: quantity,
+          quantity,
+          name: title,
+          price,
           // aroma: description.aroma,
         };
+        items.push(orderGood);
         break;
 
       default:
         orderGood = {
-          typeOrder: 'candle',
-          idCandle: id,
+          category: 'candle',
+          id,
           description: title,
-          quantity: quantity,
+          quantity,
+          name: title,
+          price,
         };
+        items.push(orderGood);
         break;
     }
 
     return orderGood;
   });
-
-  return arrayGoods;
+  return { items, customCandles };
 };
 
 
-export const buildOrderData = (dataForm: CheckoutFormValues, dataCartGoods: CartProductI[], totalPrice: number) => {
+export const buildOrderData = (dataForm: CheckoutFormValues, dataCartGoods: CartProductI[], totalPrice: number,   dictParam: configuratorSectionI) => {
   const { 
     deliveryArea,
     deliveryCity,
@@ -61,22 +102,24 @@ export const buildOrderData = (dataForm: CheckoutFormValues, dataCartGoods: Cart
     payment,
   } = dataForm;
 
-  const arrayGoods = buildArryaGoods(dataCartGoods);
+  const { items, customCandles } = buildArryaGoods(dataCartGoods, dictParam);
 
   const objectOrder = {
-  // orderId: nanoid(),
-    client: {
-    firstName,
+    // id: null,
+    customer: {
+      firstName,
       lastName,
-      number: `+380${phone}`,
+      phone: `+380${phone}`,
       email,
+      address: `${deliveryArea.value} ${deliveryCity.value} ${postOfficeBranchNum.value}`,
       comment: notes,
-      shippingAddress: `${deliveryArea.value} ${deliveryCity.value} ${postOfficeBranchNum.value}`,
       payment,
     },
-    goods: arrayGoods,
-    totalPrice,
-    timestamp: new Date(),
+    items,
+    customCandles: customCandles,
+    total: totalPrice,
+    payed: false,
+    date: new Date(),
   };
   return objectOrder;
 };

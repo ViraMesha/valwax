@@ -329,6 +329,8 @@ export interface CheckoutFormProps {
     notesPlaceholder: string;
     errorMessages: CheckoutFormValidation;
   };
+  dictParam: configuratorSectionI;
+  toastDict: {[key: string]: string};
 }
 
 export interface DeliveryFormProps {

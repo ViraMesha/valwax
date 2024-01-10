@@ -24,7 +24,7 @@ export default async function Checkout({
     breadcrumbs,
     page: { checkout, createYourOwn: { configurator }},
     general: {
-      messages: { itemDeleted },
+      messages
     },
   } = await getDictionary(lang);
 
@@ -39,7 +39,7 @@ export default async function Checkout({
         ]}
         lang={lang}
       />
-      <CheckoutPage dict={checkout} dictParam={configurator} itemDeleted={itemDeleted} />
+      <CheckoutPage dict={checkout} dictParam={configurator} toastDict={messages} />
     </>
   );
 }

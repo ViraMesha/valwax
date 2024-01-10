@@ -445,7 +445,8 @@
       "itemAdded": "The product was successfully added!",
       "itemDeleted": "The product was successfully deleted!",
       "successSubscription": "You have successfully subscribed to our newsletter!",
-      "failedRequest": "Ooops... Something went wrong!"
+      "failedRequest": "Ooops... Something went wrong!",
+      "orderIsPlaced": "Your order has been placed"
     }
   },
 
