@@ -25,7 +25,7 @@ const CandleQuantity: React.FC<CandleQuantityProps> = ({
   type,
   aroma,
 }) => {
-  const { toggleCartItemQuantity, toggleQuantity } = useCartActionsContext();
+  const { toggleQuantity } = useCartActionsContext();
 
   const handleIncrement = () => {
     setQuantity && qty && setQuantity(qty + 1);

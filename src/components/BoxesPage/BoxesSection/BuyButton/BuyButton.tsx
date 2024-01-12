@@ -27,7 +27,13 @@ const BuyButton: React.FC<BuyButtonProps> = ({
       variant="primary"
       type="button"
       onClick={() =>
-        addBoxToCart({ id: product.id, toastMessage, aroma: 0, quantity: 1 })
+        addBoxToCart({
+          id: product.id,
+          toastMessage,
+          aroma: 0,
+          quantity: 1,
+          price: product.price,
+        })
       }
     >
       {buyBtn}

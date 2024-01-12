@@ -58,6 +58,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const paramsObject = paramData(dictParam);
   const boxAroma = typeof aroma === 'number' ? paramsObject.aroma[aroma] : '';
 
+  console.log('Price in ProductCard', price);
+
   const defineProductQuantity = () => {
     if (isCustomCandle) {
       return cartProducts.customCandles

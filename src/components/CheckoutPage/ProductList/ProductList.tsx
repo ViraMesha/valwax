@@ -38,7 +38,7 @@ const ProductList: React.FC<ProductListProps> = ({
   dictParam,
   itemDeleted,
 }) => {
-  const { totalPrice, cartItems, cartProducts } = useCartContext();
+  const { cartTotalPrice, cartProducts } = useCartContext();
   const [products, setProducts] = useState<IProduct[] | []>([
     ...cartProducts.customCandles,
   ]);
@@ -55,9 +55,9 @@ const ProductList: React.FC<ProductListProps> = ({
         });
 
         const modifiedCandles = cartProducts.candles?.map(
-          ({ id, quantity }) => {
+          ({ id, quantity, price }) => {
             const candleData = data.find(item => item.id === id)!;
-            return { ...candleData, quantity };
+            return { ...candleData, quantity, price };
           }
         );
         setProducts(prevProducts => [...prevProducts, ...modifiedCandles]);
@@ -71,9 +71,9 @@ const ProductList: React.FC<ProductListProps> = ({
           ids: cartProducts.boxesIds,
         });
         const modifiedBoxes = cartProducts?.boxes.map(
-          ({ id, quantity, aroma }) => {
+          ({ id, quantity, aroma, price }) => {
             const boxData = data.find(item => item.id === id)!;
-            return { ...boxData, quantity, aroma };
+            return { ...boxData, quantity, aroma, price };
           }
         );
 
@@ -105,13 +105,13 @@ const ProductList: React.FC<ProductListProps> = ({
               />
             ))}
           </ul>
-          <div className={styles.total}>
+       <div className={styles.total}>
             <Typography variant="bodyL" color="var(--cl-primary-800)">
               {totalText}
             </Typography>
             <div className={styles.price_container}>
               <Typography variant="bodyXLHeavy" className={styles.price}>
-                {totalPrice}
+                {cartTotalPrice}
               </Typography>
               <span>&#8372;</span>
             </div>

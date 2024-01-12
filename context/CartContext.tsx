@@ -9,6 +9,7 @@ interface IAddCandleToCartParams {
   id: string;
   toastMessage: string;
   quantity?: number;
+  price: number;
 }
 
 interface IAddBoxToCartParams {
@@ -16,6 +17,7 @@ interface IAddBoxToCartParams {
   toastMessage: string;
   aroma: number;
   quantity?: number;
+  price: number;
 }
 
 interface IAddCustomCandleToCartParams {
@@ -33,8 +35,8 @@ interface IToggleQuantityParams {
 interface ICartProducts {
   candlesIds: string[];
   boxesIds: string[];
-  boxes: { id: string; aroma: number; quantity: number }[];
-  candles: { id: string; quantity: number }[];
+  boxes: { id: string; aroma: number; quantity: number; price: number }[];
+  candles: { id: string; quantity: number; price: number }[];
   customCandles: CartProductI[];
 }
 
@@ -48,6 +50,7 @@ interface CartContextI {
   totalQuantities: number;
   cartProducts: ICartProducts;
   totalCartProducts: number;
+  cartTotalPrice: number;
 }
 
 interface CartActionsContextProps {
@@ -120,6 +123,32 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
   const totalCartProducts =
     candlesQuantity + boxesQuantity + customCandleQuantity ?? 0;
 
+  const candlesTotalPrice =
+    cartProducts.candles.length > 0
+      ? cartProducts.candles.reduce(
+          (acc, item) => acc + item.quantity * item.price,
+          0
+        )
+      : 0;
+
+  const boxesTotalPrice =
+    cartProducts.boxes.length > 0
+      ? cartProducts.boxes.reduce(
+          (acc, item) => acc + item.quantity * item.price,
+          0
+        )
+      : 0;
+
+  const customTotalPrice =
+    cartProducts.customCandles.length > 0
+      ? cartProducts.customCandles.reduce(
+          (acc, item) => acc + item.quantity * item.price,
+          0
+        )
+      : 0;
+
+  const cartTotalPrice =
+    candlesTotalPrice + boxesTotalPrice + customTotalPrice ?? 0;
 
   // Create a reference to store a found product
   const foundProductRef = useRef<CartProductI | undefined>();
@@ -128,7 +157,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
   const indexRef = useRef<number | null>(null);
 
   const addCandleToCart = useCallback(
-    ({ id, toastMessage, quantity = 1 }: IAddCandleToCartParams) => {
+    ({ id, toastMessage, quantity = 1, price }: IAddCandleToCartParams) => {
       setCartProducts(prevItems => {
         const isCandleInCart = prevItems.candles?.find(
           candle => candle.id === id
@@ -150,7 +179,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
           : {
               ...prevItems,
               candlesIds: [...prevItems.candlesIds, id],
-              candles: [...prevItems?.candles, { id, quantity }],
+              candles: [...prevItems?.candles, { id, quantity, price }],
             };
         return updatedItems;
       });
@@ -161,7 +190,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
   );
 
   const addBoxToCart = useCallback(
-    ({ id, toastMessage, aroma, quantity = 1 }: IAddBoxToCartParams) => {
+    ({ id, toastMessage, aroma, quantity = 1, price }: IAddBoxToCartParams) => {
       setCartProducts(prevItems => {
         const isBoxInCart = prevItems.boxes.find(
           boxes => boxes.id === id && boxes.aroma === aroma
@@ -183,7 +212,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
           : {
               ...prevItems,
               boxesIds: [...prevItems.boxesIds, id],
-              boxes: [...prevItems.boxes, { id, aroma, quantity }],
+              boxes: [...prevItems.boxes, { id, aroma, quantity, price }],
             };
         return updatedItems;
       });
@@ -404,8 +433,16 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
       totalQuantities,
       cartProducts,
       totalCartProducts,
+      cartTotalPrice,
     }),
-    [cartItems, totalPrice, totalQuantities, cartProducts, totalCartProducts]
+    [
+      cartItems,
+      totalPrice,
+      totalQuantities,
+      cartProducts,
+      totalCartProducts,
+      cartTotalPrice,
+    ]
   );
 
   return (
