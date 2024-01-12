@@ -21,12 +21,14 @@ const BuyButton: React.FC<BuyButtonProps> = ({
   buyBtn,
   toastMessage,
 }) => {
-  const { onAdd } = useCartActionsContext();
+  const { onAdd, addBoxToCart } = useCartActionsContext();
   return (
     <Button
       variant="primary"
       type="button"
-      onClick={() => onAdd(product, 1, toastMessage)}
+      onClick={() =>
+        addBoxToCart({ id: product.id, toastMessage, aroma: 0, quantity: 1 })
+      }
     >
       {buyBtn}
     </Button>

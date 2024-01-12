@@ -442,7 +442,7 @@
     },
     "messages": {
       "notAllParam": "Each candle parameter must be selected",
-      "itemAdded": "The product was successfully added!",
+      "itemAdded": "The product was successfully added to your cart!",
       "itemDeleted": "The product was successfully deleted!",
       "successSubscription": "You have successfully subscribed to our newsletter!",
       "failedRequest": "Ooops... Something went wrong!",

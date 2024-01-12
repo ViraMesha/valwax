@@ -35,12 +35,12 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
 
   const product = {
     id: nanoid(),
-    img: candleImg.src,
+    images: [candleImg.src],
     title: dictGeneral.titles.сustomCandle,
     description: paramCandle,
     configuration: paramCandle,
     price,
-    link: '/create-your-own',
+    slug: '/create-your-own',
     quantity: 1,
   };
 

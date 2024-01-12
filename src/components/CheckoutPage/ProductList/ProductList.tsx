@@ -31,22 +31,22 @@ interface ICartCandle extends CandleDetailsI {
   quantity: number;
 }
 
-type IProducts = ICartCandle | ICartBox;
+type IProducts = ICartCandle | ICartBox | CartProductI;
 
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
   dictParam,
   itemDeleted,
 }) => {
-  const [products, setProducts] = useState<IProducts[] | []>([]);
   const { totalPrice, cartItems, cartProducts } = useCartContext();
+  const [products, setProducts] = useState<IProducts[] | []>([
+    ...cartProducts.customCandles,
+  ]);
   const lang = useLangFromPathname();
 
   const currentLang = convertToServerLocale(lang);
 
   useEffect(() => {
-    let active = true;
-
     const getCandles = async () => {
       if (cartProducts.candlesIds.length > 0) {
         const data = await fetchCartCandles({
@@ -60,10 +60,7 @@ const ProductList: React.FC<ProductListProps> = ({
             return { ...candleData, quantity };
           }
         );
-
-        if (active) {
-          setProducts(prevProducts => [...prevProducts, ...modifiedCandles]);
-        }
+        setProducts(prevProducts => [...prevProducts, ...modifiedCandles]);
       }
     };
 
@@ -79,32 +76,21 @@ const ProductList: React.FC<ProductListProps> = ({
             return { ...boxData, quantity, aroma };
           }
         );
-        if (active) {
-          setProducts(prevProducts => [...prevProducts, ...modifiedBoxes]);
-        }
+
+        setProducts(prevProducts => [...prevProducts, ...modifiedBoxes]);
       }
     };
 
     getCandles();
     getBoxes();
-
-    return () => {
-      active = false;
-    };
-  }, [
-    cartProducts.boxes,
-    cartProducts.boxesIds,
-    cartProducts.candles,
-    cartProducts.candlesIds,
-    currentLang,
-  ]);
+  }, [cartProducts?.boxes, cartProducts.boxesIds, cartProducts.candles, cartProducts.candlesIds, currentLang]);
 
   return (
     <div>
-      {cartItems.length >= 1 && (
+      {products.length >= 1 && (
         <>
           <ul className={styles.list}>
-            {cartItems.map((product: CartProductI) => (
+            {products.map((product: CartProductI) => (
               <ProductCard
                 key={product.id}
                 {...product}

@@ -25,7 +25,7 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
   const { onAdd, addCandleToCart, addBoxToCart } = useCartActionsContext();
   const router = useRouter();
   const lang = useLangFromPathname();
-  const isBox = product.link === '/boxes';
+  const isBox = product.slug === '/boxes';
 
   const handleBuyButton = () => {
     onAdd(product, product.quantity, toastMessages.itemAdded);

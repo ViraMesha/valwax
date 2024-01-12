@@ -160,8 +160,8 @@ const Description: React.FC<DescriptionProps> = ({
           product={{
             ...product,
             id: productId,
-            img: images[0],
-            link: slug,
+            images: [images[0]],
+            slug,
             quantity,
             aroma: paramCandle.aroma,
           }}

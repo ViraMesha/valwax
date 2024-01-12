@@ -59,13 +59,13 @@ export type CustomCandleDescription = {
 
 export interface CartProductI {
   id: string;
-  img: string;
+  images: string[];
   title: string;
   description?: string | CustomCandleDescription;
   configuration?: CustomCandleDescription;
   price: number;
   quantity: number;
-  link: string;
+  slug: string;
 }
 
 type parameterI = {

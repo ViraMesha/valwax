@@ -12,6 +12,7 @@ import type {
   ProductDescription,
 } from '@components/types';
 import { useCartActionsContext, useCartContext } from '@context/CartContext';
+import customCandleImg from '@images/candles/img-2.jpg';
 
 import styles from './ProductCard.module.scss';
 
@@ -20,37 +21,42 @@ type TProperty = keyof CustomCandleDescription;
 interface ProductCardProps {
   deleteButtonText: string;
   id: string;
-  img: string;
+  images: string[];
   title: string;
   description?: string | CustomCandleDescription;
   price: number;
   quantity: number;
-  link: string;
+  slug: string;
   key: string;
   descriptionPropertyNames: ProductDescription;
   itemDeleted: string;
   dictParam: configuratorSectionI;
+  aroma?: number;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   id,
-  img,
+  images,
   title,
   price,
   description,
   quantity,
-  link,
+  slug,
   deleteButtonText,
   descriptionPropertyNames: propertyNames,
   itemDeleted,
   dictParam,
+  aroma,
 }) => {
   const { onRemove } = useCartActionsContext();
   const { cartItems } = useCartContext();
   const router = useRouter();
   const lang = useLangFromPathname();
-  const isCustomCandle = link.includes('create-your-own');
+  const isCustomCandle = slug.includes('create-your-own');
+  const isCandle = slug.includes('candles');
+  const isBox = slug.includes('boxes');
   const paramsObject = paramData(dictParam);
+  const boxAroma = typeof aroma === 'number' ? paramsObject.aroma[aroma] : '';
 
   // Extract the keys of the description object
   const descriptionKeys =
@@ -65,10 +71,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <li className={styles.card}>
-      <Link href={isCustomCandle ? `${link}` : `${link}/${id}`}>
+      <Link href={isCustomCandle ? `${slug}` : `${slug}/${id}`}>
         <div className={styles.card__img_container}>
           <Image
-            src={img}
+            src={isCustomCandle ? customCandleImg : images[0]}
             fill
             priority
             alt={title}
@@ -83,18 +89,28 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className={styles.card__block}>
         <div className={styles.card__content}>
           <div className={styles.card__info}>
-            <Link href={isCustomCandle ? `${link}` : `${link}/${id}`}>
+            <Link href={isCustomCandle ? `${slug}` : `${slug}/${id}`}>
               <Typography variant="bodyRegular" className={styles.card__title}>
                 {title}
               </Typography>
             </Link>
-            {description && typeof description === 'string' && (
+            {description && typeof description === 'string' && isCandle && (
               <Typography
                 variant="bodyS"
                 color="var(--cl-gray-500)"
                 className={styles.card__description}
               >
                 {description}
+              </Typography>
+            )}
+            {isBox && boxAroma && (
+              <Typography
+                variant="bodyS"
+                color="var(--cl-gray-500)"
+                className={styles.card__description}
+              >
+                <span>{propertyNames.aroma} - </span>
+                <span className={styles.pinkText}>{boxAroma}</span>
               </Typography>
             )}
             {descriptionKeys && (

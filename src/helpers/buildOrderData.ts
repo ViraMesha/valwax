@@ -1,12 +1,11 @@
-import { CartProductI, CheckoutFormValues } from "@components/types";
+import { CartProductI, CheckoutFormValues } from '@components/types';
 // import { nanoid } from "nanoid";
 
-
 const buildArryaGoods = (array: CartProductI[]) => {
-  const arrayGoods = array.map( ({id, title, description, quantity, link} )=> {
+  const arrayGoods = array.map(({ id, title, description, quantity, slug }) => {
     let orderGood;
 
-    switch (link) {
+    switch (slug) {
       case '/create-your-own':
         if (description && typeof description !== 'string') {
           orderGood = {
@@ -47,9 +46,12 @@ const buildArryaGoods = (array: CartProductI[]) => {
   return arrayGoods;
 };
 
-
-export const buildOrderData = (dataForm: CheckoutFormValues, dataCartGoods: CartProductI[], totalPrice: number) => {
-  const { 
+export const buildOrderData = (
+  dataForm: CheckoutFormValues,
+  dataCartGoods: CartProductI[],
+  totalPrice: number
+) => {
+  const {
     deliveryArea,
     deliveryCity,
     email,
@@ -64,9 +66,9 @@ export const buildOrderData = (dataForm: CheckoutFormValues, dataCartGoods: Cart
   const arrayGoods = buildArryaGoods(dataCartGoods);
 
   const objectOrder = {
-  // orderId: nanoid(),
+    // orderId: nanoid(),
     client: {
-    firstName,
+      firstName,
       lastName,
       number: `+380${phone}`,
       email,
