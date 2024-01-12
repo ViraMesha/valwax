@@ -23,6 +23,13 @@ interface IAddCustomCandleToCartParams {
   toastMessage: string;
 }
 
+interface IToggleQuantityParams {
+  id: string;
+  value: typeof INCREMENT | typeof DECREMENT;
+  type: 'box' | 'candle' | 'customCandle';
+  aroma?: number;
+}
+
 interface ICartProducts {
   candlesIds: string[];
   boxesIds: string[];
@@ -69,6 +76,7 @@ interface CartActionsContextProps {
     customCandle,
     toastMessage,
   }: IAddCustomCandleToCartParams) => void;
+  toggleQuantity: ({ id, value, type }: IToggleQuantityParams) => void;
 }
 
 const CartContext = createContext<CartContextI | null>(null);
@@ -96,10 +104,22 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
     0
   );
 
+  const candlesQuantity =
+    cartProducts.candles.length > 0
+      ? cartProducts.candles.reduce((acc, item) => acc + item.quantity, 0)
+      : 0;
+  const boxesQuantity =
+    cartProducts.boxes.length > 0
+      ? cartProducts.boxes.reduce((acc, item) => acc + item.quantity, 0)
+      : 0;
+  const customCandleQuantity =
+    cartProducts.customCandles.length > 0
+      ? cartProducts.customCandles.reduce((acc, item) => acc + item.quantity, 0)
+      : 0;
+
   const totalCartProducts =
-    cartProducts.candlesIds?.length +
-      cartProducts.boxesIds?.length +
-      cartProducts.customCandles.length ?? 0;
+    candlesQuantity + boxesQuantity + customCandleQuantity ?? 0;
+
 
   // Create a reference to store a found product
   const foundProductRef = useRef<CartProductI | undefined>();
@@ -180,6 +200,68 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
         customCandles: [...prevItems.customCandles, customCandle],
       }));
       showToast(`${toastMessage}`);
+    },
+    [setCartProducts]
+  );
+
+  const toggleQuantity = useCallback(
+    ({ id, value, type, aroma }: IToggleQuantityParams) => {
+      if (type === 'customCandle') {
+        setCartProducts(prevItems => {
+          const updatedCustomCandles = prevItems.customCandles.map(item => {
+            if (item.id === id && value === INCREMENT) {
+              return { ...item, quantity: item.quantity + 1 };
+            }
+            if (item.id === id && value === DECREMENT) {
+              return {
+                ...item,
+                quantity: item.quantity > 1 ? item.quantity - 1 : 1,
+              };
+            }
+            return item;
+          });
+
+          return { ...prevItems, customCandles: updatedCustomCandles };
+        });
+      }
+
+      if (type === 'candle') {
+        setCartProducts(prevItems => {
+          const updatedCandles = prevItems.candles.map(item => {
+            if (item.id === id && value === INCREMENT) {
+              return { ...item, quantity: item.quantity + 1 };
+            }
+            if (item.id === id && value === DECREMENT) {
+              return {
+                ...item,
+                quantity: item.quantity > 1 ? item.quantity - 1 : 1,
+              };
+            }
+            return item;
+          });
+
+          return { ...prevItems, candles: updatedCandles };
+        });
+      }
+
+      if (type === 'box') {
+        setCartProducts(prevItems => {
+          const updatedBoxes = prevItems.boxes.map(item => {
+            if (item.id === id && item.aroma === aroma && value === INCREMENT) {
+              return { ...item, quantity: item.quantity + 1 };
+            }
+            if (item.id === id && item.aroma === aroma && value === DECREMENT) {
+              return {
+                ...item,
+                quantity: item.quantity > 1 ? item.quantity - 1 : 1,
+              };
+            }
+            return item;
+          });
+
+          return { ...prevItems, boxes: updatedBoxes };
+        });
+      }
     },
     [setCartProducts]
   );
@@ -336,6 +418,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
           addCandleToCart,
           addBoxToCart,
           addCustomCandleToCart,
+          toggleQuantity,
         }}
       >
         {children}

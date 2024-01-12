@@ -12,6 +12,8 @@ interface CandleQuantityProps {
   id?: string;
   qty?: number;
   setQuantity?: Dispatch<SetStateAction<number>>;
+  type?: 'box' | 'candle' | 'customCandle';
+  aroma?: number;
 }
 
 const CandleQuantity: React.FC<CandleQuantityProps> = ({
@@ -20,8 +22,10 @@ const CandleQuantity: React.FC<CandleQuantityProps> = ({
   id,
   qty,
   setQuantity,
+  type,
+  aroma,
 }) => {
-  const { toggleCartItemQuantity } = useCartActionsContext();
+  const { toggleCartItemQuantity, toggleQuantity } = useCartActionsContext();
 
   const handleIncrement = () => {
     setQuantity && qty && setQuantity(qty + 1);
@@ -39,7 +43,9 @@ const CandleQuantity: React.FC<CandleQuantityProps> = ({
         <>
           {' '}
           <button
-            onClick={() => id && toggleCartItemQuantity(id, 'dec')}
+            onClick={() =>
+              id && type && toggleQuantity({ id, value: 'dec', type, aroma })
+            }
             className={styles.candleCount}
           >
             <FiMinus />
@@ -48,7 +54,9 @@ const CandleQuantity: React.FC<CandleQuantityProps> = ({
             {qty}
           </Typography>
           <button
-            onClick={() => id && toggleCartItemQuantity(id, 'inc')}
+            onClick={() =>
+              id && type && toggleQuantity({ id, value: 'inc', type, aroma })
+            }
             className={styles.candleCount}
           >
             <FiPlus />

@@ -49,7 +49,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   aroma,
 }) => {
   const { onRemove } = useCartActionsContext();
-  const { cartItems } = useCartContext();
+  const { cartItems, cartProducts } = useCartContext();
   const router = useRouter();
   const lang = useLangFromPathname();
   const isCustomCandle = slug.includes('create-your-own');
@@ -57,6 +57,26 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const isBox = slug.includes('boxes');
   const paramsObject = paramData(dictParam);
   const boxAroma = typeof aroma === 'number' ? paramsObject.aroma[aroma] : '';
+
+  const defineProductQuantity = () => {
+    if (isCustomCandle) {
+      return cartProducts.customCandles
+        .filter(item => item.id === id)
+        .reduce((acc, item) => acc + item.quantity, 0);
+    }
+
+    if (isBox) {
+      return cartProducts.boxes
+        .filter(item => item.id === id && item.aroma === aroma)
+        .reduce((acc, item) => acc + item.quantity, 0);
+    }
+
+    if (isCandle) {
+      return cartProducts.candles
+        .filter(item => item.id === id)
+        .reduce((acc, item) => acc + item.quantity, 0);
+    }
+  };
 
   // Extract the keys of the description object
   const descriptionKeys =
@@ -67,6 +87,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
     if (cartItems.length === 1) {
       router.push(`/${lang}`);
     }
+  };
+
+  const defineCartItemType = () => {
+    if (isBox) return 'box';
+    if (isCandle) return 'candle';
+    if (isCustomCandle) return 'customCandle';
   };
 
   return (
@@ -151,8 +177,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <CandleQuantity
             className={styles.buttonGroup}
             id={id}
-            qty={quantity}
+            qty={Number(defineProductQuantity())}
             isCartQuantity
+            type={defineCartItemType()}
+            aroma={aroma}
           />
           <button type="button" onClick={() => handleRemoveCartItem(id)}>
             <Typography variant="bodyS" className={styles.delete}>

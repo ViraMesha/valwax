@@ -31,7 +31,7 @@ interface ICartCandle extends CandleDetailsI {
   quantity: number;
 }
 
-type IProducts = ICartCandle | ICartBox | CartProductI;
+type IProduct = ICartCandle | ICartBox | CartProductI;
 
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
@@ -39,7 +39,7 @@ const ProductList: React.FC<ProductListProps> = ({
   itemDeleted,
 }) => {
   const { totalPrice, cartItems, cartProducts } = useCartContext();
-  const [products, setProducts] = useState<IProducts[] | []>([
+  const [products, setProducts] = useState<IProduct[] | []>([
     ...cartProducts.customCandles,
   ]);
   const lang = useLangFromPathname();
@@ -83,16 +83,20 @@ const ProductList: React.FC<ProductListProps> = ({
 
     getCandles();
     getBoxes();
-  }, [cartProducts?.boxes, cartProducts.boxesIds, cartProducts.candles, cartProducts.candlesIds, currentLang]);
+  }, [cartProducts.boxesIds, cartProducts.candlesIds, currentLang]);
 
   return (
     <div>
       {products.length >= 1 && (
         <>
           <ul className={styles.list}>
-            {products.map((product: CartProductI) => (
+            {products.map((product: CartProductI, index) => (
               <ProductCard
-                key={product.id}
+                key={
+                  product.slug.includes('boxes')
+                    ? `${product.id}${index}`
+                    : product.id
+                }
                 {...product}
                 deleteButtonText={deleteButtonText}
                 descriptionPropertyNames={descriptionPropertyNames}
