@@ -446,7 +446,8 @@
       "itemDeleted": "The product was successfully deleted!",
       "successSubscription": "You have successfully subscribed to our newsletter!",
       "failedRequest": "Ooops... Something went wrong!",
-      "aromaNeeded": "Please choose the aroma of your box!"
+      "aromaNeeded": "Please choose the aroma of your box!",
+      "orderIsPlaced": "Your order has been placed"
     }
   },
 

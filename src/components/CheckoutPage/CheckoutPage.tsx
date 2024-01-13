@@ -13,13 +13,13 @@ import styles from './CheckoutPage.module.scss';
 interface CheckoutPageProps {
   dict: CheckoutPageDictionary;
   dictParam: configuratorSectionI;
-  itemDeleted: string;
+  toastDict: { [key: string]: string };
 }
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({
   dict: { productList, form },
   dictParam,
-  itemDeleted,
+  toastDict,
 }) => {
   return (
     <Section>
@@ -27,9 +27,9 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
         <ProductList
           dict={productList}
           dictParam={dictParam}
-          itemDeleted={itemDeleted}
+          itemDeleted={toastDict.itemDeleted}
         />
-        <CheckoutForm dict={form} />
+        <CheckoutForm dict={form} dictParam={dictParam} toastDict={toastDict} />
       </Container>
     </Section>
   );

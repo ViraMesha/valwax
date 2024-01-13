@@ -36,7 +36,8 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
     },
     ref
   ) => {
-    const SelectWrapper = useRef<HTMLDivElement | null>(null);
+
+    const customScrollBarRef = useRef<HTMLDivElement | null>(null);
     const [selectedValue, setSelectedValue] = useState(value);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -113,17 +114,20 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
     }, [value]);
 
     const MenuList = (props: any) => {
+
+      // const menuRef = useRef<HTMLDivElement | null>(null);
+
       return (
-        <components.MenuList {...props}>
-          <CustomScrollBar root={SelectWrapper} maxHeight="240px">
+        // <components.MenuList {...props}>
+          <CustomScrollBar root={customScrollBarRef} maxHeight="240px">
             {props.children}
           </CustomScrollBar>
-        </components.MenuList>
+        // </components.MenuList>
       );
     };
 
     return (
-      <div>
+      <div ref={ref}>
         {label && <label className={styles.label}>{label}</label>}
         <Select
           value={selectedValue}
@@ -138,10 +142,11 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
           isLoading={isLoading}
           onInputChange={handleInputChange}
           components={{ MenuList }}
-          // menuIsOpen={true}
+          // menuIsOpen
+          // captureMenuScroll
         />
         {error && <p className={styles.error}>{errorMessage}</p>}
-      </div>
+        </div>
     );
   }
 );

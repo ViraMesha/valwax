@@ -47,6 +47,14 @@
   display: flex;
   align-items: center;
   gap: 12px;
+
+  color: var(--cl-gray-700);
+  transition: color var(--animat);
+
+  &:hover {
+    color: var(--cl-primary-500);
+    transition: color var(--animat);
+  }
 }
 
 .addressTypography {
@@ -59,10 +67,20 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  cursor: pointer;
 
   @include breakpoint('desktop-large') {
     gap: 8px;
+  }
+}
+
+.copyrightLink {
+  cursor: pointer;
+  color: var(--cl-gray-400);
+  transition: color var(--animat);
+
+  &:hover {
+    color: var(--cl-primary-500);
+    transition: color var(--animat);
   }
 }
 
@@ -88,24 +106,6 @@
   @include breakpoint('all-devices-without-desktop') {
     margin-top: 8px;
   }
-}
-
-.copyrightIcon {
-  color: var(--cl-gray-400);
-  transition: color var(--animat);
-
-  &:hover {
-    color: var(--cl-blue-500);
-  }
-}
-
-.hoverableText {
-  color: var(--cl-gray-400);
-  transition: color var(--animat);
-}
-
-.hoverableText:hover {
-  color: var(--cl-blue-500);
 }
 
 .footerNavigation {

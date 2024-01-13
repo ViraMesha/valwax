@@ -1,84 +1,140 @@
-import { CheckoutFormValues,ICustomCandle } from '@components/types';
-// import { nanoid } from "nanoid";
+// import { paramData } from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/configuratorData';
+// import {
+//   CartProductI,
+//   CheckoutFormValues,
+//   configuratorSectionI,
+// } from '@components/types';
 
-const buildArryaGoods = (array: ICustomCandle[]) => {
-  const arrayGoods = array.map(({ id, title, description, quantity, slug }) => {
-    let orderGood;
+// interface OrderGood {
+//   category: string;
+//   aroma?: string;
+//   quantity: number;
+//   description: string;
+//   id: string;
+//   price: number;
+//   name: string;
+// }
 
-    switch (slug) {
-      case '/create-your-own':
-        if (description && typeof description !== 'string') {
-          orderGood = {
-            typeOrder: 'myCandle',
-            aroma: description.aroma,
-            wax: description.wax,
-            waxColor: description.color,
-            wick: description.wick,
-            container: description.container,
-            quantity: quantity,
-          };
-        }
-        break;
+// interface OrderCustomCandle {
+//   aroma: string;
+//   wax: string;
+//   color: string;
+//   wicks: number;
+//   container: string;
+//   quantity: number;
+//   price: number;
+//   total: number;
+// }
 
-      case '/boxes':
-        orderGood = {
-          typeOrder: 'box',
-          idBox: id,
-          description: title,
-          quantity: quantity,
-          // aroma: description.aroma,
-        };
-        break;
+// interface GoodsObject {
+//   items: OrderGood[];
+//   customCandles: OrderCustomCandle[];
+// }
 
-      default:
-        orderGood = {
-          typeOrder: 'candle',
-          idCandle: id,
-          description: title,
-          quantity: quantity,
-        };
-        break;
-    }
+// const buildArryaGoods = (
+//   arrayProductCards: CartProductI[],
+//   dictParam: configuratorSectionI
+// ): GoodsObject => {
+//   const items: OrderGood[] = [];
+//   const customCandles: OrderCustomCandle[] = [];
 
-    return orderGood;
-  });
+//   arrayProductCards.map(
+//     ({ id, title, configuration, price, quantity, link }) => {
+//       let orderGood;
+//       const descriptionName = paramData(dictParam);
 
-  return arrayGoods;
-};
+//       switch (link) {
+//         case '/create-your-own':
+//           if (
+//             configuration &&
+//             typeof configuration.aroma === 'number' &&
+//             typeof configuration.wax === 'number' &&
+//             typeof configuration.color === 'number' &&
+//             typeof configuration.wick === 'number' &&
+//             typeof configuration.container === 'number'
+//           ) {
+//             orderGood = {
+//               aroma: descriptionName.aroma[configuration.aroma],
+//               wax: descriptionName.wax[configuration.wax],
+//               color: descriptionName.color[configuration.color],
+//               wicks: configuration.wick + 1,
+//               container: descriptionName.container[configuration.container],
+//               quantity,
+//               price,
+//               total: quantity * price,
+//             };
+//             customCandles.push(orderGood);
+//           }
+//           break;
 
-export const buildOrderData = (
-  dataForm: CheckoutFormValues,
-  dataCartGoods: ICustomCandle[],
-  totalPrice: number
-) => {
-  const {
-    deliveryArea,
-    deliveryCity,
-    email,
-    firstName,
-    lastName,
-    notes,
-    phone,
-    postOfficeBranchNum,
-    payment,
-  } = dataForm;
+//         case '/boxes':
+//           orderGood = {
+//             category: 'box',
+//             id,
+//             description: title,
+//             quantity,
+//             name: title,
+//             price,
+//             // aroma: description.aroma,
+//           };
+//           items.push(orderGood);
+//           break;
 
-  const arrayGoods = buildArryaGoods(dataCartGoods);
+//         default:
+//           orderGood = {
+//             category: 'candle',
+//             id,
+//             description: title,
+//             quantity,
+//             name: title,
+//             price,
+//           };
+//           items.push(orderGood);
+//           break;
+//       }
 
-  const objectOrder = {
-    // orderId: nanoid(),
-    client: {
-      firstName,
-      lastName,
-      number: `+380${phone}`,
-      email,
-      comment: notes,
-      shippingAddress: `${deliveryArea.value} ${deliveryCity.value} ${postOfficeBranchNum.value}`,
-      payment,
-    },
-    goods: arrayGoods,
-    totalPrice,
-    timestamp: new Date(),
-  };
-  return objectOrder;
-};
+//       return orderGood;
+//     }
+//   );
+//   return { items, customCandles };
+// };
+
+// export const buildOrderData = (
+//   dataForm: CheckoutFormValues,
+//   dataCartGoods: CartProductI[],
+//   totalPrice: number,
+//   dictParam: configuratorSectionI
+// ) => {
+//   const {
+//     deliveryArea,
+//     deliveryCity,
+//     email,
+//     firstName,
+//     lastName,
+//     notes,
+//     phone,
+//     postOfficeBranchNum,
+//     payment,
+//   } = dataForm;
+
+//   const { items, customCandles } = buildArryaGoods(dataCartGoods, dictParam);
+
+//   const objectOrder = {
+//     // id: null,
+//     customer: {
+//       firstName,
+//       lastName,
+//       phone: `+380${phone}`,
+//       email,
+//       address: `${deliveryArea.value} ${deliveryCity.value} ${postOfficeBranchNum.value}`,
+//       comment: notes,
+//       payment,
+//     },
+//     items,
+//     customCandles: customCandles,
+//     total: totalPrice,
+//     payed: false,
+//     date: new Date(),
+//   };
+//   return objectOrder;
+// };
