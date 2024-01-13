@@ -1,7 +1,7 @@
-import { CartProductI, CheckoutFormValues } from '@components/types';
+import { CheckoutFormValues,ICustomCandle } from '@components/types';
 // import { nanoid } from "nanoid";
 
-const buildArryaGoods = (array: CartProductI[]) => {
+const buildArryaGoods = (array: ICustomCandle[]) => {
   const arrayGoods = array.map(({ id, title, description, quantity, slug }) => {
     let orderGood;
 
@@ -48,7 +48,7 @@ const buildArryaGoods = (array: CartProductI[]) => {
 
 export const buildOrderData = (
   dataForm: CheckoutFormValues,
-  dataCartGoods: CartProductI[],
+  dataCartGoods: ICustomCandle[],
   totalPrice: number
 ) => {
   const {

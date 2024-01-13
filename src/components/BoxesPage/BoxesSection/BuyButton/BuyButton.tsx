@@ -5,12 +5,7 @@ import { useCartActionsContext } from '@context/CartContext';
 interface BuyButtonProps {
   product: {
     id: string;
-    img: string;
-    title: string;
     price: number;
-    link: string;
-    quantity: number;
-    description: string;
   };
   buyBtn: string;
   toastMessage: string;
@@ -22,17 +17,18 @@ const BuyButton: React.FC<BuyButtonProps> = ({
   toastMessage,
 }) => {
   const { addBoxToCart } = useCartActionsContext();
+  const { id, price } = product;
   return (
     <Button
       variant="primary"
       type="button"
       onClick={() =>
         addBoxToCart({
-          id: product.id,
+          id,
           toastMessage,
           aroma: 0,
           quantity: 1,
-          price: product.price,
+          price,
         })
       }
     >

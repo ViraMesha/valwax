@@ -158,12 +158,11 @@ const Description: React.FC<DescriptionProps> = ({
         )}
         <BuyButtons
           product={{
-            ...product,
             id: productId,
-            images: [images[0]],
             slug,
             quantity,
             aroma: paramCandle.aroma,
+            price,
           }}
           buttonsDict={buttonsDict}
           toastMessages={toastMessages}

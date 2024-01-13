@@ -2,19 +2,21 @@ import { useRouter } from 'next/navigation';
 import Button from '@components/components/Button/Button';
 import { showToast } from '@components/helpers/showToast';
 import { useLangFromPathname } from '@components/hooks';
-import { ButtonsDictI, CartProductI } from '@components/types';
+import { ButtonsDictI } from '@components/types';
 import { useCartActionsContext } from '@context/CartContext';
 
 import styles from './BuyButtons.module.scss';
 
-interface IProduct extends CartProductI {
-  aroma?: string | number;
-}
-
 interface BuyButtonsProps {
-  product: IProduct;
   buttonsDict: ButtonsDictI;
   toastMessages: IToastMessages;
+  product: {
+    id: string;
+    slug: string;
+    quantity: number;
+    price: number;
+    aroma?: string | number;
+  };
 }
 
 const BuyButtons: React.FC<BuyButtonsProps> = ({
@@ -25,23 +27,25 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
   const { addCandleToCart, addBoxToCart } = useCartActionsContext();
   const router = useRouter();
   const lang = useLangFromPathname();
-  const isBox = product.slug === '/boxes';
+
+  const { id, slug, quantity, price } = product;
+  const isBox = slug === '/boxes';
 
   const handleBuyButton = () => {
     if (!isBox) {
       addCandleToCart({
-        id: product.id,
+        id,
         toastMessage: toastMessages.itemAdded,
-        quantity: product.quantity,
-        price: product.price,
+        quantity,
+        price,
       });
     } else if (isBox && typeof product.aroma === 'number') {
       addBoxToCart({
-        id: product.id,
+        id,
         toastMessage: toastMessages.itemAdded,
         aroma: product.aroma,
-        quantity: product.quantity,
-        price: product.price,
+        quantity,
+        price,
       });
     } else {
       showToast(toastMessages.aromaNeeded, 'warning');
@@ -51,19 +55,19 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
   const handleBuyNowButtonClick = () => {
     if (!isBox) {
       addCandleToCart({
-        id: product.id,
+        id,
         toastMessage: toastMessages.itemAdded,
-        quantity: product.quantity,
-        price: product.price,
+        quantity,
+        price,
       });
       router.push(`/${lang}/checkout`);
     } else if (isBox && typeof product.aroma === 'number') {
       addBoxToCart({
-        id: product.id,
+        id,
         toastMessage: toastMessages.itemAdded,
         aroma: product.aroma,
-        quantity: product.quantity,
-        price: product.price,
+        quantity,
+        price,
       });
       router.push(`/${lang}/checkout`);
     } else {

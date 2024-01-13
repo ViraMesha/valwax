@@ -57,7 +57,7 @@ export type CustomCandleDescription = {
   color: string | number;
 };
 
-export interface CartProductI {
+export interface ICustomCandle {
   id: string;
   images: string[];
   title: string;

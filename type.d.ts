@@ -169,10 +169,34 @@ interface IHandleDeleteParams {
   aroma?: number;
 }
 
+interface ICartBox {
+  id: string;
+  aroma: number;
+  quantity: number;
+  price: number;
+}
+
+interface ICartCandle {
+  id: string;
+  quantity: number;
+  price: number;
+}
+
 interface ICartProducts {
   candlesIds: string[];
   boxesIds: string[];
-  boxes: { id: string; aroma: number; quantity: number; price: number }[];
-  candles: { id: string; quantity: number; price: number }[];
-  customCandles: CartProductI[];
+  boxes: ICartBox[];
+  candles: ICartCandle[];
+  customCandles: ICustomCandle[];
 }
+
+interface ICartBoxProduct extends BoxDetailsI {
+  aroma: number;
+  quantity: number;
+}
+
+interface ICartCandleProduct extends CandleDetailsI {
+  quantity: number;
+}
+
+type ICartProduct = ICartCandleProduct | ICartBoxProduct | ICustomCandle;

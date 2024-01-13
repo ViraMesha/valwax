@@ -25,7 +25,6 @@ interface ProductCardProps {
   title: string;
   description?: string | CustomCandleDescription;
   price: number;
-  quantity: number;
   slug: string;
   key: string;
   descriptionPropertyNames: ProductDescription;
@@ -41,7 +40,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   title,
   price,
   description,
-  quantity,
   slug,
   deleteButtonText,
   descriptionPropertyNames: propertyNames,

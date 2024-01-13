@@ -3,7 +3,7 @@ import { createContext, useCallback, useContext, useMemo, useRef } from 'react';
 import { DECREMENT, INCREMENT } from '@components/constants';
 import { showToast } from '@components/helpers/showToast';
 import { useLocalStorage } from '@components/hooks/useLocalStorage';
-import { CartProductI } from '@components/types';
+import { ICustomCandle } from '@components/types';
 
 interface IAddCandleToCartParams {
   id: string;
@@ -21,7 +21,7 @@ interface IAddBoxToCartParams {
 }
 
 interface IAddCustomCandleToCartParams {
-  customCandle: CartProductI;
+  customCandle: ICustomCandle;
   toastMessage: string;
 }
 
