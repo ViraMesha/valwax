@@ -156,3 +156,15 @@ interface CandleDetailsI {
   aroma: IAroma;
   volume: string;
 }
+
+/*
+  |==============================
+  | Cart
+  |==============================
+*/
+
+interface IHandleDeleteParams {
+  id: string;
+  isBox?: boolean;
+  aroma?: number;
+}

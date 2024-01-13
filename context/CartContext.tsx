@@ -32,6 +32,13 @@ interface IToggleQuantityParams {
   aroma?: number;
 }
 
+interface IDeleteCartItemParams {
+  id: string;
+  type: 'box' | 'candle' | 'customCandle';
+  aroma?: number;
+  toastMessage: string;
+}
+
 interface ICartProducts {
   candlesIds: string[];
   boxesIds: string[];
@@ -80,6 +87,12 @@ interface CartActionsContextProps {
     toastMessage,
   }: IAddCustomCandleToCartParams) => void;
   toggleQuantity: ({ id, value, type }: IToggleQuantityParams) => void;
+  deleteCartItem: ({
+    id,
+    type,
+    aroma,
+    toastMessage,
+  }: IDeleteCartItemParams) => void;
 }
 
 const CartContext = createContext<CartContextI | null>(null);
@@ -295,6 +308,63 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
     [setCartProducts]
   );
 
+  const deleteCartItem = ({
+    id,
+    type,
+    aroma,
+    toastMessage,
+  }: IDeleteCartItemParams) => {
+    if (type === 'customCandle') {
+      setCartProducts(prevItems => {
+        const updatedCustomCandles = prevItems.customCandles.filter(
+          item => item.id !== id
+        );
+        return { ...prevItems, customCandles: updatedCustomCandles };
+      });
+    }
+
+    if (type === 'candle') {
+      setCartProducts(prevItems => {
+        const updatedCandlesIds = prevItems.candlesIds.filter(
+          item => item !== id
+        );
+        const updatedCandles = prevItems.candles.filter(item => item.id !== id);
+        return {
+          ...prevItems,
+          candlesIds: updatedCandlesIds,
+          candles: updatedCandles,
+        };
+      });
+    }
+
+    if (type === 'box') {
+      setCartProducts(prevItems => {
+        const position = prevItems.boxesIds.indexOf(id);
+        const newBoxesIds =
+          position !== -1
+            ? prevItems.boxesIds.filter((_, index) => index !== position)
+            : prevItems.boxesIds;
+
+        const boxIndex = prevItems.boxes.findIndex(
+          item => item.aroma === aroma && item.id === id
+        );
+
+        const updatedBoxes =
+          boxIndex !== -1
+            ? prevItems.boxes.filter((_, index) => index !== boxIndex)
+            : prevItems.boxes;
+
+        return {
+          ...prevItems,
+          boxesIds: newBoxesIds,
+          boxes: updatedBoxes,
+        };
+      });
+    }
+
+    showToast(`${toastMessage}`);
+  };
+
   // Define the onAdd function to add a product to the cart
   const onAdd = useCallback(
     (
@@ -456,6 +526,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
           addBoxToCart,
           addCustomCandleToCart,
           toggleQuantity,
+          deleteCartItem,
         }}
       >
         {children}

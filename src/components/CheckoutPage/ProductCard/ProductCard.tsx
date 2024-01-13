@@ -31,7 +31,8 @@ interface ProductCardProps {
   descriptionPropertyNames: ProductDescription;
   itemDeleted: string;
   dictParam: configuratorSectionI;
-  aroma?: number;
+  aroma?: number | IAroma;
+  handleDelete: ({ id, isBox, aroma }: IHandleDeleteParams) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -47,9 +48,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   itemDeleted,
   dictParam,
   aroma,
+  handleDelete,
 }) => {
-  const { onRemove } = useCartActionsContext();
-  const { cartItems, cartProducts } = useCartContext();
+  const { deleteCartItem } = useCartActionsContext();
+  const { cartProducts, totalCartProducts } = useCartContext();
   const router = useRouter();
   const lang = useLangFromPathname();
   const isCustomCandle = slug.includes('create-your-own');
@@ -57,8 +59,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const isBox = slug.includes('boxes');
   const paramsObject = paramData(dictParam);
   const boxAroma = typeof aroma === 'number' ? paramsObject.aroma[aroma] : '';
-
-  console.log('Price in ProductCard', price);
 
   const defineProductQuantity = () => {
     if (isCustomCandle) {
@@ -84,17 +84,27 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const descriptionKeys =
     description && typeof description === 'object' && Object.keys(description);
 
-  const handleRemoveCartItem = (id: string) => {
-    onRemove(id, itemDeleted);
-    if (cartItems.length === 1) {
-      router.push(`/${lang}`);
-    }
-  };
-
   const defineCartItemType = () => {
     if (isBox) return 'box';
     if (isCandle) return 'candle';
     if (isCustomCandle) return 'customCandle';
+  };
+
+  const handleRemoveCartItem = () => {
+    handleDelete({
+      id,
+      isBox,
+      aroma: typeof aroma === 'number' ? aroma : undefined,
+    });
+    deleteCartItem({
+      id,
+      type: defineCartItemType()!,
+      aroma: typeof aroma === 'number' ? aroma : undefined,
+      toastMessage: itemDeleted,
+    });
+    if (totalCartProducts === 1) {
+      router.push(`/${lang}`);
+    }
   };
 
   return (
@@ -182,9 +192,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
             qty={Number(defineProductQuantity())}
             isCartQuantity
             type={defineCartItemType()}
-            aroma={aroma}
+            aroma={typeof aroma === 'number' ? aroma : undefined}
           />
-          <button type="button" onClick={() => handleRemoveCartItem(id)}>
+          <button type="button" onClick={handleRemoveCartItem}>
             <Typography variant="bodyS" className={styles.delete}>
               {deleteButtonText}
             </Typography>

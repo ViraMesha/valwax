@@ -39,58 +39,79 @@ const ProductList: React.FC<ProductListProps> = ({
   itemDeleted,
 }) => {
   const { cartTotalPrice, cartProducts } = useCartContext();
-  const [products, setProducts] = useState<IProduct[] | []>([
-    ...cartProducts.customCandles,
-  ]);
+  const initialState = [...cartProducts.customCandles];
+  const [products, setProducts] = useState<IProduct[] | []>(initialState);
   const lang = useLangFromPathname();
 
   const currentLang = convertToServerLocale(lang);
 
+  const getCandles = async () => {
+    if (cartProducts.candlesIds.length > 0) {
+      const data = await fetchCartCandles({
+        lang: currentLang,
+        ids: cartProducts.candlesIds,
+      });
+
+      const modifiedCandles = cartProducts.candles?.map(
+        ({ id, quantity, price }) => {
+          const candleData = data.find(item => item.id === id)!;
+          return { ...candleData, quantity, price };
+        }
+      );
+      setProducts(prevProducts => [...prevProducts, ...modifiedCandles]);
+    }
+  };
+
+  const getBoxes = async () => {
+    if (cartProducts.boxesIds.length > 0) {
+      const data = await fetchCartBoxes({
+        lang: currentLang,
+        ids: cartProducts.boxesIds,
+      });
+      const modifiedBoxes = cartProducts?.boxes.map(
+        ({ id, quantity, aroma, price }) => {
+          const boxData = data.find(item => item.id === id)!;
+          return { ...boxData, quantity, aroma, price };
+        }
+      );
+
+      setProducts(prevProducts => [...prevProducts, ...modifiedBoxes]);
+    }
+  };
+
   useEffect(() => {
-    const getCandles = async () => {
-      if (cartProducts.candlesIds.length > 0) {
-        const data = await fetchCartCandles({
-          lang: currentLang,
-          ids: cartProducts.candlesIds,
-        });
-
-        const modifiedCandles = cartProducts.candles?.map(
-          ({ id, quantity, price }) => {
-            const candleData = data.find(item => item.id === id)!;
-            return { ...candleData, quantity, price };
-          }
-        );
-        setProducts(prevProducts => [...prevProducts, ...modifiedCandles]);
-      }
-    };
-
-    const getBoxes = async () => {
-      if (cartProducts.boxesIds.length > 0) {
-        const data = await fetchCartBoxes({
-          lang: currentLang,
-          ids: cartProducts.boxesIds,
-        });
-        const modifiedBoxes = cartProducts?.boxes.map(
-          ({ id, quantity, aroma, price }) => {
-            const boxData = data.find(item => item.id === id)!;
-            return { ...boxData, quantity, aroma, price };
-          }
-        );
-
-        setProducts(prevProducts => [...prevProducts, ...modifiedBoxes]);
-      }
-    };
+    setProducts(initialState);
 
     getCandles();
     getBoxes();
-  }, [cartProducts.boxesIds, cartProducts.candlesIds, currentLang]);
+  }, [currentLang]);
+
+  const handleDelete = ({ id, isBox, aroma }: IHandleDeleteParams) => {
+    setProducts(prevItems => {
+      if (!isBox) {
+        return prevItems.filter(item => item.id !== id);
+      } else {
+        const position = prevItems.findIndex(
+          item =>
+            'aroma' in item &&
+            typeof aroma === 'number' &&
+            item.aroma === aroma &&
+            item.id === id
+        );
+
+        return position !== -1
+          ? prevItems.filter((_, index) => index !== position)
+          : prevItems;
+      }
+    });
+  };
 
   return (
     <div>
       {products.length >= 1 && (
         <>
           <ul className={styles.list}>
-            {products.map((product: CartProductI, index) => (
+            {products.map((product: IProduct, index) => (
               <ProductCard
                 key={
                   product.slug.includes('boxes')
@@ -102,10 +123,11 @@ const ProductList: React.FC<ProductListProps> = ({
                 descriptionPropertyNames={descriptionPropertyNames}
                 itemDeleted={itemDeleted}
                 dictParam={dictParam}
+                handleDelete={handleDelete}
               />
             ))}
           </ul>
-       <div className={styles.total}>
+          <div className={styles.total}>
             <Typography variant="bodyL" color="var(--cl-primary-800)">
               {totalText}
             </Typography>
