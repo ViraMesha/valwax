@@ -21,7 +21,7 @@ const BuyButton: React.FC<BuyButtonProps> = ({
   buyBtn,
   toastMessage,
 }) => {
-  const { onAdd, addBoxToCart } = useCartActionsContext();
+  const { addBoxToCart } = useCartActionsContext();
   return (
     <Button
       variant="primary"

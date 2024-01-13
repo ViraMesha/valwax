@@ -168,3 +168,11 @@ interface IHandleDeleteParams {
   isBox?: boolean;
   aroma?: number;
 }
+
+interface ICartProducts {
+  candlesIds: string[];
+  boxesIds: string[];
+  boxes: { id: string; aroma: number; quantity: number; price: number }[];
+  candles: { id: string; quantity: number; price: number }[];
+  customCandles: CartProductI[];
+}

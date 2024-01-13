@@ -22,13 +22,12 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
   buttonsDict: { buyNow, addToCart },
   toastMessages,
 }) => {
-  const { onAdd, addCandleToCart, addBoxToCart } = useCartActionsContext();
+  const { addCandleToCart, addBoxToCart } = useCartActionsContext();
   const router = useRouter();
   const lang = useLangFromPathname();
   const isBox = product.slug === '/boxes';
 
   const handleBuyButton = () => {
-    onAdd(product, product.quantity, toastMessages.itemAdded);
     if (!isBox) {
       addCandleToCart({
         id: product.id,
@@ -50,7 +49,6 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
   };
 
   const handleBuyNowButtonClick = () => {
-    onAdd(product, product.quantity);
     if (!isBox) {
       addCandleToCart({
         id: product.id,

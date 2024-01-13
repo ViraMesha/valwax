@@ -27,7 +27,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
 
   const { paramCandle, handleChangeCandleParam } = useCandleParam();
 
-  const { onAdd, addCustomCandleToCart } = useCartActionsContext();
+  const { addCustomCandleToCart } = useCartActionsContext();
   const { cleanParamsCandle } = useParamsCandleActionContext();
   const pathName = usePathname();
   const router = useRouter();
@@ -47,7 +47,6 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   const handleBuyNowButtonClick = () => {
     const allParamNotEmpty = Object.values(paramCandle).every(v => v !== '');
     if (allParamNotEmpty) {
-      onAdd(product, 1, dictGeneral.messages.itemAdded);
       addCustomCandleToCart({
         customCandle: product,
         toastMessage: dictGeneral.messages.itemAdded,

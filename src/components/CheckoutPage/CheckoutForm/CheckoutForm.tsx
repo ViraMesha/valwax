@@ -25,7 +25,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
     errorMessages,
   } = dict;
 
-  const { totalPrice, cartItems } = useCartContext();
+  const { cartTotalPrice, cartProducts } = useCartContext();
 
   const formControl = useForm<CheckoutFormValues>({
     mode: 'onBlur',
@@ -42,10 +42,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
   } = formControl;
 
   const onSubmit = (data: CheckoutFormValues) => {
-    const newOrder = buildOrderData(data, cartItems, totalPrice);
+    // const newOrder = buildOrderData(data, cartProducts, cartTotalPrice);
 
-    console.log(newOrder);
-    sendOrder(newOrder);
+    console.log(data);
+    // sendOrder(newOrder);
   };
 
   return (
