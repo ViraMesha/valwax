@@ -21,6 +21,16 @@
 .card {
   position: relative;
   border-radius: 20px;
+  overflow: hidden;
+
+  & .image {
+    transition: transform var(--animat) 0s;
+  }
+
+  &:hover .image {
+    transform: scale(1.05);
+  }
+
 }
 
 .candle {
