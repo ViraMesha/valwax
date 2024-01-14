@@ -31,15 +31,18 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
   const { id, slug, quantity, price } = product;
   const isBox = slug === '/boxes';
 
-  const handleBuyButton = () => {
-    if (!isBox) {
-      addCandleToCart({
-        id,
-        toastMessage: toastMessages.itemAdded,
-        quantity,
-        price,
-      });
-    } else if (isBox && typeof product.aroma === 'number') {
+  const handleBuyCandle = () => {
+    addCandleToCart({
+      id,
+      toastMessage: toastMessages.itemAdded,
+      quantity,
+      price,
+    });
+  };
+
+  const handleBuyBox = () => {
+    isBox &&
+      typeof product.aroma === 'number' &&
       addBoxToCart({
         id,
         toastMessage: toastMessages.itemAdded,
@@ -47,6 +50,13 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
         quantity,
         price,
       });
+  };
+
+  const handleBuyButton = () => {
+    if (!isBox) {
+      handleBuyCandle();
+    } else if (isBox && typeof product.aroma === 'number') {
+      handleBuyBox();
     } else {
       showToast(toastMessages.aromaNeeded, 'warning');
     }
@@ -54,21 +64,10 @@ const BuyButtons: React.FC<BuyButtonsProps> = ({
 
   const handleBuyNowButtonClick = () => {
     if (!isBox) {
-      addCandleToCart({
-        id,
-        toastMessage: toastMessages.itemAdded,
-        quantity,
-        price,
-      });
+      handleBuyCandle();
       router.push(`/${lang}/checkout`);
     } else if (isBox && typeof product.aroma === 'number') {
-      addBoxToCart({
-        id,
-        toastMessage: toastMessages.itemAdded,
-        aroma: product.aroma,
-        quantity,
-        price,
-      });
+      handleBuyBox();
       router.push(`/${lang}/checkout`);
     } else {
       showToast(toastMessages.aromaNeeded, 'warning');
