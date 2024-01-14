@@ -9,7 +9,7 @@ import styles from './BoxDetailsPage.module.scss';
 interface BoxDetailsPageI {
   product: BoxDetailsI;
   buttonsDict: ButtonsDictI;
-  itemAdded: string;
+  toastMessages: IToastMessages;
   productDescriptionDict: IProductDescriptionDict;
   configuratorDict: configuratorSectionI;
 }
@@ -17,7 +17,7 @@ interface BoxDetailsPageI {
 const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({
   product,
   buttonsDict,
-  itemAdded,
+  toastMessages,
   productDescriptionDict,
   configuratorDict,
 }) => {
@@ -31,7 +31,7 @@ const BoxDetailsPage: React.FC<BoxDetailsPageI> = ({
               product={product}
               id="box_details"
               buttonsDict={buttonsDict}
-              itemAdded={itemAdded}
+              toastMessages={toastMessages}
               productDescriptionDict={productDescriptionDict}
               configuratorDict={configuratorDict}
             />
