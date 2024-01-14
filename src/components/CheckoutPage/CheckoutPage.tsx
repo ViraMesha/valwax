@@ -27,7 +27,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
         <ProductList
           dict={productList}
           dictParam={dictParam}
-          itemDeleted={toastDict.itemDeleted}
+          itemDeletedToast={toastDict.itemDeleted}
         />
         <CheckoutForm dict={form} dictParam={dictParam} toastDict={toastDict} />
       </Container>

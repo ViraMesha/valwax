@@ -28,7 +28,7 @@ interface ProductCardProps {
   slug: string;
   key: string;
   descriptionPropertyNames: ProductDescription;
-  itemDeleted: string;
+  itemDeletedToast: string;
   dictParam: configuratorSectionI;
   aroma?: number | IAroma;
   handleDelete: ({ id, isBox, aroma }: IHandleDeleteParams) => void;
@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   slug,
   deleteButtonText,
   descriptionPropertyNames: propertyNames,
-  itemDeleted,
+  itemDeletedToast,
   dictParam,
   aroma,
   handleDelete,
@@ -98,7 +98,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       id,
       type: defineCartItemType()!,
       aroma: typeof aroma === 'number' ? aroma : undefined,
-      toastMessage: itemDeleted,
+      toastMessage: itemDeletedToast,
     });
     if (totalCartProducts === 1) {
       router.push(`/${lang}`);

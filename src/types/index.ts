@@ -59,7 +59,6 @@ export type CustomCandleDescription = {
 
 export interface ICustomCandle {
   id: string;
-  images: string[];
   title: string;
   description?: string | CustomCandleDescription;
   configuration?: CustomCandleDescription;
@@ -320,7 +319,7 @@ export interface CheckoutFormProps {
     errorMessages: CheckoutFormValidation;
   };
   dictParam: configuratorSectionI;
-  toastDict: {[key: string]: string};
+  toastDict: { [key: string]: string };
 }
 
 export interface DeliveryFormProps {

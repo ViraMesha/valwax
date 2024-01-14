@@ -200,10 +200,29 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
 
   const addCustomCandleToCart = useCallback(
     ({ customCandle, toastMessage }: IAddCustomCandleToCartParams) => {
-      setCartProducts(prevItems => ({
-        ...prevItems,
-        customCandles: [...prevItems.customCandles, customCandle],
-      }));
+      setCartProducts(prevItems => {
+        const isCustomCandleInCart = prevItems.customCandles?.find(
+          candle => candle.id === customCandle.id
+        );
+        const updatedItems = isCustomCandleInCart
+          ? {
+              ...prevItems,
+              customCandles: prevItems.customCandles.map(candle => {
+                if (candle.id === customCandle.id) {
+                  return {
+                    ...candle,
+                    quantity: candle.quantity + customCandle.quantity,
+                  };
+                }
+                return candle;
+              }),
+            }
+          : {
+              ...prevItems,
+              customCandles: [...prevItems?.customCandles, customCandle],
+            };
+        return updatedItems;
+      });
       showToast(`${toastMessage}`);
     },
     [setCartProducts]

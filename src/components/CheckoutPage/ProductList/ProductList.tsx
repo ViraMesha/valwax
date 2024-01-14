@@ -16,13 +16,13 @@ import styles from './ProductList.module.scss';
 interface ProductListProps {
   dict: ProductListDictionary;
   dictParam: configuratorSectionI;
-  itemDeleted: string;
+  itemDeletedToast: string;
 }
 
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
   dictParam,
-  itemDeleted,
+  itemDeletedToast,
 }) => {
   const { cartTotalPrice, cartProducts } = useCartContext();
   const lang = useLangFromPathname();
@@ -49,7 +49,7 @@ const ProductList: React.FC<ProductListProps> = ({
                 {...product}
                 deleteButtonText={deleteButtonText}
                 descriptionPropertyNames={descriptionPropertyNames}
-                itemDeleted={itemDeleted}
+                itemDeletedToast={itemDeletedToast}
                 dictParam={dictParam}
                 handleDelete={handleDelete}
               />

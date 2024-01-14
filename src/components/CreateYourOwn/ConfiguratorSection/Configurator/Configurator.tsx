@@ -7,8 +7,6 @@ import { showToast } from '@components/helpers/showToast';
 import { useCartActionsContext } from '@context/CartContext';
 import { useParamsCandleActionContext } from '@context/ParamCandleContext';
 import { useCandleParam } from '@hooks/index';
-import candleImg from '@images/candles/img-1.jpg';
-import { nanoid } from 'nanoid';
 
 import { ConfiguratorSectionI } from '../../../../types/index';
 
@@ -34,8 +32,7 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
   const lang = pathName.split('/')[1];
 
   const product = {
-    id: nanoid(),
-    images: [candleImg.src],
+    id: `c${paramCandle.container}wa${paramCandle.wax}a${paramCandle.aroma}wi${paramCandle.wick}c${paramCandle.color}`,
     title: dictGeneral.titles.сustomCandle,
     description: paramCandle,
     configuration: paramCandle,
