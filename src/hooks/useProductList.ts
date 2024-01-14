@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
 import { fetchCartBoxes } from '@lib/api-services/fetchCartBoxes';
 import { fetchCartCandles } from '@lib/api-services/fetchCartCandles';
 
@@ -24,35 +25,58 @@ export const useProductList = ({
   });
 
   const getCandles = async () => {
-    if (candlesIds.length > 0) {
-      handleStatus('isLoading', true);
-      const data = await fetchCartCandles({
-        lang: currentLang,
-        ids: candlesIds,
-      });
+    try {
+      if (candlesIds.length > 0) {
+        handleStatus('isLoading', true);
+        const data = await fetchCartCandles({
+          lang: currentLang,
+          ids: candlesIds,
+        });
 
-      const modifiedCandles = candles?.map(({ id, quantity, price }) => {
-        const candleData = data.find(item => item.id === id)!;
-        return { ...candleData, quantity, price };
-      });
-      setProducts(prevProducts => [...prevProducts, ...modifiedCandles]);
+        if (!Array.isArray(data)) {
+          throw new Error('Error by fetching cart candles');
+        }
+
+        const modifiedCandles = candles?.map(({ id, quantity, price }) => {
+          const candleData = data?.find(item => item.id === id)!;
+          return { ...candleData, quantity, price };
+        });
+        setProducts(prevProducts => [...prevProducts, ...modifiedCandles]);
+      }
+    } catch (error: unknown) {
+      handleStatus('hasError', true);
+      const errorMessage = extractErrorMessage(error);
+      console.error(errorMessage);
+    } finally {
       handleStatus('isLoading', false);
     }
   };
 
   const getBoxes = async () => {
-    if (boxesIds.length > 0) {
-      handleStatus('isLoading', true);
-      const data = await fetchCartBoxes({
-        lang: currentLang,
-        ids: boxesIds,
-      });
-      const modifiedBoxes = boxes.map(({ id, quantity, aroma, price }) => {
-        const boxData = data.find(item => item.id === id)!;
-        return { ...boxData, quantity, aroma, price };
-      });
+    try {
+      if (boxesIds.length > 0) {
+        handleStatus('isLoading', true);
+        const data = await fetchCartBoxes({
+          lang: currentLang,
+          ids: boxesIds,
+        });
 
-      setProducts(prevProducts => [...prevProducts, ...modifiedBoxes]);
+        if (!Array.isArray(data)) {
+          throw new Error('Error by fetching cart boxes');
+        }
+
+        const modifiedBoxes = boxes.map(({ id, quantity, aroma, price }) => {
+          const boxData = data.find(item => item.id === id)!;
+          return { ...boxData, quantity, aroma, price };
+        });
+
+        setProducts(prevProducts => [...prevProducts, ...modifiedBoxes]);
+      }
+    } catch (error: unknown) {
+      handleStatus('hasError', true);
+      const errorMessage = extractErrorMessage(error);
+      console.error(errorMessage);
+    } finally {
       handleStatus('isLoading', false);
     }
   };
@@ -83,5 +107,10 @@ export const useProductList = ({
     });
   };
 
-  return { products, isLoading: state.isLoading, handleDelete };
+  return {
+    products,
+    isLoading: state.isLoading,
+    handleDelete,
+    hasError: state.hasError,
+  };
 };

@@ -28,15 +28,19 @@ const ProductList: React.FC<ProductListProps> = ({
   const lang = useLangFromPathname();
   const currentLang = convertToServerLocale(lang);
 
-  const { products, isLoading, handleDelete } = useProductList({
+  const { products, isLoading, handleDelete, hasError } = useProductList({
     cartProducts,
     currentLang,
   });
 
+  if (hasError) {
+    throw new Error('Error by fetching cart data😥');
+  }
+
   return (
     <div>
       {isLoading && <CartListSkeleton />}
-      {products.length >= 1 && (
+      {!isLoading && !hasError && products.length >= 1 && (
         <>
           <ul className={styles.list}>
             {products.map((product: ICartProduct, index) => (
