@@ -12,7 +12,7 @@ import type {
   ProductDescription,
 } from '@components/types';
 import { useCartActionsContext, useCartContext } from '@context/CartContext';
-import customCandleImg from '@images/candles/img-2.jpg';
+import customCandleImg from '@images/create-your-own/custom.jpg';
 
 import styles from './ProductCard.module.scss';
 
