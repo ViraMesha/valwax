@@ -17,7 +17,9 @@ export const useProductList = ({
   const initialState = [...cartProducts.customCandles];
   const [products, setProducts] = useState<ICartProduct[] | []>(initialState);
 
-  const { candlesIds, boxesIds, candles, boxes } = cartProducts;
+  const { candles, boxes } = cartProducts;
+  const candlesIds = candles.map(item => item.id);
+  const boxesIds = boxes.map(item => item.id);
 
   const { state, handleStatus } = useStatusState({
     isLoading: false,

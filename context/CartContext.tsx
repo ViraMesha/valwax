@@ -81,8 +81,6 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
   const [cartProducts, setCartProducts] = useLocalStorage<ICartProducts>(
     'cartProducts',
     {
-      candlesIds: [],
-      boxesIds: [],
       boxes: [],
       candles: [],
       customCandles: [],
@@ -141,7 +139,6 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
         const updatedItems = isCandleInCart
           ? {
               ...prevItems,
-              candlesIds: [...prevItems.candlesIds, id],
               candles: prevItems.candles.map(candle => {
                 if (candle.id === id) {
                   return {
@@ -154,7 +151,6 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
             }
           : {
               ...prevItems,
-              candlesIds: [...prevItems.candlesIds, id],
               candles: [...prevItems?.candles, { id, quantity, price }],
             };
         return updatedItems;
@@ -174,7 +170,6 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
         const updatedItems = isBoxInCart
           ? {
               ...prevItems,
-              boxesIds: [...prevItems.boxesIds, id],
               boxes: prevItems.boxes.map(box => {
                 if (box.id === id && box.aroma === aroma) {
                   return {
@@ -187,7 +182,6 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
             }
           : {
               ...prevItems,
-              boxesIds: [...prevItems.boxesIds, id],
               boxes: [...prevItems.boxes, { id, aroma, quantity, price }],
             };
         return updatedItems;
@@ -307,13 +301,9 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
 
     if (type === 'candle') {
       setCartProducts(prevItems => {
-        const updatedCandlesIds = prevItems.candlesIds.filter(
-          item => item !== id
-        );
         const updatedCandles = prevItems.candles.filter(item => item.id !== id);
         return {
           ...prevItems,
-          candlesIds: updatedCandlesIds,
           candles: updatedCandles,
         };
       });
@@ -321,12 +311,6 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
 
     if (type === 'box') {
       setCartProducts(prevItems => {
-        const position = prevItems.boxesIds.indexOf(id);
-        const newBoxesIds =
-          position !== -1
-            ? prevItems.boxesIds.filter((_, index) => index !== position)
-            : prevItems.boxesIds;
-
         const boxIndex = prevItems.boxes.findIndex(
           item => item.aroma === aroma && item.id === id
         );
@@ -338,7 +322,6 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
 
         return {
           ...prevItems,
-          boxesIds: newBoxesIds,
           boxes: updatedBoxes,
         };
       });

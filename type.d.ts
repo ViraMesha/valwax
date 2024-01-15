@@ -183,8 +183,6 @@ interface ICartCandle {
 }
 
 interface ICartProducts {
-  candlesIds: string[];
-  boxesIds: string[];
   boxes: ICartBox[];
   candles: ICartCandle[];
   customCandles: ICustomCandle[];
