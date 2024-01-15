@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form';
 import Button from '@components/components/Button/Button';
 import Input from '@components/components/Input/Input';
@@ -32,6 +33,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   } = dict;
 
   const { cartTotalPrice, cartProducts } = useCartContext();
+  const router = useRouter();
 
   const formControl = useForm<CheckoutFormValues>({
     mode: 'onBlur',
@@ -55,11 +57,12 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const onSubmit = async (data: CheckoutFormValues) => {
     
     const newOrder = buildOrderData(data, cartProducts, cartTotalPrice, dictParam);
-    
+
     try {
       handleStatus('isLoading', true);
       await sendOrder(newOrder);
       showToast(orderIsPlaced);
+      router.push(`/success-order`);
     } catch (e) {
       handleStatus('hasError', true);
       console.log(e);
@@ -67,6 +70,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     } finally {
       handleStatus('isLoading', false);
     }
+
   };
 
   return (
