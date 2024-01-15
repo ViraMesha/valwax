@@ -37,7 +37,7 @@ export default async function Candle({
     relatedProducts: { title },
     general: {
       buttons,
-      messages: { itemAdded },
+      messages,
     },
     productDescription,
   } = await getDictionary(lang);
@@ -65,7 +65,7 @@ export default async function Candle({
       <CandleDetailsSection
         product={candle}
         buttonsDict={buttons}
-        itemAdded={itemAdded}
+        toastMessages={messages}
         productDescriptionDict={productDescription}
       />
       <RelatedProducts relatedProducts={similarProducts} title={title} />

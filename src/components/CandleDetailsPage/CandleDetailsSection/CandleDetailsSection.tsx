@@ -11,14 +11,14 @@ import styles from './CandleDetailsSection.module.scss';
 interface CandleDetailsSectionI {
   product: CandleDetailsI;
   buttonsDict: ButtonsDictI;
-  itemAdded: string;
+  toastMessages: IToastMessages;
   productDescriptionDict: IProductDescriptionDict;
 }
 
 const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
   product,
   buttonsDict,
-  itemAdded,
+  toastMessages,
   productDescriptionDict,
 }) => {
   return (
@@ -30,7 +30,7 @@ const CandleDetailsSection: React.FC<CandleDetailsSectionI> = ({
             product={product}
             id="candle_details"
             buttonsDict={buttonsDict}
-            itemAdded={itemAdded}
+            toastMessages={toastMessages}
             productDescriptionDict={productDescriptionDict}
           />
         </div>

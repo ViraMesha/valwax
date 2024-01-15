@@ -1,6 +1,7 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import CandlesPage from '@components/components/CandlesPage/CandlesPage';
 import { buildFilterQuery } from '@components/helpers';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { removeCandlesSuffix } from '@components/helpers/removeCandlesSuffix';
 import { fetchCandles } from '@lib/api-services/fetchCandles';
 import { getDictionary } from '@lib/utils/dictionary';
@@ -51,14 +52,14 @@ export default async function Page({
     ? buildFilterQuery('waxColor.value', searchParams.color)
     : '';
 
-    const sortQuery = searchParams.sort
+  const sortQuery = searchParams.sort
     ? buildFilterQuery('sort', searchParams.sort)
     : '';
 
   const hasFetchQuery = searchParams.fetch;
 
   const wax = removeCandlesSuffix(slug);
-  const currentLang = lang === 'uk' ? 'UA' : 'EN';
+  const currentLang = convertToServerLocale(lang);
 
   const promise = !hasFetchQuery
     ? fetchCandles({ currentLang, wax, currentPage, perPage })
@@ -71,7 +72,7 @@ export default async function Page({
         volume: volumeQuery,
         containerColor: containerColorQuery,
         waxColor: waxColorQuery,
-        sort: sortQuery
+        sort: sortQuery,
       });
 
   return (

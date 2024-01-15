@@ -1,7 +1,9 @@
 'use client';
+import CartListSkeleton from '@components/components/Skeletons/CartListSkeleton/CartListSkeleton';
 import Typography from '@components/components/Typography/Typography';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
+import { useLangFromPathname, useProductList } from '@components/hooks';
 import type {
-  CartProductI,
   configuratorSectionI,
   ProductListDictionary,
 } from '@components/types';
@@ -14,29 +16,46 @@ import styles from './ProductList.module.scss';
 interface ProductListProps {
   dict: ProductListDictionary;
   dictParam: configuratorSectionI;
-  itemDeleted: string;
+  itemDeletedToast: string;
 }
 
 const ProductList: React.FC<ProductListProps> = ({
   dict: { totalText, deleteButtonText, descriptionPropertyNames },
   dictParam,
-  itemDeleted,
+  itemDeletedToast,
 }) => {
-  const { totalPrice, cartItems } = useCartContext();
+  const { cartTotalPrice, cartProducts } = useCartContext();
+  const lang = useLangFromPathname();
+  const currentLang = convertToServerLocale(lang);
+
+  const { products, isLoading, handleDelete, hasError } = useProductList({
+    cartProducts,
+    currentLang,
+  });
+
+  if (hasError) {
+    throw new Error('Error by fetching cart data😥');
+  }
 
   return (
     <div>
-      {cartItems.length >= 1 && (
+      {isLoading && <CartListSkeleton />}
+      {!isLoading && !hasError && products.length >= 1 && (
         <>
           <ul className={styles.list}>
-            {cartItems.map((product: CartProductI) => (
+            {products.map((product: ICartProduct, index) => (
               <ProductCard
-                key={product.id}
+                key={
+                  product.slug.includes('boxes')
+                    ? `${product.id}${index}`
+                    : product.id
+                }
                 {...product}
                 deleteButtonText={deleteButtonText}
                 descriptionPropertyNames={descriptionPropertyNames}
-                itemDeleted={itemDeleted}
+                itemDeletedToast={itemDeletedToast}
                 dictParam={dictParam}
+                handleDelete={handleDelete}
               />
             ))}
           </ul>
@@ -46,7 +65,7 @@ const ProductList: React.FC<ProductListProps> = ({
             </Typography>
             <div className={styles.price_container}>
               <Typography variant="bodyXLHeavy" className={styles.price}>
-                {totalPrice}
+                {cartTotalPrice}
               </Typography>
               <span>&#8372;</span>
             </div>
