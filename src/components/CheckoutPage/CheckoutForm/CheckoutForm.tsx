@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import Button from '@components/components/Button/Button';
 import Input from '@components/components/Input/Input';
-// import { buildOrderData } from '@components/helpers/buildOrderData';
+import { buildOrderData } from '@components/helpers/buildOrderData';
 import validationSchema from '@components/helpers/formValidationSchema';
 import { showToast } from '@components/helpers/showToast';
 import useStatusState from '@components/hooks/useStatusState';
@@ -53,18 +53,20 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   });
 
   const onSubmit = async (data: CheckoutFormValues) => {
-    // const newOrder = buildOrderData(data, cartItems, totalPrice, dictParam);
-    // try {
-    //   handleStatus('isLoading', true);
-    //   await sendOrder(newOrder);
-    //   showToast(orderIsPlaced);
-    // } catch (e) {
-    //   handleStatus('hasError', true);
-    //   console.log(e);
-    //   showToast(failedRequest, 'error');
-    // } finally {
-    //   handleStatus('isLoading', false);
-    // }
+    
+    const newOrder = buildOrderData(data, cartProducts, cartTotalPrice, dictParam);
+    
+    try {
+      handleStatus('isLoading', true);
+      await sendOrder(newOrder);
+      showToast(orderIsPlaced);
+    } catch (e) {
+      handleStatus('hasError', true);
+      console.log(e);
+      showToast(failedRequest, 'error');
+    } finally {
+      handleStatus('isLoading', false);
+    }
   };
 
   return (
