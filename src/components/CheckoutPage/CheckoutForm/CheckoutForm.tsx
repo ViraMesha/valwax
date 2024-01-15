@@ -9,7 +9,7 @@ import validationSchema from '@components/helpers/formValidationSchema';
 import { showToast } from '@components/helpers/showToast';
 import useStatusState from '@components/hooks/useStatusState';
 import { CheckoutFormProps, CheckoutFormValues } from '@components/types';
-import { useCartContext } from '@context/CartContext';
+import { useCartActionsContext, useCartContext } from '@context/CartContext';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { sendOrder } from '@lib/api-services/fetchOrder';
 
@@ -33,6 +33,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   } = dict;
 
   const { cartTotalPrice, cartProducts } = useCartContext();
+  const { clearCartProducts } = useCartActionsContext();
   const router = useRouter();
 
   const formControl = useForm<CheckoutFormValues>({
@@ -62,6 +63,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       handleStatus('isLoading', true);
       await sendOrder(newOrder);
       showToast(orderIsPlaced);
+      clearCartProducts();
       router.push(`/success-order`);
     } catch (e) {
       handleStatus('hasError', true);

@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useCallback, useContext, useMemo, useRef } from 'react';
+import { createContext, useCallback, useContext, useMemo } from 'react';
 import { DECREMENT, INCREMENT } from '@components/constants';
 import { showToast } from '@components/helpers/showToast';
 import { useLocalStorage } from '@components/hooks/useLocalStorage';
@@ -72,19 +72,23 @@ interface CartActionsContextProps {
     aroma,
     toastMessage,
   }: IDeleteCartItemParams) => void;
+  clearCartProducts: () => void;
 }
 
 const CartContext = createContext<CartContextI | null>(null);
 const CartActionsContext = createContext<CartActionsContextProps | null>(null);
 
 export const CartContextProvider = ({ children }: CartContextProps) => {
+
+  const initCardProducts = {
+    boxes: [],
+    candles: [],
+    customCandles: [],
+  }
+
   const [cartProducts, setCartProducts] = useLocalStorage<ICartProducts>(
     'cartProducts',
-    {
-      boxes: [],
-      candles: [],
-      customCandles: [],
-    }
+    initCardProducts
   );
 
   const candlesQuantity =
@@ -330,6 +334,12 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
     showToast(`${toastMessage}`);
   };
 
+  const clearCartProducts = useCallback( () => {
+      setCartProducts(initCardProducts);
+    },
+    [setCartProducts]
+  );
+
   const contextValue = useMemo(
     () => ({
       cartProducts,
@@ -348,6 +358,7 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
           addCustomCandleToCart,
           toggleQuantity,
           deleteCartItem,
+          clearCartProducts,
         }}
       >
         {children}
