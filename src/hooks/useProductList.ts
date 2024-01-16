@@ -84,7 +84,6 @@ export const useProductList = ({
   };
 
   useEffect(() => {
-    console.log('Is running');
     setProducts(initialState);
     getCandles();
     getBoxes();
