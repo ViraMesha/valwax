@@ -38,7 +38,7 @@ const ProductList: React.FC<ProductListProps> = ({
   }
 
   return (
-    <div>
+    <div key={currentLang}>
       {isLoading && <CartListSkeleton />}
       {!isLoading && !hasError && products.length >= 1 && (
         <>
