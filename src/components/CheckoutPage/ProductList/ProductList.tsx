@@ -37,8 +37,11 @@ const ProductList: React.FC<ProductListProps> = ({
     throw new Error('Error by fetching cart data😥');
   }
 
+  console.log('isLoading', isLoading);
+  console.log('hasError', hasError);
+
   return (
-    <div key={currentLang}>
+    <div>
       {isLoading && <CartListSkeleton />}
       {!isLoading && !hasError && products.length >= 1 && (
         <>
