@@ -1,4 +1,5 @@
 import type { CandleDetailsI } from '../../../types';
+import MobilePagination from '../../shared/MobilePagination/MobilePagination';
 import CandleItemCard from '../CandleItemCard/CandleItemCard';
 
 import styles from './CandleList.module.scss';
@@ -8,7 +9,7 @@ interface CandleListProps {
 }
 
 const CandleList: React.FC<CandleListProps> = async ({ items }) => {
-  const { candles } = await items;
+  const { candles, totalPages } = await items;
   return (
     <>
       {candles && candles.length > 0 ? (
@@ -16,6 +17,7 @@ const CandleList: React.FC<CandleListProps> = async ({ items }) => {
           {candles.map((item: CandleDetailsI) => (
             <CandleItemCard key={item.id} {...item} />
           ))}
+          <MobilePagination totalPages={totalPages} />
         </ul>
       ) : null}
     </>

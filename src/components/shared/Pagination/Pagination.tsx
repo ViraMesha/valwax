@@ -30,7 +30,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   };
 
   return (
-    <Section>
+    <Section className={styles.section}>
       <Container>
         <ul className={styles.dots}>
           {pageRange.map(pageNumber => (
