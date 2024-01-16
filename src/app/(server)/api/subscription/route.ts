@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { BASE_URL } from '@components/constants';
-import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
 
 export async function POST(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -21,19 +20,26 @@ export async function POST(request: NextRequest) {
         { message: 'Already subscribed', success: false },
         { status: 400 }
       );
+    } else if (String(response.status).includes('200')) {
+      return NextResponse.json({
+        message: 'The email was sent',
+        success: true,
+      });
     }
 
-    if (String(response.status).includes('404')) {
-      return NextResponse.json(
-        { message: 'Not Found', success: false },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json({ message: 'The email was sent', success: true });
+    return NextResponse.json(
+      {
+        message: 'An error occur while sending email. Please try again!',
+        success: false,
+      },
+      { status: 500 }
+    );
   } catch (error: unknown) {
     return NextResponse.json(
-      { message: 'Internal server error', success: false },
+      {
+        message: 'An error occur while sending email. Please try again!',
+        success: false,
+      },
       { status: 500 }
     );
   }
