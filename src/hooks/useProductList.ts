@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
 import { useCartContext } from '@context/CartContext';
@@ -25,9 +25,11 @@ export const useProductList = () => {
     hasError: false,
   });
 
+  const boxesIds = useMemo(() => boxes.map(item => item.id), [boxes]);
+  const candlesIds = useMemo(() => candles.map(item => item.id), [candles]);
+
   const getCandles = async () => {
     try {
-      const candlesIds = candles.map(item => item.id);
       if (candlesIds.length > 0) {
         handleStatus('isLoading', true);
         const data = await fetchCartCandles({
@@ -56,7 +58,6 @@ export const useProductList = () => {
 
   const getBoxes = async () => {
     try {
-      const boxesIds = boxes.map(item => item.id);
       console.log('boxesIds', boxesIds);
       if (boxesIds.length > 0) {
         handleStatus('isLoading', true);
