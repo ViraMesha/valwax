@@ -25,6 +25,7 @@ interface CandlesPageI {
   };
   lang: Locale;
   candles: Promise<CandleApiResponse>;
+  paginBtnDict: string;
 }
 
 const CandlesPage: React.FC<CandlesPageI> = ({
@@ -32,12 +33,17 @@ const CandlesPage: React.FC<CandlesPageI> = ({
   dict,
   lang,
   candles,
+  paginBtnDict,
 }) => {
   return (
     <>
       <Tabs dict={dict} lang={lang} />
       <WaxDesc dict={dictWax?.waxDesc} className={styles.waxDescAboveCandles} />
-      <CandlesSection dict={dict} candles={candles} />
+      <CandlesSection
+        dict={dict}
+        candles={candles}
+        paginBtnDict={paginBtnDict}
+      />
       <Await promise={candles}>
         {({ totalPages }) => <Pagination totalPages={totalPages} />}
       </Await>

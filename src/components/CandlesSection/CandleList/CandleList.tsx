@@ -6,9 +6,10 @@ import styles from './CandleList.module.scss';
 
 interface CandleListProps {
   items: Promise<CandleApiResponse>;
+  paginBtnDict: string;
 }
 
-const CandleList: React.FC<CandleListProps> = async ({ items }) => {
+const CandleList: React.FC<CandleListProps> = async ({ items, paginBtnDict }) => {
   const { candles, totalPages } = await items;
   return (
     <>
@@ -17,7 +18,7 @@ const CandleList: React.FC<CandleListProps> = async ({ items }) => {
           {candles.map((item: CandleDetailsI) => (
             <CandleItemCard key={item.id} {...item} />
           ))}
-          <MobilePagination totalPages={totalPages} />
+          <MobilePagination totalPages={totalPages} paginBtnDict={paginBtnDict} />
         </ul>
       ) : null}
     </>

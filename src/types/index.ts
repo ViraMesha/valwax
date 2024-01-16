@@ -244,6 +244,7 @@ export interface CandlesSectionI {
     filter: FilterT;
   };
   candles: Promise<CandleApiResponse>;
+  paginBtnDict: string;
 }
 
 export interface FilterTagsI {

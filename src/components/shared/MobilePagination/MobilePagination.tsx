@@ -7,9 +7,10 @@ import styles from './MobilePagination.module.scss';
 
 interface MobilePaginationProps {
   totalPages: number;
+  paginBtnDict: string;
 }
 
-const MobilePagination = ({ totalPages }: MobilePaginationProps) => {
+const MobilePagination = ({ totalPages, paginBtnDict }: MobilePaginationProps) => {
   const { handlePageClick, page } = usePagination();
 
   return (
@@ -21,7 +22,7 @@ const MobilePagination = ({ totalPages }: MobilePaginationProps) => {
             onClick={() => handlePageClick(page + 1)}
           >
             <Typography variant="bodyRegular" color="var(--cl-primary-900)">
-              Показати ще
+             {paginBtnDict}
             </Typography>
             <IoIosArrowRoundForward />
           </button>
