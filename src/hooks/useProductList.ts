@@ -1,21 +1,22 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
+import { useCartContext } from '@context/CartContext';
 import { fetchCartBoxes } from '@lib/api-services/fetchCartBoxes';
 import { fetchCartCandles } from '@lib/api-services/fetchCartCandles';
 
+import { useLangFromPathname } from './useLangFromPathname';
 import useStatusState from './useStatusState';
 
-export const useProductList = ({
-  cartProducts,
-  currentLang,
-}: {
-  cartProducts: ICartProducts;
-  currentLang: ServerLocale;
-}) => {
+export const useProductList = () => {
+  const { cartProducts } = useCartContext();
   const initialState = [...cartProducts.customCandles];
   const [products, setProducts] = useState<ICartProduct[] | []>(initialState);
+
+  const lang = useLangFromPathname();
+  const currentLang = convertToServerLocale(lang);
 
   const { candles, boxes } = cartProducts;
   const candlesIds = candles.map(item => item.id);
@@ -85,9 +86,10 @@ export const useProductList = ({
 
   useEffect(() => {
     setProducts(initialState);
+    console.log('UseEffect is running');
     getCandles();
     getBoxes();
-  }, [currentLang]);
+  }, [lang]);
 
   const handleDelete = ({ id, isBox, aroma }: IHandleDeleteParams) => {
     setProducts(prevItems => {

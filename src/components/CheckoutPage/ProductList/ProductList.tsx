@@ -1,8 +1,7 @@
 'use client';
 import CartListSkeleton from '@components/components/Skeletons/CartListSkeleton/CartListSkeleton';
 import Typography from '@components/components/Typography/Typography';
-import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
-import { useLangFromPathname, useProductList } from '@components/hooks';
+import { useProductList } from '@components/hooks';
 import type {
   configuratorSectionI,
   ProductListDictionary,
@@ -24,14 +23,9 @@ const ProductList: React.FC<ProductListProps> = ({
   dictParam,
   itemDeletedToast,
 }) => {
-  const { cartTotalPrice, cartProducts } = useCartContext();
-  const lang = useLangFromPathname();
-  const currentLang = convertToServerLocale(lang);
+  const { cartTotalPrice } = useCartContext();
 
-  const { products, isLoading, handleDelete, hasError } = useProductList({
-    cartProducts,
-    currentLang,
-  });
+  const { products, isLoading, handleDelete, hasError } = useProductList();
 
   if (hasError) {
     throw new Error('Error by fetching cart data😥');
@@ -39,6 +33,7 @@ const ProductList: React.FC<ProductListProps> = ({
 
   console.log('isLoading', isLoading);
   console.log('hasError', hasError);
+  console.log('products.length >= 1', products.length >= 1);
 
   return (
     <div>
