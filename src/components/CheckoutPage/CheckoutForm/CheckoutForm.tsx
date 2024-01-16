@@ -20,7 +20,7 @@ import styles from './CheckoutForm.module.scss';
 const CheckoutForm: React.FC<CheckoutFormProps> = ({
   dict,
   dictParam,
-  toastDict: { failedRequest, orderIsPlaced },
+  toastDict: { failedRequest },
 }) => {
   const {
     contactFormTitle,
@@ -62,7 +62,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     try {
       handleStatus('isLoading', true);
       await sendOrder(newOrder);
-      showToast(orderIsPlaced);
       clearCartProducts();
       router.push(`/success-order`);
     } catch (e) {
