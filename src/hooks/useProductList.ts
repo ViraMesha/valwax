@@ -19,8 +19,6 @@ export const useProductList = () => {
   const currentLang = convertToServerLocale(lang);
 
   const { candles, boxes } = cartProducts;
-  const candlesIds = candles.map(item => item.id);
-  const boxesIds = boxes.map(item => item.id);
 
   const { state, handleStatus } = useStatusState({
     isLoading: false,
@@ -29,6 +27,7 @@ export const useProductList = () => {
 
   const getCandles = async () => {
     try {
+      const candlesIds = candles.map(item => item.id);
       if (candlesIds.length > 0) {
         handleStatus('isLoading', true);
         const data = await fetchCartCandles({
@@ -57,6 +56,8 @@ export const useProductList = () => {
 
   const getBoxes = async () => {
     try {
+      const boxesIds = boxes.map(item => item.id);
+      console.log('boxesIds', boxesIds);
       if (boxesIds.length > 0) {
         handleStatus('isLoading', true);
         const data = await fetchCartBoxes({
@@ -86,7 +87,6 @@ export const useProductList = () => {
 
   useEffect(() => {
     setProducts(initialState);
-    console.log('UseEffect is running');
     getCandles();
     getBoxes();
   }, [lang]);
