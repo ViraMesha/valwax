@@ -5,6 +5,10 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+
+  @include breakpoint('desktop-large'){
+    flex-direction: column-reverse;
+  }
 }
 
 .wrapperFilter {
@@ -43,6 +47,11 @@
 .wrapperBtn {
   display: flex;
   gap: 20px;
+  
+  @include breakpoint('desktop-large'){
+    gap: 8px;
+  }
+
 }
 
 .price {
@@ -105,4 +114,9 @@
   @include breakpoint('desktop') {
     width: 429px;
   }
+
+  @include breakpoint('desktop-large'){
+    padding: 6px 18px;
+  }
+
 }

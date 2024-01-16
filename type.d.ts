@@ -26,9 +26,9 @@ interface IFilterItem {
 //  ParamsCandleContext
 
 interface ParamCandleI {
-  name: string;
-  image: StaticImageData | null;
-  index: number | null;
+  nameOption: string;
+  imageOption: StaticImageData | null;
+  indexOption: number | null;
 }
 
 interface ConfigurationParamsCandleI {
@@ -36,7 +36,7 @@ interface ConfigurationParamsCandleI {
   wax: ParamCandleI;
   aroma: ParamCandleI;
   wick: ParamCandleI;
-  color: { name: string; color: null | string; index: null | number };
+  color: { nameOption: string; colorOption: null | string; indexOption: null | number };
 }
 
 interface ParamsCandleContextI {
@@ -183,8 +183,6 @@ interface ICartCandle {
 }
 
 interface ICartProducts {
-  candlesIds: string[];
-  boxesIds: string[];
   boxes: ICartBox[];
   candles: ICartCandle[];
   customCandles: ICustomCandle[];

@@ -1,14 +1,15 @@
 'use client';
 
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form';
 import Button from '@components/components/Button/Button';
 import Input from '@components/components/Input/Input';
-// import { buildOrderData } from '@components/helpers/buildOrderData';
+import { buildOrderData } from '@components/helpers/buildOrderData';
 import validationSchema from '@components/helpers/formValidationSchema';
 import { showToast } from '@components/helpers/showToast';
 import useStatusState from '@components/hooks/useStatusState';
 import { CheckoutFormProps, CheckoutFormValues } from '@components/types';
-import { useCartContext } from '@context/CartContext';
+import { useCartActionsContext, useCartContext } from '@context/CartContext';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { sendOrder } from '@lib/api-services/fetchOrder';
 
@@ -19,7 +20,7 @@ import styles from './CheckoutForm.module.scss';
 const CheckoutForm: React.FC<CheckoutFormProps> = ({
   dict,
   dictParam,
-  toastDict: { failedRequest, orderIsPlaced },
+  toastDict: { failedRequest },
 }) => {
   const {
     contactFormTitle,
@@ -32,6 +33,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   } = dict;
 
   const { cartTotalPrice, cartProducts } = useCartContext();
+  const { clearCartProducts } = useCartActionsContext();
+  const router = useRouter();
 
   const formControl = useForm<CheckoutFormValues>({
     mode: 'onBlur',
@@ -53,18 +56,22 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   });
 
   const onSubmit = async (data: CheckoutFormValues) => {
-    // const newOrder = buildOrderData(data, cartItems, totalPrice, dictParam);
-    // try {
-    //   handleStatus('isLoading', true);
-    //   await sendOrder(newOrder);
-    //   showToast(orderIsPlaced);
-    // } catch (e) {
-    //   handleStatus('hasError', true);
-    //   console.log(e);
-    //   showToast(failedRequest, 'error');
-    // } finally {
-    //   handleStatus('isLoading', false);
-    // }
+    
+    const newOrder = buildOrderData(data, cartProducts, cartTotalPrice, dictParam);
+
+    try {
+      handleStatus('isLoading', true);
+      await sendOrder(newOrder);
+      clearCartProducts();
+      router.push(`/success-order`);
+    } catch (e) {
+      handleStatus('hasError', true);
+      console.log(e);
+      showToast(failedRequest, 'error');
+    } finally {
+      handleStatus('isLoading', false);
+    }
+
   };
 
   return (
