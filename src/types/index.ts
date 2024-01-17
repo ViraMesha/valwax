@@ -124,6 +124,8 @@ export interface AreaData {
   CITY_UA?: string;
   POSTOFFICE_ID?: string;
   POSTOFFICE_UA?: string;
+  STREET_UA_VPZ?: string;
+  DISTRICT_UA?: string;
 }
 
 export interface SelectOptions {
