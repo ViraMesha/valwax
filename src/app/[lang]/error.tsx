@@ -34,7 +34,7 @@ export default function Error({
           110px"
         />
         <Typography variant="bodyXL" color="var(--cl-gray-500)">
-         {error.message ? error.message : "Ooops... Something went wrong😭"}
+          Ooops... Something went wrong😭
         </Typography>
         <Button
           variant="secondary"

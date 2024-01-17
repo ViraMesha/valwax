@@ -124,6 +124,8 @@ export interface AreaData {
   CITY_UA?: string;
   POSTOFFICE_ID?: string;
   POSTOFFICE_UA?: string;
+  STREET_UA_VPZ?: string;
+  DISTRICT_UA?: string;
 }
 
 export interface SelectOptions {
@@ -244,6 +246,7 @@ export interface CandlesSectionI {
     filter: FilterT;
   };
   candles: Promise<CandleApiResponse>;
+  paginBtnDict: string;
 }
 
 export interface FilterTagsI {

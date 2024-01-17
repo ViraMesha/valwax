@@ -6,5 +6,9 @@ export const subscribeToNewsletter = async (email: string) => {
     },
   });
 
-  if (!response.ok) throw new Error("Couldn't post the data.");
+  if (response.status === 400) throw new Error('Already subscribed!');
+
+  if (!response.ok) {
+    throw new Error('Something went wrong...😥 Please try again!');
+  }
 };

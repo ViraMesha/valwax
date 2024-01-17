@@ -1,30 +1,32 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
+import { useCartContext } from '@context/CartContext';
 import { fetchCartBoxes } from '@lib/api-services/fetchCartBoxes';
 import { fetchCartCandles } from '@lib/api-services/fetchCartCandles';
 
+import { useLangFromPathname } from './useLangFromPathname';
 import useStatusState from './useStatusState';
 
-export const useProductList = ({
-  cartProducts,
-  currentLang,
-}: {
-  cartProducts: ICartProducts;
-  currentLang: ServerLocale;
-}) => {
+export const useProductList = () => {
+  const { cartProducts } = useCartContext();
   const initialState = [...cartProducts.customCandles];
   const [products, setProducts] = useState<ICartProduct[] | []>(initialState);
 
+  const lang = useLangFromPathname();
+  const currentLang = convertToServerLocale(lang);
+
   const { candles, boxes } = cartProducts;
-  const candlesIds = candles.map(item => item.id);
-  const boxesIds = boxes.map(item => item.id);
 
   const { state, handleStatus } = useStatusState({
     isLoading: false,
     hasError: false,
   });
+
+  const boxesIds = useMemo(() => boxes.map(item => item.id), [boxes]);
+  const candlesIds = useMemo(() => candles.map(item => item.id), [candles]);
 
   const getCandles = async () => {
     try {
@@ -87,7 +89,7 @@ export const useProductList = ({
     setProducts(initialState);
     getCandles();
     getBoxes();
-  }, [currentLang]);
+  }, [lang]);
 
   const handleDelete = ({ id, isBox, aroma }: IHandleDeleteParams) => {
     setProducts(prevItems => {

@@ -35,7 +35,7 @@ export default async function Page({
   };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const { breadcrumbs, page } = await getDictionary(lang);
+  const { breadcrumbs, page, general } = await getDictionary(lang);
 
   const currentPage = convertStringToNumber(searchParams.page, 1);
   const perPage = convertStringToNumber(searchParams.perPage, 9);
@@ -91,6 +91,7 @@ export default async function Page({
         dict={page.candles}
         lang={lang}
         candles={promise}
+        paginBtnDict={general.buttons.showMore}
       />
     </>
   );

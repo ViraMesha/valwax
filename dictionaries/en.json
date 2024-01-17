@@ -434,7 +434,8 @@
   "general": {
     "buttons": {
       "buyNow": "Buy now",
-      "addToCart": "Add to cart"
+      "addToCart": "Add to cart",
+      "showMore": "Show more"
     },
     "titles": {
       "price": "Price:",

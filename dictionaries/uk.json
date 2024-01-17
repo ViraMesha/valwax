@@ -427,7 +427,8 @@
   "general": {
     "buttons": {
       "buyNow": "Купити зараз",
-      "addToCart": "До кошика"
+      "addToCart": "До кошика",
+      "showMore": "Показати ще"
     },
     "titles": {
       "price": "Вартість:",
