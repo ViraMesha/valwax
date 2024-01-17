@@ -70,7 +70,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       router.push(`/success-order`);
     } catch (e) {
       handleStatus('hasError', true);
-      console.log(e);
+      console.error(e);
       showToast(failedRequest, 'error');
     } finally {
       handleStatus('isLoading', false);

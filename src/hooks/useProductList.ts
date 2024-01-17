@@ -59,8 +59,6 @@ export const useProductList = () => {
           ids: boxesIds,
         });
 
-        console.log(data);
-
         if (!Array.isArray(data)) {
           throw new Error('Error by fetching cart boxes');
         }

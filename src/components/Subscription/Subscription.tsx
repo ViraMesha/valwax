@@ -65,7 +65,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict, toastDict }) => {
     } catch (error: unknown) {
       const errorMessage = extractErrorMessage(error);
       handleStatus('hasError', true);
-      console.log(error);
+      console.error(error);
       showToast(errorMessage, 'error');
     } finally {
       handleStatus('isLoading', false);
