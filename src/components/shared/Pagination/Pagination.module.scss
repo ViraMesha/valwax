@@ -1,11 +1,5 @@
 @import '../../../scss/utilities/breakpoint-mixin.scss';
 
-body .section {
-  @include breakpoint('only-mobile') {
-    display: none;
-  }
-}
-
 .dots {
   display: flex;
   justify-content: center;

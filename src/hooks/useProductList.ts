@@ -58,7 +58,6 @@ export const useProductList = () => {
 
   const getBoxes = async () => {
     try {
-      console.log('boxesIds', boxesIds);
       if (boxesIds.length > 0) {
         handleStatus('isLoading', true);
         const data = await fetchCartBoxes({
