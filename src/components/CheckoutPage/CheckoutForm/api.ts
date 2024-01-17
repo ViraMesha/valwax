@@ -18,7 +18,6 @@ export const fetchAreas = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data.data);
       return data.data;
     } else {
       console.error('Помилка завантаження даних з API');
@@ -46,12 +45,10 @@ export const fetchCities = async (Label: string) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data.data);
 
       const filteredCities = data.data.filter(
         (city: CityData) => city.AreaDescription === Label
       );
-      console.log('filteredCities', filteredCities);
       return filteredCities;
     } else {
       console.error('Помилка завантаження даних з API');
@@ -122,8 +119,6 @@ export const fetchWarehouses = async (
     );
     if (warehouses !== null) {
       allWarehouses.push(...warehouses);
-    } else {
-      console.log(warehouses);
     }
   }
 
@@ -138,7 +133,6 @@ export const fetchAreasUkr = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       return data;
     } else {
       console.error('Помилка завантаження даних з API');
@@ -158,7 +152,6 @@ export const fetchCitiesUkr = async (RegionId: string) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       return data;
     } else {
       console.error('Помилка завантаження даних з API');
@@ -171,7 +164,6 @@ export const fetchCitiesUkr = async (RegionId: string) => {
 };
 
 export const fetchWarehousesUkr = async (CityId: string) => {
-  console.log('CityId', CityId);
   try {
     const response = await fetch(`/api/checkout/warehouses?city_id=${CityId}`, {
       method: 'GET',
@@ -179,7 +171,6 @@ export const fetchWarehousesUkr = async (CityId: string) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       return data;
     } else {
       console.error('Помилка завантаження даних з API');
