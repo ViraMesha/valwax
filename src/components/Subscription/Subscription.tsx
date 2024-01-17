@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import emailValidationSchema from '@components/helpers/emailValidationSchema';
 import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
 import { showToast } from '@components/helpers/showToast';
-import useStatusState from '@components/hooks/useStatusState';
+import { useStatusState } from '@components/hooks';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { subscribeToNewsletter } from '@lib/api-services/subscribeToNewsletter';
 

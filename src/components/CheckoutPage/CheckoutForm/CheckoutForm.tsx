@@ -1,13 +1,13 @@
 'use client';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import Button from '@components/components/Button/Button';
 import Input from '@components/components/Input/Input';
 import { buildOrderData } from '@components/helpers/buildOrderData';
 import validationSchema from '@components/helpers/formValidationSchema';
 import { showToast } from '@components/helpers/showToast';
-import useStatusState from '@components/hooks/useStatusState';
+import { useStatusState } from '@components/hooks';
 import { CheckoutFormProps, CheckoutFormValues } from '@components/types';
 import { useCartActionsContext, useCartContext } from '@context/CartContext';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -56,8 +56,12 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   });
 
   const onSubmit = async (data: CheckoutFormValues) => {
-    
-    const newOrder = buildOrderData(data, cartProducts, cartTotalPrice, dictParam);
+    const newOrder = buildOrderData(
+      data,
+      cartProducts,
+      cartTotalPrice,
+      dictParam
+    );
 
     try {
       handleStatus('isLoading', true);
@@ -71,7 +75,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     } finally {
       handleStatus('isLoading', false);
     }
-
   };
 
   return (

@@ -1,34 +1,28 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getInitialCartProducts } from '@components/helpers';
 import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
-import { useCartContext } from '@context/CartContext';
 import { fetchCartBoxes } from '@lib/api-services/fetchCartBoxes';
 import { fetchCartCandles } from '@lib/api-services/fetchCartCandles';
 
 import { useLangFromPathname } from './useLangFromPathname';
-import useStatusState from './useStatusState';
+import { getStorageValue } from './useLocalStorage';
+import { useStatusState } from './useStatusState';
 
 export const useProductList = () => {
-  const { cartProducts } = useCartContext();
-  const initialState = [...cartProducts.customCandles];
-  const [products, setProducts] = useState<ICartProduct[] | []>(initialState);
+  const [products, setProducts] = useState<ICartProduct[] | []>([]);
 
   const lang = useLangFromPathname();
   const currentLang = convertToServerLocale(lang);
-
-  const { candles, boxes } = cartProducts;
 
   const { state, handleStatus } = useStatusState({
     isLoading: false,
     hasError: false,
   });
 
-  const boxesIds = useMemo(() => boxes.map(item => item.id), [boxes]);
-  const candlesIds = useMemo(() => candles.map(item => item.id), [candles]);
-
-  const getCandles = async () => {
+  const getCandles = async (candlesIds: string[], candles: ICartCandle[]) => {
     try {
       if (candlesIds.length > 0) {
         handleStatus('isLoading', true);
@@ -56,7 +50,7 @@ export const useProductList = () => {
     }
   };
 
-  const getBoxes = async () => {
+  const getBoxes = async (boxesIds: string[], boxes: ICartBox[]) => {
     try {
       if (boxesIds.length > 0) {
         handleStatus('isLoading', true);
@@ -64,6 +58,8 @@ export const useProductList = () => {
           lang: currentLang,
           ids: boxesIds,
         });
+
+        console.log(data);
 
         if (!Array.isArray(data)) {
           throw new Error('Error by fetching cart boxes');
@@ -86,9 +82,24 @@ export const useProductList = () => {
   };
 
   useEffect(() => {
+    const initCardProducts = getInitialCartProducts();
+
+    const cartProducts = getStorageValue<ICartProducts>(
+      'cartProducts',
+      initCardProducts
+    );
+
+    const initialState = [...cartProducts.customCandles];
+
     setProducts(initialState);
-    getCandles();
-    getBoxes();
+
+    const { boxes, candles } = cartProducts;
+
+    const boxesIds = boxes.map(item => item.id);
+    const candlesIds = candles.map(item => item.id);
+
+    getCandles(candlesIds, candles);
+    getBoxes(boxesIds, boxes);
   }, [lang]);
 
   const handleDelete = ({ id, isBox, aroma }: IHandleDeleteParams) => {

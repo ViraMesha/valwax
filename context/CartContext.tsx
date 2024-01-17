@@ -1,6 +1,7 @@
 'use client';
 import { createContext, useCallback, useContext, useMemo } from 'react';
 import { DECREMENT, INCREMENT } from '@components/constants';
+import { getInitialCartProducts } from '@components/helpers';
 import { showToast } from '@components/helpers/showToast';
 import { useLocalStorage } from '@components/hooks/useLocalStorage';
 import { ICustomCandle } from '@components/types';
@@ -79,12 +80,7 @@ const CartContext = createContext<CartContextI | null>(null);
 const CartActionsContext = createContext<CartActionsContextProps | null>(null);
 
 export const CartContextProvider = ({ children }: CartContextProps) => {
-
-  const initCardProducts = {
-    boxes: [],
-    candles: [],
-    customCandles: [],
-  }
+  const initCardProducts = getInitialCartProducts();
 
   const [cartProducts, setCartProducts] = useLocalStorage<ICartProducts>(
     'cartProducts',
@@ -334,11 +330,9 @@ export const CartContextProvider = ({ children }: CartContextProps) => {
     showToast(`${toastMessage}`);
   };
 
-  const clearCartProducts = useCallback( () => {
-      setCartProducts(initCardProducts);
-    },
-    [setCartProducts]
-  );
+  const clearCartProducts = useCallback(() => {
+    setCartProducts(initCardProducts);
+  }, [initCardProducts, setCartProducts]);
 
   const contextValue = useMemo(
     () => ({
