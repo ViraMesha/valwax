@@ -3,12 +3,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import Button from '@components/components/Button/Button';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
-import { useCandleParam } from '@components/helpers';
 import { showToast } from '@components/helpers/showToast';
 import { useCartActionsContext } from '@context/CartContext';
 import { useParamsCandleActionContext } from '@context/ParamCandleContext';
-import candleImg from '@images/candles/img-1.jpg';
-import { nanoid } from 'nanoid';
+import { useCandleParam } from '@hooks/index';
 
 import { ConfiguratorSectionI } from '../../../../types/index';
 
@@ -27,28 +25,30 @@ const Configurator: React.FC<ConfiguratorSectionI> = ({
 
   const { paramCandle, handleChangeCandleParam } = useCandleParam();
 
-  const { onAdd } = useCartActionsContext();
+  const { addCustomCandleToCart } = useCartActionsContext();
   const { cleanParamsCandle } = useParamsCandleActionContext();
   const pathName = usePathname();
   const router = useRouter();
   const lang = pathName.split('/')[1];
 
   const product = {
-    id: nanoid(),
-    img: candleImg.src,
+    id: `c${paramCandle.container}wa${paramCandle.wax}a${paramCandle.aroma}wi${paramCandle.wick}c${paramCandle.color}`,
     title: dictGeneral.titles.сustomCandle,
     description: paramCandle,
     configuration: paramCandle,
     price,
-    link: '/create-your-own',
+    slug: '/create-your-own',
     quantity: 1,
   };
 
   const handleBuyNowButtonClick = () => {
     const allParamNotEmpty = Object.values(paramCandle).every(v => v !== '');
     if (allParamNotEmpty) {
-      onAdd(product, 1, dictGeneral.messages.itemAdded);
-      cleanParamsCandle()
+      addCustomCandleToCart({
+        customCandle: product,
+        toastMessage: dictGeneral.messages.itemAdded,
+      });
+      cleanParamsCandle();
       router.push(`/${lang}/checkout`);
       return;
     }

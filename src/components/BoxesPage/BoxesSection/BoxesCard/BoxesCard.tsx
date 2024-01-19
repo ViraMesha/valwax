@@ -37,7 +37,7 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
         <Price priceStyle={styles.price} price={price} />
         <div className={styles.button__container}>
           <BuyButton
-            product={{ ...box, img: images[0], quantity: 0, link: slug }}
+            product={{ id, price }}
             buyBtn={buyBtn}
             toastMessage={toastMessage}
           />

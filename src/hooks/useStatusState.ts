@@ -8,7 +8,7 @@ type State = {
 };
 
 // Custom hook for managing status state
-const useStatusState = (initialState: State) => {
+export const useStatusState = (initialState: State) => {
   const [state, setState] = useState<State>(initialState);
 
   // Define a function to handle updating specific properties of the state
@@ -21,5 +21,3 @@ const useStatusState = (initialState: State) => {
 
   return { state, handleStatus };
 };
-
-export default useStatusState;

@@ -4,7 +4,8 @@ import { configuratorData } from '@components/components/CreateYourOwn/Configura
 import Parameter from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/Parameter/Parameter';
 import CandleQuantity from '@components/components/shared/CandleQuantity/CandleQuantity';
 import Typography from '@components/components/Typography/Typography';
-import { joinAromaNotes, useCandleParam } from '@components/helpers/index';
+import { joinAromaNotes } from '@components/helpers/index';
+import { useCandleParam } from '@components/hooks';
 import {
   BoxDetailsI,
   ButtonsDictI,
@@ -21,7 +22,7 @@ interface DescriptionProps {
   product: BoxDetailsI | CandleDetailsI;
   id: string;
   buttonsDict: ButtonsDictI;
-  itemAdded: string;
+  toastMessages: IToastMessages;
   productDescriptionDict: IProductDescriptionDict;
   configuratorDict?: configuratorSectionI;
 }
@@ -30,7 +31,7 @@ const Description: React.FC<DescriptionProps> = ({
   product,
   id,
   buttonsDict,
-  itemAdded,
+  toastMessages,
   productDescriptionDict,
   configuratorDict,
 }) => {
@@ -78,7 +79,7 @@ const Description: React.FC<DescriptionProps> = ({
       content:
         'aroma' in product ? joinAromaNotes(product.aroma.baseNotes) : '',
     },
-    { title: volumeDict, content: volume },
+    { title: volumeDict, content: `${volume} ${volumeLabelDict}` },
   ];
 
   const boxAccordionContent =
@@ -88,7 +89,7 @@ const Description: React.FC<DescriptionProps> = ({
             title: `${containerVolumeDict} ${volume} ${volumeLabelDict}`,
             content: product.kit.container,
           },
-          product.kit.matchsticks !== null && {
+          product.kit.matchsticks && {
             title: matchsticksDict,
             content: product.kit.matchsticks,
           },
@@ -157,14 +158,14 @@ const Description: React.FC<DescriptionProps> = ({
         )}
         <BuyButtons
           product={{
-            ...product,
             id: productId,
-            img: images[0],
-            link: slug,
+            slug,
             quantity,
+            aroma: paramCandle.aroma,
+            price,
           }}
           buttonsDict={buttonsDict}
-          itemAdded={itemAdded}
+          toastMessages={toastMessages}
         />
 
         {isCandlePage && (

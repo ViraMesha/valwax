@@ -1,4 +1,4 @@
-export const useInitParamCandle = () => {
+export const getInitParamCandle = () => {
   return {
     container: '',
     wax: '',

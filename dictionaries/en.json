@@ -57,7 +57,7 @@
         "subtitle": "Price",
         "up": "From lower to higher",
         "down": "From higher to lower",
-        "cleanUp": "Clean up",
+        "cleanUp": "Clear",
         "result": "Result",
         "cleanFilter": "Clean the filter",
         "category": {
@@ -110,22 +110,14 @@
               "Blue",
               "White",
               "Brown",
-              "Angry",
               "Pink",
               "Milk (wax color)"
             ]
           },
           "container": {
             "title": "Container",
-            "option": [
-              "30 ml",
-              "50 ml",
-              "100 ml",
-              "150 ml",
-              "200 ml",
-              "250 ml",
-              "300 ml"
-            ]
+            "option": ["30", "50", "100", "150", "200", "250", "300"],
+            "volumeLabel": "ml"
           }
         }
       }
@@ -442,7 +434,8 @@
   "general": {
     "buttons": {
       "buyNow": "Buy now",
-      "addToCart": "Add to cart"
+      "addToCart": "Add to cart",
+      "showMore": "Next page"
     },
     "titles": {
       "price": "Price:",
@@ -450,10 +443,12 @@
     },
     "messages": {
       "notAllParam": "Each candle parameter must be selected",
-      "itemAdded": "The product was successfully added!",
+      "itemAdded": "The product was successfully added to your cart!",
       "itemDeleted": "The product was successfully deleted!",
       "successSubscription": "You have successfully subscribed to our newsletter!",
-      "failedRequest": "Ooops... Something went wrong!"
+      "failedRequest": "Ooops... Something went wrong!",
+      "aromaNeeded": "Please choose the aroma of your box!",
+      "orderIsPlaced": "Your order has been placed"
     }
   },
 

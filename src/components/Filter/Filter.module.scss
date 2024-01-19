@@ -5,6 +5,10 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+
+  @include breakpoint('desktop-large'){
+    flex-direction: column-reverse;
+  }
 }
 
 .wrapperFilter {
@@ -12,7 +16,7 @@
   border: 1px solid var(--cl-gray-500);
   background-color: var(--cl-white);
   min-width: 276px;
-  height: 1230px;
+  height: 1154px;
   padding: 35px;
   color: var(--cl-gray-400);
   display: flex;
@@ -43,6 +47,11 @@
 .wrapperBtn {
   display: flex;
   gap: 20px;
+  
+  @include breakpoint('desktop-large'){
+    gap: 8px;
+  }
+
 }
 
 .price {
@@ -84,7 +93,7 @@
 }
 
 .containerBlock {
-  height: 290px;
+  height: 214px;
 }
 
 .button {
@@ -105,4 +114,9 @@
   @include breakpoint('desktop') {
     width: 429px;
   }
+
+  @include breakpoint('desktop-large'){
+    padding: 6px 18px;
+  }
+
 }

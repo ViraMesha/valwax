@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { BsCheck } from 'react-icons/bs';
 import CustomScrollBar from '@components/components/CustomScrollBar/CustomScrollBar';
 import Typography from '@components/components/Typography/Typography';
-import { useFilterContext } from '@context/FilterContext';
+import { useFilterSearchParams } from '@components/hooks';
 
 import styles from './FilterCategoryBlock.module.scss';
 
@@ -11,17 +11,23 @@ type FilterCategoryBlockI = {
   dict: {
     title: string;
     option: string[];
+    volumeLabel?: string;
   };
   className?: string;
+  category: string;
 };
 
 const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
   dict,
   className,
+  category,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const { filterValues, toggleFilter } = useFilterSearchParams();
 
-  const { toggleFilterParam, isSelected } = useFilterContext();
+  const isSelected = (item: string) => {
+    return filterValues.includes(item);
+  };
 
   return (
     <div className={`${styles.wrapper} ${className}`}>
@@ -34,13 +40,10 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
             {dict.option.map((item: string, index: number) => (
               <li
                 key={index}
-                onClick={() => toggleFilterParam(item)}
+                onClick={() => toggleFilter(item, category)}
                 className={`${styles.checkbox} ${
                   isSelected(item) ? styles.checked : ''
                 }`}
-                // className={`${styles.checkbox} ${
-                //   filterVar.indexOf(item) !== -1 && styles.checked
-                // }`}
               >
                 <div className={styles.check}>
                   <BsCheck />
@@ -50,7 +53,7 @@ const FilterCategoryBlock: React.FC<FilterCategoryBlockI> = ({
                   className={styles.typography}
                   color="--cl-gray-200"
                 >
-                  {item}
+                  {item} {dict.volumeLabel && dict.volumeLabel}
                 </Typography>
               </li>
             ))}

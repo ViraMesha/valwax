@@ -57,15 +57,14 @@ export type CustomCandleDescription = {
   color: string | number;
 };
 
-export interface CartProductI {
+export interface ICustomCandle {
   id: string;
-  img: string;
   title: string;
   description?: string | CustomCandleDescription;
   configuration?: CustomCandleDescription;
   price: number;
   quantity: number;
-  link: string;
+  slug: string;
 }
 
 type parameterI = {
@@ -84,12 +83,6 @@ export type configuratorSectionI = {
   color: parameterI;
 };
 
-export type generalI = {
-  buttons: { [key: string]: string };
-  titles: { [key: string]: string };
-  messages: { [key: string]: string };
-};
-
 export interface ConfiguratorSectionI {
   dict: configuratorSectionI;
   dictGeneral: generalI;
@@ -102,7 +95,6 @@ export interface ParameterI {
   parameter: string;
   shouldHaveNumber?: boolean;
 }
-
 
 export interface OptionEventI {
   target: { value: string };
@@ -132,6 +124,8 @@ export interface AreaData {
   CITY_UA?: string;
   POSTOFFICE_ID?: string;
   POSTOFFICE_UA?: string;
+  STREET_UA_VPZ?: string;
+  DISTRICT_UA?: string;
 }
 
 export interface SelectOptions {
@@ -236,7 +230,9 @@ type FilterT = {
   down: string;
   cleanUp: string;
   result: string;
-  category: { [key: string]: { title: string; option: string[] } };
+  category: {
+    [key: string]: { title: string; option: string[]; volumeLabel?: string };
+  };
 };
 
 export interface FilterI {
@@ -245,16 +241,12 @@ export interface FilterI {
   closeModal?: () => void;
 }
 
-export interface CandleApiResponse {
-  candles: CandleDetailsI[];
-  totalPages: number;
-}
-
 export interface CandlesSectionI {
   dict: {
     filter: FilterT;
   };
   candles: Promise<CandleApiResponse>;
+  paginBtnDict: string;
 }
 
 export interface FilterTagsI {
@@ -329,6 +321,8 @@ export interface CheckoutFormProps {
     notesPlaceholder: string;
     errorMessages: CheckoutFormValidation;
   };
+  dictParam: configuratorSectionI;
+  toastDict: { [key: string]: string };
 }
 
 export interface DeliveryFormProps {
