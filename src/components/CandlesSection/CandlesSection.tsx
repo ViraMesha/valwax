@@ -10,13 +10,13 @@ import CandleList from './CandleList/CandleList';
 
 import styles from './CandlesSection.module.scss';
 
-const CandlesSection: React.FC<CandlesSectionI> = ({ dict, candles }) => {
+const CandlesSection: React.FC<CandlesSectionI> = ({ dict, candles, paginBtnDict }) => {
   return (
     <Section id="candles-section" className={styles.section}>
       <Container className={styles.container}>
         <Filter dict={dict.filter} className={styles.filter} />
         <Suspense fallback={<CandlesSkeleton />}>
-          <CandleList items={candles} />
+          <CandleList items={candles} paginBtnDict={paginBtnDict} />
         </Suspense>
       </Container>
     </Section>

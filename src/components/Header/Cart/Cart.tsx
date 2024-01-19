@@ -13,7 +13,7 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ lang }) => {
-  const { totalQuantities, cartItems } = useCartContext();
+  const { totalCartProducts } = useCartContext();
 
   const handleCartClick = () => {
     showToast(
@@ -24,18 +24,18 @@ const Cart: React.FC<CartProps> = ({ lang }) => {
 
   return (
     <>
-      {cartItems.length ? (
+      {totalCartProducts > 0 ? (
         <Link href={`/${lang}/checkout`}>
           <BiShoppingBag />
-          {totalQuantities > 0 && (
-            <span className={styles.quantity}>{totalQuantities}</span>
+          {totalCartProducts > 0 && (
+            <span className={styles.quantity}>{totalCartProducts}</span>
           )}
         </Link>
       ) : (
         <button onClick={handleCartClick} className={styles.link}>
           <BiShoppingBag />
-          {totalQuantities > 0 && (
-            <span className={styles.quantity}>{totalQuantities}</span>
+          {totalCartProducts > 0 && (
+            <span className={styles.quantity}>{totalCartProducts}</span>
           )}
         </button>
       )}

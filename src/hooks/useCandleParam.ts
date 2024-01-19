@@ -1,12 +1,11 @@
 'use client';
 import { useState } from 'react';
+import { getInitParamCandle } from '@components/helpers';
 import { CustomCandleDescription } from '@components/types';
-
-import { useInitParamCandle } from './useInitParamCandle';
 
 export const useCandleParam = () => {
   const [paramCandle, setParamCandle] = useState<CustomCandleDescription>(
-    useInitParamCandle()
+    getInitParamCandle()
   );
 
   const handleChangeCandleParam = (key: string, param: number) => {

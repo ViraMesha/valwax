@@ -18,8 +18,8 @@ const Annotation: React.FC<AnnotationI> = ({ param, top, left }) => {
   const {  cleanParamsCandle } = useParamsCandleActionContext();
 
   const isParamColor = param === 'color';
-  const srcImage = isParamColor || configurationParamsCandle[param]?.image === null ? notSelectedImage : configurationParamsCandle[param]?.image;
-  const selectedColor = isParamColor ? configurationParamsCandle.color.color : 'red'
+  const srcImage = isParamColor || configurationParamsCandle[param]?.imageOption === null ? notSelectedImage : configurationParamsCandle[param]?.imageOption;
+  const selectedColor = isParamColor ? configurationParamsCandle.color.colorOption : 'red'
 
   useEffect(() => {
     cleanParamsCandle()
@@ -27,7 +27,7 @@ const Annotation: React.FC<AnnotationI> = ({ param, top, left }) => {
 
   return (
     <div className={styles.param} style={{ top: top, left: left }}>
-      {isParamColor && configurationParamsCandle.color.color !== 'inherit' ? (
+      {isParamColor && configurationParamsCandle.color.colorOption !== 'inherit' ? (
         <div className={styles.paramImage} style={{ backgroundColor: selectedColor === null ? 'red' :  selectedColor}}>
         </div>
       ) : (

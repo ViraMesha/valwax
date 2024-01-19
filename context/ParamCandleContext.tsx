@@ -15,11 +15,11 @@ export const ParamsCandleProvider = ({
   children,
 }: ParamsCandleContextProps) => {
   const initConfigurationParamsCandle = {
-    container: { name: '', image: null, index: null },
-    wax: { name: '', image: null, index: null },
-    aroma: { name: '', image: null, index: null },
-    wick: { name: '', image: null, index: null },
-    color: { name: '', color: 'inherit', index: null },
+    container: { nameOption: '', imageOption: null, indexOption: null },
+    wax: { nameOption: '', imageOption: null, indexOption: null },
+    aroma: { nameOption: '', imageOption: null, indexOption: null },
+    wick: { nameOption: '', imageOption: null, indexOption: null },
+    color: { nameOption: '', colorOption: 'inherit', indexOption: null },
   };
 
   const [configurationParamsCandle, setConfigurationParamsCandle] =

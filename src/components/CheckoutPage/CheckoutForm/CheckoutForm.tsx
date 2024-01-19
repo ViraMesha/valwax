@@ -1,20 +1,27 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import Button from '@components/components/Button/Button';
 import Input from '@components/components/Input/Input';
 import { buildOrderData } from '@components/helpers/buildOrderData';
 import validationSchema from '@components/helpers/formValidationSchema';
+import { showToast } from '@components/helpers/showToast';
+import { useStatusState } from '@components/hooks';
 import { CheckoutFormProps, CheckoutFormValues } from '@components/types';
-import { useCartContext } from '@context/CartContext';
+import { useCartActionsContext, useCartContext } from '@context/CartContext';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { sendOrder } from '@lib/api-services/apiOrder';
+import { sendOrder } from '@lib/api-services/fetchOrder';
 
 import DeliveryForm from './DeliveryForm/DeliveryForm';
 
 import styles from './CheckoutForm.module.scss';
 
-const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
+const CheckoutForm: React.FC<CheckoutFormProps> = ({
+  dict,
+  dictParam,
+  toastDict: { failedRequest },
+}) => {
   const {
     contactFormTitle,
     firstName,
@@ -25,7 +32,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
     errorMessages,
   } = dict;
 
-  const { totalPrice, cartItems } = useCartContext();
+  const { cartTotalPrice, cartProducts } = useCartContext();
+  const { clearCartProducts } = useCartActionsContext();
+  const router = useRouter();
 
   const formControl = useForm<CheckoutFormValues>({
     mode: 'onBlur',
@@ -41,11 +50,31 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
     setValue,
   } = formControl;
 
-  const onSubmit = (data: CheckoutFormValues) => {
-    const newOrder = buildOrderData(data, cartItems, totalPrice);
+  const { state, handleStatus } = useStatusState({
+    isLoading: false,
+    hasError: false,
+  });
 
-    console.log(newOrder);
-    sendOrder(newOrder);
+  const onSubmit = async (data: CheckoutFormValues) => {
+    const newOrder = buildOrderData(
+      data,
+      cartProducts,
+      cartTotalPrice,
+      dictParam
+    );
+
+    try {
+      handleStatus('isLoading', true);
+      await sendOrder(newOrder);
+      clearCartProducts();
+      router.push(`/success-order`);
+    } catch (e) {
+      handleStatus('hasError', true);
+      console.error(e);
+      showToast(failedRequest, 'error');
+    } finally {
+      handleStatus('isLoading', false);
+    }
   };
 
   return (
@@ -96,7 +125,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ dict }) => {
       </fieldset>
 
       <DeliveryForm dict={dict} formControl={formControl} />
-      <Button variant="primary" type="submit" className={styles.button}>
+      <Button
+        variant="primary"
+        type="submit"
+        className={styles.button}
+        disabled={!!errors?.email || state.isLoading}
+        isLoading={state.isLoading}
+      >
         {buttonText}
       </Button>
     </form>

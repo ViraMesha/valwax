@@ -86,7 +86,7 @@
   justify-content: center;
   gap: 16px;
   cursor: pointer;
-  
+
   @include breakpoint('only-mobile-small') {
     width: 156px;
     padding: 0 38px 0 38px;
@@ -101,7 +101,7 @@
   }
 }
 
-.activeLink{
+.activeLink {
   @include breakpoint('only-mobile-small') {
     padding: 0 38px 0 38px;
     justify-content: start;
@@ -151,7 +151,7 @@
   background-color: var(--cl-white);
   overflow: auto;
   padding-top: 160px;
-  padding-bottom: 0px;
+  padding-bottom: 20px;
 
   // opacity: 0;
   // pointer-events: none;

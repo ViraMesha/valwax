@@ -1,8 +1,9 @@
 'use client';
 import { useForm } from 'react-hook-form';
 import emailValidationSchema from '@components/helpers/emailValidationSchema';
+import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
 import { showToast } from '@components/helpers/showToast';
-import useStatusState from '@components/hooks/useStatusState';
+import { useStatusState } from '@components/hooks';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { subscribeToNewsletter } from '@lib/api-services/subscribeToNewsletter';
 
@@ -38,7 +39,7 @@ const Subscription: React.FC<SubscriptionI> = ({ dict, toastDict }) => {
     validEmail,
   } = dict;
 
-  const { successSubscription, failedRequest } = toastDict;
+  const { successSubscription } = toastDict;
 
   const { state, handleStatus } = useStatusState({
     isLoading: false,
@@ -62,9 +63,10 @@ const Subscription: React.FC<SubscriptionI> = ({ dict, toastDict }) => {
       await subscribeToNewsletter(data?.email);
       showToast(successSubscription);
     } catch (error: unknown) {
+      const errorMessage = extractErrorMessage(error);
       handleStatus('hasError', true);
-      console.log(error);
-      showToast(failedRequest, 'error');
+      console.error(error);
+      showToast(errorMessage, 'error');
     } finally {
       handleStatus('isLoading', false);
       reset();
