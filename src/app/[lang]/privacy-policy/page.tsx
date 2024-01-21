@@ -1,8 +1,7 @@
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import PrivacyPolicyInfo from '@components/components/PrivacyPolicyInfo/PrivacyPolicyInfo';
+import type { Locale } from '@i18n';
 import { getDictionary } from '@lib/utils/dictionary';
-
-import { Locale } from '../../../../i18n-config';
 
 export async function generateMetadata({
   params: { lang },

@@ -5,9 +5,8 @@ import { usePathname } from 'next/navigation';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 import useCloseDropdownOnNavigation from '@components/hooks/useCloseDropdownOnNavigation';
 import type { NavDictI } from '@components/types';
+import type { Locale } from '@i18n';
 import { useToggle } from 'usehooks-ts';
-
-import { Locale } from '../../../i18n-config';
 
 import { generateNavLinks } from './navData';
 

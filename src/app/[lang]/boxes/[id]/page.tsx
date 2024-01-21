@@ -2,11 +2,10 @@ import BoxDetailsPage from '@components/components/BoxDetailsPage/BoxDetailsPage
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import RelatedProducts from '@components/components/shared/RelatedProducts/RelatedProducts';
 import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
+import type { Locale } from '@i18n';
 import { fetchBoxById } from '@lib/api-services/fetchBoxById';
 import { fetchSimilarProducts } from '@lib/api-services/fetchSimilarProducts';
 import { getDictionary } from '@lib/utils/dictionary';
-
-import { Locale } from '../../../../../i18n-config';
 
 export async function generateMetadata({
   params: { lang, id },

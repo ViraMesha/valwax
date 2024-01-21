@@ -4,9 +4,9 @@ import { AiOutlineCopyrightCircle } from 'react-icons/ai';
 import { CiMail } from 'react-icons/ci';
 import { PiPhoneThin } from 'react-icons/pi';
 import type { NavDictI } from '@components/types';
+import type { Locale } from '@i18n';
 import Logo from '@images/logo/Logo.svg';
 
-import { Locale } from '../../../i18n-config';
 import Container from '../Container/Container';
 import Navigation from '../Navigation/Navigation';
 import Typography from '../Typography/Typography';

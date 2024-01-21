@@ -1,6 +1,6 @@
 import { Await } from '@components/helpers/Await';
+import type { Locale } from '@i18n';
 
-import { Locale } from '../../../i18n-config';
 import CandlesSection from '../CandlesSection/CandlesSection';
 import Pagination from '../shared/Pagination/Pagination';
 import Tabs from '../Tabs/Tabs';

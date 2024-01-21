@@ -3,10 +3,9 @@ import CandlesPage from '@components/components/CandlesPage/CandlesPage';
 import { buildFilterQuery } from '@components/helpers';
 import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { removeCandlesSuffix } from '@components/helpers/removeCandlesSuffix';
+import type { Locale } from '@i18n';
 import { fetchCandles } from '@lib/api-services/fetchCandles';
 import { getDictionary } from '@lib/utils/dictionary';
-
-import { Locale } from '../../../../../i18n-config';
 
 import { convertStringToNumber } from './../../../../helpers/convertStringToNumber';
 

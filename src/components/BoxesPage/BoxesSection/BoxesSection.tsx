@@ -8,12 +8,12 @@ import BoxesList from './BoxesList/BoxesList';
 
 import styles from './BoxesSection.module.scss';
 
-const BoxesSection = ({ dict, boxes, toastMessage }: BoxesSectionProps) => {
+const BoxesSection = ({ dict, boxes, toastMessage, lang }: BoxesSectionProps) => {
   return (
     <Section className={styles.section}>
       <Container>
         <Suspense fallback={<BoxesSkeleton />}>
-          <BoxesList dict={dict} boxes={boxes} toastMessage={toastMessage} />
+          <BoxesList dict={dict} boxes={boxes} toastMessage={toastMessage} lang={lang}/>
         </Suspense>
       </Container>
     </Section>

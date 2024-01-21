@@ -4,7 +4,7 @@ import BoxesCard from '../BoxesCard/BoxesCard';
 
 import styles from './BoxesList.module.scss';
 
-const BoxesList = async ({ dict, boxes, toastMessage }: BoxesSectionProps) => {
+const BoxesList = async ({ dict, boxes, toastMessage, lang }: BoxesSectionProps) => {
   const items = await boxes;
   return (
     <ul className={styles.list}>
@@ -14,6 +14,7 @@ const BoxesList = async ({ dict, boxes, toastMessage }: BoxesSectionProps) => {
           box={box}
           dict={dict}
           toastMessage={toastMessage}
+          lang={lang}
         />
       ))}
     </ul>
