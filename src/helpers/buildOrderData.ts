@@ -17,6 +17,7 @@ export const buildOrderData = (
     phone,
     postOfficeBranchNum,
     payment,
+    delivery,
   } = dataForm;
 
 
@@ -47,6 +48,7 @@ export const buildOrderData = (
       address: `${deliveryArea.value} ${deliveryCity.value} ${postOfficeBranchNum.value}`,
       comment: notes,
       payment,
+      delivery,
     },
     items,
     customCandles: customCandlesOrder,

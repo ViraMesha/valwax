@@ -82,7 +82,6 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
     setValue('payment', value);
     trigger('payment');
     setSelectedPayment(paymentValue);
-    console.log(paymentValue);
   };
 
   const handleSelectArea = (value: SelectOptions) => {
