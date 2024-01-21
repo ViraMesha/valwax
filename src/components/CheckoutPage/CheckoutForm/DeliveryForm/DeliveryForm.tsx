@@ -50,7 +50,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   const [selectedCity, setSelectedCity] = useState<SelectOptions | null>(null);
   const [selectedWarehouse, setSelectedWarehouse] =
     useState<SelectOptions | null>(null);
-
+  
   const [isAreaSelectOpen, setIsAreaSelectOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState({
@@ -61,7 +61,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   const [orderNotes, setOrderNotes] = useState('');
 
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
-  const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
+  const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0].split(' - ')[0]);
 
   const handleSelectDelivery = (value: string) => {
     setValue('delivery', value);
@@ -77,9 +77,12 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   };
 
   const handleSelectPayment = (value: string) => {
+    const paymentValue = value.split(' - ')[0];
+
     setValue('payment', value);
     trigger('payment');
-    setSelectedPayment(value);
+    setSelectedPayment(paymentValue);
+    console.log(paymentValue);
   };
 
   const handleSelectArea = (value: SelectOptions) => {
@@ -288,6 +291,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
           isLoading={isLoading.warehouse}
           errorMessage={errors.postOfficeBranchNum?.message}
           error={errors.postOfficeBranchNum}
+          searchMode='general'
         />
       </div>
       <RadioButtons

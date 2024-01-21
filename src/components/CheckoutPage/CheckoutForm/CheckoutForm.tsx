@@ -56,6 +56,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   });
 
   const onSubmit = async (data: CheckoutFormValues) => {
+    console.log(data);
     const newOrder = buildOrderData(
       data,
       cartProducts,

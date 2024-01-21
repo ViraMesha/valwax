@@ -17,18 +17,20 @@ const RadioButtons = forwardRef<HTMLDivElement, RadioButtonsProps>(
       <div ref={ref} className={styles.radioButtonsContainer}>
         {options.map((option, index) => {
           const [displayText, additionalText] = option.split(' - ');
+          const valueBeforeDash = option.split(' - ')[0];
+
           return (
             <div key={index} className={styles.radioButtonsWrapper}>
               <label className={styles.radioButtonsLabel}>
                 <input
                   className={styles.radioButtonsInput}
                   type="radio"
-                  value={option}
-                  checked={checkedSelector === option}
+                  value={valueBeforeDash}
+                  checked={checkedSelector === valueBeforeDash}
                   onChange={() => onChangeSelector(option)}
                 />
                 <span className={styles.radioButtonsIcon}>
-                  {checkedSelector === option && (
+                  {checkedSelector === valueBeforeDash && (
                     <FaCheck
                       style={{ color: 'var(--cl-white)', width: '12px' }}
                     />
