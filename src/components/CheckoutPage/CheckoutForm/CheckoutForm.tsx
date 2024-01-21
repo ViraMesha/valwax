@@ -7,7 +7,7 @@ import Input from '@components/components/Input/Input';
 import { buildOrderData } from '@components/helpers/buildOrderData';
 import validationSchema from '@components/helpers/formValidationSchema';
 import { showToast } from '@components/helpers/showToast';
-import { useStatusState } from '@components/hooks';
+import { useLangFromPathname, useStatusState } from '@components/hooks';
 import { CheckoutFormProps, CheckoutFormValues } from '@components/types';
 import { useCartActionsContext, useCartContext } from '@context/CartContext';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -35,6 +35,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const { cartTotalPrice, cartProducts } = useCartContext();
   const { clearCartProducts } = useCartActionsContext();
   const router = useRouter();
+  const lang = useLangFromPathname();
 
   const formControl = useForm<CheckoutFormValues>({
     mode: 'onBlur',
@@ -56,7 +57,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   });
 
   const onSubmit = async (data: CheckoutFormValues) => {
-    console.log(data);
     const newOrder = buildOrderData(
       data,
       cartProducts,
@@ -68,7 +68,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       handleStatus('isLoading', true);
       await sendOrder(newOrder);
       clearCartProducts();
-      router.push(`/success-order`);
+      router.push(`/${lang}/success-order`);
     } catch (e) {
       handleStatus('hasError', true);
       console.error(e);
