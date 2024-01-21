@@ -56,13 +56,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     hasError: false,
   });
 
-  const onSubmit = async (data: CheckoutFormValues) => {
-    const newOrder = buildOrderData(
-      data,
+  const onSubmit = async (dataForm: CheckoutFormValues) => {
+    const newOrder = buildOrderData({
+      dataForm,
       cartProducts,
       cartTotalPrice,
       dictParam
-    );
+    });
 
     try {
       handleStatus('isLoading', true);
