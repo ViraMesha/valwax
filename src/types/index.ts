@@ -367,3 +367,11 @@ export interface UseScrollbarProps {
 }
 
 export type ServerLocale = 'UA' | 'EN';
+
+
+export interface buildOrderDataI {
+  dataForm: CheckoutFormValues,
+  cartProducts: ICartProducts,
+  cartTotalPrice: number,
+  dictParam: configuratorSectionI
+}

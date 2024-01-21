@@ -1,12 +1,7 @@
 import { paramData } from '@components/components/CreateYourOwn/ConfiguratorSection/Configurator/configuratorData';
-import { CheckoutFormValues, configuratorSectionI } from '@components/types';
+import { buildOrderDataI } from '@components/types';
 
-export const buildOrderData = (
-  dataForm: CheckoutFormValues,
-  dataCartGoods: ICartProducts,
-  totalPrice: number,
-  dictParam: configuratorSectionI
-) => {
+export const buildOrderData = ({ dataForm, cartProducts, cartTotalPrice, dictParam}: buildOrderDataI) => {
   const {
     deliveryArea,
     deliveryCity,
@@ -17,12 +12,13 @@ export const buildOrderData = (
     phone,
     postOfficeBranchNum,
     payment,
+    delivery,
   } = dataForm;
 
 
   const descriptionName = paramData(dictParam);
 
-  const {candles, boxes, customCandles} = dataCartGoods;
+  const {candles, boxes, customCandles} = cartProducts;
 
   const items = [
     ...candles.map(({id, quantity, price}) => ({id, quantity, price, category: 'candle'})),
@@ -47,10 +43,11 @@ export const buildOrderData = (
       address: `${deliveryArea.value} ${deliveryCity.value} ${postOfficeBranchNum.value}`,
       comment: notes,
       payment,
+      delivery,
     },
     items,
     customCandles: customCandlesOrder,
-    total: totalPrice,
+    total: cartTotalPrice,
     payed: false,
     date: new Date(),
   };
