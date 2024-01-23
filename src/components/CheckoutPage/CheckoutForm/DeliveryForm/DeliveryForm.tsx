@@ -227,7 +227,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
       ? {
           ref: option.POSTOFFICE_ID,
           value: option.POSTOFFICE_UA,
-          label: `${option.POSTOFFICE_UA} (${option.STREET_UA_VPZ})`,
+          label: `${option.POSTOFFICE_UA} ${option.STREET_UA_VPZ ? `(${option.STREET_UA_VPZ})` : '' }`,
         }
       : {
           ref: option.Ref,
