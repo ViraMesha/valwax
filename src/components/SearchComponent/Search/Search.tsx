@@ -13,7 +13,7 @@ import styles from './Search.module.scss';
 
 interface SearchProps {
   closeModal?: () => void;
-  dict: { noResults: string };
+  dict: { search: string, noResults: string };
   toastMessage: string;
 }
 
@@ -68,7 +68,7 @@ const Search: React.FC<SearchProps> = ({ closeModal, dict, toastMessage }) => {
         />
         <Input
           type="text"
-          placeholder="Пошук"
+          placeholder={dict.search}
           value={searchQuery}
           onChange={e => handleChange(e.target.value)}
           className={styles.searchInput}
