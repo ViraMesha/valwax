@@ -40,7 +40,7 @@ export const buildOrderData = ({ dataForm, cartProducts, cartTotalPrice, dictPar
       lastName,
       phone: `+380${phone}`,
       email,
-      address: `${deliveryArea.value} ${deliveryCity.value} ${postOfficeBranchNum.value}`,
+      address: `${deliveryArea.value} обл., ${deliveryCity.value}, ${postOfficeBranchNum.value}`,
       comment: notes,
       payment,
       delivery,

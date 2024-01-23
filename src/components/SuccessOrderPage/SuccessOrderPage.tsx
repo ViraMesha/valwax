@@ -1,6 +1,6 @@
 import Image from 'next/image';
+import type { Locale } from '@i18n';
 
-import { Locale } from '../../../i18n-config';
 import candleImg from '../../../public/images/icons/candles-vectorportal.svg';
 import Container from '../Container/Container';
 import Section from '../Section/Section';

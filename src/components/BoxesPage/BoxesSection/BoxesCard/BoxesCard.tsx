@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Price from '@components/components/shared/Price/Price';
 import Typography from '@components/components/Typography/Typography';
 import type { BoxDetailsI, ButtonsTranslation } from '@components/types';
+import { Locale } from '@i18n';
 
 import BoxImgSlider from '../BoxImgSlider/BoxImgSlider';
 import BuyButton from '../BuyButton/BuyButton';
@@ -12,12 +13,14 @@ type BoxesCardProps = {
   box: BoxDetailsI;
   dict: ButtonsTranslation;
   toastMessage: string;
+  lang: Locale;
 };
 
 const BoxesCard: React.FC<BoxesCardProps> = ({
   box,
   dict: { buyBtn, reviewBtn },
   toastMessage,
+  lang,
 }) => {
   const { id, images, title, price, slug, text } = box;
   return (
@@ -25,7 +28,7 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
       <BoxImgSlider img={images} />
       <div>
         <div className={styles.content}>
-          <Link href={`${slug}/${id}`}>
+          <Link href={`/${lang}${slug}/${id}`}>
             <Typography variant="subheadingBold" className={styles.title}>
               {title}
             </Typography>
@@ -41,7 +44,7 @@ const BoxesCard: React.FC<BoxesCardProps> = ({
             buyBtn={buyBtn}
             toastMessage={toastMessage}
           />
-          <Link href={`${slug}/${id}`}>{reviewBtn}</Link>
+          <Link href={`/${lang}${slug}/${id}`}>{reviewBtn}</Link>
         </div>
       </div>
     </li>

@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import type { NavDictI } from '@components/types';
 import { useModalContext } from '@context/ModalContext';
+import type { Locale } from '@i18n';
 import logo from '@images/icons/header-logo.svg';
 import sm_logo from '@images/icons/sm-logo.svg';
 import { useWindowSize } from 'usehooks-ts';
 
-import { Locale } from '../../../i18n-config';
 import Container from '../Container/Container';
 import Modal from '../Modal/Modal';
 import Navigation from '../Navigation/Navigation';
@@ -22,7 +22,7 @@ import styles from './Header.module.scss';
 
 interface HeaderProps {
   lang: Locale;
-  dict: { noResults: string };
+  dict: DictSearchI;
   navDict: NavDictI;
   toastMessage: string;
 }

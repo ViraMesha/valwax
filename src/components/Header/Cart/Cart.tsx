@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { BiShoppingBag } from 'react-icons/bi';
 import { showToast } from '@components/helpers/showToast';
 import { useCartContext } from '@context/CartContext';
-
-import { Locale } from '../../../../i18n-config';
+import type { Locale } from '@i18n';
 
 import styles from './Cart.module.scss';
 
