@@ -66,7 +66,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
     try {
       handleStatus('isLoading', true);
-      await sendOrder(newOrder);
+      await sendOrder(newOrder, lang);
       clearCartProducts();
       router.push(`/${lang}/success-order`);
     } catch (e) {
