@@ -198,3 +198,9 @@ interface ICartCandleProduct extends CandleDetailsI {
 }
 
 type ICartProduct = ICartCandleProduct | ICartBoxProduct | ICustomCandle;
+
+
+interface DictSearchI {
+  search: string,
+  noResults: string
+}

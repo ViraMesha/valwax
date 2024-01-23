@@ -13,7 +13,7 @@ import styles from './Search.module.scss';
 
 interface SearchProps {
   closeModal?: () => void;
-  dict: { search: string, noResults: string };
+  dict: DictSearchI;
   toastMessage: string;
 }
 

@@ -22,7 +22,7 @@ import styles from './Header.module.scss';
 
 interface HeaderProps {
   lang: Locale;
-  dict: { noResults: string };
+  dict: DictSearchI;
   navDict: NavDictI;
   toastMessage: string;
 }
