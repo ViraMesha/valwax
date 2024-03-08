@@ -50,7 +50,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   const [selectedCity, setSelectedCity] = useState<SelectOptions | null>(null);
   const [selectedWarehouse, setSelectedWarehouse] =
     useState<SelectOptions | null>(null);
-
+  
   const [isAreaSelectOpen, setIsAreaSelectOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState({
@@ -61,7 +61,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   const [orderNotes, setOrderNotes] = useState('');
 
   const [selectedDelivery, setSelectedDelivery] = useState(deliveryOptions[0]);
-  const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0]);
+  const [selectedPayment, setSelectedPayment] = useState(paymentOptions[0].split(' - ')[0]);
 
   const handleSelectDelivery = (value: string) => {
     setValue('delivery', value);
@@ -77,9 +77,11 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
   };
 
   const handleSelectPayment = (value: string) => {
+    const paymentValue = value.split(' - ')[0];
+
     setValue('payment', value);
     trigger('payment');
-    setSelectedPayment(value);
+    setSelectedPayment(paymentValue);
   };
 
   const handleSelectArea = (value: SelectOptions) => {
@@ -225,7 +227,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
       ? {
           ref: option.POSTOFFICE_ID,
           value: option.POSTOFFICE_UA,
-          label: `${option.POSTOFFICE_UA} (${option.STREET_UA_VPZ})`,
+          label: `${option.POSTOFFICE_UA} ${option.STREET_UA_VPZ ? `(${option.STREET_UA_VPZ})` : '' }`,
         }
       : {
           ref: option.Ref,
@@ -288,6 +290,7 @@ const DeliveryForm: React.FC<DeliveryFormProps> = ({ dict, formControl }) => {
           isLoading={isLoading.warehouse}
           errorMessage={errors.postOfficeBranchNum?.message}
           error={errors.postOfficeBranchNum}
+          searchMode='general'
         />
       </div>
       <RadioButtons

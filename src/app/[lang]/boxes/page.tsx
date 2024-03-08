@@ -3,10 +3,9 @@ import BoxesPageHeader from '@components/components/BoxesPage/BoxesPageHeader/Bo
 import BoxesSection from '@components/components/BoxesPage/BoxesSection/BoxesSection';
 import Breadcrumbs from '@components/components/Breadcrumbs/Breadcrumbs';
 import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
+import { Locale } from '@i18n';
 import { fetchBoxes } from '@lib/api-services/fetchBoxes';
 import { getDictionary } from '@lib/utils/dictionary';
-
-import { Locale } from '../../../../i18n-config';
 
 export async function generateMetadata({
   params: { lang },
@@ -44,7 +43,7 @@ const Boxes = async ({ params: { lang } }: { params: { lang: Locale } }) => {
         lang={lang}
       />
       <BoxesPageHeader dict={header} />
-      <BoxesSection dict={section} toastMessage={itemAdded} boxes={promise} />
+      <BoxesSection dict={section} toastMessage={itemAdded} boxes={promise}         lang={lang}/>
       <BoxesInfo dict={info} />
     </>
   );

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getInitialCartProducts } from '@components/helpers';
 import { convertToServerLocale } from '@components/helpers/convertToServerLocale';
 import { extractErrorMessage } from '@components/helpers/extractErrorMessage';
+import { useCartContext } from '@context/CartContext';
 import { fetchCartBoxes } from '@lib/api-services/fetchCartBoxes';
 import { fetchCartCandles } from '@lib/api-services/fetchCartCandles';
 
@@ -12,6 +13,7 @@ import { getStorageValue } from './useLocalStorage';
 import { useStatusState } from './useStatusState';
 
 export const useProductList = () => {
+  const { cartProducts } = useCartContext();
   const [products, setProducts] = useState<ICartProduct[] | []>([]);
 
   const lang = useLangFromPathname();
@@ -82,22 +84,31 @@ export const useProductList = () => {
   useEffect(() => {
     const initCardProducts = getInitialCartProducts();
 
-    const cartProducts = getStorageValue<ICartProducts>(
+    const cartItems = getStorageValue<ICartProducts>(
       'cartProducts',
       initCardProducts
     );
 
-    const initialState = [...cartProducts.customCandles];
+    const initialState = [...cartItems.customCandles];
 
     setProducts(initialState);
 
-    const { boxes, candles } = cartProducts;
+    const { boxes, candles } = cartItems;
 
-    const boxesIds = boxes.map(item => item.id);
-    const candlesIds = candles.map(item => item.id);
+    const boxesIds = !cartProducts.boxes.length
+      ? boxes.map(item => item.id)
+      : cartProducts.boxes.map(item => item.id);
+    const candlesIds = !cartProducts.candles.length
+      ? candles.map(item => item.id)
+      : cartProducts.candles.map(item => item.id);
 
-    getCandles(candlesIds, candles);
-    getBoxes(boxesIds, boxes);
+    const boxesData = !cartProducts.boxes.length ? boxes : cartProducts.boxes;
+    const candlesData = !cartProducts.candles.length
+      ? candles
+      : cartProducts.candles;
+
+    getCandles(candlesIds, candlesData);
+    getBoxes(boxesIds, boxesData);
   }, [lang]);
 
   const handleDelete = ({ id, isBox, aroma }: IHandleDeleteParams) => {

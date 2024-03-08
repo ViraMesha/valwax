@@ -396,6 +396,7 @@
     }
   },
   "search": {
+    "search": "Search",
     "noResults": "No items found"
   },
   "footer": {

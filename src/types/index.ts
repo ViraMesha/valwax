@@ -1,7 +1,6 @@
 import { StaticImageData } from 'next/image';
 import { UseFormReturn } from 'react-hook-form';
-
-import { Locale } from '../../i18n-config';
+import { Locale } from '@i18n';
 
 export interface IBoxKit {
   container: string;
@@ -357,6 +356,7 @@ export interface BoxesSectionProps {
   dict: ButtonsTranslation;
   boxes: Promise<BoxDetailsI[]>;
   toastMessage: string;
+  lang: Locale;
 }
 
 export interface UseScrollbarProps {
@@ -367,3 +367,11 @@ export interface UseScrollbarProps {
 }
 
 export type ServerLocale = 'UA' | 'EN';
+
+
+export interface buildOrderDataI {
+  dataForm: CheckoutFormValues,
+  cartProducts: ICartProducts,
+  cartTotalPrice: number,
+  dictParam: configuratorSectionI
+}

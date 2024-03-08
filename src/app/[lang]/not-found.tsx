@@ -6,10 +6,9 @@ import Container from '@components/components/Container/Container';
 import Section from '@components/components/Section/Section';
 import CustomLink from '@components/components/shared/CustomLink/CustomLink';
 import Typography from '@components/components/Typography/Typography';
+import { Locale } from '@i18n';
 import notFoundImg from '@images/icons/not-found.svg';
 import { getDictionary } from '@lib/utils/dictionary';
-
-import { Locale } from '../../../i18n-config';
 
 import styles from './not-found.module.scss';
 

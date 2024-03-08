@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Locale } from '@i18n';
 import boxImg from '@images/Compass/box-card.jpg';
 import candleImg from '@images/Compass/candle-card.jpg';
 import createImg from '@images/Compass/create-card.jpg';
 
-import { Locale } from '../../../i18n-config';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import Typography from '../Typography/Typography';

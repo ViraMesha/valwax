@@ -3,9 +3,9 @@ import Hero from '@components/components/Hero/Hero';
 import Instagram from '@components/components/Instagram/Instagram';
 import Quote from '@components/components/Quote/Quote';
 import Subscription from '@components/components/Subscription/Subscription';
+import type { Locale } from '@i18n';
 import { getDictionary } from '@lib/utils/dictionary';
 
-import { Locale } from '../../../i18n-config';
 import Compass from '../../components/Compass/Compass';
 
 export async function generateMetadata({

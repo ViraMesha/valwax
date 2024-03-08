@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import Select, { components } from 'react-select';
+import Select from 'react-select';
 
 import CustomScrollBar from '../CustomScrollBar/CustomScrollBar';
 
@@ -18,6 +18,7 @@ interface CustomSelectProps {
   name?: string;
   errorMessage?: string;
   error?: any;
+  searchMode?: 'start' | 'general';
 }
 
 const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
@@ -33,10 +34,10 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
       name,
       errorMessage,
       error,
+      searchMode = 'start',
     },
     ref
   ) => {
-
     const customScrollBarRef = useRef<HTMLDivElement | null>(null);
     const [selectedValue, setSelectedValue] = useState(value);
     const [searchTerm, setSearchTerm] = useState('');
@@ -46,10 +47,17 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
         return options;
       }
 
-      const filteredOptions = options.filter(
-        option =>
-          option.label?.toLowerCase().startsWith(searchTerm.toLowerCase())
-      );
+      const filteredOptions = options.filter(option => {
+        const optionLabel = option.label?.toLowerCase();
+
+        if (searchMode === 'start') {
+          return optionLabel?.startsWith(searchTerm.toLowerCase());
+        } else if (searchMode === 'general') {
+          return optionLabel?.includes(searchTerm.toLowerCase());
+        }
+
+        return false;
+      });
 
       return filteredOptions;
     };
@@ -114,15 +122,10 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
     }, [value]);
 
     const MenuList = (props: any) => {
-
-      // const menuRef = useRef<HTMLDivElement | null>(null);
-
       return (
-        // <components.MenuList {...props}>
-          <CustomScrollBar root={customScrollBarRef} maxHeight="240px">
-            {props.children}
-          </CustomScrollBar>
-        // </components.MenuList>
+        <CustomScrollBar root={customScrollBarRef} maxHeight="240px">
+          {props.children}
+        </CustomScrollBar>
       );
     };
 
@@ -142,11 +145,9 @@ const CustomSelect = forwardRef<HTMLDivElement, CustomSelectProps>(
           isLoading={isLoading}
           onInputChange={handleInputChange}
           components={{ MenuList }}
-          // menuIsOpen
-          // captureMenuScroll
         />
         {error && <p className={styles.error}>{errorMessage}</p>}
-        </div>
+      </div>
     );
   }
 );

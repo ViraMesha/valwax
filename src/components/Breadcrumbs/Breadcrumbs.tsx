@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { BiSolidChevronRight } from 'react-icons/bi';
+import type { Locale } from '@i18n';
 
-import { Locale } from '../../../i18n-config';
 import home from '../../../public/images/icons/home-breadcrumbs-heart.svg';
 import Container from '../Container/Container';
 
